@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  postgis:
+    image: postgis/postgis:16-3.4
+    container_name: heritage_postgis
+    environment:
+      POSTGRES_DB: heritage_travel
+      POSTGRES_USER: heritage
+      POSTGRES_PASSWORD: heritage123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+      - ./infra/db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U heritage -d heritage_travel"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: heritage_redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  osrm:
+    image: ghcr.io/project-osrm/osrm-backend:v5.27.1
+    container_name: heritage_osrm
+    command: osrm-routed --algorithm mld /data/vietnam-latest.osrm
+    ports:
+      - "5000:5000"
+    volumes:
+      - osrm_data:/data
+    profiles:
+      - routing
+
+volumes:
+  postgis_data:
+  redis_data:
+  osrm_data:

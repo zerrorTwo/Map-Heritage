@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vietnam Heritage Travel — Multi-Province Trip Planner</title>
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: flex; height: 100vh; overflow: hidden; }
+
+    /* SIDEBAR */
+    #sidebar {
+      width: 400px; min-width: 400px; background: #1a1a2e; color: #eee;
+      display: flex; flex-direction: column; overflow-y: auto; border-right: 2px solid #e94560;
+    }
+    #sidebar h1 { font-size: 19px; padding: 14px 20px; background: #16213e; border-bottom: 1px solid #0f3460; }
+    #sidebar h1 span { color: #e94560; }
+    #map { flex: 1; height: 100vh; }
+
+    /* POPUP */
+    .maplibregl-popup-content { font-family: inherit; font-size: 13px; border-radius: 8px; padding: 12px; max-width: 300px; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
+    .maplibregl-popup-content h3 { margin: 0 0 6px; font-size: 14px; }
+    .maplibregl-popup-content .cat-tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; margin: 2px; color: #fff; }
+    .maplibregl-popup-content p { margin: 3px 0; color: #555; font-size: 12px; }
+
+    /* FORM */
+    .form-section { padding: 12px 20px; border-bottom: 1px solid #0f3460; }
+    .form-section label { display: block; font-size: 11px; color: #aaa; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; }
+    .form-section select, .form-section input {
+      width: 100%; padding: 8px 12px; border: 1px solid #0f3460; border-radius: 6px;
+      background: #16213e; color: #eee; font-size: 14px; outline: none;
+    }
+    .form-section select:focus, .form-section input:focus { border-color: #e94560; }
+    .form-row { display: flex; gap: 12px; }
+    .form-row .form-section { flex: 1; border-bottom: none; padding: 8px 0; }
+
+    .tag-group { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { padding: 4px 10px; border-radius: 20px; font-size: 12px; cursor: pointer; border: 1px solid #0f3460; background: #16213e; color: #aaa; transition: all 0.2s; user-select: none; }
+    .tag.active { background: #e94560; border-color: #e94560; color: #fff; }
+
+    .province-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .btn { width: 100%; padding: 12px; background: #e94560; color: #fff; border: none; border-radius: 6px; font-size: 16px; font-weight: 700; cursor: pointer; margin: 12px 0; transition: background 0.2s; }
+    .btn:hover { background: #c73a54; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    #result { padding: 12px 20px; flex: 1; overflow-y: auto; }
+    .day-card { background: #16213e; border-radius: 8px; padding: 10px; margin-bottom: 10px; border-left: 3px solid #e94560; }
+    .day-card h3 { font-size: 13px; color: #e94560; margin-bottom: 6px; }
+    .item-row { display: flex; align-items: center; gap: 6px; padding: 4px 0; border-bottom: 1px solid #0f3460; font-size: 12px; cursor: pointer; }
+    .item-row:hover { color: #e94560; }
+    .item-row .time { color: #888; font-size: 10px; min-width: 55px; }
+    .summary-box { background: linear-gradient(135deg, #e94560, #c73a54); border-radius: 8px; padding: 10px; margin-bottom: 10px; color: #fff; font-size: 12px; }
+    .summary-box strong { font-size: 14px; }
+
+    #loading { display: none; text-align: center; padding: 16px; color: #aaa; }
+    #loading .spinner { width: 30px; height: 30px; border: 3px solid #0f3460; border-top: 3px solid #e94560; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 10px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .section-title { font-size: 10px; color: #e94560; text-transform: uppercase; padding: 8px 20px 0; letter-spacing: 1px; }
+
+    /* LEGEND */
+    .legend {
+      position: absolute; bottom: 30px; right: 10px; background: rgba(26,26,46,0.92); color: #eee;
+      border-radius: 8px; padding: 10px 14px; font-size: 11px; z-index: 10;
+      box-shadow: 0 2px 8px rgba(0,0,0,.4); border: 1px solid #0f3460;
+    }
+    .legend h4 { margin: 0 0 6px; color: #e94560; font-size: 12px; }
+    .legend-row { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
+    .legend-icon { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+    /* LAYER SWITCHER */
+    .layer-switcher {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 4px; z-index: 10; background: rgba(26,26,46,0.85);
+      border-radius: 8px; padding: 4px; border: 1px solid #0f3460;
+    }
+    .layer-btn {
+      padding: 5px 12px; border: none; border-radius: 6px; font-size: 12px;
+      cursor: pointer; background: transparent; color: #aaa; transition: all 0.2s;
+      font-family: inherit; white-space: nowrap;
+    }
+    .layer-btn:hover { color: #eee; background: #16213e; }
+    .layer-btn.active { background: #e94560; color: #fff; }
+  </style>
+</head>
+<body>
+
+<div id="sidebar">
+  <h1>🇻🇳 <span>Di Sản</span> Việt Nam</h1>
+
+  <div class="section-title">📍 Chọn Tỉnh Thành (nhiều)</div>
+  <div class="form-section">
+    <div class="province-grid" id="provinceGrid"></div>
+  </div>
+
+  <div class="form-row" style="padding: 0 20px;">
+    <div class="form-section"><label>Số ngày</label><input type="number" id="duration" value="3" min="1" max="14"></div>
+    <div class="form-section"><label>Số người</label><input type="number" id="people" value="2" min="1" max="20"></div>
+  </div>
+
+  <div class="form-row" style="padding: 0 20px;">
+    <div class="form-section">
+      <label>Nhịp độ</label>
+      <select id="pace"><option value="relaxed">Thư giãn</option><option value="moderate" selected>Vừa phải</option><option value="packed">Dày đặc</option></select>
+    </div>
+    <div class="form-section">
+      <label>Ngân sách</label>
+      <select id="budget"><option value="low">Tiết kiệm</option><option value="medium" selected>Trung bình</option><option value="high">Cao cấp</option></select>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <label>Sở thích</label>
+    <div class="tag-group" id="interestTags">
+      <span class="tag active" data-val="history">Lịch sử</span>
+      <span class="tag active" data-val="architecture">Kiến trúc</span>
+      <span class="tag" data-val="spiritual">Tâm linh</span>
+      <span class="tag" data-val="museum">Bảo tàng</span>
+      <span class="tag" data-val="craft_village">Làng nghề</span>
+      <span class="tag" data-val="local_food">Ẩm thực</span>
+      <span class="tag" data-val="nature">Thiên nhiên</span>
+      <span class="tag" data-val="photography">Nhiếp ảnh</span>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <label>Ràng buộc</label>
+    <div class="tag-group" id="constraintTags">
+      <span class="tag" data-val="elderly_friendly">Người già</span>
+      <span class="tag" data-val="child_friendly">Trẻ em</span>
+      <span class="tag" data-val="avoid_sun">Tránh nắng</span>
+      <span class="tag" data-val="prefer_indoor">Trong nhà</span>
+      <span class="tag" data-val="prefer_outdoor">Ngoài trời</span>
+    </div>
+  </div>
+
+  <div style="padding: 0 20px;">
+    <button class="btn" id="generateBtn" onclick="generateTrip()">🔍 Tạo Lịch Trình</button>
+  </div>
+
+  <div id="loading"><div class="spinner"></div><span>Đang tính toán với OSRM road routing...</span></div>
+  <div id="result"></div>
+</div>
+
+<div id="map"></div>
+
+<!-- LEGEND -->
+<div class="legend" id="legend">
+  <h4>🗺️ Chú thích</h4>
+  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#e94560" stroke="#fff" stroke-width="2"/><text x="8" y="11" text-anchor="middle" font-size="8" fill="#fff">🏛</text></svg></div> Lịch sử</div>
+  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#f0a500" stroke="#fff" stroke-width="2"/></svg></div> Tâm linh</div>
+  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#4a90d9" stroke="#fff" stroke-width="2"/></svg></div> Bảo tàng</div>
+  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#7c3aed" stroke="#fff" stroke-width="2"/></svg></div> Kiến trúc</div>
+  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#10b981" stroke="#fff" stroke-width="2"/></svg></div> Làng nghề</div>
+  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#f97316" stroke="#fff" stroke-width="2"/></svg></div> UNESCO</div>
+  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#6b7280" stroke="#fff" stroke-width="2"/></svg></div> Khác</div>
+  <div class="legend-row" style="margin-top:4px;"><div class="legend-icon"><div style="width:20px;height:3px;background:#f0a500;border-radius:2px;"></div></div> Nhà hàng</div>
+</div>
+
+<script>
+const API_BASE = window.location.origin;
+
+// ======== CATEGORY STYLES ========
+const CAT_STYLE = {
+  history:       { color: '#e94560', icon: '🏛️', label: 'Lịch sử' },
+  spiritual:     { color: '#f0a500', icon: '🕌', label: 'Tâm linh' },
+  museum:        { color: '#4a90d9', icon: '🏛️', label: 'Bảo tàng' },
+  architecture:  { color: '#7c3aed', icon: '🏗️', label: 'Kiến trúc' },
+  craft_village: { color: '#10b981', icon: '🎨', label: 'Làng nghề' },
+  unesco:        { color: '#f97316', icon: '🌐', label: 'UNESCO' },
+  default:       { color: '#6b7280', icon: '📍', label: 'Di tích' },
+};
+
+function getCatStyle(categories) {
+  if (!categories || categories.length === 0) return CAT_STYLE.default;
+  const cats = categories.map(c => c.toLowerCase());
+  if (cats.includes('unesco')) return CAT_STYLE.unesco;
+  if (cats.includes('spiritual')) return CAT_STYLE.spiritual;
+  if (cats.includes('museum')) return CAT_STYLE.museum;
+  if (cats.includes('craft_village')) return CAT_STYLE.craft_village;
+  if (cats.includes('architecture')) return CAT_STYLE.architecture;
+  if (cats.includes('history')) return CAT_STYLE.history;
+  return CAT_STYLE.default;
+}
+
+// ======== MAP ========
+// Layer definitions
+const LAYERS = {
+  'voyager': {
+    name: '🗺️ Voyager',
+    style: {
+      version: 8,
+      sources: {
+        'carto-voyager': {
+          type: 'raster',
+          tiles: ['https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'],
+          tileSize: 256,
+          attribution: '© <a href="https://carto.com/">CARTO</a> | © <a href="https://osm.org/">OSM</a>'
+        }
+      },
+      layers: [{ id: 'carto-layer', type: 'raster', source: 'carto-voyager', minzoom: 2, maxzoom: 19 }]
+    }
+  },
+  'wikimedia': {
+    name: '🌍 Wikimedia',
+    style: {
+      version: 8,
+      sources: {
+        'wmf-tiles': {
+          type: 'raster',
+          tiles: ['https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'],
+          tileSize: 256,
+          attribution: '© <a href="https://wikimedia.org/">Wikimedia</a> | © OSM'
+        }
+      },
+      layers: [{ id: 'wmf-layer', type: 'raster', source: 'wmf-tiles', minzoom: 2, maxzoom: 19 }]
+    }
+  },
+  'dark': {
+    name: '🌙 Dark Matter',
+    style: {
+      version: 8,
+      sources: {
+        'carto-dark': {
+          type: 'raster',
+          tiles: ['https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'],
+          tileSize: 256,
+          attribution: '© <a href="https://carto.com/">CARTO</a> | © OSM'
+        }
+      },
+      layers: [{ id: 'carto-dark-layer', type: 'raster', source: 'carto-dark', minzoom: 2, maxzoom: 19 }]
+    }
+  },
+  'osm': {
+    name: '🏛️ OpenStreetMap',
+    style: {
+      version: 8,
+      sources: {
+        'osm-tiles': {
+          type: 'raster',
+          tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+          tileSize: 256,
+          attribution: '© OSM contributors'
+        }
+      },
+      layers: [{ id: 'osm-layer', type: 'raster', source: 'osm-tiles', minzoom: 2, maxzoom: 19 }]
+    }
+  }
+};
+
+let currentLayer = 'voyager';
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style: LAYERS[currentLayer].style,
+  center: [105.8542, 21.0285],
+  zoom: 6,
+});
+map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+// Layer switcher
+const layerSwitcher = document.createElement('div');
+layerSwitcher.className = 'layer-switcher';
+layerSwitcher.innerHTML = Object.entries(LAYERS).map(([key, layer]) => 
+  `<button class="layer-btn${key === currentLayer ? ' active' : ''}" data-layer="${key}">${layer.name}</button>`
+).join('');
+document.getElementById('map').appendChild(layerSwitcher);
+
+layerSwitcher.addEventListener('click', (e) => {
+  const btn = e.target.closest('.layer-btn');
+  if (!btn) return;
+  const layerKey = btn.dataset.layer;
+  if (layerKey === currentLayer) return;
+  
+  currentLayer = layerKey;
+  map.setStyle(LAYERS[layerKey].style);
+  
+  layerSwitcher.querySelectorAll('.layer-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  // Re-add routes and markers after style change
+  map.once('style.load', () => {
+    // Markers survive style changes in MapLibre GL JS
+  });
+});
+
+let markers = [], routeIds = [];
+
+function clearMap() {
+  markers.forEach(m => m.remove());
+  markers = [];
+  routeIds.forEach(id => {
+    try { if (map.getLayer(id)) map.removeLayer(id); } catch(e) {}
+    try { if (map.getSource(id)) map.removeSource(id); } catch(e) {}
+  });
+  routeIds = [];
+}
+
+// ======== PROVINCES ========
+const PROVINCES = [
+  'Hà Nội', 'TP. Hồ Chí Minh', 'Thừa Thiên Huế', 'Đà Nẵng', 'Quảng Nam',
+  'Quảng Ninh', 'Ninh Bình', 'Lào Cai', 'Hà Giang', 'Cần Thơ',
+  'Hải Phòng', 'Nghệ An', 'Khánh Hòa', 'Lâm Đồng', 'Bình Định'
+];
+
+const PROVINCE_COORDS = {
+  'Hà Nội': [21.0285, 105.8542], 'TP. Hồ Chí Minh': [10.8231, 106.6297],
+  'Thừa Thiên Huế': [16.4637, 107.5909], 'Đà Nẵng': [16.0544, 108.2022],
+  'Quảng Nam': [15.8801, 108.338], 'Quảng Ninh': [20.9101, 107.1839],
+  'Ninh Bình': [20.2506, 105.9745], 'Lào Cai': [22.3356, 103.8436],
+  'Hà Giang': [23.2785, 105.359], 'Cần Thơ': [10.0328, 105.7705],
+  'Hải Phòng': [20.8550, 106.6830], 'Nghệ An': [18.6796, 105.6813],
+  'Khánh Hòa': [12.2388, 109.1967], 'Lâm Đồng': [11.9404, 108.4580],
+  'Bình Định': [13.7696, 109.2317],
+};
+
+// Build province checkboxes
+const grid = document.getElementById('provinceGrid');
+PROVINCES.forEach(p => {
+  const el = document.createElement('span');
+  el.className = 'tag';
+  el.dataset.val = p;
+  el.textContent = p;
+  el.addEventListener('click', () => el.classList.toggle('active'));
+  grid.appendChild(el);
+});
+grid.querySelector('.tag').classList.add('active');
+
+// Tag toggles
+document.querySelectorAll('.tag').forEach(tag => {
+  if (tag.parentElement.id !== 'provinceGrid') {
+    tag.addEventListener('click', () => tag.classList.toggle('active'));
+  }
+});
+
+// ======== CREATE CATEGORY ICON SVG ========
+function createCategoryIcon(categories, size = 28) {
+  const style = getCatStyle(categories);
+  const c = style.color;
+  const svg = `
+    <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="shadow"><feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.4"/></filter>
+      </defs>
+      <!-- Outer glow ring -->
+      <circle cx="${size/2}" cy="${size/2}" r="${size/2-1}" fill="${c}" opacity="0.3" stroke="${c}" stroke-width="1"/>
+      <!-- Main circle -->
+      <circle cx="${size/2}" cy="${size/2}" r="${size/2-3}" fill="${c}" stroke="#fff" stroke-width="2" filter="url(#shadow)"/>
+      <!-- Icon emoji -->
+      <text x="${size/2}" y="${size/2+3}" text-anchor="middle" font-size="${size*0.38}" fill="#fff" dominant-baseline="middle">${style.icon}</text>
+    </svg>`;
+
+  // For MapLibre marker, use data URL
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+
+// ======== CREATE RESTAURANT ICON SVG ========
+function createRestaurantIcon(size = 24) {
+  const svg = `
+    <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="rshadow"><feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.4"/></filter>
+      </defs>
+      <rect x="2" y="2" width="${size-4}" height="${size-4}" rx="5" fill="#f0a500" stroke="#fff" stroke-width="2" filter="url(#rshadow)"/>
+      <text x="${size/2}" y="${size/2+2}" text-anchor="middle" font-size="${size*0.42}" fill="#fff" dominant-baseline="middle">🍜</text>
+    </svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+
+// ======== LOAD ALL SITES WITH CATEGORY ICONS ========
+async function loadAllSites() {
+  try {
+    const resp = await fetch(`${API_BASE}/api/v1/heritage-sites`);
+    const sites = await resp.json();
+    const bounds = new maplibregl.LngLatBounds();
+    let count = 0;
+
+    sites.forEach(site => {
+      if (count++ > 300) return;
+      const cats = site.categories || [];
+      const style = getCatStyle(cats);
+      const iconUrl = createCategoryIcon(cats, 30);
+
+      const el = document.createElement('img');
+      el.src = iconUrl;
+      el.style.width = '30px';
+      el.style.height = '30px';
+      el.style.cursor = 'pointer';
+
+      const catTags = cats.map(c => {
+        const s = CAT_STYLE[c] || CAT_STYLE.default;
+        return `<span class="cat-tag" style="background:${s.color}">${s.label}</span>`;
+      }).join(' ');
+
+      const popup = new maplibregl.Popup({ offset: 20 }).setHTML(`
+        <h3 style="color:${style.color}">${style.icon} ${site.name}</h3>
+        <p><strong>Tỉnh:</strong> ${site.province}</p>
+        <div style="margin:4px 0">${catTags}</div>
+        <p style="font-size:11px;color:#888">${(site.description||'').substring(0,100)}</p>
+        ${site.ticket_price ? `<p style="color:${style.color}"><strong>Vé:</strong> ${site.ticket_price.toLocaleString('vi-VN')}₫</p>` : ''}
+      `);
+
+      new maplibregl.Marker({ element: el })
+        .setLngLat([site.lng, site.lat])
+        .setPopup(popup)
+        .addTo(map);
+      bounds.extend([site.lng, site.lat]);
+    });
+
+    if (sites.length > 0) map.fitBounds(bounds, { padding: 60, maxZoom: 13 });
+  } catch(e) { console.error('Load sites:', e); }
+}
+
+// ======== GENERATE TRIP ========
+async function generateTrip() {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').innerHTML = '';
+  document.getElementById('generateBtn').disabled = true;
+
+  const provinces = [...document.querySelectorAll('#provinceGrid .tag.active')].map(t => t.dataset.val);
+  if (provinces.length === 0) {
+    alert('Chọn ít nhất 1 tỉnh!');
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('generateBtn').disabled = false;
+    return;
+  }
+
+  const interests = [...document.querySelectorAll('#interestTags .tag.active')].map(t => t.dataset.val);
+  const constraints = [...document.querySelectorAll('#constraintTags .tag.active')].map(t => t.dataset.val);
+  const firstCoords = PROVINCE_COORDS[provinces[0]] || [21.0285, 105.8542];
+
+  const payload = {
+    destination_area: provinces.join(', '),
+    destination_provinces: provinces,
+    duration_days: parseInt(document.getElementById('duration').value) || 3,
+    number_of_people: parseInt(document.getElementById('people').value) || 2,
+    interests: interests,
+    pace: document.getElementById('pace').value,
+    budget_level: document.getElementById('budget').value,
+    constraints: constraints,
+    start_lat: firstCoords[0],
+    start_lng: firstCoords[1],
+  };
+
+  try {
+    const resp = await fetch(`${API_BASE}/api/v1/trips/recommend`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const itinerary = await resp.json();
+    renderItinerary(itinerary);
+    renderRouteOnMap(itinerary);
+  } catch (e) {
+    document.getElementById('result').innerHTML = `<p style="color:#e94560">Lỗi: ${e.message}</p>`;
+  } finally {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('generateBtn').disabled = false;
+  }
+}
+
+function renderItinerary(itinerary) {
+  let html = '';
+  if (itinerary.total_score) {
+    html += `
+      <div class="summary-box">
+        <strong>✨ Chất lượng: ${(itinerary.total_score*100).toFixed(0)}%</strong><br>
+        📏 Tổng quãng đường: ${itinerary.total_distance_km} km<br>
+        🛣️ OSRM road routes: ${(itinerary.route_geometries||[]).filter(g=>g).length} ngày
+      </div>`;
+  }
+  (itinerary.days||[]).forEach(day => {
+    html += `<div class="day-card"><h3>📅 Ngày ${day.day} — ${day.date||'N/A'}</h3>`;
+    (day.items||[]).forEach(item => {
+      const isFood = item.type === 'restaurant';
+      const icon = isFood ? '🍜' : '📍';
+      html += `
+        <div class="item-row" onclick="flyToItem('${item.ref_id}')">
+          <span class="time">${item.time||''}</span>
+          <span>${icon} ${item.name}</span>
+        </div>`;
+    });
+    html += '</div>';
+  });
+  document.getElementById('result').innerHTML = html || '<p>Không có kết quả.</p>';
+}
+
+// ======== RENDER ROUTE ON MAP ========
+function renderRouteOnMap(itinerary) {
+  clearMap();
+  const bounds = new maplibregl.LngLatBounds();
+  const dayColors = ['#e94560', '#f0a500', '#4ecdc4', '#6c5ce7', '#00cec9', '#fd79a8'];
+
+  // OSRM road route geometries
+  (itinerary.route_geometries||[]).forEach((geom, di) => {
+    if (!geom || geom.length < 2) return;
+    const color = dayColors[di % dayColors.length];
+    const lineId = `route-${di}`;
+    routeIds.push(lineId);
+
+    map.addSource(lineId, {
+      type: 'geojson',
+      data: { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: geom } }
+    });
+    map.addLayer({
+      id: lineId,
+      type: 'line',
+      source: lineId,
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: { 'line-color': color, 'line-width': 4, 'line-opacity': 0.8 }
+    });
+    geom.forEach(c => bounds.extend(c));
+  });
+
+  // Points with category icons
+  let ptCount = 0;
+  (itinerary.days||[]).forEach((day, di) => {
+    const color = dayColors[di % dayColors.length];
+    (day.items||[]).forEach(item => {
+      fetch(`${API_BASE}/api/v1/heritage-sites/${item.ref_id}`)
+        .then(r => r.json())
+        .then(site => {
+          if (!site.lat || !site.lng) return;
+          const isFood = item.type === 'restaurant';
+          const cats = site.categories || [];
+
+          let el;
+          if (isFood) {
+            el = document.createElement('img');
+            el.src = createRestaurantIcon(26);
+            el.style.width = '26px'; el.style.height = '26px'; el.style.cursor = 'pointer';
+          } else {
+            el = document.createElement('img');
+            el.src = createCategoryIcon(cats, 34);
+            el.style.width = '34px'; el.style.height = '34px'; el.style.cursor = 'pointer';
+          }
+
+          const style = getCatStyle(cats);
+          const catTags = cats.map(c => {
+            const s = CAT_STYLE[c] || CAT_STYLE.default;
+            return `<span class="cat-tag" style="background:${s.color}">${s.label}</span>`;
+          }).join(' ');
+
+          const popup = new maplibregl.Popup({ offset: 18 }).setHTML(`
+            <h3 style="color:${style.color}">${item.name}</h3>
+            <p><strong>Ngày ${day.day}:</strong> ${item.time||'N/A'}</p>
+            ${catTags ? `<div style="margin:4px 0">${catTags}</div>` : ''}
+            <p style="font-size:11px">${item.reason||''}</p>
+            ${item.distance_from_previous_m ? `<p style="font-size:10px;color:#888">↔ ${(item.distance_from_previous_m/1000).toFixed(1)}km from previous</p>` : ''}
+          `);
+
+          new maplibregl.Marker({ element: el })
+            .setLngLat([site.lng, site.lat])
+            .setPopup(popup)
+            .addTo(map);
+          bounds.extend([site.lng, site.lat]);
+        })
+        .catch(() => {});
+    });
+  });
+
+  setTimeout(() => {
+    if (!bounds.isEmpty()) map.fitBounds(bounds, { padding: 80, maxZoom: 13 });
+  }, 2500);
+}
+
+function flyToItem(refId) {
+  fetch(`${API_BASE}/api/v1/heritage-sites/${refId}`)
+    .then(r => r.json())
+    .then(site => {
+      if (site.lat && site.lng) map.flyTo({ center: [site.lng, site.lat], zoom: 15 });
+    });
+}
+
+// Initial load
+loadAllSites();
+</script>
+
+</body>
+</html>

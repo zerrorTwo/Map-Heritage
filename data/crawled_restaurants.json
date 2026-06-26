@@ -1,0 +1,6281 @@
+[
+  {
+    "id": "r-hn-001",
+    "name": "Phở Thìn Lò Đúc",
+    "lat": 21.0195,
+    "lng": 105.852,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "phở",
+      "ẩm_thực_Hà_Nội",
+      "bún_phở"
+    ],
+    "rating": 4.4,
+    "review_count": 3200,
+    "price_level": 1,
+    "opening_hours": "06:00-21:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 450.0
+  },
+  {
+    "id": "r-hn-002",
+    "name": "Bún Chả Hương Liên",
+    "lat": 21.017,
+    "lng": 105.847,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "bún_chả",
+      "ẩm_thực_Hà_Nội"
+    ],
+    "rating": 4.5,
+    "review_count": 5200,
+    "price_level": 1,
+    "opening_hours": "08:00-20:30",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-003",
+    "name": "Chả Cá Lã Vọng",
+    "lat": 21.032,
+    "lng": 105.85,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "chả_cá",
+      "ẩm_thực_Hà_Nội",
+      "hải_sản"
+    ],
+    "rating": 4.2,
+    "review_count": 2800,
+    "price_level": 3,
+    "opening_hours": "11:00-14:00,17:00-21:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-004",
+    "name": "Bánh Cuốn Thanh Vân",
+    "lat": 21.028,
+    "lng": 105.842,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "bánh_cuốn",
+      "ẩm_thực_Hà_Nội"
+    ],
+    "rating": 4.3,
+    "review_count": 1100,
+    "price_level": 1,
+    "opening_hours": "07:00-13:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-005",
+    "name": "Cà Phê Giảng",
+    "lat": 21.0345,
+    "lng": 105.851,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "cà_phê_trứng",
+      "ẩm_thực_Hà_Nội",
+      "cà_phê"
+    ],
+    "rating": 4.6,
+    "review_count": 4500,
+    "price_level": 1,
+    "opening_hours": "07:00-22:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-006",
+    "name": "Kem Tràng Tiền",
+    "lat": 21.0264,
+    "lng": 105.8539,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "kem",
+      "ẩm_thực_Hà_Nội",
+      "tráng_miệng"
+    ],
+    "rating": 4.1,
+    "review_count": 2000,
+    "price_level": 1,
+    "opening_hours": "08:00-22:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-007",
+    "name": "Xôi Yến",
+    "lat": 21.033,
+    "lng": 105.849,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "xôi",
+      "ẩm_thực_Hà_Nội"
+    ],
+    "rating": 4.3,
+    "review_count": 1800,
+    "price_level": 1,
+    "opening_hours": "00:00-22:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hue-001",
+    "name": "Cơm Hến Huế",
+    "lat": 16.464,
+    "lng": 107.582,
+    "province": "Thừa Thiên Huế",
+    "specialty_tags": [
+      "cơm_hến",
+      "ẩm_thực_Huế"
+    ],
+    "rating": 4.3,
+    "review_count": 1500,
+    "price_level": 1,
+    "opening_hours": "07:00-21:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hue-002",
+    "name": "Bún Bò Huế O Phượng",
+    "lat": 16.466,
+    "lng": 107.59,
+    "province": "Thừa Thiên Huế",
+    "specialty_tags": [
+      "bún_bò_Huế",
+      "ẩm_thực_Huế",
+      "bún_phở"
+    ],
+    "rating": 4.5,
+    "review_count": 3500,
+    "price_level": 1,
+    "opening_hours": "06:00-20:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hue-003",
+    "name": "Bánh Bèo Nậm Lọc",
+    "lat": 16.468,
+    "lng": 107.585,
+    "province": "Thừa Thiên Huế",
+    "specialty_tags": [
+      "bánh_bèo",
+      "ẩm_thực_Huế"
+    ],
+    "rating": 4.2,
+    "review_count": 1100,
+    "price_level": 1,
+    "opening_hours": "07:00-19:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hcm-001",
+    "name": "Phở Hòa Pasteur",
+    "lat": 10.78,
+    "lng": 106.693,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "phở",
+      "ẩm_thực_Sài_Gòn",
+      "bún_phở"
+    ],
+    "rating": 4.3,
+    "review_count": 2800,
+    "price_level": 1,
+    "opening_hours": "06:00-22:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hcm-002",
+    "name": "Cơm Tấm Bụi Sài Gòn",
+    "lat": 10.773,
+    "lng": 106.695,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "cơm_tấm",
+      "ẩm_thực_Sài_Gòn"
+    ],
+    "rating": 4.4,
+    "review_count": 2200,
+    "price_level": 1,
+    "opening_hours": "10:00-21:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hcm-003",
+    "name": "Bánh Mì Huỳnh Hoa",
+    "lat": 10.775,
+    "lng": 106.69,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "bánh_mì",
+      "ẩm_thực_Sài_Gòn"
+    ],
+    "rating": 4.6,
+    "review_count": 4500,
+    "price_level": 1,
+    "opening_hours": "14:00-23:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-dn-001",
+    "name": "Cao Lầu Hội An",
+    "lat": 15.879,
+    "lng": 108.337,
+    "province": "Quảng Nam",
+    "specialty_tags": [
+      "cao_lầu",
+      "ẩm_thực_Hội_An"
+    ],
+    "rating": 4.5,
+    "review_count": 2800,
+    "price_level": 1,
+    "opening_hours": "10:00-21:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-dn-002",
+    "name": "Mì Quảng Ếch Bắp",
+    "lat": 16.061,
+    "lng": 108.215,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "mì_quảng",
+      "ẩm_thực_Đà_Nẵng",
+      "bún_phở"
+    ],
+    "rating": 4.3,
+    "review_count": 1900,
+    "price_level": 1,
+    "opening_hours": "06:00-21:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-dn-003",
+    "name": "Bánh Tráng Cuốn Thịt Heo",
+    "lat": 16.062,
+    "lng": 108.22,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "bánh_tráng",
+      "ẩm_thực_Đà_Nẵng"
+    ],
+    "rating": 4.4,
+    "review_count": 1500,
+    "price_level": 2,
+    "opening_hours": "10:00-22:00",
+    "source": "google_places",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "osm-r-node-182564",
+    "name": "Amazon",
+    "lat": 11.5455068,
+    "lng": 104.9117457,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-310727632",
+    "name": "Cửa Hàng Bánh Tôm Hồ Tây",
+    "lat": 21.0473212,
+    "lng": 105.8376261,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-325779317",
+    "name": "Meefa",
+    "lat": 15.120586,
+    "lng": 105.8094372,
+    "province": "Quảng Trị",
+    "specialty_tags": [
+      "burger;french;lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Sa 10:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-365511822",
+    "name": "Khop Chai Deu",
+    "lat": 17.9646356,
+    "lng": 102.6073855,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "thai"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-418689615",
+    "name": "Café Amazon",
+    "lat": 14.9899604,
+    "lng": 102.1171035,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-422416741",
+    "name": "Cà Phê Cây Bàng Đổ",
+    "lat": 21.0273274,
+    "lng": 105.8220368,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-423736651",
+    "name": "Cà Phê Kafa",
+    "lat": 21.0378611,
+    "lng": 105.8010007,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 07:00-23:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-442030353",
+    "name": "Nhà Hàng Chay Phương Nam",
+    "lat": 21.0222319,
+    "lng": 105.84695,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-442030367",
+    "name": "Nhà hàng Nam Phương",
+    "lat": 21.0217552,
+    "lng": 105.8563856,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-442030389",
+    "name": "Nha Hang Little Italian",
+    "lat": 21.0169539,
+    "lng": 105.852831,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-442031761",
+    "name": "Nha Hang Indochine",
+    "lat": 21.0265868,
+    "lng": 105.8430053,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-442861467",
+    "name": "Le Manolis",
+    "lat": 11.575649,
+    "lng": 104.9259073,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 06:00-23:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-442892544",
+    "name": "Poun Lork Restaurent",
+    "lat": 11.5730878,
+    "lng": 104.9286017,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-442910045",
+    "name": "Cà Phê Big One",
+    "lat": 21.0098613,
+    "lng": 105.8476486,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-442977691",
+    "name": "Highlands Coffee",
+    "lat": 21.0113724,
+    "lng": 105.8495887,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "coffee_shop;vietnamese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-442994566",
+    "name": "Sushi Tiger",
+    "lat": 21.028523,
+    "lng": 105.8061561,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "sushi"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-443000681",
+    "name": "Sen Tây Hồ",
+    "lat": 21.0741493,
+    "lng": 105.8154687,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-444142492",
+    "name": "Demo Coffee",
+    "lat": 20.8613035,
+    "lng": 106.6836558,
+    "province": "Hải Phòng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-444667445",
+    "name": "Fook Lam Moon",
+    "lat": 11.5448815,
+    "lng": 104.9297278,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-445246251",
+    "name": "Piphukthmei Center",
+    "lat": 11.5786894,
+    "lng": 104.9189004,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-445264552",
+    "name": "Metro Hassakan",
+    "lat": 11.5699426,
+    "lng": 104.9300039,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-445272625",
+    "name": "KOI Thé",
+    "lat": 11.5661123,
+    "lng": 104.9320114,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 08:00-24:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-445345327",
+    "name": "Anchor",
+    "lat": 11.5718322,
+    "lng": 104.92937,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-445968487",
+    "name": "Paradise",
+    "lat": 11.5675212,
+    "lng": 104.9186327,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-446043000",
+    "name": "Trà Xuân Tửu",
+    "lat": 21.0297549,
+    "lng": 105.8277638,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-446043425",
+    "name": "Cây Si",
+    "lat": 21.0288674,
+    "lng": 105.8431006,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-446043808",
+    "name": "Cà Phê Sapa",
+    "lat": 10.841601,
+    "lng": 106.657255,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-446044222",
+    "name": "Nhà hàng Thành Lộc",
+    "lat": 21.0083549,
+    "lng": 105.8567708,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-452328521",
+    "name": "Sweet Cafe",
+    "lat": 11.5543776,
+    "lng": 104.9312072,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-456715433",
+    "name": "Ngoc Lam",
+    "lat": 13.9809129,
+    "lng": 107.9950274,
+    "province": "Bình Định",
+    "specialty_tags": [
+      "regional"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-470947699",
+    "name": "Coco Tree",
+    "lat": 11.5505035,
+    "lng": 104.9180444,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-471505130",
+    "name": "Swedish Pizza & Baking House",
+    "lat": 17.9695928,
+    "lng": 102.6050085,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "pizza"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-471988145",
+    "name": "Enjoy",
+    "lat": 17.9641766,
+    "lng": 102.6019313,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "steak"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 10:00-24:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-472742158",
+    "name": "Ai Capone",
+    "lat": 17.9650192,
+    "lng": 102.6045208,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "pizza"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-472742171",
+    "name": "Dok Champa",
+    "lat": 17.964704,
+    "lng": 102.6027914,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "asian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-472742176",
+    "name": "Joma Bakery Café",
+    "lat": 17.957527,
+    "lng": 102.6321794,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-476448268",
+    "name": "MuzaïK",
+    "lat": 17.964318,
+    "lng": 102.6059504,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "international"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-476448279",
+    "name": "The Shade Restaurant",
+    "lat": 17.9632695,
+    "lng": 102.6051314,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "international"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-476448281",
+    "name": "Thonglor Restaurant",
+    "lat": 17.9632873,
+    "lng": 102.605073,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "thai"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-476448284",
+    "name": "Aaschifa",
+    "lat": 17.9633198,
+    "lng": 102.6049563,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "indian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477397414",
+    "name": "Via Via Restaurant",
+    "lat": 17.9636369,
+    "lng": 102.6048985,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "pizza"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477397431",
+    "name": "Osaka",
+    "lat": 17.9645128,
+    "lng": 102.6056101,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "sushi"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477397436",
+    "name": "Café Vanille",
+    "lat": 17.9645898,
+    "lng": 102.6056473,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477408050",
+    "name": "Nazim",
+    "lat": 17.9649894,
+    "lng": 102.6029878,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "indian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477408052",
+    "name": "Sabaidee Coffee",
+    "lat": 17.9635461,
+    "lng": 102.6041201,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477408057",
+    "name": "Sticky Fingers",
+    "lat": 17.9638722,
+    "lng": 102.6040192,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "international"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Sa, Su 10:00-23:00, 09:00-18:00; Mo-Fr 1",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477408067",
+    "name": "Tyson Kitchen",
+    "lat": 17.9640657,
+    "lng": 102.6040646,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "burger;pizza;fries"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477408069",
+    "name": "Pomodoro Pizzeria",
+    "lat": 17.964303,
+    "lng": 102.6042269,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "pizza;kebab;italian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477408071",
+    "name": "Croissant d'or Café",
+    "lat": 17.9646855,
+    "lng": 102.6043937,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 06:30-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-477538423",
+    "name": "India Gate Restaurant",
+    "lat": 13.353789,
+    "lng": 103.8534381,
+    "province": "Tây Ninh",
+    "specialty_tags": [
+      "indian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-481007389",
+    "name": "Jamil Zahid",
+    "lat": 17.9684532,
+    "lng": 102.6020685,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "indian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-481007396",
+    "name": "Youth Center",
+    "lat": 17.9676553,
+    "lng": 102.5992787,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-481836316",
+    "name": "Ẩm thực sinh thái Sơn Hải",
+    "lat": 20.949949,
+    "lng": 106.36166,
+    "province": "Hải Phòng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-481837528",
+    "name": "Cà Phê Hao",
+    "lat": 21.041759,
+    "lng": 105.8702416,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-481837574",
+    "name": "Khu sinh thái Thuỷ Tiên",
+    "lat": 20.9915285,
+    "lng": 106.3465813,
+    "province": "Hải Phòng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-481933007",
+    "name": "Chez Joseph",
+    "lat": 17.9665094,
+    "lng": 102.603401,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "international"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-485668088",
+    "name": "Spring Roll Shop",
+    "lat": 17.9544039,
+    "lng": 102.6214193,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-485706163",
+    "name": "Pak Ou",
+    "lat": 20.0529522,
+    "lng": 102.2131253,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-486300922",
+    "name": "Taj Mahal",
+    "lat": 17.9656203,
+    "lng": 102.6065307,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "indian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-486300924",
+    "name": "Angô",
+    "lat": 17.9667385,
+    "lng": 102.6058407,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop;japanese;lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Tu-Fr 11:30-16:00, 17:30-21:00; Sa-Su 11",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-486300927",
+    "name": "Liao-Ning Dumpling",
+    "lat": 17.9689824,
+    "lng": 102.6038538,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "seafood"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-486300935",
+    "name": "Le Vendôme",
+    "lat": 17.965838,
+    "lng": 102.6024876,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "french"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-486300945",
+    "name": "Spirit House",
+    "lat": 17.9661543,
+    "lng": 102.5955501,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "regional"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-486300951",
+    "name": "Riverview",
+    "lat": 17.9663338,
+    "lng": 102.5932422,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "regional"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-486301005",
+    "name": "Fuji Shabu",
+    "lat": 17.9684236,
+    "lng": 102.5818301,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "japanese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-486301029",
+    "name": "Fujiwara",
+    "lat": 17.9671133,
+    "lng": 102.6006504,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "japanese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-491517828",
+    "name": "Phuong Trang",
+    "lat": 10.8427628,
+    "lng": 107.8183283,
+    "province": "Đồng Nai",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-493000575",
+    "name": "La Scala",
+    "lat": 17.9445182,
+    "lng": 102.619146,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "italian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-512440197",
+    "name": "Buffet Donechanh",
+    "lat": 17.9493379,
+    "lng": 102.6191673,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "asian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-512440203",
+    "name": "Rainbow",
+    "lat": 17.9471285,
+    "lng": 102.6197815,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-512440209",
+    "name": "Eat Me Cafe",
+    "lat": 17.9446493,
+    "lng": 102.6192407,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Fr, Su 10:00-20:30",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-512440213",
+    "name": "Monkey House",
+    "lat": 17.9410655,
+    "lng": 102.6180913,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "asian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513430010",
+    "name": "Farang Connection",
+    "lat": 14.8878672,
+    "lng": 103.497319,
+    "province": "Quảng Trị",
+    "specialty_tags": [
+      "international"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "08:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513607012",
+    "name": "Liao-Ning Dumpling 2",
+    "lat": 17.9381247,
+    "lng": 102.6267012,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "chinese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513607014",
+    "name": "Ping Pet Sekaman",
+    "lat": 17.9440608,
+    "lng": 102.6264281,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513607016",
+    "name": "Jenny",
+    "lat": 17.9455909,
+    "lng": 102.6244617,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513607018",
+    "name": "Love Life",
+    "lat": 17.9471399,
+    "lng": 102.6242232,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "ice_cream"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513607020",
+    "name": "Ton Hak",
+    "lat": 17.9531207,
+    "lng": 102.6257645,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513607026",
+    "name": "Soutchay",
+    "lat": 17.9583906,
+    "lng": 102.6134382,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513607027",
+    "name": "Virasack",
+    "lat": 17.9584865,
+    "lng": 102.6133331,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "steak_house"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513632394",
+    "name": "Sukiyaki Grill",
+    "lat": 17.9686075,
+    "lng": 102.6003727,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "asian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513632409",
+    "name": "Junction Pakpasack Khemkong",
+    "lat": 17.9650565,
+    "lng": 102.5992042,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513632448",
+    "name": "Shi-Zen",
+    "lat": 17.9638678,
+    "lng": 102.6083618,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "japanese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-513638535",
+    "name": "Restaurant Km 4",
+    "lat": 17.9328818,
+    "lng": 102.61624,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "asian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-522997137",
+    "name": "Mon",
+    "lat": 17.9668408,
+    "lng": 102.6134722,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-522997139",
+    "name": "Naked Espresso",
+    "lat": 17.966548,
+    "lng": 102.6136394,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Fr 07:00-18:00; Sa, Su 08:00-18:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-522997161",
+    "name": "Stadium Cafe",
+    "lat": 17.9692478,
+    "lng": 102.60837,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-522997162",
+    "name": "Pho Ngon 1",
+    "lat": 17.9676102,
+    "lng": 102.6128418,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-522997178",
+    "name": "Khamphew Ngua Phao",
+    "lat": 17.9683669,
+    "lng": 102.61084,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524296653",
+    "name": "Baravin",
+    "lat": 17.9653998,
+    "lng": 102.6096316,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "french"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524296658",
+    "name": "Rashmi's Indian Fusion",
+    "lat": 17.9658626,
+    "lng": 102.6087451,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "indian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524308093",
+    "name": "Hongkong",
+    "lat": 17.9658571,
+    "lng": 102.6083704,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "chinese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524308107",
+    "name": "Xang Khoo",
+    "lat": 17.96506,
+    "lng": 102.6082732,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "international"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524308109",
+    "name": "La Fontaine",
+    "lat": 17.9653862,
+    "lng": 102.6085245,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "pizza"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396202",
+    "name": "Mrs. Chanhmaly Noodle",
+    "lat": 17.9695741,
+    "lng": 102.6038672,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "vietnamese;chinese;lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396217",
+    "name": "4 Junction Beer Vatsira",
+    "lat": 17.9672352,
+    "lng": 102.609716,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396227",
+    "name": "Kiku",
+    "lat": 17.9663029,
+    "lng": 102.6091465,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "japanese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396256",
+    "name": "Thatdam Winehouse",
+    "lat": 17.9658028,
+    "lng": 102.6108153,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396273",
+    "name": "Pho Ngon 2",
+    "lat": 17.9667834,
+    "lng": 102.6111217,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396276",
+    "name": "Dokkhoune Restaurant",
+    "lat": 17.9668468,
+    "lng": 102.6109765,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396298",
+    "name": "Leo Cafeteria",
+    "lat": 17.9670964,
+    "lng": 102.6061197,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396300",
+    "name": "Sichuan",
+    "lat": 17.9671454,
+    "lng": 102.6060253,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396308",
+    "name": "Khoukhanuei",
+    "lat": 17.9673846,
+    "lng": 102.605611,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-524396314",
+    "name": "Nang Cheun",
+    "lat": 17.9676169,
+    "lng": 102.6051027,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-525511724",
+    "name": "Daovieng",
+    "lat": 17.9671943,
+    "lng": 102.6046923,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-525511727",
+    "name": "See You",
+    "lat": 17.9673464,
+    "lng": 102.6040433,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-525511735",
+    "name": "Korean Restaurant",
+    "lat": 17.9678153,
+    "lng": 102.6035599,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "korean"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-525511740",
+    "name": "Kitchen Tokyo",
+    "lat": 17.9668864,
+    "lng": 102.6038456,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "japanese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-525511753",
+    "name": "Guang Dong",
+    "lat": 17.9667632,
+    "lng": 102.603516,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "chinese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-528566895",
+    "name": "Lee-Lee Chicken",
+    "lat": 17.9619722,
+    "lng": 102.6168026,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "asian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-528566904",
+    "name": "Ponedany",
+    "lat": 17.9568259,
+    "lng": 102.6210494,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-528566915",
+    "name": "Papo Beef Pot",
+    "lat": 17.9539771,
+    "lng": 102.6186105,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-528566924",
+    "name": "Dimsam That Kao",
+    "lat": 17.9547148,
+    "lng": 102.6184186,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-528857540",
+    "name": "Kheg Restaurant",
+    "lat": 17.9685177,
+    "lng": 102.6223283,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-528857562",
+    "name": "Van Anh Restaurant",
+    "lat": 17.9681422,
+    "lng": 102.6207662,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-530816060",
+    "name": "Ong Cham",
+    "lat": 10.1010417,
+    "lng": 105.7554394,
+    "province": "Cần Thơ",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534022166",
+    "name": "Japanese Style BBQ",
+    "lat": 17.9659023,
+    "lng": 102.5964893,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534022168",
+    "name": "Danno's Coffee Shop",
+    "lat": 17.966345,
+    "lng": 102.5958034,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534022171",
+    "name": "Tom Chai Der",
+    "lat": 17.9662405,
+    "lng": 102.5952211,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534022179",
+    "name": "Linda",
+    "lat": 17.96782,
+    "lng": 102.5943524,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534022185",
+    "name": "La Bodega",
+    "lat": 17.9664476,
+    "lng": 102.5977924,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "international"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534029614",
+    "name": "Mörgen",
+    "lat": 17.9689539,
+    "lng": 102.6024075,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "chinese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534029635",
+    "name": "A DU Noodles",
+    "lat": 17.9747293,
+    "lng": 102.6069299,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534181701",
+    "name": "Coca Suki",
+    "lat": 17.9687827,
+    "lng": 102.6134802,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534181731",
+    "name": "Tang Ping",
+    "lat": 17.9707005,
+    "lng": 102.6035205,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "chinese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534181738",
+    "name": "Sweet Corner",
+    "lat": 17.9681645,
+    "lng": 102.6004459,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-534555077",
+    "name": "Le Ranch",
+    "lat": 17.96712,
+    "lng": 102.6243029,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "french"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-535274644",
+    "name": "Pyongyang",
+    "lat": 17.973423,
+    "lng": 102.6324223,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "north_korean"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-535274646",
+    "name": "Swedish Pizza & Baking House",
+    "lat": 17.9734004,
+    "lng": 102.6261561,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "pizza;swedish"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-535285078",
+    "name": "Scandinavian Bakery",
+    "lat": 17.9649893,
+    "lng": 102.6080677,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "sandwich"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-536575084",
+    "name": "La Cave des Chateaux",
+    "lat": 17.9646694,
+    "lng": 102.6085744,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "french"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-540825554",
+    "name": "Nhà hàng Cồn Khương",
+    "lat": 10.0618048,
+    "lng": 105.7833848,
+    "province": "Cần Thơ",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-547967392",
+    "name": "Sunshine",
+    "lat": 17.9687149,
+    "lng": 102.6237701,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "japanese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-550081555",
+    "name": "Noodle Shop",
+    "lat": 18.2982437,
+    "lng": 102.6730603,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-562728304",
+    "name": "Lammone",
+    "lat": 18.1221521,
+    "lng": 102.6404607,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-568358823",
+    "name": "Phukoun",
+    "lat": 19.440121,
+    "lng": 102.4256273,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-568361831",
+    "name": "Nirvana",
+    "lat": 19.4511935,
+    "lng": 103.2199072,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-568361842",
+    "name": "Simmary",
+    "lat": 19.4504255,
+    "lng": 103.2177411,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 08:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-568361843",
+    "name": "Craters",
+    "lat": 19.4503952,
+    "lng": 103.2178326,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "international"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-569017232",
+    "name": "The Blue Pumpkin",
+    "lat": 13.3548489,
+    "lng": 103.8553677,
+    "province": "Tây Ninh",
+    "specialty_tags": [
+      "ice_cream"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Fr 06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-576035008",
+    "name": "Santiphab",
+    "lat": 13.9638329,
+    "lng": 105.9199147,
+    "province": "Tây Ninh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-576035011",
+    "name": "Sengaloun",
+    "lat": 13.9628438,
+    "lng": 105.921331,
+    "province": "Tây Ninh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-577271419",
+    "name": "Sootchay 2",
+    "lat": 17.954876,
+    "lng": 102.6166929,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-580341234",
+    "name": "Viroth's",
+    "lat": 13.3564242,
+    "lng": 103.8600611,
+    "province": "Tây Ninh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-580341247",
+    "name": "Maharajah Eatery",
+    "lat": 13.3555578,
+    "lng": 103.8544709,
+    "province": "Tây Ninh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-580341259",
+    "name": "Le Bistrot de Paris",
+    "lat": 13.3551233,
+    "lng": 103.8550312,
+    "province": "Tây Ninh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-580341260",
+    "name": "V&A Restaurant",
+    "lat": 13.3542048,
+    "lng": 103.8543069,
+    "province": "Tây Ninh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-580341276",
+    "name": "Cafe Central",
+    "lat": 13.3540176,
+    "lng": 103.8543953,
+    "province": "Tây Ninh",
+    "specialty_tags": [
+      "international"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-614136050",
+    "name": "Nok Noy BBQ Buffet",
+    "lat": 18.0257618,
+    "lng": 102.634294,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-616553535",
+    "name": "DNA",
+    "lat": 17.9668657,
+    "lng": 102.6054877,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "asian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-617425834",
+    "name": "Lake View",
+    "lat": 17.9497634,
+    "lng": 102.620134,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-617667632",
+    "name": "Khuanchai",
+    "lat": 17.9445935,
+    "lng": 102.6442736,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-617667705",
+    "name": "Kung Pao T4",
+    "lat": 17.9473399,
+    "lng": 102.6436827,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-617667706",
+    "name": "Pa Nam Kong",
+    "lat": 17.9470644,
+    "lng": 102.6436564,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-617667711",
+    "name": "Phon Pa Pao",
+    "lat": 17.9481272,
+    "lng": 102.6435594,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-617667713",
+    "name": "T-4 Sne Khemtong",
+    "lat": 17.9489023,
+    "lng": 102.6434802,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-619182392",
+    "name": "Noodle Shop",
+    "lat": 18.2227383,
+    "lng": 102.6919785,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-619991280",
+    "name": "Pamouang",
+    "lat": 18.0160612,
+    "lng": 102.6169438,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-619991284",
+    "name": "Nat Phob",
+    "lat": 18.0192425,
+    "lng": 102.6177679,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-619991333",
+    "name": "Noodle Shop",
+    "lat": 18.0421068,
+    "lng": 102.6342811,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-621911831",
+    "name": "Benoni Café",
+    "lat": 17.9643898,
+    "lng": 102.6072546,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 07:00-21:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-622360154",
+    "name": "Ong-mee Grilled Pork Ears",
+    "lat": 18.0320584,
+    "lng": 102.6341573,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-627161948",
+    "name": "海鲜排档",
+    "lat": 18.2633817,
+    "lng": 109.4923646,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "seafood"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-634992788",
+    "name": "Malop Chhne Koh Yor",
+    "lat": 11.579171,
+    "lng": 102.9447221,
+    "province": "An Giang",
+    "specialty_tags": [
+      "asian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-635387502",
+    "name": "Hà Nội Quán",
+    "lat": 17.9742134,
+    "lng": 102.6225493,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "vietnamese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-637024868",
+    "name": "Patu Xay Cafe",
+    "lat": 17.9755579,
+    "lng": 102.6214597,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-637024881",
+    "name": "Somboun",
+    "lat": 17.9838579,
+    "lng": 102.6231037,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-637024888",
+    "name": "X2",
+    "lat": 17.9867589,
+    "lng": 102.6232807,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-637024912",
+    "name": "Pin Ngua Nong Phoy",
+    "lat": 18.031993,
+    "lng": 102.6344352,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-647813969",
+    "name": "Jo Anne Garden",
+    "lat": 17.9110702,
+    "lng": 102.6220694,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-647814011",
+    "name": "Noodle Shop",
+    "lat": 17.9184118,
+    "lng": 102.6195636,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-647814013",
+    "name": "Annana",
+    "lat": 17.9087256,
+    "lng": 102.6238249,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-647814074",
+    "name": "Pinky Beef Pot",
+    "lat": 17.9198617,
+    "lng": 102.6190579,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-647814090",
+    "name": "Alex Beef Pot",
+    "lat": 17.9221767,
+    "lng": 102.6181197,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-647814122",
+    "name": "Europe",
+    "lat": 17.9347044,
+    "lng": 102.6197917,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "steak_house"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-648883685",
+    "name": "Noodle Shop",
+    "lat": 18.073799,
+    "lng": 102.7467517,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-650513123",
+    "name": "Chowon",
+    "lat": 17.9892564,
+    "lng": 102.6365255,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-650513165",
+    "name": "Golden Elephant",
+    "lat": 18.0199432,
+    "lng": 102.6507896,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "asian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-652443123",
+    "name": "Sivilay",
+    "lat": 17.8721936,
+    "lng": 102.668326,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-652810228",
+    "name": "Amber Sands",
+    "lat": 12.1350254,
+    "lng": 102.3217138,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-653274470",
+    "name": "Hot Pot Restaurant",
+    "lat": 19.8913856,
+    "lng": 102.1330764,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-653409571",
+    "name": "Delta Coffee",
+    "lat": 15.121486,
+    "lng": 105.8049666,
+    "province": "Quảng Trị",
+    "specialty_tags": [
+      "italian"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-655349929",
+    "name": "Indian Restaurant",
+    "lat": 11.5606663,
+    "lng": 104.9179815,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-655363006",
+    "name": "Mama",
+    "lat": 11.5615124,
+    "lng": 104.918188,
+    "province": "An Giang",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-655643381",
+    "name": "Seliphab",
+    "lat": 18.1215557,
+    "lng": 102.6456658,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-663935202",
+    "name": "The Chicky",
+    "lat": 17.9684313,
+    "lng": 102.6029977,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "chicken"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-665739666",
+    "name": "Café Amazon",
+    "lat": 16.0222206,
+    "lng": 102.7095136,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-665751460",
+    "name": "Cafe Amazon",
+    "lat": 15.7961137,
+    "lng": 102.6080837,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-669359933",
+    "name": "Mi Vinh Loi",
+    "lat": 11.9412839,
+    "lng": 108.4316096,
+    "province": "Lâm Đồng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-670342980",
+    "name": "Café Amazon",
+    "lat": 16.0557418,
+    "lng": 103.6989037,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-670347610",
+    "name": "Café Amazon",
+    "lat": 16.0250256,
+    "lng": 103.9462183,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-671140907",
+    "name": "Café Amazon",
+    "lat": 17.2139184,
+    "lng": 104.0521386,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-671140927",
+    "name": "Café Amazon",
+    "lat": 17.3951598,
+    "lng": 103.6936823,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-671140937",
+    "name": "Café Amazon",
+    "lat": 17.3958325,
+    "lng": 104.7813801,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-672191426",
+    "name": "Noodle Shop",
+    "lat": 18.0375621,
+    "lng": 103.0725869,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-679597830",
+    "name": "Ma Long Du",
+    "lat": 15.2915801,
+    "lng": 104.8509993,
+    "province": "Quảng Trị",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-681709607",
+    "name": "Nong Oh",
+    "lat": 17.98089,
+    "lng": 102.53405,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-683753172",
+    "name": "Black Canyon",
+    "lat": 16.4235323,
+    "lng": 102.833385,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-683753229",
+    "name": "Lighthouse",
+    "lat": 16.430213,
+    "lng": 102.8325446,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-686184393",
+    "name": "The View",
+    "lat": 15.2791898,
+    "lng": 104.8474919,
+    "province": "Quảng Trị",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-686197350",
+    "name": "Kittrong Restaurant",
+    "lat": 15.2786774,
+    "lng": 104.8461479,
+    "province": "Quảng Trị",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-689779359",
+    "name": "Utopia Bar & Restaurant",
+    "lat": 19.8881185,
+    "lng": 102.1401794,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "international;breakfast;tea;local;asian;coffee_shop;lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 07:00-23:30",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-689779389",
+    "name": "Riverside Sunset Restaurant",
+    "lat": 19.8888111,
+    "lng": 102.130757,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-689779525",
+    "name": "Tum Tum Bamboo",
+    "lat": 19.8917783,
+    "lng": 102.1370104,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-689779572",
+    "name": "L'etranger Books and Tea",
+    "lat": 19.8892785,
+    "lng": 102.1378536,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-691124954",
+    "name": "Chang Cafe",
+    "lat": 19.8934132,
+    "lng": 102.1399595,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-691124961",
+    "name": "Son Phao Restaurant & Traditional Show",
+    "lat": 19.8933404,
+    "lng": 102.1363625,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-691125012",
+    "name": "Pizza Sassa",
+    "lat": 19.8889565,
+    "lng": 102.1312666,
+    "province": "Lào Cai",
+    "specialty_tags": [
+      "pizza"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-697255242",
+    "name": "Nha Hang CUNG DING Restaurant",
+    "lat": 16.4839438,
+    "lng": 107.603723,
+    "province": "Thừa Thiên Huế",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-705800134",
+    "name": "MK Restaurants",
+    "lat": 16.4250254,
+    "lng": 102.8195798,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "thai"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-705800151",
+    "name": "MK Restaurants",
+    "lat": 16.4009704,
+    "lng": 102.8159433,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "suki"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-707198178",
+    "name": "Kua Heaven",
+    "lat": 17.9740297,
+    "lng": 102.5777266,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "lao"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-710088353",
+    "name": "T-Bone Steak House",
+    "lat": 16.4598235,
+    "lng": 102.8322697,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "16:30-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-710088538",
+    "name": "Happy Buffet",
+    "lat": 16.4452167,
+    "lng": 102.8300048,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-710612676",
+    "name": "Ban Sufa Garden",
+    "lat": 18.0532757,
+    "lng": 102.6261609,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "french"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-711682001",
+    "name": "Hunhang",
+    "lat": 16.4317481,
+    "lng": 102.8271884,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-714567078",
+    "name": "Cà Phê Acoustic",
+    "lat": 10.7811643,
+    "lng": 106.6898451,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-714567113",
+    "name": "Cà Phê Sỏi Đá",
+    "lat": 10.7809198,
+    "lng": 106.689929,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-715076971",
+    "name": "Didines",
+    "lat": 16.429072,
+    "lng": 102.829006,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-715623189",
+    "name": "Cà Phê Du Miên",
+    "lat": 10.7923386,
+    "lng": 106.6760528,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-718436409",
+    "name": "Cà Phê Mê Khúc",
+    "lat": 10.7987704,
+    "lng": 106.6865074,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-721788305",
+    "name": "Nhà Hàng Little Hanoi",
+    "lat": 21.0321895,
+    "lng": 105.850937,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-721788307",
+    "name": "Nhà Hàng New Day",
+    "lat": 21.0346545,
+    "lng": 105.853359,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-721836715",
+    "name": "Quán Ăn Ngon - Phan Bội Châu",
+    "lat": 21.0262611,
+    "lng": 105.8434161,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "vietnamese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "Mo-Su 06:45-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-721836727",
+    "name": "Xoi Van Anh",
+    "lat": 21.033942,
+    "lng": 105.8546062,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-721836730",
+    "name": "Cà Phê Nola",
+    "lat": 21.0340721,
+    "lng": 105.8535859,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-721906714",
+    "name": "Sushi Hokkaido Sachi",
+    "lat": 21.0202197,
+    "lng": 105.8543053,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-721906718",
+    "name": "Nhà Hàng Khazaana Indian",
+    "lat": 21.0286735,
+    "lng": 105.857296,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-721906721",
+    "name": "Tandoor Indian Cuisine",
+    "lat": 21.0335791,
+    "lng": 105.8537345,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723642233",
+    "name": "The King Cafe",
+    "lat": 21.0348473,
+    "lng": 105.8515895,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723642240",
+    "name": "Nhà Hàng Ladybird",
+    "lat": 21.0357539,
+    "lng": 105.8515631,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723642244",
+    "name": "Nhà Hàng Gecko",
+    "lat": 21.0348198,
+    "lng": 105.8525664,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723642373",
+    "name": "Tamarind Cafe",
+    "lat": 21.0341589,
+    "lng": 105.8533099,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723671517",
+    "name": "Nhà Hàng Âu Lạc Brazil II",
+    "lat": 21.0298564,
+    "lng": 105.8409205,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723671523",
+    "name": "Nhà Hàng Mediterraneo",
+    "lat": 21.0288946,
+    "lng": 105.8498777,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723671525",
+    "name": "Nhà Hàng Classico",
+    "lat": 21.025414,
+    "lng": 105.8451399,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723684563",
+    "name": "Nhà Hàng La Badiane",
+    "lat": 21.0265884,
+    "lng": 105.8432573,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723684568",
+    "name": "Nhà Hàng Hoa Sữa",
+    "lat": 21.0212237,
+    "lng": 105.8474967,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-723795403",
+    "name": "Nhà Hàng Half Man Half Noodle",
+    "lat": 21.0350466,
+    "lng": 105.8530045,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-725987282",
+    "name": "Café Amazon",
+    "lat": 16.4363928,
+    "lng": 102.850889,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-727300730",
+    "name": "Starbucks",
+    "lat": 16.4323742,
+    "lng": 102.825492,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "coffee_shop"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-727300734",
+    "name": "Coffee World",
+    "lat": 16.4324487,
+    "lng": 102.825489,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-727300739",
+    "name": "true coffee",
+    "lat": 16.4323752,
+    "lng": 102.824527,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-728293818",
+    "name": "Food Center",
+    "lat": 16.423003,
+    "lng": 102.8343579,
+    "province": "Nghệ An",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406384",
+    "name": "CaPhe Thu Uyen",
+    "lat": 16.0874373,
+    "lng": 108.1445387,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406385",
+    "name": "Cafe Win",
+    "lat": 16.0746726,
+    "lng": 108.2187015,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406386",
+    "name": "CafeKhanh Ly",
+    "lat": 16.0627174,
+    "lng": 108.208943,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406387",
+    "name": "ThanhBinh Coffee",
+    "lat": 16.0347187,
+    "lng": 108.2446539,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406388",
+    "name": "CaPhe Fantasy",
+    "lat": 16.0632999,
+    "lng": 108.1601536,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406389",
+    "name": "CaPhe Lang Tien",
+    "lat": 16.0657433,
+    "lng": 108.2077628,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406390",
+    "name": "KieuLien Coffee",
+    "lat": 16.0786302,
+    "lng": 108.1477511,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406391",
+    "name": "Cafe Truc Phuong",
+    "lat": 16.0684586,
+    "lng": 108.1500026,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406392",
+    "name": "Ca Phe 83",
+    "lat": 16.0785765,
+    "lng": 108.2193388,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406393",
+    "name": "Cafe Dong Xanh",
+    "lat": 16.0640577,
+    "lng": 108.2208466,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406394",
+    "name": "CafeTo Be",
+    "lat": 16.0736841,
+    "lng": 108.2182886,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406396",
+    "name": "MuoiChau Coffee",
+    "lat": 16.0021817,
+    "lng": 108.2670205,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406397",
+    "name": "CaPhe Sao Mai",
+    "lat": 16.0668568,
+    "lng": 108.1743586,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406398",
+    "name": "MienThao Coffee",
+    "lat": 16.0762311,
+    "lng": 108.2308433,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406399",
+    "name": "GmcCoffee",
+    "lat": 16.0539382,
+    "lng": 108.2208037,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406400",
+    "name": "CaPhe 3 Ladies",
+    "lat": 16.0827332,
+    "lng": 108.2219624,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406401",
+    "name": "OnenineCoffee",
+    "lat": 16.066281,
+    "lng": 108.1920523,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406402",
+    "name": "Ca Phe Thuan",
+    "lat": 16.0515981,
+    "lng": 108.1700044,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406403",
+    "name": "CafeGiai Khat 204",
+    "lat": 16.0597687,
+    "lng": 108.2135027,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406404",
+    "name": "CaPhe Konia",
+    "lat": 16.0719493,
+    "lng": 108.2127548,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406405",
+    "name": "VuonNguyet Khue Vien Coffee",
+    "lat": 16.0623504,
+    "lng": 108.208896,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406406",
+    "name": "CafeNguyen",
+    "lat": 16.0494377,
+    "lng": 108.2133794,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406407",
+    "name": "NgocVan Coffee",
+    "lat": 16.0681394,
+    "lng": 108.1818645,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406408",
+    "name": "CafeLuna",
+    "lat": 16.0654507,
+    "lng": 108.2078514,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406410",
+    "name": "CafeBao Dang",
+    "lat": 16.0674462,
+    "lng": 108.1525529,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406411",
+    "name": "AnhLinh Coffee",
+    "lat": 16.0703982,
+    "lng": 108.2013201,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406412",
+    "name": "HoaTieu Coffee",
+    "lat": 16.0789002,
+    "lng": 108.2328072,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406413",
+    "name": "Giai Khat Quang",
+    "lat": 16.0582376,
+    "lng": 108.2126391,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406414",
+    "name": "Cafe72",
+    "lat": 16.0488551,
+    "lng": 108.2168233,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406415",
+    "name": "ThanhHuong Coffee",
+    "lat": 16.0648206,
+    "lng": 108.2164746,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406416",
+    "name": "CaPhe Hoang Anh",
+    "lat": 16.0348682,
+    "lng": 108.1778991,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406417",
+    "name": "AnhLinh Coffee",
+    "lat": 16.0851302,
+    "lng": 108.2196914,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406418",
+    "name": "VuonThao Coffee",
+    "lat": 16.0653619,
+    "lng": 108.2069099,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406419",
+    "name": "324Coffee",
+    "lat": 16.0569901,
+    "lng": 108.2128107,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406420",
+    "name": "Nhà Hàng Chay & Cà Phê Thúp An",
+    "lat": 16.0738518,
+    "lng": 108.2032513,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406421",
+    "name": "PhoSao Coffee",
+    "lat": 16.0452824,
+    "lng": 108.2227242,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406422",
+    "name": "BaoNhi Coffee",
+    "lat": 16.0822257,
+    "lng": 108.2399242,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406423",
+    "name": "CafeBan Toi",
+    "lat": 16.058681,
+    "lng": 108.2122153,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406424",
+    "name": "CaPhe Nhat Linh",
+    "lat": 16.0360488,
+    "lng": 108.1832421,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406425",
+    "name": "CafeThoang Sai Gon",
+    "lat": 16.0710077,
+    "lng": 108.2212999,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406426",
+    "name": "CaPhe Trung",
+    "lat": 16.0358065,
+    "lng": 108.1822067,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406427",
+    "name": "CaPhe Thu Dung",
+    "lat": 16.0713363,
+    "lng": 108.1914818,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406428",
+    "name": "Cafe219",
+    "lat": 16.0871156,
+    "lng": 108.2413157,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406429",
+    "name": "ThanhThuy Coffee",
+    "lat": 16.0871969,
+    "lng": 108.1443178,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406430",
+    "name": "CaPhe Long",
+    "lat": 16.0677692,
+    "lng": 108.1593811,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406431",
+    "name": "MyDuyen Coffee",
+    "lat": 16.0522905,
+    "lng": 108.2373783,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406432",
+    "name": "Ca Phe New Life",
+    "lat": 16.0659805,
+    "lng": 108.2200312,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406433",
+    "name": "CaPhe Bong Da 14",
+    "lat": 16.0750293,
+    "lng": 108.1492071,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406434",
+    "name": "CaPhe New Life",
+    "lat": 16.0707379,
+    "lng": 108.2203416,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406436",
+    "name": "ThanhHuong Coffee",
+    "lat": 16.0951751,
+    "lng": 108.2444155,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406437",
+    "name": "Ca Phe Chieu Tim",
+    "lat": 16.0860629,
+    "lng": 108.2405662,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406438",
+    "name": "ThanhHong Coffee",
+    "lat": 16.0543867,
+    "lng": 108.2097101,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406439",
+    "name": "Cafe153",
+    "lat": 16.0905214,
+    "lng": 108.2428407,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406440",
+    "name": "TigonCoffee",
+    "lat": 16.0463238,
+    "lng": 108.2386833,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406441",
+    "name": "LindaCoffee",
+    "lat": 16.060279,
+    "lng": 108.209356,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406442",
+    "name": "MyPhuc Coffee",
+    "lat": 16.0799961,
+    "lng": 108.213197,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406444",
+    "name": "ThanhTruc Coffee",
+    "lat": 16.0322748,
+    "lng": 108.1885957,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406445",
+    "name": "TrucTam Coffee",
+    "lat": 16.0906658,
+    "lng": 108.2423678,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406446",
+    "name": "Ca Phe Giai Khat Yen Trang",
+    "lat": 16.0864224,
+    "lng": 108.2407112,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406447",
+    "name": "NhatHa Coffee Ice Cream",
+    "lat": 16.058217,
+    "lng": 108.2207447,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406448",
+    "name": "CaPhe Kien Viet",
+    "lat": 16.0764324,
+    "lng": 108.2195373,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406449",
+    "name": "HolidayCoffee",
+    "lat": 16.0574334,
+    "lng": 108.2066095,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406450",
+    "name": "CaPhe Sao Mai",
+    "lat": 16.0706704,
+    "lng": 108.2339835,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406451",
+    "name": "NgocAnh Coffee",
+    "lat": 16.0670114,
+    "lng": 108.182019,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406452",
+    "name": "Loc Thu",
+    "lat": 16.0706198,
+    "lng": 108.2227242,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406453",
+    "name": "HongAn Coffee",
+    "lat": 16.0196036,
+    "lng": 108.1940563,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406454",
+    "name": "GiaiKhat 115 Coffee",
+    "lat": 16.0789549,
+    "lng": 108.2173222,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406455",
+    "name": "SaoMai Coffee",
+    "lat": 16.0764549,
+    "lng": 108.2190335,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406456",
+    "name": "CafeThanh Hoa",
+    "lat": 16.0549074,
+    "lng": 108.2121294,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406457",
+    "name": "Ca Phe Paris Da",
+    "lat": 16.0733682,
+    "lng": 108.214039,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406458",
+    "name": "CaPhe Delta",
+    "lat": 16.0598754,
+    "lng": 108.2122709,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406459",
+    "name": "ThuyVan Coffee",
+    "lat": 16.0829033,
+    "lng": 108.1459754,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406460",
+    "name": "NangMai Coffee",
+    "lat": 16.0610214,
+    "lng": 108.211931,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406461",
+    "name": "Ca Phe Trung",
+    "lat": 16.056491,
+    "lng": 108.1666315,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406462",
+    "name": "Ca Phe Cam Ni",
+    "lat": 16.0525482,
+    "lng": 108.1796323,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406463",
+    "name": "Ca Phe Bien Nho",
+    "lat": 16.0559075,
+    "lng": 108.2444179,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406464",
+    "name": "CayBang Coffee",
+    "lat": 16.0899132,
+    "lng": 108.2420341,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406465",
+    "name": "Cafe Giai Khat 417",
+    "lat": 16.0693105,
+    "lng": 108.2051503,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406466",
+    "name": "CaPhe Win Win",
+    "lat": 16.0224941,
+    "lng": 108.2136583,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406469",
+    "name": "CaPhe Minh Khanh",
+    "lat": 16.0855183,
+    "lng": 108.1445679,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406470",
+    "name": "CaPhe Hoa Co May",
+    "lat": 16.0607378,
+    "lng": 108.2104826,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406471",
+    "name": "55Coffee",
+    "lat": 16.0733415,
+    "lng": 108.1775719,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406472",
+    "name": "PlanttreesCoffee",
+    "lat": 16.0996134,
+    "lng": 108.1355095,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406473",
+    "name": "PhuongMai Coffee",
+    "lat": 16.0889382,
+    "lng": 108.2421461,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406474",
+    "name": "TigonCoffee",
+    "lat": 16.1137967,
+    "lng": 108.1277203,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406475",
+    "name": "Trung Nguyên Coffee",
+    "lat": 16.0311905,
+    "lng": 108.2242256,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "coffee_shop;vietnamese"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406476",
+    "name": "TrungDuong Coffee",
+    "lat": 16.0737871,
+    "lng": 108.1493575,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406477",
+    "name": "Nha Que",
+    "lat": 16.0733694,
+    "lng": 108.2180547,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406478",
+    "name": "CayTao Coffee",
+    "lat": 16.0560931,
+    "lng": 108.22022,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406479",
+    "name": "Ca Phe May Chieu",
+    "lat": 16.0344483,
+    "lng": 108.2238466,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406480",
+    "name": "Ca Phe Vuon Noi",
+    "lat": 16.0478859,
+    "lng": 108.1814933,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406481",
+    "name": "CafeMuzik",
+    "lat": 16.0654426,
+    "lng": 108.1547017,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406482",
+    "name": "LyNa Coffee",
+    "lat": 16.108174,
+    "lng": 108.1312179,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406483",
+    "name": "CafeNhu Quynh",
+    "lat": 16.1009204,
+    "lng": 108.247462,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406485",
+    "name": "Cafe Yen Nhi",
+    "lat": 16.0209679,
+    "lng": 108.2120651,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406487",
+    "name": "Homie Coffee",
+    "lat": 16.0707542,
+    "lng": 108.2092543,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406488",
+    "name": "HongAn Coffee",
+    "lat": 16.053232,
+    "lng": 108.2109385,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406489",
+    "name": "N T Coffee",
+    "lat": 16.0685682,
+    "lng": 108.1957894,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406490",
+    "name": "74Coffee",
+    "lat": 16.0721044,
+    "lng": 108.1787467,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406491",
+    "name": "Cafe61",
+    "lat": 16.0640834,
+    "lng": 108.2204067,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406492",
+    "name": "TamCoffee",
+    "lat": 16.0756096,
+    "lng": 108.2113194,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406493",
+    "name": "MeTrang Coffee",
+    "lat": 16.0704222,
+    "lng": 108.2241651,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406494",
+    "name": "CaPhe Rang Dong",
+    "lat": 16.0140408,
+    "lng": 108.1975089,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406496",
+    "name": "Cafe Giai Khat 310",
+    "lat": 16.0665269,
+    "lng": 108.2069313,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406498",
+    "name": "GiaiKhat Thanh Ha Coffee",
+    "lat": 16.070558,
+    "lng": 108.1915945,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406499",
+    "name": "ThaoUyen Coffee",
+    "lat": 16.0712642,
+    "lng": 108.2017547,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406500",
+    "name": "Ca Phe Thanh Huyen",
+    "lat": 16.0687947,
+    "lng": 108.1668088,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406501",
+    "name": "TuanCoffee",
+    "lat": 16.0871879,
+    "lng": 108.1438778,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406502",
+    "name": "Ca Phe Phuong Nam",
+    "lat": 16.0535155,
+    "lng": 108.1693858,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406503",
+    "name": "MinhAnh Coffee",
+    "lat": 16.0626555,
+    "lng": 108.2088625,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406504",
+    "name": "CaPhe Chau",
+    "lat": 16.0185033,
+    "lng": 108.2071727,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406505",
+    "name": "Cafe27",
+    "lat": 16.1006751,
+    "lng": 108.2473415,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406506",
+    "name": "CaPhe Bar Diem Tam Nguyen Thy",
+    "lat": 16.0731147,
+    "lng": 108.2209486,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406507",
+    "name": "GocNho Coffee",
+    "lat": 16.038762,
+    "lng": 108.1867231,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406508",
+    "name": "Cafe Manila",
+    "lat": 16.068639,
+    "lng": 108.1504425,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406509",
+    "name": "CaPhe Dragon",
+    "lat": 16.0798673,
+    "lng": 108.2228851,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406510",
+    "name": "CaPhe Vao Ha",
+    "lat": 16.0896658,
+    "lng": 108.1471288,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406511",
+    "name": "TinaCoffee",
+    "lat": 16.0719394,
+    "lng": 108.1788915,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406512",
+    "name": "BaoNgoc Coffee",
+    "lat": 16.0993814,
+    "lng": 108.1356382,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406514",
+    "name": "CaPhe Muoi Thuong",
+    "lat": 16.0708105,
+    "lng": 108.2187706,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406515",
+    "name": "DaKhuc Coffee",
+    "lat": 16.0539434,
+    "lng": 108.220852,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406516",
+    "name": "CafeMusic",
+    "lat": 16.0917672,
+    "lng": 108.2428266,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406517",
+    "name": "J T Coffee",
+    "lat": 16.0685682,
+    "lng": 108.195827,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406518",
+    "name": "Ca Phe Ly Thong",
+    "lat": 16.0515208,
+    "lng": 108.1700258,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406519",
+    "name": "Cafe34",
+    "lat": 16.0639092,
+    "lng": 108.2231448,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406520",
+    "name": "Ca Phe Phuong Linh",
+    "lat": 16.0567117,
+    "lng": 108.1779206,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406521",
+    "name": "CafeHai Ha",
+    "lat": 16.0717693,
+    "lng": 108.2311159,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406522",
+    "name": "GocPho Coffee",
+    "lat": 16.0499532,
+    "lng": 108.2146024,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406524",
+    "name": "Cafe Thien Thanh",
+    "lat": 16.1113228,
+    "lng": 108.1296022,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406525",
+    "name": "CaPhe Tung Lam",
+    "lat": 16.0574128,
+    "lng": 108.2114267,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  },
+  {
+    "id": "osm-r-node-729406526",
+    "name": "CafeTri",
+    "lat": 16.0665372,
+    "lng": 108.1507337,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "local_food"
+    ],
+    "rating": 4.0,
+    "review_count": 10,
+    "price_level": 2,
+    "opening_hours": "06:00-22:00",
+    "source": "osm",
+    "distance_to_nearest_heritage_m": 0
+  }
+]

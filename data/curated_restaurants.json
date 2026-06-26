@@ -1,0 +1,334 @@
+[
+  {
+    "id": "r-hn-001",
+    "name": "Phở Thìn Lò Đúc",
+    "lat": 21.0195,
+    "lng": 105.852,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "phở",
+      "ẩm_thực_Hà_Nội",
+      "bún_phở"
+    ],
+    "rating": 4.4,
+    "review_count": 3200,
+    "price_level": 1,
+    "opening_hours": "06:00-21:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 450.0
+  },
+  {
+    "id": "r-hn-002",
+    "name": "Bún Chả Hương Liên",
+    "lat": 21.017,
+    "lng": 105.847,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "bún_chả",
+      "ẩm_thực_Hà_Nội"
+    ],
+    "rating": 4.5,
+    "review_count": 5200,
+    "price_level": 1,
+    "opening_hours": "08:00-20:30",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-003",
+    "name": "Chả Cá Lã Vọng",
+    "lat": 21.032,
+    "lng": 105.85,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "chả_cá",
+      "ẩm_thực_Hà_Nội",
+      "hải_sản"
+    ],
+    "rating": 4.2,
+    "review_count": 2800,
+    "price_level": 3,
+    "opening_hours": "11:00-14:00,17:00-21:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-004",
+    "name": "Bánh Cuốn Thanh Vân",
+    "lat": 21.028,
+    "lng": 105.842,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "bánh_cuốn",
+      "ẩm_thực_Hà_Nội"
+    ],
+    "rating": 4.3,
+    "review_count": 1100,
+    "price_level": 1,
+    "opening_hours": "07:00-13:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-005",
+    "name": "Cà Phê Giảng",
+    "lat": 21.0345,
+    "lng": 105.851,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "cà_phê_trứng",
+      "ẩm_thực_Hà_Nội",
+      "cà_phê"
+    ],
+    "rating": 4.6,
+    "review_count": 4500,
+    "price_level": 1,
+    "opening_hours": "07:00-22:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-006",
+    "name": "Kem Tràng Tiền",
+    "lat": 21.0264,
+    "lng": 105.8539,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "kem",
+      "ẩm_thực_Hà_Nội",
+      "tráng_miệng"
+    ],
+    "rating": 4.1,
+    "review_count": 2000,
+    "price_level": 1,
+    "opening_hours": "08:00-22:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-007",
+    "name": "Xôi Yến",
+    "lat": 21.033,
+    "lng": 105.849,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "xôi",
+      "ẩm_thực_Hà_Nội"
+    ],
+    "rating": 4.3,
+    "review_count": 1800,
+    "price_level": 1,
+    "opening_hours": "00:00-22:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hn-008",
+    "name": "Bún Ốc Cô Huệ",
+    "lat": 21.0332,
+    "lng": 105.848,
+    "province": "Hà Nội",
+    "specialty_tags": [
+      "bún_ốc",
+      "ẩm_thực_Hà_Nội",
+      "bún_phở"
+    ],
+    "rating": 4.2,
+    "review_count": 800,
+    "price_level": 1,
+    "opening_hours": "09:00-17:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hue-001",
+    "name": "Cơm Hến Huế",
+    "lat": 16.464,
+    "lng": 107.582,
+    "province": "Thừa Thiên Huế",
+    "specialty_tags": [
+      "cơm_hến",
+      "ẩm_thực_Huế"
+    ],
+    "rating": 4.3,
+    "review_count": 1500,
+    "price_level": 1,
+    "opening_hours": "07:00-21:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hue-002",
+    "name": "Bún Bò Huế O Phượng",
+    "lat": 16.466,
+    "lng": 107.59,
+    "province": "Thừa Thiên Huế",
+    "specialty_tags": [
+      "bún_bò_Huế",
+      "ẩm_thực_Huế",
+      "bún_phở"
+    ],
+    "rating": 4.5,
+    "review_count": 3500,
+    "price_level": 1,
+    "opening_hours": "06:00-20:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hue-003",
+    "name": "Bánh Bèo Nậm Lọc",
+    "lat": 16.468,
+    "lng": 107.585,
+    "province": "Thừa Thiên Huế",
+    "specialty_tags": [
+      "bánh_bèo",
+      "ẩm_thực_Huế"
+    ],
+    "rating": 4.2,
+    "review_count": 1100,
+    "price_level": 1,
+    "opening_hours": "07:00-19:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hue-004",
+    "name": "Chè Huế Mợ Tôn Đích",
+    "lat": 16.467,
+    "lng": 107.592,
+    "province": "Thừa Thiên Huế",
+    "specialty_tags": [
+      "chè",
+      "ẩm_thực_Huế",
+      "tráng_miệng"
+    ],
+    "rating": 4.4,
+    "review_count": 1800,
+    "price_level": 1,
+    "opening_hours": "08:00-22:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hcm-001",
+    "name": "Phở Hòa Pasteur",
+    "lat": 10.78,
+    "lng": 106.693,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "phở",
+      "ẩm_thực_Sài_Gòn",
+      "bún_phở"
+    ],
+    "rating": 4.3,
+    "review_count": 2800,
+    "price_level": 1,
+    "opening_hours": "06:00-22:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hcm-002",
+    "name": "Cơm Tấm Bụi Sài Gòn",
+    "lat": 10.773,
+    "lng": 106.695,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "cơm_tấm",
+      "ẩm_thực_Sài_Gòn"
+    ],
+    "rating": 4.4,
+    "review_count": 2200,
+    "price_level": 1,
+    "opening_hours": "10:00-21:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-hcm-003",
+    "name": "Bánh Mì Huỳnh Hoa",
+    "lat": 10.775,
+    "lng": 106.69,
+    "province": "TP. Hồ Chí Minh",
+    "specialty_tags": [
+      "bánh_mì",
+      "ẩm_thực_Sài_Gòn"
+    ],
+    "rating": 4.6,
+    "review_count": 4500,
+    "price_level": 1,
+    "opening_hours": "14:00-23:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-dn-001",
+    "name": "Cao Lầu Hội An",
+    "lat": 15.879,
+    "lng": 108.337,
+    "province": "Quảng Nam",
+    "specialty_tags": [
+      "cao_lầu",
+      "ẩm_thực_Hội_An"
+    ],
+    "rating": 4.5,
+    "review_count": 2800,
+    "price_level": 1,
+    "opening_hours": "10:00-21:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-dn-002",
+    "name": "Mì Quảng Ếch Bắp",
+    "lat": 16.061,
+    "lng": 108.215,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "mì_quảng",
+      "ẩm_thực_Đà_Nẵng",
+      "bún_phở"
+    ],
+    "rating": 4.3,
+    "review_count": 1900,
+    "price_level": 1,
+    "opening_hours": "06:00-21:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-dn-003",
+    "name": "Bánh Tráng Cuốn Thịt Heo",
+    "lat": 16.062,
+    "lng": 108.22,
+    "province": "Đà Nẵng",
+    "specialty_tags": [
+      "bánh_tráng",
+      "ẩm_thực_Đà_Nẵng"
+    ],
+    "rating": 4.4,
+    "review_count": 1500,
+    "price_level": 2,
+    "opening_hours": "10:00-22:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  },
+  {
+    "id": "r-dn-004",
+    "name": "Bánh Xèo Hội An",
+    "lat": 15.8805,
+    "lng": 108.339,
+    "province": "Quảng Nam",
+    "specialty_tags": [
+      "bánh_xèo",
+      "ẩm_thực_Hội_An"
+    ],
+    "rating": 4.2,
+    "review_count": 1100,
+    "price_level": 1,
+    "opening_hours": "10:00-20:00",
+    "source": "curated",
+    "distance_to_nearest_heritage_m": 0.0
+  }
+]
