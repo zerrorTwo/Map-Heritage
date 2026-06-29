@@ -7,6 +7,13 @@ from typing import List, Optional
 from datetime import date
 
 
+class Review(BaseModel):
+    author: str = ""
+    rating: int = 4
+    text: str = ""
+    source: str = ""
+
+
 class HeritageSite(BaseModel):
     id: str
     name: str

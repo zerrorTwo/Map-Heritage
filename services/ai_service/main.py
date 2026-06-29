@@ -10,7 +10,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from services.ai_service.models import (
-    HeritageSite, Restaurant, TripInput, TripRequest, Itinerary,
+    HeritageSite, Restaurant, TripInput, TripRequest, Itinerary, Review,
 )
 from services.ai_service.pipeline import pipeline
 
@@ -151,6 +151,35 @@ async def image_stats():
     """Get image storage statistics."""
     from services.image_service.image_store import get_stats
     return get_stats()
+
+
+@app.get("/api/v1/heritage-sites/{site_id}/reviews", response_model=List[Review])
+async def get_reviews(site_id: str):
+    """Get reviews for a heritage site."""
+    from services.image_service.enricher import generate_reviews
+    site = None
+    for s in pipeline._sites_cache:
+        if s.id == site_id:
+            site = s
+            break
+    if not site:
+        raise HTTPException(status_code=404, detail="Site not found")
+    return generate_reviews(site.name, site.province, site.popularity_score)
+
+
+@app.get("/api/v1/heritage-sites/{site_id}/enrich")
+async def enrich_site_info(site_id: str):
+    """Get enriched description from Wikipedia."""
+    from services.image_service.enricher import enrich_site
+    site = None
+    for s in pipeline._sites_cache:
+        if s.id == site_id:
+            site = s
+            break
+    if not site:
+        raise HTTPException(status_code=404, detail="Site not found")
+    data = enrich_site(site.name, site.province, site.reference_url or "")
+    return {"site_id": site_id, "name": site.name, **data}
 
 
 if __name__ == "__main__":

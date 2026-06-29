@@ -140,9 +140,10 @@
     .detail-swiper .swiper-button-next,.detail-swiper .swiper-button-prev{color:#fff;background:rgba(0,0,0,.5);width:30px;height:40px;border-radius:6px;transition:all .2s}
     .detail-swiper .swiper-button-next:hover,.detail-swiper .swiper-button-prev:hover{background:rgba(233,69,96,.7)}
     .detail-swiper .swiper-button-next:after,.detail-swiper .swiper-button-prev:after{font-size:14px;font-weight:bold}
+    .detail-swiper .swiper-pagination{bottom:24px !important}
     .detail-swiper .swiper-pagination-bullet{background:#3a3a5a;opacity:1;width:6px;height:6px}
     .detail-swiper .swiper-pagination-bullet-active{background:#e94560}
-    .detail-swiper .swiper-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:10px 12px;font-size:11px;color:#ddd;z-index:5;pointer-events:none}
+    .detail-swiper .swiper-caption{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.7);padding:6px 12px;font-size:10px;color:#ccc;z-index:5;pointer-events:none;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .swiper-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a30,#26264a);text-align:center;padding:20px}
     .swiper-placeholder .ph-icon{font-size:48px;margin-bottom:8px;opacity:.8}
     .swiper-placeholder .ph-title{color:#ddd;font-size:14px;font-weight:600}
@@ -252,6 +253,10 @@
     <div class="detail-section" id="detail-tips-section" style="display:none">
       <h4>💡 Mẹo tham quan</h4>
       <p id="detail-tips"></p>
+    </div>
+    <div class="detail-section" id="detail-reviews-section" style="display:none">
+      <h4>⭐ Đánh giá từ du khách</h4>
+      <div id="detail-reviews"></div>
     </div>
     <div class="detail-section">
       <h4>🔗 Tham khảo</h4>
@@ -755,8 +760,48 @@ function openDetail(site){
   // Sync select button
   updateSelectBtn(site.id);
 
-  // Fetch images
+  // Fetch images + enriched description + reviews
   loadDetailImages(site.id);
+  loadEnrichedDescription(site.id);
+  loadReviews(site.id);
+}
+
+async function loadEnrichedDescription(siteId) {
+  try {
+    const resp = await fetch(`${API}/api/v1/heritage-sites/${siteId}/enrich`);
+    const data = await resp.json();
+    if (data.long_description && data.long_description.length > 50) {
+      document.getElementById('detail-desc').textContent = data.long_description;
+    }
+    if (data.visit_tips) {
+      document.getElementById('detail-tips').textContent = data.visit_tips;
+      document.getElementById('detail-tips-section').style.display = 'block';
+    }
+  } catch(e) {}
+}
+
+async function loadReviews(siteId) {
+  try {
+    const resp = await fetch(`${API}/api/v1/heritage-sites/${siteId}/reviews`);
+    const reviews = await resp.json();
+    if (!reviews || !reviews.length) return;
+    
+    const container = document.getElementById('detail-reviews');
+    container.innerHTML = reviews.map(r => `
+      <div style="background:#16162b;border-radius:10px;padding:14px;margin-bottom:10px;border-left:3px solid ${r.rating >= 4 ? '#e94560' : '#f0a500'}">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <div style="width:28px;height:28px;border-radius:50%;background:#1e1e3a;display:flex;align-items:center;justify-content:center;font-size:14px">${r.rating >= 4 ? '👍' : '👤'}</div>
+          <div>
+            <div style="font-size:12px;color:#ddd;font-weight:600">${r.author}</div>
+            <div style="font-size:10px;color:#888">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)} · ${r.source}</div>
+          </div>
+        </div>
+        <p style="font-size:12px;color:#bbb;line-height:1.6;margin:0">${r.text}</p>
+      </div>
+    `).join('');
+    
+    document.getElementById('detail-reviews-section').style.display = 'block';
+  } catch(e) {}
 }
 
 let detailSwiper = null;
@@ -815,7 +860,6 @@ async function loadDetailImages(siteId) {
       return `<div class="swiper-slide" onclick="openLightbox(${i})">
         <img src="${img.thumb_url}" alt="${img.title||site.name}" loading="lazy"
              onerror="this.parentElement.innerHTML='<div class=\\'swiper-placeholder\\'><div class=\\'ph-icon\\'>⚠</div><div class=\\'ph-sub\\'>Ảnh không tải được</div></div>'">
-        <div class="swiper-caption">${img.title||site.name}</div>
       </div>`;
     }).join('');
 

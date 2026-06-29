@@ -121,6 +121,22 @@ async def list_restaurants(province: str | None = None):
         return []
 
 
+@app.get("/api/v1/heritage-sites/{site_id}/images")
+async def get_site_images(site_id: str):
+    """Forward image request to AI service."""
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.get(
+                f"{settings.ai_service_url}/api/v1/heritage-sites/{site_id}/images",
+            )
+            resp.raise_for_status()
+            return resp.json()
+    except httpx.HTTPStatusError as e:
+        raise HTTPException(status_code=e.response.status_code, detail=str(e))
+    except httpx.RequestError:
+        raise HTTPException(status_code=503, detail="AI service unavailable")
+
+
 @app.get("/api/v1/heritage-sites/{site_id}")
 async def get_heritage_site(site_id: str):
     """Get a single heritage site by ID."""
@@ -128,6 +144,38 @@ async def get_heritage_site(site_id: str):
         async with httpx.AsyncClient(timeout=10) as client:
             resp = await client.get(
                 f"{settings.ai_service_url}/api/v1/heritage-sites/{site_id}",
+            )
+            resp.raise_for_status()
+            return resp.json()
+    except httpx.HTTPStatusError as e:
+        raise HTTPException(status_code=e.response.status_code, detail=str(e))
+    except httpx.RequestError:
+        raise HTTPException(status_code=503, detail="AI service unavailable")
+
+
+@app.get("/api/v1/heritage-sites/{site_id}/reviews")
+async def get_site_reviews(site_id: str):
+    """Forward reviews request to AI service."""
+    try:
+        async with httpx.AsyncClient(timeout=10) as client:
+            resp = await client.get(
+                f"{settings.ai_service_url}/api/v1/heritage-sites/{site_id}/reviews",
+            )
+            resp.raise_for_status()
+            return resp.json()
+    except httpx.HTTPStatusError as e:
+        raise HTTPException(status_code=e.response.status_code, detail=str(e))
+    except httpx.RequestError:
+        raise HTTPException(status_code=503, detail="AI service unavailable")
+
+
+@app.get("/api/v1/heritage-sites/{site_id}/enrich")
+async def enrich_site(site_id: str):
+    """Forward enrich request to AI service."""
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.get(
+                f"{settings.ai_service_url}/api/v1/heritage-sites/{site_id}/enrich",
             )
             resp.raise_for_status()
             return resp.json()
