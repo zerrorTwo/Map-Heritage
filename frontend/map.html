@@ -32,7 +32,7 @@
     .map-search-item:hover,.map-search-item.active{background:#1e1e3a}
     .map-search-item:last-child{border-bottom:none}
     .map-search-section{padding:4px 12px;font-size:9px;color:#e94560;text-transform:uppercase;letter-spacing:1px;background:#16162b;border-bottom:1px solid #1e1e3a}
-    .map-cat-btn.active{color:#fff !important;border-color:var(--c,#e94560) !important;background:var(--c,#e9456044) !important}
+    .map-cat-btn.active{color:#fff !important;background:var(--c) !important;box-shadow:0 0 8px var(--c)}
 
     /* FORM */
     .form-group{margin-bottom:10px}
@@ -224,8 +224,8 @@
     <div id="mapSearchResults" style="display:none;max-height:320px;overflow-y:auto;margin-top:4px;background:rgba(18,18,31,.97);border-radius:8px;border:1px solid #1e1e3a;box-shadow:0 4px 20px rgba(0,0,0,.5)"></div>
   </div>
   <!-- Category filter bar -->
-  <div id="map-cat-filters" style="position:absolute;top:56px;left:12px;z-index:9;display:flex;gap:4px;flex-wrap:wrap;max-width:calc(100vw - 420px)">
-    <button class="map-cat-btn active" data-cat="all" onclick="filterByCategory('all',this)" style="--c:#e94560;padding:4px 10px;border-radius:12px;border:1px solid #2a2a4a;background:#12121f;color:#aaa;font-size:10px;cursor:pointer;transition:all .15s;font-family:inherit">Tất cả</button>
+  <div id="map-cat-filters" style="position:absolute;top:12px;right:12px;z-index:9;display:flex;flex-direction:column;gap:2px;background:rgba(18,18,31,.94);border-radius:10px;padding:6px;border:1px solid #1e1e3a;box-shadow:0 2px 16px rgba(0,0,0,.4)">
+    <div class="map-cat-btn active" data-cat="all" onclick="filterByCategory('all',this)" style="--c:#e94560;display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:8px;border:none;background:transparent;color:#888;font-size:11px;cursor:pointer;transition:all .15s;font-family:inherit;text-align:left;white-space:nowrap"><span style="font-size:14px;width:18px;text-align:center">🌐</span>Tất cả</div>
   </div>
 </div>
 <div id="detail-overlay" onclick="closeDetail()"></div>
@@ -394,7 +394,6 @@ async function loadSites(){
 function buildCatFilters() {
   const container = document.getElementById('map-cat-filters');
   if (!container) return;
-  // Clear existing except "Tất cả"
   container.querySelectorAll('.map-cat-btn:not([data-cat="all"])').forEach(b => b.remove());
   
   const cats = [
@@ -409,11 +408,13 @@ function buildCatFilters() {
   ];
   
   cats.forEach(cat => {
-    const btn = document.createElement('button');
+    // Count sites in this category
+    const count = allSites.filter(s => (s.categories||[]).map(c=>c.toLowerCase()).includes(cat.key)).length;
+    const btn = document.createElement('div');
     btn.className = 'map-cat-btn';
     btn.dataset.cat = cat.key;
-    btn.textContent = `${cat.style.icon} ${cat.style.label}`;
-    btn.style.setProperty('--c', cat.style.color);
+    btn.style.cssText = `--c:${cat.style.color};display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:8px;border:none;background:transparent;color:#888;font-size:11px;cursor:pointer;transition:all .15s;font-family:inherit;text-align:left;white-space:nowrap`;
+    btn.innerHTML = `<span style="font-size:14px;width:18px;text-align:center">${cat.style.icon}</span>${cat.style.label}<span style="margin-left:auto;font-size:9px;color:#666;min-width:16px;text-align:right">${count}</span>`;
     btn.onclick = () => filterByCategory(cat.key, btn);
     container.appendChild(btn);
   });
