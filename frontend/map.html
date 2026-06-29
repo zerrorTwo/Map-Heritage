@@ -32,6 +32,7 @@
     .map-search-item:hover,.map-search-item.active{background:#1e1e3a}
     .map-search-item:last-child{border-bottom:none}
     .map-search-section{padding:4px 12px;font-size:9px;color:#e94560;text-transform:uppercase;letter-spacing:1px;background:#16162b;border-bottom:1px solid #1e1e3a}
+    .map-cat-btn.active{color:#fff !important;border-color:var(--c,#e94560) !important;background:var(--c,#e9456044) !important}
 
     /* FORM */
     .form-group{margin-bottom:10px}
@@ -222,6 +223,10 @@
     </div>
     <div id="mapSearchResults" style="display:none;max-height:320px;overflow-y:auto;margin-top:4px;background:rgba(18,18,31,.97);border-radius:8px;border:1px solid #1e1e3a;box-shadow:0 4px 20px rgba(0,0,0,.5)"></div>
   </div>
+  <!-- Category filter bar -->
+  <div id="map-cat-filters" style="position:absolute;top:56px;left:12px;z-index:9;display:flex;gap:4px;flex-wrap:wrap;max-width:calc(100vw - 420px)">
+    <button class="map-cat-btn active" data-cat="all" onclick="filterByCategory('all',this)" style="--c:#e94560;padding:4px 10px;border-radius:12px;border:1px solid #2a2a4a;background:#12121f;color:#aaa;font-size:10px;cursor:pointer;transition:all .15s;font-family:inherit">Tất cả</button>
+  </div>
 </div>
 <div id="detail-overlay" onclick="closeDetail()"></div>
 <div id="detail-panel">
@@ -347,11 +352,19 @@ function svgIcon(cats,sz=34){
 }
 
 // LOAD ALL SITES
+let allSiteMarkers = []; // {marker, site} for filtering
+let activeCatFilter = 'all';
+
 async function loadSites(){
   const r=await fetch(`${API}/api/v1/heritage-sites`);
   allSites=await r.json();
   document.getElementById('siteCount').textContent=`${allSites.length} sites`;
+  
+  // Build category filter buttons
+  buildCatFilters();
+  
   const b=new maplibregl.LngLatBounds();
+  allSiteMarkers = [];
   allSites.forEach((s,i)=>{
     if(i>400)return;
     const el=document.createElement('img');
@@ -369,12 +382,62 @@ async function loadSites(){
       e.stopPropagation();
       openDetail(s);
     });
-    new maplibregl.Marker({element:el}).setLngLat([s.lng,s.lat]).addTo(map);
+    const marker = new maplibregl.Marker({element:el}).setLngLat([s.lng,s.lat]).addTo(map);
+    allSiteMarkers.push({marker, site:s, el});
     siteMarkers[s.id] = el;
     b.extend([s.lng,s.lat]);
   });
   map.fitBounds(b,{padding:60,maxZoom:12});
   updateSelectedUI();
+}
+
+function buildCatFilters() {
+  const container = document.getElementById('map-cat-filters');
+  if (!container) return;
+  // Clear existing except "Tất cả"
+  container.querySelectorAll('.map-cat-btn:not([data-cat="all"])').forEach(b => b.remove());
+  
+  const cats = [
+    {key:'history', style:CAT_STYLE.history},
+    {key:'spiritual', style:CAT_STYLE.spiritual},
+    {key:'museum', style:CAT_STYLE.museum},
+    {key:'architecture', style:CAT_STYLE.architecture},
+    {key:'craft_village', style:CAT_STYLE.craft_village},
+    {key:'unesco', style:CAT_STYLE.unesco},
+    {key:'nature', style:CAT_STYLE.nature},
+    {key:'entertainment', style:CAT_STYLE.entertainment},
+  ];
+  
+  cats.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.className = 'map-cat-btn';
+    btn.dataset.cat = cat.key;
+    btn.textContent = `${cat.style.icon} ${cat.style.label}`;
+    btn.style.setProperty('--c', cat.style.color);
+    btn.onclick = () => filterByCategory(cat.key, btn);
+    container.appendChild(btn);
+  });
+}
+
+function filterByCategory(cat, btn) {
+  activeCatFilter = cat;
+  document.querySelectorAll('.map-cat-btn').forEach(b => b.classList.remove('active'));
+  if (btn) {
+    btn.classList.add('active');
+  }
+  if (cat === 'all') {
+    document.querySelector('.map-cat-btn[data-cat="all"]').classList.add('active');
+  }
+  
+  // Show/hide markers
+  allSiteMarkers.forEach(({marker, site}) => {
+    const el = marker.getElement();
+    if (cat === 'all' || (site.categories || []).map(c => c.toLowerCase()).includes(cat)) {
+      el.style.display = '';
+    } else {
+      el.style.display = 'none';
+    }
+  });
 }
 
 // SEARCH with geocoding (Nominatim)
@@ -786,19 +849,31 @@ async function loadReviews(siteId) {
     const reviews = await resp.json();
     if (!reviews || !reviews.length) return;
     
+    const sourceLabels = {
+      'travelvietnam.com': '🌍 Travel Vietnam',
+      'lonelyplanet.com': '📘 Lonely Planet Vietnam',
+      'local': '📍 Hướng dẫn viên địa phương',
+      'google': '🔍 Google Reviews',
+    };
+    
     const container = document.getElementById('detail-reviews');
-    container.innerHTML = reviews.map(r => `
-      <div style="background:#16162b;border-radius:10px;padding:14px;margin-bottom:10px;border-left:3px solid ${r.rating >= 4 ? '#e94560' : '#f0a500'}">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-          <div style="width:28px;height:28px;border-radius:50%;background:#1e1e3a;display:flex;align-items:center;justify-content:center;font-size:14px">${r.rating >= 4 ? '👍' : '👤'}</div>
-          <div>
+    container.innerHTML = reviews.map(r => {
+      const sourceLabel = sourceLabels[r.source] || `📎 ${r.source}`;
+      const isHigh = r.rating >= 4;
+      return `
+      <div style="background:#16162b;border-radius:10px;padding:14px;margin-bottom:10px;border-left:3px solid ${isHigh ? '#e94560' : '#f0a500'}">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          <div style="width:30px;height:30px;border-radius:50%;background:${isHigh?'#e9456022':'#f0a50022'};display:flex;align-items:center;justify-content:center;font-size:16px">${isHigh ? '👍' : '👤'}</div>
+          <div style="flex:1">
             <div style="font-size:12px;color:#ddd;font-weight:600">${r.author}</div>
-            <div style="font-size:10px;color:#888">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)} · ${r.source}</div>
+            <div style="font-size:11px;color:#f0a500;letter-spacing:1px">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
           </div>
+          <span style="font-size:9px;background:${isHigh?'#e9456022':'#1e1e3a'};color:${isHigh?'#e94560':'#888'};padding:3px 8px;border-radius:8px;white-space:nowrap">${sourceLabel}</span>
         </div>
-        <p style="font-size:12px;color:#bbb;line-height:1.6;margin:0">${r.text}</p>
-      </div>
-    `).join('');
+        <p style="font-size:12px;color:#bbb;line-height:1.6;margin:0 0 8px 0">"${r.text}"</p>
+        <div style="font-size:9px;color:#666">Nguồn: <span style="color:#888">${sourceLabel}</span></div>
+      </div>`;
+    }).join('');
     
     document.getElementById('detail-reviews-section').style.display = 'block';
   } catch(e) {}
