@@ -271,8 +271,8 @@ def populate_all(progress_callback=None):
             pass
         return False
 
-    # Process with 3 concurrent workers (avoid rate limits)
-    with ThreadPoolExecutor(max_workers=3) as executor:
+    # Process with 10 concurrent workers
+    with ThreadPoolExecutor(max_workers=10) as executor:
         futures = {executor.submit(populate_one, site): site for site in sites}
         for future in as_completed(futures):
             with lock:
