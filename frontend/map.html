@@ -5,17 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Di Sản Việt Nam — Heritage Travel Planner</title>
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;display:flex;height:100vh;overflow:hidden;background:#0f0f1a}
+    body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;display:flex;height:100vh;overflow:hidden;background:#08090f;color:#e0e1e6;-webkit-font-smoothing:antialiased}
 
     /* SIDEBAR */
-    #sidebar{width:380px;min-width:380px;background:#12121f;color:#d4d4e0;display:flex;flex-direction:column;overflow:hidden;border-right:1px solid #1e1e3a;z-index:5;transition:all 0.3s}
+    #sidebar{width:400px;min-width:400px;background:#11131f;color:#d4d4e0;display:flex;flex-direction:column;overflow:hidden;border-right:1px solid #1e1e3a;z-index:5;transition:all 0.3s}
     #sidebar.collapsed{min-width:0;width:0;border:none}
-    #sidebar-header{background:linear-gradient(135deg,#16162b,#1a1a35);padding:16px 20px;border-bottom:1px solid #1e1e3a;display:flex;align-items:center;gap:10px}
+    #sidebar-header{background:linear-gradient(135deg,#141829,#1a1f38);padding:16px 20px;border-bottom:1px solid #1e1e3a;display:flex;align-items:center;gap:10px}
     #sidebar-header h1{font-size:17px;font-weight:700;color:#fff}
     #sidebar-header h1 span{color:#e94560}
     #sidebar-header .badge{font-size:10px;background:#e94560;color:#fff;padding:3px 8px;border-radius:10px;margin-left:auto}
@@ -39,24 +41,24 @@
     .form-label{display:block;font-size:10px;color:#888;margin-bottom:3px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
     .form-row{display:flex;gap:8px}
     .form-row .form-group{flex:1}
-    select,input{width:100%;padding:7px 10px;border:1px solid #1e1e3a;border-radius:6px;background:#0a0a18;color:#d4d4e0;font-size:13px;outline:none;font-family:inherit}
+    select,input{width:100%;padding:9px 12px;border:1px solid #1e2340;border-radius:8px;background:#0c0e1a;font-family:inherit;color:#d4d4e0;font-size:13px;outline:none;font-family:inherit}
     select:focus,input:focus{border-color:#e94560}
 
     .tags{display:flex;flex-wrap:wrap;gap:4px}
     .tag{padding:3px 8px;border-radius:12px;font-size:11px;cursor:pointer;border:1px solid #2a2a4a;background:transparent;color:#888;transition:all 0.15s;user-select:none}
     .tag.active{background:#e94560;border-color:#e94560;color:#fff}
-    .btn{width:100%;padding:10px;background:linear-gradient(135deg,#e94560,#c73a54);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin:8px 0;transition:all 0.2s}
-    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(233,69,96,.3)}
+    .btn{width:100%;padding:12px;background:linear-gradient(135deg,#e94560,#ff6b81);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin:8px 0;transition:all 0.2s}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(233,69,96,.35)}
     .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
     /* RESULT */
     #result{flex:1;overflow-y:auto;padding:0 16px 12px}
-    .day-card{background:#16162b;border-radius:10px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #e94560}
+    .day-card{background:#181b2d;border-radius:10px;padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--accent)}
     .day-card h3{font-size:12px;color:#e94560;margin-bottom:6px}
     .item-row{display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid #1e1e3a;font-size:11px;cursor:pointer;transition:all 0.15s}
     .item-row:hover{color:#e94560}
     .item-row .time{color:#666;font-size:10px;min-width:52px}
-    .summary-box{background:linear-gradient(135deg,#e94560aa,#c73a54aa);border-radius:8px;padding:10px;margin-bottom:10px;color:#fff;font-size:11px}
+    .summary-box{background:linear-gradient(135deg,rgba(233,69,96,.6),rgba(199,58,84,.6));backdrop-filter:blur(10px);border-radius:10px;padding:12px 14px;margin-bottom:12px;color:#fff;font-size:12px}
     .summary-box strong{font-size:13px}
 
     #loading{display:none;text-align:center;padding:16px;color:#888}
@@ -64,7 +66,7 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,144,217,.6)}50%{box-shadow:0 0 0 12px rgba(74,144,217,0)}}
 
-    .section-title{font-size:10px;color:#e94560;text-transform:uppercase;padding:2px 0;letter-spacing:1px;border-bottom:1px solid #1e1e3a;margin-bottom:8px}
+    .section-title{font-size:10px;color:var(--accent);text-transform:uppercase;padding:4px 0;letter-spacing:1.5px;border-bottom:1px solid var(--border);margin-bottom:10px;font-weight:600}
 
     /* DETAIL PANEL */
     #detail-panel{
@@ -131,6 +133,39 @@
     @keyframes fadeIn{from{opacity:0;transform:translate(-50%,-50%) scale(.95)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
     #trip-popup::-webkit-scrollbar{width:3px}
     #trip-popup::-webkit-scrollbar-thumb{background:#2a2a4a;border-radius:2px}
+
+    /* POPUP */
+    .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:199;animation:fadeIn .2s}
+    .popup-card{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:200;width:500px;max-width:95vw;max-height:85vh;overflow-y:auto;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:0 16px 64px rgba(0,0,0,.5);animation:popupIn .35s cubic-bezier(.4,0,.2,1)}
+    @keyframes popupIn{from{opacity:0;transform:translate(-50%,-48%) scale(.95)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+    .popup-card::-webkit-scrollbar{width:3px}
+    .popup-card::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+    .popup-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:1}
+    .popup-close:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .popup-hero{text-align:center;padding:32px 24px 20px;background:linear-gradient(180deg,rgba(233,69,96,.08),transparent)}
+    .popup-hero-icon{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#ff6b81);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;color:#fff;box-shadow:0 4px 20px rgba(233,69,96,.3)}
+    .popup-hero h2{font-size:20px;font-weight:700;color:#fff;margin:0 0 4px}
+    .popup-hero p{font-size:12px;color:var(--muted);margin:0}
+    .popup-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:0 20px 16px}
+    .popup-stat{background:var(--card);border-radius:var(--radius-sm);padding:14px 8px;text-align:center;border:1px solid transparent;transition:border-color .2s}
+    .popup-stat:hover{border-color:var(--border)}
+    .popup-stat-val{display:block;font-size:18px;font-weight:700;line-height:1.2}
+    .popup-stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;display:block;margin-top:2px}
+    .popup-score{padding:0 20px 16px}
+    .popup-score-bar{height:4px;background:var(--card);border-radius:2px;overflow:hidden;margin-bottom:6px}
+    .popup-score-fill{height:100%;background:linear-gradient(90deg,var(--accent),#ff6b81);border-radius:2px;transition:width .8s ease}
+    .popup-score-info{font-size:11px;color:var(--muted);text-align:center}
+    .popup-days-container{padding:0 20px 16px}
+    .popup-day{margin-bottom:14px}
+    .popup-day-header{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:var(--card);border-radius:var(--radius-sm);margin-bottom:6px;font-size:12px}
+    .popup-day-header strong{color:#fff}
+    .popup-timeline-item{display:flex;align-items:center;gap:10px;padding:6px 12px 6px 20px;cursor:pointer;border-radius:6px;transition:background .15s}
+    .popup-timeline-item:hover{background:var(--card)}
+    .popup-time{min-width:36px;font-size:10px;color:var(--muted)}
+    .popup-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+    .popup-name{font-size:12px;color:#ccc;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .popup-done-btn{display:block;width:calc(100% - 40px);margin:0 20px 20px;padding:12px;background:linear-gradient(135deg,var(--accent),#ff6b81);border:none;border-radius:var(--radius-sm);color:#fff;font-weight:600;font-size:13px;cursor:pointer;font-family:inherit;transition:all .2s}
+    .popup-done-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(233,69,96,.3)}
 
     /* Swiper carousel custom */
     .detail-swiper{width:100%;height:240px;border-radius:10px;overflow:hidden;background:#16162b}
@@ -215,7 +250,7 @@
     <div style="position:relative">
       <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;z-index:1">🔍</span>
       <input type="text" id="mapSearchInput" placeholder="Tìm kiếm địa điểm trên bản đồ..." autocomplete="off"
-             style="width:100%;padding:10px 36px 10px 38px;border:none;border-radius:8px;background:rgba(18,18,31,.95);color:#d4d4e0;font-size:13px;outline:none;font-family:inherit;box-shadow:0 2px 12px rgba(0,0,0,.4);border:1px solid #1e1e3a"
+             style="width:100%;padding:10px 36px 10px 38px;border:none;border-radius:8px;background:rgba(17,19,31,.96);color:#d4d4e0;font-size:13px;outline:none;font-family:inherit;box-shadow:0 4px 20px rgba(0,0,0,.5);border:1px solid #1e2340"
              oninput="mapSearch()" onfocus="mapSearch()" onkeydown="if(event.key==='Escape')closeMapSearch()">
       <span id="mapSearchClear" onclick="closeMapSearch()" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;font-size:16px;display:none">✕</span>
     </div>
@@ -1040,10 +1075,8 @@ function renderRoute(d){
 }
 
 function showTripPopup(d) {
-  // Remove existing popup
   const old = document.getElementById('trip-popup');
   if (old) old.remove();
-  
   if (!d.days || !d.days.length) return;
   
   const totalSites = d.days.reduce((sum, day) => sum + (day.items||[]).length, 0);
@@ -1051,74 +1084,56 @@ function showTripPopup(d) {
   const budgetLabels = {low:'Tiết kiệm', medium:'Trung bình', high:'Cao cấp'};
   const pace = document.getElementById('pace').value;
   const budget = document.getElementById('budget').value;
-  
-  // Build popup
-  const popup = document.createElement('div');
-  popup.id = 'trip-popup';
-  popup.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:200;width:480px;max-width:95vw;max-height:80vh;overflow-y:auto;background:#12121f;border-radius:16px;border:1px solid #1e1e3a;box-shadow:0 8px 48px rgba(0,0,0,.6);padding:24px;animation:fadeIn .3s ease-out';
+  const score = d.total_score ? Math.round(d.total_score * 100) : 0;
+  const colors = ['#e94560','#f0a500','#4ecdc4','#8b5cf6','#06b6d4','#ec4899','#22c55e','#f97316'];
   
   const daysHtml = d.days.map((day, di) => {
-    const color = ['#e94560','#f0a500','#4ecdc4','#6c5ce7','#00cec9','#fd79a8'][di % 6];
+    const c = colors[di % colors.length];
     const items = (day.items||[]).map(it => `
-      <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px;color:#ccc">
-        <span style="color:#888;min-width:36px;font-size:10px">${it.time||'--:--'}</span>
-        <span>${it.type==='restaurant'?'🍜':'📍'}</span>
-        <span style="cursor:pointer;color:#ddd" onclick="flyToSite('${it.ref_id}');document.getElementById('trip-popup').remove()">${it.name}</span>
+      <div class="popup-timeline-item" onclick="flyToSite('${it.ref_id}');document.getElementById('trip-popup').remove()">
+        <div class="popup-time">${it.time||'--:--'}</div>
+        <div class="popup-dot" style="background:${c}"></div>
+        <div class="popup-name">${it.name}<span style="color:${c};margin-left:6px;font-size:10px">${it.type==='restaurant'?'🍜':'📍'}</span></div>
       </div>
     `).join('');
-    return `<div style="margin-bottom:14px">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-        <div style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0"></div>
-        <span style="font-weight:700;color:#fff;font-size:13px">📅 Ngày ${day.day}</span>
-        <span style="color:#888;font-size:10px">${day.date||''}</span>
-        <span style="margin-left:auto;font-size:10px;color:#888">${(day.items||[]).length} điểm</span>
+    return `<div class="popup-day">
+      <div class="popup-day-header" style="border-left:3px solid ${c}">
+        <div><strong>Ngày ${day.day}</strong><span style="color:#8889a0;font-size:10px;margin-left:8px">${day.date||''}</span></div>
+        <span style="color:#8889a0;font-size:10px">${(day.items||[]).length} điểm</span>
       </div>
       ${items}
     </div>`;
   }).join('');
   
+  const popup = document.createElement('div');
+  popup.id = 'trip-popup';
   popup.innerHTML = `
-    <button onclick="this.parentElement.remove()" style="position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;background:#1e1e3a;border:none;color:#aaa;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
-    <div style="text-align:center;margin-bottom:20px">
-      <div style="font-size:28px;margin-bottom:4px">🗺️</div>
-      <h3 style="color:#fff;font-size:16px;margin:0 0 4px">Lịch Trình Của Bạn</h3>
-      <p style="color:#888;font-size:11px;margin:0">Khám phá di sản Việt Nam</p>
+    <div class="popup-overlay" onclick="this.parentElement.remove()"></div>
+    <div class="popup-card">
+      <button class="popup-close" onclick="document.getElementById('trip-popup').remove()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="popup-hero">
+        <div class="popup-hero-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+        <h2>Lịch Trình Của Bạn</h2>
+        <p>Khám phá di sản Việt Nam theo cách riêng</p>
+      </div>
+      
+      <div class="popup-stats">
+        <div class="popup-stat"><span class="popup-stat-val" style="color:var(--accent)">${d.days.length}</span><span class="popup-stat-label">Ngày</span></div>
+        <div class="popup-stat"><span class="popup-stat-val" style="color:#f0a500">${totalSites}</span><span class="popup-stat-label">Địa điểm</span></div>
+        <div class="popup-stat"><span class="popup-stat-val" style="color:#4ecdc4">${paceLabels[pace]||'Vừa phải'}</span><span class="popup-stat-label">Nhịp độ</span></div>
+        <div class="popup-stat"><span class="popup-stat-val" style="color:#8b5cf6">${budgetLabels[budget]||'TB'}</span><span class="popup-stat-label">Ngân sách</span></div>
+      </div>
+      
+      ${score > 0 ? `
+      <div class="popup-score">
+        <div class="popup-score-bar"><div class="popup-score-fill" style="width:${score}%"></div></div>
+        <div class="popup-score-info"><strong>Độ phù hợp ${score}%</strong> · ~${d.total_distance_km||0}km · ${(d.route_geometries||[]).filter(g=>g).length} tuyến</div>
+      </div>` : ''}
+      
+      <div class="popup-days-container">${daysHtml}</div>
+      <button class="popup-done-btn" onclick="document.getElementById('trip-popup').remove()">Đã xem, khám phá thôi!</button>
     </div>
-    
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
-      <div style="background:#16162b;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-size:22px;color:#e94560;font-weight:700">${d.days.length}</div>
-        <div style="font-size:10px;color:#888">Ngày</div>
-      </div>
-      <div style="background:#16162b;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-size:22px;color:#f0a500;font-weight:700">${totalSites}</div>
-        <div style="font-size:10px;color:#888">Địa điểm</div>
-      </div>
-      <div style="background:#16162b;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-size:14px;color:#4ecdc4;font-weight:600">${paceLabels[pace]||'Vừa phải'}</div>
-        <div style="font-size:10px;color:#888">Nhịp độ</div>
-      </div>
-      <div style="background:#16162b;border-radius:10px;padding:12px;text-align:center">
-        <div style="font-size:14px;color:#6c5ce7;font-weight:600">${budgetLabels[budget]||'Trung bình'}</div>
-        <div style="font-size:10px;color:#888">Ngân sách</div>
-      </div>
-    </div>
-    
-    ${d.total_score ? `<div style="background:linear-gradient(135deg,#e9456022,#c73a5422);border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
-      <span style="font-size:22px">✨</span>
-      <div>
-        <div style="color:#fff;font-size:13px;font-weight:600">Độ phù hợp: ${(d.total_score*100).toFixed(0)}%</div>
-        <div style="color:#888;font-size:10px">📏 ~${d.total_distance_km||0}km · 🛣️ ${(d.route_geometries||[]).filter(g=>g).length} tuyến đường</div>
-      </div>
-    </div>` : ''}
-    
-    <div style="border-top:1px solid #1e1e3a;padding-top:12px">
-      ${daysHtml}
-    </div>
-    
-    <button onclick="document.getElementById('trip-popup').remove();document.getElementById('sidebar').classList.remove('collapsed')" style="width:100%;margin-top:16px;padding:10px;background:#16162b;border:1px solid #2a2a4a;border-radius:8px;color:#ddd;font-size:12px;cursor:pointer;font-family:inherit">✕ Đóng</button>
   `;
-  
   document.body.appendChild(popup);
 }
 
