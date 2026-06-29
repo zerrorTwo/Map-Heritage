@@ -208,6 +208,7 @@
 <div id="detail-panel">
   <div id="detail-header">
     <button id="detail-close" onclick="closeDetail()">✕</button>
+    <button id="detail-select-btn" onclick="toggleSelectFromDetail()" style="position:absolute;top:16px;right:56px;width:32px;height:32px;border-radius:50%;background:#1e1e3a;border:none;color:#aaa;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s" title="Thêm vào danh sách muốn đi">☆</button>
     <h2 id="detail-name"></h2>
     <div class="province" id="detail-province"></div>
     <div class="cat-badges" id="detail-cats"></div>
@@ -488,7 +489,7 @@ function selectMapSite(id) {
   map.flyTo({center:[s.lng, s.lat], zoom:15, duration:1000});
   const el = siteMarkers[s.id];
   if (!selectedSites.has(s.id)) toggleSelect(s, el);
-  setTimeout(() => openDetail(s), 600);
+  setTimeout(() => { openDetail(s); updateSelectBtn(s.id); }, 600);
 }
 
 function selectMapGeo(lat, lng, name) {
@@ -661,6 +662,30 @@ function clearSelected(){
   updateSelectedUI();
 }
 
+function updateSelectBtn(siteId) {
+  const btn = document.getElementById('detail-select-btn');
+  if (!btn) return;
+  if (selectedSites.has(siteId)) {
+    btn.innerHTML = '★';
+    btn.style.color = '#e94560';
+    btn.style.background = '#e9456022';
+    btn.title = 'Bỏ chọn';
+  } else {
+    btn.innerHTML = '☆';
+    btn.style.color = '#aaa';
+    btn.style.background = '#1e1e3a';
+    btn.title = 'Thêm vào danh sách muốn đi';
+  }
+}
+
+function toggleSelectFromDetail() {
+  if (!activeSite) return;
+  const el = siteMarkers[activeSite.id];
+  toggleSelect(activeSite, el);
+  updateSelectBtn(activeSite.id);
+  hideMiniPopup();
+}
+
 function updateSelectedUI(){
   const info = document.getElementById('selectedInfo');
   const count = document.getElementById('selectedCount');
@@ -707,6 +732,9 @@ function openDetail(site){
   document.getElementById('detail-maps').href=`https://www.google.com/maps?q=${site.lat},${site.lng}`;
 
   map.flyTo({center:[site.lng,site.lat],zoom:14,duration:1000});
+
+  // Sync select button
+  updateSelectBtn(site.id);
 
   // Fetch images
   loadDetailImages(site.id);
