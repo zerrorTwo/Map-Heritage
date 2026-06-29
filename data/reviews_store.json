@@ -1,0 +1,642 @@
+{
+  "ds-735d7c3c5b": [
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại An Giang. Miếu Bà Chúa Xứ Núi Sam mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Miếu Bà Chúa Xứ Núi Sam: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Miếu Bà Chúa Xứ Núi Sam. Well-maintained and informative. Would recommend to anyone visiting An Giang.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Miếu Bà Chúa Xứ Núi Sam. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Miếu Bà Chúa Xứ Núi Sam tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    }
+  ],
+  "ds-636274cb23": [
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Vườn quốc gia Pù Mát mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Vườn quốc gia Pù Mát tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Vườn quốc gia Pù Mát. Well-maintained and informative. Would recommend to anyone visiting Nghệ An.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Nghệ An. Vườn quốc gia Pù Mát mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Vườn quốc gia Pù Mát. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    }
+  ],
+  "ds-5c547053cb": [
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Chùa Dâu. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Chùa Dâu là nơi lý tưởng để tìm hiểu về văn hóa Bắc Ninh.",
+      "source": "google"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Chùa Dâu tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Bắc Ninh. Chùa Dâu mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Chùa Dâu: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    }
+  ],
+  "ds-07091ba6c4": [
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Bắc Ninh. Chùa Bút Tháp mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Chùa Bút Tháp tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Chùa Bút Tháp là nơi lý tưởng để tìm hiểu về văn hóa Bắc Ninh.",
+      "source": "google"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Chùa Bút Tháp mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Chùa Bút Tháp. Well-maintained and informative. Would recommend to anyone visiting Bắc Ninh.",
+      "source": "tripadvisor.com"
+    }
+  ],
+  "ds-5a157ff33b": [
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Thành Cổ Luy Lâu tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Thành Cổ Luy Lâu mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Thành Cổ Luy Lâu. Well-maintained and informative. Would recommend to anyone visiting Bắc Ninh.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Bắc Ninh. Thành Cổ Luy Lâu mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Thành Cổ Luy Lâu là nơi lý tưởng để tìm hiểu về văn hóa Bắc Ninh.",
+      "source": "google"
+    }
+  ],
+  "ds-7550e85d3f": [
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Chùa Vĩnh Nghiêm. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Bắc Giang. Chùa Vĩnh Nghiêm mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Chùa Vĩnh Nghiêm là nơi lý tưởng để tìm hiểu về văn hóa Bắc Giang.",
+      "source": "google"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Chùa Vĩnh Nghiêm tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Chùa Vĩnh Nghiêm mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    }
+  ],
+  "ds-46b982c806": [
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Đền Đô mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Đền Đô tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Bắc Ninh. Đền Đô mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Đền Đô: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Đền Đô. Well-maintained and informative. Would recommend to anyone visiting Bắc Ninh.",
+      "source": "tripadvisor.com"
+    }
+  ],
+  "ds-0ff0e1d00c": [
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Phố Hiến. Well-maintained and informative. Would recommend to anyone visiting Hưng Yên.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Phố Hiến: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Hưng Yên. Phố Hiến mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Phố Hiến. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Phố Hiến là nơi lý tưởng để tìm hiểu về văn hóa Hưng Yên.",
+      "source": "google"
+    }
+  ],
+  "ds-d5e66a482f": [
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Văn miếu Xích Đằng mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Hưng Yên. Văn miếu Xích Đằng mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Văn miếu Xích Đằng: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Văn miếu Xích Đằng. Well-maintained and informative. Would recommend to anyone visiting Hưng Yên.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Văn miếu Xích Đằng tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    }
+  ],
+  "ds-14c08df150": [
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Nam Định. Đền Trần mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Đền Trần là nơi lý tưởng để tìm hiểu về văn hóa Nam Định.",
+      "source": "google"
+    },
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Đền Trần. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Đền Trần mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Đền Trần. Well-maintained and informative. Would recommend to anyone visiting Nam Định.",
+      "source": "tripadvisor.com"
+    }
+  ],
+  "ds-dd344b2034": [
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Chùa Một Cột mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Chùa Một Cột: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Hà Nội. Chùa Một Cột mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Hà Nội. Chùa Một Cột mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Chùa Một Cột. Well-maintained and informative. Would recommend to anyone visiting Hà Nội.",
+      "source": "tripadvisor.com"
+    }
+  ],
+  "ds-2e75a631ac": [
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Văn Miếu - Quốc Tử Giám. Well-maintained and informative. Would recommend to anyone visiting Hà Nội.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Văn Miếu - Quốc Tử Giám mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Hà Nội. Văn Miếu - Quốc Tử Giám mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Văn Miếu - Quốc Tử Giám: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Hà Nội. Văn Miếu - Quốc Tử Giám mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    }
+  ],
+  "ds-4aefcf738d": [
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Hoàng thành Thăng Long mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Hoàng thành Thăng Long: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Hoàng thành Thăng Long tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Hà Nội. Hoàng thành Thăng Long mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Hà Nội. Hoàng thành Thăng Long mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    }
+  ],
+  "ds-c164948657": [
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Cầu Long Biên. Well-maintained and informative. Would recommend to anyone visiting Hà Nội.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Hà Nội. Cầu Long Biên mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Cầu Long Biên tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Cầu Long Biên là nơi lý tưởng để tìm hiểu về văn hóa Hà Nội.",
+      "source": "google"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Cầu Long Biên mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    }
+  ],
+  "ds-70d98d7f16": [
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Đền thờ Hai Bà Trưng (Hạ Lôi): nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Đền thờ Hai Bà Trưng (Hạ Lôi) mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Đền thờ Hai Bà Trưng (Hạ Lôi) là nơi lý tưởng để tìm hiểu về văn hóa Vĩnh Phúc.",
+      "source": "google"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Đền thờ Hai Bà Trưng (Hạ Lôi). Well-maintained and informative. Would recommend to anyone visiting Vĩnh Phúc.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Đền thờ Hai Bà Trưng (Hạ Lôi) tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    }
+  ],
+  "ds-d3c3f9ab5a": [
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Khu du lịch Đại Nam. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Bình Dương. Khu du lịch Đại Nam mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Khu du lịch Đại Nam. Well-maintained and informative. Would recommend to anyone visiting Bình Dương.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Khu du lịch Đại Nam là nơi lý tưởng để tìm hiểu về văn hóa Bình Dương.",
+      "source": "google"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Khu du lịch Đại Nam mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    }
+  ],
+  "ds-c3b52e314f": [
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Nhà thờ chánh tòa Phú Cường là nơi lý tưởng để tìm hiểu về văn hóa Bình Dương.",
+      "source": "google"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Nhà thờ chánh tòa Phú Cường: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Bình Dương. Nhà thờ chánh tòa Phú Cường mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Nhà thờ chánh tòa Phú Cường tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Nhà thờ chánh tòa Phú Cường. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    }
+  ],
+  "ds-1a5c143758": [
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Bình Phước. Famer Lodge mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Famer Lodge tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Bình Phước. Famer Lodge mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Famer Lodge là nơi lý tưởng để tìm hiểu về văn hóa Bình Phước.",
+      "source": "google"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Famer Lodge: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    }
+  ],
+  "ds-cd34e69a58": [
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Đọt Mây nướng là nơi lý tưởng để tìm hiểu về văn hóa Bình Phước.",
+      "source": "google"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Bình Phước. Đọt Mây nướng mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Đọt Mây nướng. Well-maintained and informative. Would recommend to anyone visiting Bình Phước.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Đọt Mây nướng mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Đọt Mây nướng: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    }
+  ],
+  "ds-57e2888e27": [
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé N NGON Ở BÌNH PHƯỚC. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at N NGON Ở BÌNH PHƯỚC. Well-maintained and informative. Would recommend to anyone visiting Bình Phước.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. N NGON Ở BÌNH PHƯỚC là nơi lý tưởng để tìm hiểu về văn hóa Bình Phước.",
+      "source": "google"
+    },
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review N NGON Ở BÌNH PHƯỚC mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Bình Phước. N NGON Ở BÌNH PHƯỚC mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    }
+  ]
+}

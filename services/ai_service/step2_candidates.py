@@ -1,5 +1,6 @@
 """
 Step 2 — Generate candidates: Filter heritage sites by area, interest, constraints.
+MUST-VISIT sites are ALWAYS included with top priority, regardless of filters.
 """
 
 from typing import List, Optional
@@ -20,47 +21,50 @@ def haversine_distance(lat1: float, lng1: float, lat2: float, lng2: float) -> fl
 def generate_candidates(
     trip: TripRequest,
     all_sites: List[HeritageSite],
-    radius_km: float = 100.0,
     top_n: int = 30,
 ) -> List[HeritageSite]:
     """
-    Filter heritage sites:
-      1. Province / area match (within radius)
-      2. Force-include must_visit_site_ids
-      3. Filter by group constraints
-      4. Rank by interest tag overlap
-      5. Return top N
+    Filter heritage sites STRICTLY by selected provinces only.
+    Must-visit sites are ALWAYS included with top priority.
+    No radius fallback — only sites from target provinces.
     """
     must_visit_ids = set(trip.must_visit_site_ids)
-    candidates: List[HeritageSite] = []
     must_visits: List[HeritageSite] = []
+    candidates: List[HeritageSite] = []
+    site_map = {s.id: s for s in all_sites}
 
-    start_lat = trip.start_location["lat"] if trip.start_location else 21.0285
-    start_lng = trip.start_location["lng"] if trip.start_location else 105.8542
+    # Step 1: Force-include must-visit sites (regardless of province)
+    for sid in must_visit_ids:
+        if sid in site_map:
+            must_visits.append(site_map[sid])
 
+    # Step 2: STRICT province filter — only target provinces
+    target_provinces = set(trip.destination_provinces or [trip.destination_area])
+    
     for site in all_sites:
+        # Skip already-included must-visit sites
         if site.id in must_visit_ids:
-            must_visits.append(site)
             continue
 
-        # Multi-province filtering
-        target_provinces = trip.destination_provinces or [trip.destination_area]
+        # STRICT: only include sites from selected provinces
         if site.province not in target_provinces:
-            dist = haversine_distance(start_lat, start_lng, site.lat, site.lng)
-            if dist > radius_km * 1000:
-                continue
+            continue
 
         if not _satisfies_constraints(site, trip.constraints):
             continue
 
         candidates.append(site)
 
+    # Step 3: Rank by interest overlap
     candidates.sort(
         key=lambda s: _interest_overlap(s, trip.interests),
         reverse=True,
     )
 
-    result = must_visits + candidates[: top_n - len(must_visits)]
+    # Step 4: Combine — must-visit sites FIRST, then top recommended
+    remaining_slots = max(0, top_n - len(must_visits))
+    result = must_visits + candidates[:remaining_slots]
+
     return result
 
 
@@ -81,3 +85,4 @@ def _interest_overlap(site: HeritageSite, interests: List[str]) -> float:
         return 0.0
     common = set(c.lower() for c in site.categories) & set(i.lower() for i in interests)
     return len(common) / len(interests)
+

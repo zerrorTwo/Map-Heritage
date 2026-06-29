@@ -203,6 +203,7 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
 
         coords = PROVINCE_COORDS.get(destination, (raw_input.start_lat or 21.0285, raw_input.start_lng or 105.8542))
         provinces = raw_input.destination_provinces or [destination]
+        end_loc = {"lat": raw_input.end_lat, "lng": raw_input.end_lng} if raw_input.end_lat and raw_input.end_lng else None
 
         return TripRequest(
             destination_area=destination,
@@ -218,9 +219,11 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
             constraints=constraints,
             must_visit_site_ids=raw_input.must_visit_site_ids,
             start_location={"lat": coords[0], "lng": coords[1]},
+            end_location=end_loc,
         )
 
     provinces = raw_input.destination_provinces or [raw_input.destination_area or "Hà Nội"]
+    end_loc = {"lat": raw_input.end_lat, "lng": raw_input.end_lng} if raw_input.end_lat and raw_input.end_lng else None
 
     return TripRequest(
         destination_area=raw_input.destination_area or "Hà Nội",
@@ -236,4 +239,5 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
         constraints=raw_input.constraints or [],
         must_visit_site_ids=raw_input.must_visit_site_ids or [],
         start_location={"lat": raw_input.start_lat or 21.0285, "lng": raw_input.start_lng or 105.8542},
+        end_location=end_loc,
     )

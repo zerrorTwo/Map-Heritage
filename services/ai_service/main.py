@@ -10,7 +10,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from services.ai_service.models import (
-    HeritageSite, Restaurant, TripInput, TripRequest, Itinerary, Review,
+    HeritageSite, TripInput, TripRequest, Itinerary, Review,
 )
 from services.ai_service.pipeline import pipeline
 
@@ -19,9 +19,9 @@ from services.ai_service.pipeline import pipeline
 async def lifespan(app: FastAPI):
     # Load curated data
     from services.ai_service.data_loader import load_all_data
-    sites, restaurants = load_all_data()
-    pipeline.load_data(sites, restaurants)
-    print(f"Loaded {len(sites)} heritage sites + {len(restaurants)} restaurants")
+    sites, _ = load_all_data()
+    pipeline.load_data(sites)
+    print(f"Loaded {len(sites)} heritage sites")
 
     # Start background image populator (fetches + stores in DB)
     from services.image_service.batch_populator import populate_all
@@ -72,12 +72,6 @@ async def recommend(input_data: TripInput):
 async def list_sites():
     """List all available heritage sites."""
     return pipeline._sites_cache
-
-
-@app.get("/api/v1/restaurants", response_model=List[Restaurant])
-async def list_restaurants():
-    """List all available restaurants."""
-    return pipeline._restaurants_cache
 
 
 @app.get("/api/v1/heritage-sites/{site_id}", response_model=HeritageSite)
@@ -155,8 +149,10 @@ async def image_stats():
 
 @app.get("/api/v1/heritage-sites/{site_id}/reviews", response_model=List[Review])
 async def get_reviews(site_id: str):
-    """Get reviews for a heritage site."""
+    """Get reviews for a heritage site. Persisted in file store."""
+    from services.image_service.persistent_store import get_reviews, save_reviews
     from services.image_service.enricher import generate_reviews
+    
     site = None
     for s in pipeline._sites_cache:
         if s.id == site_id:
@@ -164,13 +160,24 @@ async def get_reviews(site_id: str):
             break
     if not site:
         raise HTTPException(status_code=404, detail="Site not found")
-    return generate_reviews(site.name, site.province, site.popularity_score)
+    
+    # Check persistent cache first
+    cached = get_reviews(site_id)
+    if cached:
+        return cached
+    
+    # Fetch from API and persist
+    reviews = generate_reviews(site.name, site.province, site.popularity_score)
+    save_reviews(site_id, reviews)
+    return reviews
 
 
 @app.get("/api/v1/heritage-sites/{site_id}/enrich")
 async def enrich_site_info(site_id: str):
-    """Get enriched description from Wikipedia."""
+    """Get enriched description. Persisted in file store."""
+    from services.image_service.persistent_store import get_enriched, save_enriched
     from services.image_service.enricher import enrich_site
+    
     site = None
     for s in pipeline._sites_cache:
         if s.id == site_id:
@@ -178,7 +185,15 @@ async def enrich_site_info(site_id: str):
             break
     if not site:
         raise HTTPException(status_code=404, detail="Site not found")
+    
+    # Check persistent cache first
+    cached = get_enriched(site_id)
+    if cached:
+        return {"site_id": site_id, "name": site.name, **cached}
+    
+    # Fetch from API and persist
     data = enrich_site(site.name, site.province, site.reference_url or "")
+    save_enriched(site_id, data)
     return {"site_id": site_id, "name": site.name, **data}
 
 

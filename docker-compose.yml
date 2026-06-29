@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   postgis:
     image: postgis/postgis:16-3.4
@@ -40,11 +38,8 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - osrm_data:/data
-    profiles:
-      - routing
+      - ./data/osrm:/data
 
 volumes:
   postgis_data:
   redis_data:
-  osrm_data:

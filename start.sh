@@ -25,11 +25,11 @@ install_deps() {
 }
 
 start_infra() {
-    echo -e "${YELLOW}[2/4] Starting infrastructure (PostGIS + Redis)...${NC}"
+    echo -e "${YELLOW}[2/4] Starting infrastructure (PostGIS + Redis + OSRM)...${NC}"
     if command -v docker-compose &> /dev/null; then
-        docker-compose up -d postgis redis
+        docker-compose up -d postgis redis osrm
     elif command -v docker &> /dev/null && docker compose version &> /dev/null; then
-        docker compose up -d postgis redis
+        docker compose up -d postgis redis osrm
     else
         echo -e "${RED}  ✗ Docker not found. Skipping infrastructure.${NC}"
         echo -e "${YELLOW}  → AI service will use in-memory seed data.${NC}"

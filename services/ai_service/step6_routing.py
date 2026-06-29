@@ -5,13 +5,17 @@ Fallback to haversine if OSRM is unreachable.
 """
 
 import json
+import logging
 import urllib.request
-import urllib.parse
-from typing import List, Tuple, Optional, Dict, Any
+from functools import lru_cache
+from typing import List, Tuple, Optional
+from config import settings
 from services.ai_service.models import ScoredSite
 import numpy as np
 
-OSRM_BASE = "https://router.project-osrm.org"
+OSRM_BASE = settings.osrm_base_url.rstrip("/") or "https://router.project-osrm.org"
+OSRM_TIMEOUT_SECONDS = 3
+log = logging.getLogger("pipeline")
 
 
 def haversine(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
@@ -23,16 +27,26 @@ def haversine(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
     return R * 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
 
 
-def _osrm_request(endpoint: str, coords: List[Tuple[float, float]], extra_params: str = "") -> Optional[dict]:
+def _coords_key(coords: List[Tuple[float, float]]) -> Tuple[Tuple[float, float], ...]:
+    return tuple((round(lat, 6), round(lng, 6)) for lat, lng in coords)
+
+
+@lru_cache(maxsize=512)
+def _cached_osrm_request(endpoint: str, coords: Tuple[Tuple[float, float], ...], extra_params: str = "") -> Optional[dict]:
     """Call OSRM API and return parsed JSON."""
     coord_str = ";".join(f"{lng},{lat}" for lat, lng in coords)
     url = f"{OSRM_BASE}/{endpoint}/{coord_str}?annotations=distance,duration{extra_params}"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "heritage-planner/1.0"})
-        with urllib.request.urlopen(req, timeout=10) as resp:
+        with urllib.request.urlopen(req, timeout=OSRM_TIMEOUT_SECONDS) as resp:
             return json.loads(resp.read().decode())
-    except Exception:
+    except Exception as exc:
+        log.info(f"  OSRM fallback: {endpoint} failed ({type(exc).__name__})")
         return None
+
+
+def _osrm_request(endpoint: str, coords: List[Tuple[float, float]], extra_params: str = "") -> Optional[dict]:
+    return _cached_osrm_request(endpoint, _coords_key(coords), extra_params)
 
 
 def build_distance_matrix_osrm(
@@ -74,7 +88,7 @@ def get_route_geometry(
     if len(sites) < 2:
         return None
     coords = [(s.site.lat, s.site.lng) for s in sites]
-    result = _osrm_request("route/v1/driving", coords, extra_params="&geometries=geojson&overview=full")
+    result = _osrm_request("route/v1/driving", coords, extra_params="&geometries=geojson&overview=simplified")
     if result and "routes" in result and len(result["routes"]) > 0:
         geom = result["routes"][0].get("geometry")
         if isinstance(geom, dict):

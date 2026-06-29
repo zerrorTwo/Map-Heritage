@@ -216,6 +216,21 @@
       </div>
     </div>
 
+    <div class="form-group" style="margin-bottom:10px">
+      <div class="form-label">📍 Điểm xuất phát & kết thúc</div>
+      <div style="display:flex;gap:6px;align-items:center">
+        <div style="flex:1;position:relative">
+          <input type="text" id="startLoc" placeholder="Địa chỉ hoặc lat,lng..." style="font-size:12px;padding-right:28px" onkeydown="if(event.key==='Enter')geocodeStart()">
+          <span onclick="geocodeStart()" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;font-size:13px" title="Tìm kiếm địa chỉ">🔍</span>
+        </div>
+        <span style="color:#666;font-size:11px">→</span>
+        <div style="flex:1;position:relative">
+          <input type="text" id="endLoc" placeholder="Giống điểm xuất phát..." style="font-size:12px;padding-right:28px" onkeydown="if(event.key==='Enter')geocodeEnd()">
+          <span onclick="geocodeEnd()" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;font-size:13px" title="Tìm kiếm địa chỉ">🔍</span>
+        </div>
+      </div>
+      <div id="locStatus" style="font-size:10px;color:#888;margin-top:4px;min-height:14px"></div>
+    </div>
     <div class="form-row">
       <div class="form-group"><div class="form-label">Số ngày</div><input type="number" id="duration" value="3" min="1" max="14"></div>
       <div class="form-group"><div class="form-label">Số người</div><input type="number" id="people" value="2" min="1" max="20"></div>
@@ -390,8 +405,24 @@ function toggleProvince(prov) {
     selectedProvinces.delete(prov);
   } else {
     selectedProvinces.add(prov);
+    // Auto-fill start location if empty
+    const coords = PROV_COORDS[prov];
+    if (coords && !document.getElementById('startLoc').value.trim()) {
+      document.getElementById('startLoc').value = `${coords[0]},${coords[1]}`;
+    }
   }
   updateProvinceDisplay();
+  filterMarkersByProvince();
+}
+
+function filterMarkersByProvince() {
+  allSiteMarkers.forEach(({marker, site, el}) => {
+    if (selectedProvinces.size === 0 || selectedProvinces.has(site.province)) {
+      marker.addTo(map);
+    } else {
+      marker.remove();
+    }
+  });
 }
 
 function updateProvinceDisplay() {
@@ -469,7 +500,6 @@ async function loadSites(){
     el.addEventListener('mouseleave',()=>el.style.filter=isSelected?'brightness(1.3) drop-shadow(0 0 6px #4ecdc4)':'');
     el.addEventListener('click',(e)=>{
       e.stopPropagation();
-      toggleSelect(s, el);
       showMiniPopup(s, el);
     });
     el.addEventListener('dblclick',(e)=>{
@@ -695,15 +725,17 @@ function toggleSelect(site, markerEl){
   updateSelectedUI();
 }
 
-// MINI POPUP on select
+// MINI POPUP — shows on any marker click
 let miniPopupEl = null;
+let miniPopupSite = null;
 
 function showMiniPopup(site, markerEl) {
   hideMiniPopup();
-  if (!selectedSites.has(site.id)) return;
+  miniPopupSite = site;
   
   const cat = getCat(site.categories || []);
   const price = site.ticket_price ? `${site.ticket_price.toLocaleString('vi-VN')}₫` : 'Miễn phí';
+  const isSel = selectedSites.has(site.id);
   
   miniPopupEl = document.createElement('div');
   miniPopupEl.className = 'mini-popup';
@@ -718,16 +750,21 @@ function showMiniPopup(site, markerEl) {
     <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px">
       ${(site.categories||[]).map(c=>`<span style="padding:2px 6px;border-radius:8px;font-size:9px;background:${(CAT_STYLE[c]||CAT_STYLE.default).color};color:#fff">${(CAT_STYLE[c]||CAT_STYLE.default).label}</span>`).join('')}
     </div>
-    <div style="display:flex;gap:12px;font-size:10px;color:#aaa">
+    <div style="display:flex;gap:12px;font-size:10px;color:#aaa;margin-bottom:8px">
       <span>🕐 ${site.opening_hours||'N/A'}</span>
       <span style="color:#e94560">💰 ${price}</span>
     </div>
-    <div style="margin-top:4px;font-size:10px;color:#4ecdc4;cursor:pointer" onclick="event.stopPropagation();openDetail(allSites.find(s=>s.id==='${site.id}'))">📖 Xem chi tiết →</div>
+    <div style="display:flex;gap:6px">
+      <button onclick="event.stopPropagation();openDetail(allSites.find(s=>s.id==='${site.id}'))" 
+        style="flex:1;padding:5px 10px;border-radius:8px;border:1px solid #4ecdc4;background:transparent;color:#4ecdc4;cursor:pointer;font-size:11px;font-family:inherit">📖 Xem chi tiết</button>
+      <button id="popup-select-btn" onclick="event.stopPropagation();popupToggleSelect()" 
+        style="flex:1;padding:5px 10px;border-radius:8px;border:1px solid ${isSel?'#e94560':'#f0a500'};background:${isSel?'#e9456022':'#f0a50022'};color:${isSel?'#e94560':'#f0a500'};cursor:pointer;font-size:11px;font-family:inherit">${isSel ? '✅ Đã chọn' : '⭐ Chọn đi'}</button>
+    </div>
   `;
   
   const pos = map.project([site.lng, site.lat]);
-  miniPopupEl.style.left = (pos.x - 130) + 'px';
-  miniPopupEl.style.top = (pos.y - 150) + 'px';
+  miniPopupEl.style.left = (pos.x - 140) + 'px';
+  miniPopupEl.style.top = (pos.y - 165) + 'px';
   
   document.getElementById('map').appendChild(miniPopupEl);
   
@@ -735,11 +772,20 @@ function showMiniPopup(site, markerEl) {
   const onMove = () => {
     if (!miniPopupEl) { map.off('move', onMove); return; }
     const p = map.project([site.lng, site.lat]);
-    miniPopupEl.style.left = (p.x - 130) + 'px';
-    miniPopupEl.style.top = (p.y - 150) + 'px';
+    miniPopupEl.style.left = (p.x - 140) + 'px';
+    miniPopupEl.style.top = (p.y - 165) + 'px';
   };
   map.on('move', onMove);
   miniPopupEl._onMove = onMove;
+}
+
+function popupToggleSelect() {
+  if (!miniPopupSite) return;
+  const site = miniPopupSite;
+  const el = siteMarkers[site.id];
+  toggleSelect(site, el);
+  // Re-show popup with updated state
+  showMiniPopup(site, el);
 }
 
 function hideMiniPopup() {
@@ -1023,6 +1069,58 @@ function closeDetail(){
   activeSite=null;
 }
 
+// ========== GEOCODING (Nominatim OSM — free) ==========
+let startCoords = {lat: 21.0285, lng: 105.8542};
+let endCoords = {lat: null, lng: null};
+
+async function geocodeAddress(query) {
+  if (!query.trim()) return null;
+  const llMatch = query.match(/^(-?\d+\.?\d*)[,;]\s*(-?\d+\.?\d*)$/);
+  if (llMatch) return {lat: parseFloat(llMatch[1]), lng: parseFloat(llMatch[2]), display: query};
+  try {
+    const url = 'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(query + ' Vietnam') + '&format=json&limit=1';
+    const r = await fetch(url, {headers: {'User-Agent': 'HeritagePlanner/1.0'}});
+    const data = await r.json();
+    if (data.length > 0) return {lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon), display: data[0].display_name};
+  } catch(e) {}
+  return null;
+}
+
+async function geocodeStart() {
+  const input = document.getElementById('startLoc');
+  const query = input.value.trim();
+  if (!query) return;
+  document.getElementById('locStatus').textContent = '🔍 Đang tìm...';
+  const r = await geocodeAddress(query);
+  if (r) {
+    startCoords = r;
+    input.value = r.lat.toFixed(4) + ', ' + r.lng.toFixed(4);
+    document.getElementById('locStatus').textContent = '📍 ' + (r.display||'').substring(0, 70);
+    if (!endCoords.lat) {
+      endCoords = r;
+      document.getElementById('endLoc').value = input.value;
+      document.getElementById('locStatus').textContent += ' | 🏁 Điểm kết thúc = điểm xuất phát';
+    }
+  } else {
+    document.getElementById('locStatus').textContent = '❌ Không tìm thấy địa chỉ';
+  }
+}
+
+async function geocodeEnd() {
+  const input = document.getElementById('endLoc');
+  const query = input.value.trim();
+  if (!query) return;
+  document.getElementById('locStatus').textContent = '🔍 Đang tìm...';
+  const r = await geocodeAddress(query);
+  if (r) {
+    endCoords = r;
+    input.value = r.lat.toFixed(4) + ', ' + r.lng.toFixed(4);
+    document.getElementById('locStatus').textContent = '🏁 ' + (r.display||'').substring(0, 70);
+  } else {
+    document.getElementById('locStatus').textContent = '❌ Không tìm thấy địa chỉ';
+  }
+}
+
 // TRIP
 async function generateTrip(){
   document.getElementById('loading').style.display='block';
@@ -1033,9 +1131,29 @@ async function generateTrip(){
   const interests=[...document.querySelectorAll('#interestTags .tag.active')].map(t=>t.dataset.val);
   const constraints=[...document.querySelectorAll('#constraintTags .tag.active')].map(t=>t.dataset.val);
   const [slat,slng]=PROV_COORDS[provs[0]]||[21.0285,105.8542];
+  
+  // Parse start/end locations
+  let startLat=slat, startLng=slng, endLat=null, endLng=null;
+  const startVal = document.getElementById('startLoc').value.trim();
+  if (startVal) {
+    const parts = startVal.split(',').map(parseFloat);
+    if (parts.length===2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+      startLat=parts[0]; startLng=parts[1];
+    }
+  }
+  const endVal = document.getElementById('endLoc').value.trim();
+  if (endVal) {
+    const parts = endVal.split(',').map(parseFloat);
+    if (parts.length===2 && !isNaN(parts[0]) && !isNaN(parts[1])) {
+      endLat=parts[0]; endLng=parts[1];
+    }
+  }
+  
+  const body = {destination_provinces:provs,duration_days:parseInt(document.getElementById('duration').value)||3,number_of_people:parseInt(document.getElementById('people').value)||2,interests,pace:document.getElementById('pace').value,budget_level:document.getElementById('budget').value,constraints,must_visit_site_ids:mustVisit,start_lat:startCoords.lat,start_lng:startCoords.lng};
+  if (endCoords.lat) { body.end_lat = endCoords.lat; body.end_lng = endCoords.lng; }
+  
   try{
-    const mustVisit = [...selectedSites];
-    const r=await fetch(`${API}/api/v1/trips/recommend`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({destination_provinces:provs,duration_days:parseInt(document.getElementById('duration').value)||3,number_of_people:parseInt(document.getElementById('people').value)||2,interests,pace:document.getElementById('pace').value,budget_level:document.getElementById('budget').value,constraints,must_visit_site_ids:mustVisit,start_lat:slat,start_lng:slng})});
+    const r=await fetch(`${API}/api/v1/trips/recommend`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
     const d=await r.json();
     renderItinerary(d);
     renderRoute(d);

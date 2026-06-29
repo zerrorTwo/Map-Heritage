@@ -65,6 +65,7 @@ class TripRequest(BaseModel):
     constraints: List[str] = Field(default_factory=list)
     must_visit_site_ids: List[str] = Field(default_factory=list)
     start_location: Optional[dict] = None
+    end_location: Optional[dict] = None
 
 
 class ItineraryItem(BaseModel):
@@ -126,3 +127,5 @@ class TripInput(BaseModel):
     must_visit_site_ids: List[str] = Field(default_factory=list)
     start_lat: float = 21.0285
     start_lng: float = 105.8542
+    end_lat: Optional[float] = None
+    end_lng: Optional[float] = None

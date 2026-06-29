@@ -17,6 +17,7 @@ env/
 docker-compose.override.yml
 
 # Data — track all data files in repo
+data/osrm/
 
 # OS
 .DS_Store
