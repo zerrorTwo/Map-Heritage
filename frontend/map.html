@@ -6,6 +6,8 @@
   <title>Di Sản Việt Nam — Heritage Travel Planner</title>
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;display:flex;height:100vh;overflow:hidden;background:#0f0f1a}
@@ -130,6 +132,22 @@
       border-right: 8px solid transparent; border-top: 8px solid #12121ff5;
     }
     @keyframes popIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+
+    /* Swiper carousel custom */
+    .detail-swiper{width:100%;height:240px;border-radius:10px;overflow:hidden;background:#16162b}
+    .detail-swiper .swiper-slide{display:flex;align-items:center;justify-content:center}
+    .detail-swiper .swiper-slide img{width:100%;height:100%;object-fit:cover}
+    .detail-swiper .swiper-button-next,.detail-swiper .swiper-button-prev{color:#fff;background:rgba(0,0,0,.5);width:30px;height:40px;border-radius:6px;transition:all .2s}
+    .detail-swiper .swiper-button-next:hover,.detail-swiper .swiper-button-prev:hover{background:rgba(233,69,96,.7)}
+    .detail-swiper .swiper-button-next:after,.detail-swiper .swiper-button-prev:after{font-size:14px;font-weight:bold}
+    .detail-swiper .swiper-pagination-bullet{background:#3a3a5a;opacity:1;width:6px;height:6px}
+    .detail-swiper .swiper-pagination-bullet-active{background:#e94560}
+    .detail-swiper .swiper-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:10px 12px;font-size:11px;color:#ddd;z-index:5;pointer-events:none}
+    .swiper-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a30,#26264a);text-align:center;padding:20px}
+    .swiper-placeholder .ph-icon{font-size:48px;margin-bottom:8px;opacity:.8}
+    .swiper-placeholder .ph-title{color:#ddd;font-size:14px;font-weight:600}
+    .swiper-placeholder .ph-sub{color:#888;font-size:11px;margin-top:4px}
+    .swiper-placeholder .ph-note{color:#e94560;font-size:10px;margin-top:12px}
   </style>
 </head>
 <body>
@@ -216,13 +234,14 @@
   <div id="detail-body">
     <div class="detail-section">
       <h4>🖼️ Hình ảnh</h4>
-      <div id="detail-images-wrapper" style="position:relative">
-        <button id="carousel-prev" onclick="carouselMove(-1)" style="position:absolute;left:4px;top:50%;transform:translateY(-50%);z-index:11;width:28px;height:40px;border:none;background:rgba(0,0,0,.7);color:#fff;border-radius:6px;cursor:pointer;font-size:16px;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)">‹</button>
-        <button id="carousel-next" onclick="carouselMove(1)" style="position:absolute;right:4px;top:50%;transform:translateY(-50%);z-index:11;width:28px;height:40px;border:none;background:rgba(0,0,0,.7);color:#fff;border-radius:6px;cursor:pointer;font-size:16px;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)">›</button>
-        <div id="detail-images" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scroll-behavior:smooth;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch">
-          <div style="color:#888;font-size:12px;padding:20px">Đang tải ảnh...</div>
+      <div class="swiper detail-swiper" id="detail-swiper">
+        <div class="swiper-wrapper" id="detail-images">
+          <div class="swiper-slide"><div style="color:#888;font-size:12px;padding:20px">Đang tải ảnh...</div></div>
         </div>
-        <div id="carousel-dots" style="display:flex;gap:6px;justify-content:center;padding:8px 0;display:none"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-caption" id="swiper-caption">Wikimedia Commons</div>
       </div>
     </div>
     <div class="detail-section">
@@ -740,139 +759,85 @@ function openDetail(site){
   loadDetailImages(site.id);
 }
 
+let detailSwiper = null;
+
 async function loadDetailImages(siteId) {
   const container = document.getElementById('detail-images');
   const site = allSites.find(s => s.id === siteId);
   if (!site) return;
-  
-  container.innerHTML = '<div style="padding:30px;text-align:center"><div class="spinner" style="width:20px;height:20px;border-width:3px;display:block;margin:0 auto 10px"></div><span style="color:#888;font-size:11px">Đang tải ảnh...</span></div>';
-  document.getElementById('carousel-prev').style.display = 'none';
-  document.getElementById('carousel-next').style.display = 'none';
-  document.getElementById('carousel-dots').style.display = 'none';
+
+  // Destroy existing swiper
+  if (detailSwiper) { detailSwiper.destroy(true, true); detailSwiper = null; }
+  container.innerHTML = '<div class="swiper-slide"><div style="padding:40px 0;text-align:center"><div class="spinner" style="width:20px;height:20px;border-width:3px;display:block;margin:0 auto 10px"></div><span style="color:#888;font-size:11px">Đang tải ảnh...</span></div></div>';
   
   try {
     const resp = await fetch(`${API}/api/v1/heritage-sites/${siteId}/images`);
     const data = await resp.json();
     const images = data.images || [];
     const isPlaceholder = data.source === 'placeholder';
-    
+
     if (images.length === 0) {
       const cat = getCat(site.categories || []);
       const wikiUrl = site.reference_url || `https://vi.wikipedia.org/wiki/${encodeURIComponent(site.name.replace(/ /g,' '))}`;
       const googleImgUrl = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(site.name + ' ' + site.province + ' Vietnam')}`;
       
-      container.innerHTML = `
-        <div style="width:100%;padding:24px 16px;text-align:center;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#16162b;border-radius:10px">
-          <div style="font-size:40px;margin-bottom:8px">${cat.icon}</div>
-          <div style="color:#ccc;font-size:13px;margin-bottom:4px">${site.name}</div>
-          <div style="color:#888;font-size:11px;margin-bottom:16px">Chưa có ảnh trong bộ sưu tập</div>
-          <div style="display:flex;gap:8px">
+      container.innerHTML = `<div class="swiper-slide">
+        <div class="swiper-placeholder">
+          <div class="ph-icon">${cat.icon}</div>
+          <div class="ph-title">${site.name}</div>
+          <div class="ph-sub">Chưa có ảnh trong bộ sưu tập</div>
+          <div style="display:flex;gap:8px;margin-top:16px">
             <a href="${googleImgUrl}" target="_blank" rel="noopener" style="padding:6px 14px;border-radius:6px;background:#e9456022;color:#e94560;text-decoration:none;font-size:11px;border:1px solid #e9456044">🔍 Google Images</a>
             <a href="${wikiUrl}" target="_blank" rel="noopener" style="padding:6px 14px;border-radius:6px;background:#4a90d922;color:#4a90d9;text-decoration:none;font-size:11px;border:1px solid #4a90d944">📘 Wikipedia</a>
           </div>
-        </div>`;
+        </div>
+      </div>`;
+      initSwiper();
       return;
     }
-    
-    // Build carousel with counter
-    window._carouselIdx = 0;
+
     window._carouselImages = images;
-    
-    const hasPlaceholder = isPlaceholder;
-    const total = images.length;
-    
-    container.innerHTML = `
-      <div id="carousel-counter" style="position:absolute;top:8px;right:12px;z-index:12;background:rgba(0,0,0,.7);color:#fff;font-size:10px;padding:3px 8px;border-radius:10px">1/${total}</div>
-      ${images.map((img, i) => `
-      <div class="carousel-slide" style="flex-shrink:0;width:100%;scroll-snap-align:start" data-idx="${i}">
-        <div onclick="openLightbox(${i})" style="width:100%;height:240px;border-radius:10px;overflow:hidden;cursor:pointer;position:relative;background:${hasPlaceholder?'#1a1a30':'#1e1e3a'};border:${hasPlaceholder?'1px solid #2a2a4a':'none'}">
-          ${img.thumb_url.startsWith('data:') ? `
-          <div style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a30,#26264a)">
-            <div style="font-size:48px;margin-bottom:8px;opacity:.8">${getCat(site.categories||[]).icon}</div>
-            <div style="color:#ddd;font-size:14px;font-weight:600;text-align:center;padding:0 16px">${site.name}</div>
-            <div style="color:#888;font-size:11px;margin-top:4px">📍 ${site.province}</div>
-            <div style="color:#e94560;font-size:10px;margin-top:12px">🔄 Đang tải ảnh...</div>
+    const cat = getCat(site.categories || []);
+
+    // Build Swiper slides
+    container.innerHTML = images.map((img, i) => {
+      const isSvg = img.thumb_url.startsWith('data:');
+      if (isSvg) {
+        return `<div class="swiper-slide">
+          <div class="swiper-placeholder">
+            <div class="ph-icon">${cat.icon}</div>
+            <div class="ph-title">${site.name}</div>
+            <div class="ph-sub">📍 ${site.province}</div>
+            <div class="ph-note">🔄 Đang tải ảnh thật từ Wikipedia...</div>
           </div>
-          ` : `
-          <img src="${img.thumb_url}" alt="${img.title||site.name}" loading="lazy" 
-               style="width:100%;height:100%;object-fit:cover;transition:transform .4s"
-               onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a30,#26264a);border-radius:10px\\'><div style=\\'text-align:center;color:#888;font-size:13px\\'>⚠<br>Ảnh lỗi</div></div>'"
-               onmouseenter="this.style.transform='scale(1.04)'"
-               onmouseleave="this.style.transform='scale(1)'">
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.85));padding:10px 12px;font-size:11px;color:#ddd;line-height:1.3">
-            ${img.title||site.name}
-          </div>
-          `}
-        </div>
-      </div>
-      `).join('')}
-    `;
-    
-    // Dots
-    const dotsEl = document.getElementById('carousel-dots');
-    dotsEl.innerHTML = images.map((_, i) => 
-      `<button onclick="carouselGoTo(${i})" style="width:6px;height:6px;border-radius:50%;border:none;cursor:pointer;background:${i===0?'#e94560':'#3a3a5a'};transition:all .2s" data-dot="${i}"></button>`
-    ).join('');
-    dotsEl.style.display = 'flex';
-    
-    // Show nav if multiple images
-    if (total > 1) {
-      document.getElementById('carousel-prev').style.display = 'flex';
-      document.getElementById('carousel-next').style.display = 'flex';
-    }
-    
-    container.onscroll = updateCarouselDots;
-    
+        </div>`;
+      }
+      return `<div class="swiper-slide" onclick="openLightbox(${i})">
+        <img src="${img.thumb_url}" alt="${img.title||site.name}" loading="lazy"
+             onerror="this.parentElement.innerHTML='<div class=\\'swiper-placeholder\\'><div class=\\'ph-icon\\'>⚠</div><div class=\\'ph-sub\\'>Ảnh không tải được</div></div>'">
+        <div class="swiper-caption">${img.title||site.name}</div>
+      </div>`;
+    }).join('');
+
+    initSwiper();
+
   } catch(e) {
-    container.innerHTML = '<div style="color:#888;font-size:12px;padding:30px;text-align:center;background:#16162b;border-radius:10px">⚠ Không thể tải ảnh</div>';
+    container.innerHTML = '<div class="swiper-slide"><div class="swiper-placeholder"><div class="ph-sub">⚠ Không thể tải ảnh</div></div></div>';
   }
 }
 
-function carouselMove(dir) {
-  const container = document.getElementById('detail-images');
-  const slides = container.querySelectorAll('.carousel-slide');
-  if (!slides.length) return;
-  
-  let idx = window._carouselIdx + dir;
-  if (idx < 0) idx = slides.length - 1;
-  if (idx >= slides.length) idx = 0;
-  carouselGoTo(idx);
-}
-
-function carouselGoTo(idx) {
-  const container = document.getElementById('detail-images');
-  const slides = container.querySelectorAll('.carousel-slide');
-  if (!slides.length || idx >= slides.length) return;
-  
-  window._carouselIdx = idx;
-  slides[idx].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
-  updateCarouselDots();
-  // Update counter
-  const counter = document.getElementById('carousel-counter');
-  if (counter) counter.textContent = `${idx+1}/${slides.length}`;
-}
-
-function updateCarouselDots() {
-  const container = document.getElementById('detail-images');
-  const slides = container.querySelectorAll('.carousel-slide');
-  if (!slides.length) return;
-  
-  const containerCenter = container.scrollLeft + container.clientWidth / 2;
-  let closest = 0, closestDist = Infinity;
-  slides.forEach((s, i) => {
-    const sCenter = s.offsetLeft + s.clientWidth / 2;
-    const dist = Math.abs(sCenter - containerCenter);
-    if (dist < closestDist) { closestDist = dist; closest = i; }
-  });
-  
-  if (closest !== window._carouselIdx) {
-    window._carouselIdx = closest;
-    const counter = document.getElementById('carousel-counter');
-    if (counter) counter.textContent = `${closest+1}/${slides.length}`;
-  }
-  
-  document.querySelectorAll('#carousel-dots [data-dot]').forEach((d, i) => {
-    d.style.background = i === closest ? '#e94560' : '#3a3a5a';
+function initSwiper() {
+  if (detailSwiper) { detailSwiper.destroy(true, true); }
+  detailSwiper = new Swiper('#detail-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 0,
+    loop: false,
+    pagination: { el: '.detail-swiper .swiper-pagination', clickable: true },
+    navigation: { nextEl: '.detail-swiper .swiper-button-next', prevEl: '.detail-swiper .swiper-button-prev' },
+    on: { slideChange: function() {
+      document.getElementById('swiper-caption').textContent = 
+        (window._carouselImages?.[this.activeIndex]?.title) || 'Wikimedia Commons';
+    }}
   });
 }
 
