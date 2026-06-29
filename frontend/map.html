@@ -128,6 +128,9 @@
       border-right: 8px solid transparent; border-top: 8px solid #12121ff5;
     }
     @keyframes popIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn{from{opacity:0;transform:translate(-50%,-50%) scale(.95)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+    #trip-popup::-webkit-scrollbar{width:3px}
+    #trip-popup::-webkit-scrollbar-thumb{background:#2a2a4a;border-radius:2px}
 
     /* Swiper carousel custom */
     .detail-swiper{width:100%;height:240px;border-radius:10px;overflow:hidden;background:#16162b}
@@ -991,6 +994,7 @@ async function generateTrip(){
     const d=await r.json();
     renderItinerary(d);
     renderRoute(d);
+    showTripPopup(d);
   }catch(e){document.getElementById('result').innerHTML=`<p style="color:#e94560">${e.message}</p>`}
   finally{document.getElementById('loading').style.display='none';document.getElementById('generateBtn').disabled=false}
 }
@@ -1033,6 +1037,89 @@ function renderRoute(d){
     });
   });
   setTimeout(()=>{if(!bounds.isEmpty())map.fitBounds(bounds,{padding:80,maxZoom:12})},1500);
+}
+
+function showTripPopup(d) {
+  // Remove existing popup
+  const old = document.getElementById('trip-popup');
+  if (old) old.remove();
+  
+  if (!d.days || !d.days.length) return;
+  
+  const totalSites = d.days.reduce((sum, day) => sum + (day.items||[]).length, 0);
+  const paceLabels = {relaxed:'Thư giãn', moderate:'Vừa phải', packed:'Dày đặc'};
+  const budgetLabels = {low:'Tiết kiệm', medium:'Trung bình', high:'Cao cấp'};
+  const pace = document.getElementById('pace').value;
+  const budget = document.getElementById('budget').value;
+  
+  // Build popup
+  const popup = document.createElement('div');
+  popup.id = 'trip-popup';
+  popup.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:200;width:480px;max-width:95vw;max-height:80vh;overflow-y:auto;background:#12121f;border-radius:16px;border:1px solid #1e1e3a;box-shadow:0 8px 48px rgba(0,0,0,.6);padding:24px;animation:fadeIn .3s ease-out';
+  
+  const daysHtml = d.days.map((day, di) => {
+    const color = ['#e94560','#f0a500','#4ecdc4','#6c5ce7','#00cec9','#fd79a8'][di % 6];
+    const items = (day.items||[]).map(it => `
+      <div style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:12px;color:#ccc">
+        <span style="color:#888;min-width:36px;font-size:10px">${it.time||'--:--'}</span>
+        <span>${it.type==='restaurant'?'🍜':'📍'}</span>
+        <span style="cursor:pointer;color:#ddd" onclick="flyToSite('${it.ref_id}');document.getElementById('trip-popup').remove()">${it.name}</span>
+      </div>
+    `).join('');
+    return `<div style="margin-bottom:14px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        <div style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0"></div>
+        <span style="font-weight:700;color:#fff;font-size:13px">📅 Ngày ${day.day}</span>
+        <span style="color:#888;font-size:10px">${day.date||''}</span>
+        <span style="margin-left:auto;font-size:10px;color:#888">${(day.items||[]).length} điểm</span>
+      </div>
+      ${items}
+    </div>`;
+  }).join('');
+  
+  popup.innerHTML = `
+    <button onclick="this.parentElement.remove()" style="position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;background:#1e1e3a;border:none;color:#aaa;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
+    <div style="text-align:center;margin-bottom:20px">
+      <div style="font-size:28px;margin-bottom:4px">🗺️</div>
+      <h3 style="color:#fff;font-size:16px;margin:0 0 4px">Lịch Trình Của Bạn</h3>
+      <p style="color:#888;font-size:11px;margin:0">Khám phá di sản Việt Nam</p>
+    </div>
+    
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+      <div style="background:#16162b;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:22px;color:#e94560;font-weight:700">${d.days.length}</div>
+        <div style="font-size:10px;color:#888">Ngày</div>
+      </div>
+      <div style="background:#16162b;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:22px;color:#f0a500;font-weight:700">${totalSites}</div>
+        <div style="font-size:10px;color:#888">Địa điểm</div>
+      </div>
+      <div style="background:#16162b;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:14px;color:#4ecdc4;font-weight:600">${paceLabels[pace]||'Vừa phải'}</div>
+        <div style="font-size:10px;color:#888">Nhịp độ</div>
+      </div>
+      <div style="background:#16162b;border-radius:10px;padding:12px;text-align:center">
+        <div style="font-size:14px;color:#6c5ce7;font-weight:600">${budgetLabels[budget]||'Trung bình'}</div>
+        <div style="font-size:10px;color:#888">Ngân sách</div>
+      </div>
+    </div>
+    
+    ${d.total_score ? `<div style="background:linear-gradient(135deg,#e9456022,#c73a5422);border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px">
+      <span style="font-size:22px">✨</span>
+      <div>
+        <div style="color:#fff;font-size:13px;font-weight:600">Độ phù hợp: ${(d.total_score*100).toFixed(0)}%</div>
+        <div style="color:#888;font-size:10px">📏 ~${d.total_distance_km||0}km · 🛣️ ${(d.route_geometries||[]).filter(g=>g).length} tuyến đường</div>
+      </div>
+    </div>` : ''}
+    
+    <div style="border-top:1px solid #1e1e3a;padding-top:12px">
+      ${daysHtml}
+    </div>
+    
+    <button onclick="document.getElementById('trip-popup').remove();document.getElementById('sidebar').classList.remove('collapsed')" style="width:100%;margin-top:16px;padding:10px;background:#16162b;border:1px solid #2a2a4a;border-radius:8px;color:#ddd;font-size:12px;cursor:pointer;font-family:inherit">✕ Đóng</button>
+  `;
+  
+  document.body.appendChild(popup);
 }
 
 function flyTo(id){
