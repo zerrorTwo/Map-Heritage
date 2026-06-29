@@ -236,6 +236,19 @@ def fetch_images_for_site(name: str, province: str = "", ref_url: str = "") -> L
             if img["thumb_url"] not in {i["thumb_url"] for i in all_images}:
                 all_images.append(img)
 
+    # Strategy 7: DuckDuckGo Image Search (always try for real photos)
+    if len(all_images) < TARGET_IMAGES:
+        from services.image_service.ddg_search import search_images
+        try:
+            ddg_imgs = search_images(f"{name} {province} Vietnam", limit=8)
+            for img in ddg_imgs:
+                if img["thumb_url"] not in {i["thumb_url"] for i in all_images}:
+                    all_images.append(img)
+                    if len(all_images) >= TARGET_IMAGES:
+                        break
+        except Exception:
+            pass
+
     return all_images[:TARGET_IMAGES]
 
 
