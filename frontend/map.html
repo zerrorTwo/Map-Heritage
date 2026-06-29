@@ -331,28 +331,77 @@ async function loadSites(){
   updateSelectedUI();
 }
 
-// SEARCH
-function searchSites(){
-  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+// SEARCH with geocoding (Nominatim)
+let searchTimer = null;
+
+async function searchSites(){
+  const q = document.getElementById('searchInput').value.trim();
   const clear = document.getElementById('searchClear');
   const results = document.getElementById('searchResults');
   clear.style.display = q ? 'block' : 'none';
   
   if (!q || q.length < 2) { results.style.display='none'; return; }
   
-  const matches = allSites.filter(s => s.name.toLowerCase().includes(q) || s.province.toLowerCase().includes(q)).slice(0,8);
-  if (matches.length === 0) { results.style.display='none'; return; }
+  // Debounce
+  results.style.display = 'block';
+  results.innerHTML = '<div style="padding:10px;color:#888;font-size:11px;text-align:center"><span class="spinner" style="display:inline-block;width:12px;height:12px;border-width:2px;margin-right:6px"></span>Đang tìm...</div>';
+
+  // 1. Search curated sites
+  const qLower = q.toLowerCase();
+  const siteMatches = allSites.filter(s => s.name.toLowerCase().includes(qLower) || s.province.toLowerCase().includes(qLower)).slice(0,5);
   
-  results.style.display='block';
-  results.innerHTML = matches.map(s => {
-    const cat = getCat(s.categories);
-    const sel = selectedSites.has(s.id) ? '✅' : '';
-    return `<div class="search-item" onclick="flyToSite('${s.id}')" style="padding:8px;border-bottom:1px solid #1e1e3a;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px;transition:background .15s" onmouseenter="this.style.background='#1e1e3a'" onmouseleave="this.style.background='transparent'">
-      <span style="color:${cat.color}">${cat.icon}</span>
-      <span style="flex:1">${sel} ${s.name}</span>
-      <span style="color:#888;font-size:10px">${s.province}</span>
-    </div>`;
-  }).join('');
+  // 2. Geocode via Nominatim (OpenStreetMap)
+  let geoResults = [];
+  try {
+    const resp = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&countrycodes=vn&accept-language=vi`);
+    geoResults = await resp.json();
+  } catch(e) {}
+
+  // Build HTML
+  let html = '';
+  
+  if (siteMatches.length > 0) {
+    html += '<div style="padding:4px 10px;font-size:9px;color:#e94560;text-transform:uppercase;letter-spacing:1px">📍 Di sản</div>';
+    html += siteMatches.map(s => {
+      const cat = getCat(s.categories);
+      const sel = selectedSites.has(s.id) ? '✅ ' : '';
+      return `<div class="search-item" onclick="flyToSite('${s.id}')" style="padding:7px 10px;border-bottom:1px solid #1e1e3a;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px;transition:background .15s" onmouseenter="this.style.background='#1e1e3a'" onmouseleave="this.style.background='transparent'">
+        <span style="color:${cat.color}">${cat.icon}</span>
+        <span style="flex:1">${sel}${s.name}</span>
+        <span style="color:#888;font-size:10px">${s.province}</span>
+      </div>`;
+    }).join('');
+  }
+
+  if (geoResults.length > 0) {
+    html += '<div style="padding:4px 10px;font-size:9px;color:#4a90d9;text-transform:uppercase;letter-spacing:1px">🌍 Địa điểm</div>';
+    html += geoResults.map(r => {
+      const display = r.display_name || r.name;
+      const short = display.length > 80 ? display.substring(0, 80) + '...' : display;
+      return `<div class="search-item" onclick="flyToGeo(${r.lat},${r.lon},'${encodeURIComponent(r.display_name)}')" style="padding:7px 10px;border-bottom:1px solid #1e1e3a;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px;transition:background .15s" onmouseenter="this.style.background='#1e1e3a'" onmouseleave="this.style.background='transparent'">
+        <span style="font-size:14px">📍</span>
+        <span style="flex:1">${short}</span>
+        <span style="color:#888;font-size:10px">${r.type||''}</span>
+      </div>`;
+    }).join('');
+  }
+
+  if (!html) {
+    html = '<div style="padding:10px;color:#888;font-size:11px;text-align:center">Không tìm thấy kết quả</div>';
+  }
+
+  results.innerHTML = html;
+}
+
+function flyToGeo(lat, lng, name) {
+  clearSearch();
+  map.flyTo({center:[lng, lat], zoom:14, duration:1200});
+  // Add a temporary marker
+  const el = document.createElement('div');
+  el.style.cssText = 'width:14px;height:14px;border-radius:50%;background:#4a90d9;border:3px solid #fff;box-shadow:0 0 10px rgba(74,144,217,.6)';
+  const marker = new maplibregl.Marker({element:el}).setLngLat([lng,lat]).addTo(map);
+  // Remove after 8 seconds
+  setTimeout(() => marker.remove(), 8000);
 }
 
 function clearSearch(){
