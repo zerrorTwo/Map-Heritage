@@ -23,7 +23,7 @@
     #sidebar-header h1{font-size:17px;font-weight:700;color:#fff}
     #sidebar-header h1 span{color:#e94560}
     #sidebar-header .badge{font-size:10px;background:#e94560;color:#fff;padding:3px 8px;border-radius:10px;margin-left:auto}
-    #sidebar-body{flex:1;overflow-y:auto;padding:12px 16px}
+    #sidebar-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
     #sidebar-body::-webkit-scrollbar{width:4px}
     #sidebar-body::-webkit-scrollbar-thumb{background:#2a2a4a;border-radius:2px}
 
@@ -54,7 +54,7 @@
     .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
     /* RESULT */
-    #result{flex:1;overflow-y:auto;padding:0 16px 12px}
+    #result{overflow-y:auto;min-height:0}
     .day-card{background:#181b2d;border-radius:10px;padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--accent)}
     .day-card h3{font-size:12px;color:#e94560;margin-bottom:6px}
     .item-row{display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid #1e1e3a;font-size:11px;cursor:pointer;transition:all 0.15s}
@@ -137,7 +137,7 @@
     #trip-popup::-webkit-scrollbar-thumb{background:#2a2a4a;border-radius:2px}
 
     /* POPUP */
-    .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:199;animation:fadeIn .2s}
+    .popup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:199;animation:fadeIn .2s}
     .popup-card{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:200;width:500px;max-width:95vw;max-height:85vh;overflow-y:auto;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);box-shadow:0 16px 64px rgba(0,0,0,.5);animation:popupIn .35s cubic-bezier(.4,0,.2,1)}
     @keyframes popupIn{from{opacity:0;transform:translate(-50%,-48%) scale(.95)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
     .popup-card::-webkit-scrollbar{width:3px}
@@ -203,20 +203,18 @@
     <span class="badge" id="siteCount">438 sites</span>
   </div>
   <div id="sidebar-body">
-    <div class="form-group">
-      <div class="form-label">🔍 Tìm kiếm địa điểm</div>
-      <div style="position:relative">
-        <input type="text" id="searchInput" placeholder="Nhập tên di sản, địa điểm..." oninput="searchSites()" style="padding-right:32px">
-        <span id="searchClear" onclick="clearSearch()" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;display:none;font-size:14px">✕</span>
-      </div>
-      <div id="searchResults" style="max-height:200px;overflow-y:auto;margin-top:4px;display:none"></div>
-    </div>
     <div id="selectedInfo" style="display:none;background:#16262e;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#4ecdc4">
       ✅ Đã chọn: <strong id="selectedCount">0</strong> địa điểm 
       <span style="float:right;cursor:pointer;color:#e94560" onclick="clearSelected()">Xóa hết</span>
     </div>
     <div class="section-title">📍 Chọn Tỉnh Thành</div>
-    <div class="form-group"><div class="tags" id="provinceGrid"></div></div>
+    <div class="form-group" style="position:relative">
+      <div id="provinceDropdown" style="min-height:40px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:#0c0e1a;cursor:pointer;display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:12px;color:#888" onclick="toggleProvinceDropdown()">
+        <span id="provincePlaceholder">Chọn tỉnh thành...</span>
+      </div>
+      <div id="provinceOptions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:20;max-height:240px;overflow-y:auto;background:#11131f;border:1px solid var(--border);border-radius:8px;margin-top:4px;box-shadow:0 8px 32px rgba(0,0,0,.5)">
+      </div>
+    </div>
 
     <div class="form-row">
       <div class="form-group"><div class="form-label">Số ngày</div><input type="number" id="duration" value="3" min="1" max="14"></div>
@@ -250,8 +248,8 @@
     </div>
     <button class="btn" id="generateBtn" onclick="generateTrip()">🔍 Tạo Lịch Trình</button>
     <div id="loading"><div class="spinner"></div>Đang tính toán...</div>
+    <div id="result"></div>
   </div>
-  <div id="result"></div>
 </div>
 
 <div id="map">
@@ -350,12 +348,10 @@ function getCat(cats){
 
 // MAP
 const LAYERS={
-  voyager:{name:'🗺️ Voyager',style:{version:8,sources:{'r':{type:'raster',tiles:['https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'],tileSize:256,attribution:'© CARTO | © OSM'}},layers:[{id:'l',type:'raster',source:'r',minzoom:2,maxzoom:19}]}},
-  wikimedia:{name:'🌍 Wiki',style:{version:8,sources:{'r':{type:'raster',tiles:['https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'],tileSize:256,attribution:'© Wikimedia | © OSM'}},layers:[{id:'l',type:'raster',source:'r',minzoom:2,maxzoom:19}]}},
+  light:{name:'☀️ Light',style:{version:8,sources:{'r':{type:'raster',tiles:['https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'],tileSize:256,attribution:'© CARTO | © OSM'}},layers:[{id:'l',type:'raster',source:'r',minzoom:2,maxzoom:19}]}},
   dark:{name:'🌙 Dark',style:{version:8,sources:{'r':{type:'raster',tiles:['https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'],tileSize:256,attribution:'© CARTO | © OSM'}},layers:[{id:'l',type:'raster',source:'r',minzoom:2,maxzoom:19}]}},
-  osm:{name:'🏛️ OSM',style:{version:8,sources:{'r':{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,attribution:'© OSM'}},layers:[{id:'l',type:'raster',source:'r',minzoom:2,maxzoom:19}]}}
 };
-let curLayer='voyager';
+let curLayer='light';
 
 const map=new maplibregl.Map({container:'map',style:LAYERS[curLayer].style,center:[105.8542,21.0285],zoom:6});
 map.addControl(new maplibregl.NavigationControl(),'top-right');
@@ -366,14 +362,83 @@ ls.innerHTML=Object.entries(LAYERS).map(([k,l])=>`<button class="layer-btn${k===
 document.getElementById('map').appendChild(ls);
 ls.addEventListener('click',e=>{const b=e.target.closest('.layer-btn');if(!b||b.dataset.layer===curLayer)return;curLayer=b.dataset.layer;map.setStyle(LAYERS[curLayer].style);ls.querySelectorAll('.layer-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
 
-// PROVINCES
-const PROVS=['Hà Nội','TP. Hồ Chí Minh','Thừa Thiên Huế','Đà Nẵng','Quảng Nam','Quảng Ninh','Ninh Bình','Lào Cai','Hà Giang','Cần Thơ','Hải Phòng','Nghệ An','Khánh Hòa','Lâm Đồng','Bình Định'];
 const PROV_COORDS={'Hà Nội':[21.0285,105.8542],'TP. Hồ Chí Minh':[10.8231,106.6297],'Thừa Thiên Huế':[16.4637,107.5909],'Đà Nẵng':[16.0544,108.2022],'Quảng Nam':[15.8801,108.338],'Quảng Ninh':[20.9101,107.1839],'Ninh Bình':[20.2506,105.9745],'Lào Cai':[22.3356,103.8436],'Hà Giang':[23.2785,105.359],'Cần Thơ':[10.0328,105.7705],'Hải Phòng':[20.8550,106.6830],'Nghệ An':[18.6796,105.6813],'Khánh Hòa':[12.2388,109.1967],'Lâm Đồng':[11.9404,108.4580],'Bình Định':[13.7696,109.2317]};
 
-const g=document.getElementById('provinceGrid');
-PROVS.forEach(p=>{const e=document.createElement('span');e.className='tag';e.dataset.val=p;e.textContent=p;e.addEventListener('click',()=>e.classList.toggle('active'));g.appendChild(e)});
-g.querySelector('.tag').classList.add('active');
-document.querySelectorAll('.tag').forEach(t=>{if(t.parentElement.id!=='provinceGrid')t.addEventListener('click',()=>t.classList.toggle('active'))});
+// Province select populated in loadSites
+let selectedProvinces = new Set();
+
+function buildProvinceSelect() {
+  const container = document.getElementById('provinceOptions');
+  if (!container) return;
+  const provinces = [...new Set(allSites.map(s => s.province))].sort();
+  container.innerHTML = provinces.map(p => `
+    <div class="prov-option" data-prov="${p}" onclick="event.stopPropagation();toggleProvince('${p}')" 
+         style="padding:8px 12px;cursor:pointer;font-size:12px;color:#ccc;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;transition:background .15s"
+         onmouseenter="this.style.background='var(--card)'" onmouseleave="this.style.background='transparent'">
+      <span class="prov-check">☐</span> ${p}
+    </div>
+  `).join('');
+}
+
+function toggleProvinceDropdown() {
+  const opts = document.getElementById('provinceOptions');
+  opts.style.display = opts.style.display === 'none' ? 'block' : 'none';
+}
+
+function toggleProvince(prov) {
+  if (selectedProvinces.has(prov)) {
+    selectedProvinces.delete(prov);
+  } else {
+    selectedProvinces.add(prov);
+  }
+  updateProvinceDisplay();
+}
+
+function updateProvinceDisplay() {
+  const container = document.getElementById('provinceDropdown');
+  const placeholder = document.getElementById('provincePlaceholder');
+  const tags = container.querySelectorAll('.prov-tag');
+  tags.forEach(t => t.remove());
+  
+  if (selectedProvinces.size === 0) {
+    placeholder.style.display = '';
+    return;
+  }
+  placeholder.style.display = 'none';
+  
+  selectedProvinces.forEach(p => {
+    const tag = document.createElement('span');
+    tag.className = 'prov-tag';
+    tag.style.cssText = 'padding:2px 8px;border-radius:12px;font-size:11px;background:var(--accent);color:#fff;display:flex;align-items:center;gap:4px';
+    tag.innerHTML = `${p} <span onclick="event.stopPropagation();toggleProvince('${p}')" style="cursor:pointer;font-size:10px;opacity:.7">✕</span>`;
+    container.appendChild(tag);
+  });
+  
+  // Update checkboxes
+  document.querySelectorAll('.prov-option').forEach(el => {
+    const prov = el.dataset.prov;
+    const check = el.querySelector('.prov-check');
+    if (selectedProvinces.has(prov)) {
+      check.textContent = '☑';
+      el.style.color = '#fff';
+      el.style.background = 'var(--card)';
+    } else {
+      check.textContent = '☐';
+      el.style.color = '#ccc';
+      el.style.background = 'transparent';
+    }
+  });
+}
+
+// Close dropdown on outside click
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#provinceDropdown') && !e.target.closest('#provinceOptions')) {
+    document.getElementById('provinceOptions').style.display = 'none';
+  }
+});
+
+// Init tag toggle handlers for interest/constraint tags
+document.querySelectorAll('.tag').forEach(t => { t.addEventListener('click', () => t.classList.toggle('active')); });
 
 function svgIcon(cats,sz=34){
   const s=getCat(cats);
@@ -418,6 +483,7 @@ async function loadSites(){
   });
   map.fitBounds(b,{padding:60,maxZoom:12});
   updateSelectedUI();
+  buildProvinceSelect();
 }
 
 function buildCatFilters() {
@@ -468,68 +534,6 @@ function filterByCategory(cat, btn) {
       el.style.display = 'none';
     }
   });
-}
-
-// SEARCH with geocoding (Nominatim)
-let searchTimer = null;
-
-async function searchSites(){
-  const q = document.getElementById('searchInput').value.trim();
-  const clear = document.getElementById('searchClear');
-  const results = document.getElementById('searchResults');
-  clear.style.display = q ? 'block' : 'none';
-  
-  if (!q || q.length < 2) { results.style.display='none'; return; }
-  
-  // Debounce
-  results.style.display = 'block';
-  results.innerHTML = '<div style="padding:10px;color:#888;font-size:11px;text-align:center"><span class="spinner" style="display:inline-block;width:12px;height:12px;border-width:2px;margin-right:6px"></span>Đang tìm...</div>';
-
-  // 1. Search curated sites
-  const qLower = q.toLowerCase();
-  const siteMatches = allSites.filter(s => s.name.toLowerCase().includes(qLower) || s.province.toLowerCase().includes(qLower)).slice(0,5);
-  
-  // 2. Geocode via Nominatim (OpenStreetMap)
-  let geoResults = [];
-  try {
-    const resp = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&limit=5&countrycodes=vn&accept-language=vi`);
-    geoResults = await resp.json();
-  } catch(e) {}
-
-  // Build HTML
-  let html = '';
-  
-  if (siteMatches.length > 0) {
-    html += '<div style="padding:4px 10px;font-size:9px;color:#e94560;text-transform:uppercase;letter-spacing:1px">📍 Di sản</div>';
-    html += siteMatches.map(s => {
-      const cat = getCat(s.categories);
-      const sel = selectedSites.has(s.id) ? '✅ ' : '';
-      return `<div class="search-item" onclick="flyToSite('${s.id}')" style="padding:7px 10px;border-bottom:1px solid #1e1e3a;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px;transition:background .15s" onmouseenter="this.style.background='#1e1e3a'" onmouseleave="this.style.background='transparent'">
-        <span style="color:${cat.color}">${cat.icon}</span>
-        <span style="flex:1">${sel}${s.name}</span>
-        <span style="color:#888;font-size:10px">${s.province}</span>
-      </div>`;
-    }).join('');
-  }
-
-  if (geoResults.length > 0) {
-    html += '<div style="padding:4px 10px;font-size:9px;color:#4a90d9;text-transform:uppercase;letter-spacing:1px">🌍 Địa điểm</div>';
-    html += geoResults.map(r => {
-      const display = r.display_name || r.name;
-      const short = display.length > 80 ? display.substring(0, 80) + '...' : display;
-      return `<div class="search-item" onclick="flyToGeo(${r.lat},${r.lon},'${encodeURIComponent(r.display_name)}')" style="padding:7px 10px;border-bottom:1px solid #1e1e3a;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px;transition:background .15s" onmouseenter="this.style.background='#1e1e3a'" onmouseleave="this.style.background='transparent'">
-        <span style="font-size:14px">📍</span>
-        <span style="flex:1">${short}</span>
-        <span style="color:#888;font-size:10px">${r.type||''}</span>
-      </div>`;
-    }).join('');
-  }
-
-  if (!html) {
-    html = '<div style="padding:10px;color:#888;font-size:11px;text-align:center">Không tìm thấy kết quả</div>';
-  }
-
-  results.innerHTML = html;
 }
 
 // MAP SEARCH (Google-style overlay on map)
@@ -647,7 +651,6 @@ document.addEventListener('click', function(e) {
 });
 
 function flyToGeo(lat, lng, name) {
-  clearSearch();
   closeMapSearch();
   map.flyTo({center:[lng, lat], zoom:14, duration:1200});
   // Add a temporary marker
@@ -658,16 +661,9 @@ function flyToGeo(lat, lng, name) {
   setTimeout(() => marker.remove(), 8000);
 }
 
-function clearSearch(){
-  document.getElementById('searchInput').value = '';
-  document.getElementById('searchClear').style.display = 'none';
-  document.getElementById('searchResults').style.display = 'none';
-}
-
 function flyToSite(id){
   const s = allSites.find(x=>x.id===id);
   if(!s) return;
-  clearSearch();
   closeMapSearch();
   map.flyTo({center:[s.lng,s.lat], zoom:15, duration:1000});
   // Select and show popup after fly
@@ -1032,7 +1028,7 @@ async function generateTrip(){
   document.getElementById('loading').style.display='block';
   document.getElementById('result').innerHTML='';
   document.getElementById('generateBtn').disabled=true;
-  const provs=[...document.querySelectorAll('#provinceGrid .tag.active')].map(t=>t.dataset.val);
+  const provs=[...selectedProvinces];
   if(!provs.length){alert('Chọn ít nhất 1 tỉnh!');document.getElementById('loading').style.display='none';document.getElementById('generateBtn').disabled=false;return}
   const interests=[...document.querySelectorAll('#interestTags .tag.active')].map(t=>t.dataset.val);
   const constraints=[...document.querySelectorAll('#constraintTags .tag.active')].map(t=>t.dataset.val);
@@ -1057,7 +1053,16 @@ function renderItinerary(d){
     (day.items||[]).forEach(it=>h+=`<div class="item-row" onclick="flyTo('${it.ref_id}')"><span class="time">${it.time||''}</span><span>${it.type==='restaurant'?'🍜':'📍'} ${it.name}</span></div>`);
     h+='</div>';
   });
+  h+=`<button class="btn" style="margin-top:12px;background:linear-gradient(135deg,#1e2340,#16162b);border:1px solid var(--border)" onclick="resetItinerary()">🔄 Tạo lịch trình mới</button>`;
   document.getElementById('result').innerHTML=h||'<p>Không có kết quả.</p>';
+}
+
+function resetItinerary() {
+  document.getElementById('result').innerHTML = '';
+  routeIds.forEach(id=>{try{map.getLayer(id)&&map.removeLayer(id)}catch(e){}try{map.getSource(id)&&map.removeSource(id)}catch(e){}});
+  routeIds = [];
+  window._lastTrip = null;
+  document.getElementById('sidebar-body').scrollTop = 0;
 }
 
 function renderRoute(d){
