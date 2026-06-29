@@ -15,6 +15,9 @@ class HeritageSite(BaseModel):
     lng: float
     categories: List[str] = Field(default_factory=list)
     description: str = ""
+    long_description: str = ""
+    visit_tips: str = ""
+    reference_url: str = ""
     opening_hours: str = "08:00-17:00"
     estimated_visit_minutes: int = 60
     indoor_score: float = 0.5

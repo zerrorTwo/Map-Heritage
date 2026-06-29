@@ -16,9 +16,7 @@ env/
 # Docker
 docker-compose.override.yml
 
-# Data — keep crawled data, ignore temp
-*.json
-!data/*.json
+# Data — track all data files in repo
 
 # OS
 .DS_Store

@@ -18,7 +18,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8a946147ac",
@@ -40,7 +42,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2ff917e436",
@@ -62,7 +66,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-92c5500add",
@@ -82,7 +88,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-79ad264e1e",
@@ -103,7 +111,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-be09180289",
@@ -125,7 +135,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-02d470ed95",
@@ -146,7 +158,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ad12ef46d1",
@@ -166,7 +180,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-3d88c3bbe1",
@@ -187,7 +203,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9524b3967c",
@@ -208,7 +226,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c8a1325dbb",
@@ -229,7 +249,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-991c3153cb",
@@ -249,7 +271,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7550e85d3f",
@@ -271,7 +295,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-58e0fed8b0",
@@ -291,7 +317,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-aee280ffab",
@@ -312,7 +340,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2fd3e4ab88",
@@ -332,7 +362,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4d5b58d544",
@@ -353,7 +385,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d3117ddd9a",
@@ -373,7 +407,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-23a2c5b65c",
@@ -393,7 +429,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2f66125dd2",
@@ -414,7 +452,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5c547053cb",
@@ -436,7 +476,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-46b982c806",
@@ -458,7 +500,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8c5c758396",
@@ -478,7 +522,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-07091ba6c4",
@@ -500,7 +546,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-11d99c9f3e",
@@ -521,7 +569,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5a3c6a3c98",
@@ -541,7 +591,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6aa0c4f0f0",
@@ -562,7 +614,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b891044257",
@@ -583,7 +637,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c863ccdc97",
@@ -604,7 +660,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-249d0cd5c0",
@@ -625,7 +683,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a1fa812089",
@@ -645,7 +705,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2bec6ecb43",
@@ -666,7 +728,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-09fc06c65e",
@@ -688,7 +752,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 15000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b4f7b38dd4",
@@ -709,7 +775,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-020d76d41d",
@@ -730,7 +798,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-afcd100ad4",
@@ -750,7 +820,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 25000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-de13adf0bd",
@@ -770,7 +842,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6df7972ff2",
@@ -790,7 +864,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-170aad3845",
@@ -811,7 +887,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4a4732a116",
@@ -831,7 +909,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a246d296b6",
@@ -853,7 +933,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 15000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5bbf43202e",
@@ -873,7 +955,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a4fa6e18dd",
@@ -894,7 +978,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-1c4ffcece6",
@@ -914,7 +1000,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ceae85efc8",
@@ -935,7 +1023,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e49b3a8cf8",
@@ -956,7 +1046,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f320baa818",
@@ -977,7 +1069,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cbade4f1a3",
@@ -997,7 +1091,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 25000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-31d6d7e764",
@@ -1017,7 +1113,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 45000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4cfd8c146b",
@@ -1037,7 +1135,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-3d1d4a6c8a",
@@ -1058,7 +1158,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-df94ee5463",
@@ -1079,7 +1181,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f5a3cf0601",
@@ -1100,7 +1204,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-de5c9fffba",
@@ -1121,7 +1227,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-267e9cfd3d",
@@ -1142,7 +1250,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-fc37ef4dea",
@@ -1163,7 +1273,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-027cd3b621",
@@ -1184,7 +1296,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cf0fdc66d0",
@@ -1205,7 +1319,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-98fd1d5c8b",
@@ -1226,7 +1342,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-230619fcb7",
@@ -1247,7 +1365,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ce70244b09",
@@ -1268,7 +1388,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7e384be0b3",
@@ -1288,7 +1410,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5cdce41615",
@@ -1309,7 +1433,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-637e1f9af4",
@@ -1330,7 +1456,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-927aafb749",
@@ -1350,7 +1478,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-14c08df150",
@@ -1372,7 +1502,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b89f23db77",
@@ -1393,7 +1525,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2de8d8a3f6",
@@ -1413,7 +1547,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-76aa437a6a",
@@ -1434,7 +1570,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-adf2268949",
@@ -1455,7 +1593,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4c97ed3357",
@@ -1475,7 +1615,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6b10898c61",
@@ -1497,7 +1639,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 250000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-45c45b690b",
@@ -1518,7 +1662,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ccccfe6c85",
@@ -1540,7 +1686,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-30c465f92b",
@@ -1562,7 +1710,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-89b62c7ba7",
@@ -1583,7 +1733,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 60000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-160bfa83f7",
@@ -1603,7 +1755,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c333f00dfd",
@@ -1625,7 +1779,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b4f060c517",
@@ -1646,7 +1802,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-031221c0f4",
@@ -1667,7 +1825,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6d78a74cd4",
@@ -1688,7 +1848,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d1b34a564f",
@@ -1709,7 +1871,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ddf8e26b80",
@@ -1731,7 +1895,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 15000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-196be4656a",
@@ -1751,7 +1917,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-50f8c5c759",
@@ -1772,7 +1940,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-dcbcedbe6d",
@@ -1793,7 +1963,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 250000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c35a51e21b",
@@ -1814,7 +1986,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 3000000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d685881372",
@@ -1835,7 +2009,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a73f3ca560",
@@ -1855,7 +2031,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ad04cb97b2",
@@ -1877,7 +2055,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 120000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5f72b63194",
@@ -1900,7 +2080,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 150000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6961c71fe8",
@@ -1922,7 +2104,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9f9956fafa",
@@ -1943,7 +2127,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 15000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d8812ff581",
@@ -1964,7 +2150,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7ee0451dc5",
@@ -1985,7 +2173,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f556bdd7c2",
@@ -2005,7 +2195,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8d6b3f830c",
@@ -2026,7 +2218,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6d10c689a5",
@@ -2047,7 +2241,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 290000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cc3617430d",
@@ -2069,7 +2265,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a0761aef2d",
@@ -2090,7 +2288,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-15f5ea941d",
@@ -2111,7 +2311,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-80a5b48347",
@@ -2132,7 +2334,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9abec83fc7",
@@ -2153,7 +2357,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d3e1f3e4d2",
@@ -2173,7 +2379,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-05632cae1f",
@@ -2194,7 +2402,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b73e8d4a59",
@@ -2216,7 +2426,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 750000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4caaea195a",
@@ -2237,7 +2449,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e9903c1d75",
@@ -2258,7 +2472,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 60000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a1dc6fde23",
@@ -2280,7 +2496,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-0f9c29dde0",
@@ -2302,7 +2520,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 50000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a1ed4205d9",
@@ -2323,7 +2543,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-16187b10f7",
@@ -2344,7 +2566,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f9c734e4ee",
@@ -2364,7 +2588,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-638159420a",
@@ -2385,7 +2611,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cc2f0e4fb2",
@@ -2405,7 +2633,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e2e239ed9d",
@@ -2426,7 +2656,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 50000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e9848b6b6a",
@@ -2447,7 +2679,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f66e18d033",
@@ -2468,7 +2702,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-06247a0c15",
@@ -2489,7 +2725,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6ee473177f",
@@ -2509,7 +2747,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b86890fd2f",
@@ -2530,7 +2770,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8b52b50c2b",
@@ -2550,7 +2792,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d157b4c61a",
@@ -2571,7 +2815,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 60000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ba5be28973",
@@ -2591,7 +2837,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ab0bde1d05",
@@ -2612,7 +2860,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6728224f80",
@@ -2632,7 +2882,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-948455f2ff",
@@ -2653,7 +2905,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a53930a061",
@@ -2674,7 +2928,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-94037f420b",
@@ -2695,7 +2951,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2458bcfe70",
@@ -2715,7 +2973,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9e408df930",
@@ -2735,7 +2995,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-38771efd9a",
@@ -2756,7 +3018,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7f3824427b",
@@ -2776,7 +3040,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d48680b22c",
@@ -2797,7 +3063,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-87912c383c",
@@ -2818,7 +3086,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 25000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-595ce24633",
@@ -2839,7 +3109,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-15836bbf2a",
@@ -2860,7 +3132,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-0443b909fd",
@@ -2881,7 +3155,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-bb41ceadf3",
@@ -2902,7 +3178,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-0e11666f00",
@@ -2923,7 +3201,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cd8a072c5a",
@@ -2944,7 +3224,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6555cdbdee",
@@ -2965,7 +3247,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5c364ec165",
@@ -2986,7 +3270,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2e75a631ac",
@@ -3008,7 +3294,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4aefcf738d",
@@ -3030,7 +3318,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-dd344b2034",
@@ -3052,7 +3342,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6ee4cf1dba",
@@ -3074,7 +3366,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5f56d03033",
@@ -3095,7 +3389,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f932fd4505",
@@ -3116,7 +3412,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b2dc9cf8f7",
@@ -3138,7 +3436,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9949100216",
@@ -3159,7 +3459,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2ea9232876",
@@ -3179,7 +3481,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-70eda153b9",
@@ -3200,7 +3504,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-26c5b34a8f",
@@ -3222,7 +3528,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-148d5bbefc",
@@ -3244,7 +3552,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-799b03c458",
@@ -3265,7 +3575,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-762ee41475",
@@ -3286,7 +3598,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a66e7b9a7f",
@@ -3307,7 +3621,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-954db214ff",
@@ -3328,7 +3644,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 50000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4e6feb8feb",
@@ -3349,7 +3667,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b91a25cc68",
@@ -3370,7 +3690,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5b53c318fa",
@@ -3390,7 +3712,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-598fa7b7bb",
@@ -3411,7 +3735,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-0ad3dc45c4",
@@ -3431,7 +3757,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-1293512eca",
@@ -3452,7 +3780,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-734aac85b5",
@@ -3472,7 +3802,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5044652716",
@@ -3492,7 +3824,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6f753ae20f",
@@ -3512,7 +3846,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-26c7948cd4",
@@ -3533,7 +3869,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-0ff0e1d00c",
@@ -3554,7 +3892,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-250d89d47c",
@@ -3575,7 +3915,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "Đền Mẫu (Hưng Yên)",
+    "has_wiki_image": true
   },
   {
     "id": "ds-467e7d9bc4",
@@ -3596,7 +3938,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d5e66a482f",
@@ -3617,7 +3961,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a52600cb2e",
@@ -3639,7 +3985,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7b60e29813",
@@ -3660,7 +4008,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 22000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7f931ef231",
@@ -3681,7 +4031,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f1aff7df90",
@@ -3702,7 +4054,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7a2e0ba2f3",
@@ -3723,7 +4077,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-00c260a745",
@@ -3745,7 +4101,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-bcd03a8427",
@@ -3766,7 +4124,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 15000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6194710a64",
@@ -3787,7 +4147,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-acf886a7aa",
@@ -3808,7 +4170,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-da3faaf321",
@@ -3829,7 +4193,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7458739358",
@@ -3849,7 +4215,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d219155070",
@@ -3869,7 +4237,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-3f56db0941",
@@ -3890,7 +4260,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-19a4de93a4",
@@ -3910,7 +4282,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-61c797974c",
@@ -3930,7 +4304,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c946677ce6",
@@ -3951,7 +4327,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-38df3a0e25",
@@ -3971,7 +4349,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 100000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-04cb488ddb",
@@ -3992,7 +4372,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-865ae1e40a",
@@ -4012,7 +4394,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 50000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2160136278",
@@ -4033,7 +4417,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5d9b9e54fb",
@@ -4054,7 +4440,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5438c21f4b",
@@ -4075,7 +4463,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-1c0efacedf",
@@ -4095,7 +4485,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-745572fe8b",
@@ -4116,7 +4508,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a8188aa7f2",
@@ -4137,7 +4531,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-162a987804",
@@ -4157,7 +4553,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c2c06f30be",
@@ -4177,7 +4575,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c3aa7cab86",
@@ -4198,7 +4598,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-679f1706d9",
@@ -4219,7 +4621,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 100000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-0c776a3184",
@@ -4241,7 +4645,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a983df05f7",
@@ -4261,7 +4667,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2d04d11839",
@@ -4281,7 +4689,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 15000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-bf04942e4a",
@@ -4303,7 +4713,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-409f7b81ea",
@@ -4325,7 +4737,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 15000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-db55551d8c",
@@ -4347,7 +4761,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f7f41bea03",
@@ -4369,7 +4785,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f25caab9f2",
@@ -4391,7 +4809,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-eaccaa850f",
@@ -4412,7 +4832,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d8b0c4a18b",
@@ -4433,7 +4855,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 25000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6b52ef30c8",
@@ -4455,7 +4879,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ad68d8488c",
@@ -4477,7 +4903,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-48b16a6e51",
@@ -4497,7 +4925,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-026c2cbda2",
@@ -4518,7 +4948,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ba3f882cd7",
@@ -4540,7 +4972,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 150000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cc33ccc0a6",
@@ -4562,7 +4996,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-32b1c9c14e",
@@ -4584,7 +5020,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 100000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-1c05f42885",
@@ -4605,7 +5043,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a45849714d",
@@ -4626,7 +5066,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cfecdd8cb6",
@@ -4647,7 +5089,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-77f42fb222",
@@ -4668,7 +5112,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d89319c66c",
@@ -4689,7 +5135,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-79cc566fb2",
@@ -4710,7 +5158,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-bddd6292bf",
@@ -4731,7 +5181,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5cd067ec30",
@@ -4752,7 +5204,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a9a7c796a2",
@@ -4773,7 +5227,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 40000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-df645797c6",
@@ -4794,7 +5250,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-78bc7eb1c8",
@@ -4815,7 +5273,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 30000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e6d08e5c1a",
@@ -4836,7 +5296,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-de013f43bf",
@@ -4857,7 +5319,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-959d212db3",
@@ -4878,7 +5342,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8aa2496ad1",
@@ -4899,7 +5365,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b6812b57f4",
@@ -4920,7 +5388,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d765f65d9e",
@@ -4941,7 +5411,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-dcf73153e1",
@@ -4961,7 +5433,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5a80c74912",
@@ -4982,7 +5456,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4e8e0e400a",
@@ -5004,7 +5480,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-260ffcc7e4",
@@ -5025,7 +5503,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ff40b82d91",
@@ -5047,7 +5527,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 20000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-25bb83a1fa",
@@ -5068,7 +5550,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-70d98d7f16",
@@ -5090,7 +5574,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-dd47a8dc92",
@@ -5112,7 +5598,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-08b3343689",
@@ -5133,7 +5621,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 15000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-691be54e76",
@@ -5155,7 +5645,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b54379b71b",
@@ -5177,7 +5669,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c8f1bf0d33",
@@ -5198,7 +5692,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c4aa146805",
@@ -5220,7 +5716,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f746687c3f",
@@ -5241,7 +5739,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 10000,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-08aa54b13a",
@@ -5262,7 +5762,9 @@
     "suitable_for_elderly": true,
     "ticket_price": 0,
     "popularity_score": 0.6,
-    "historical_importance_score": 0.6
+    "historical_importance_score": 0.6,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7a984731b5",
@@ -5285,7 +5787,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c25820e452",
@@ -5309,7 +5813,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9fd7ae5d01",
@@ -5332,7 +5838,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7d7cf834e2",
@@ -5356,7 +5864,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b212038920",
@@ -5379,7 +5889,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e34c0067fb",
@@ -5403,7 +5915,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-39f9374a8f",
@@ -5427,7 +5941,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b6358d924d",
@@ -5450,7 +5966,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-3617d1a2de",
@@ -5473,7 +5991,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-1e9306fda9",
@@ -5496,7 +6016,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-fca0c71ab5",
@@ -5519,7 +6041,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cf34e590a4",
@@ -5542,7 +6066,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a2fc71a1ec",
@@ -5565,7 +6091,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f5364a8c70",
@@ -5588,7 +6116,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7d03340f4c",
@@ -5611,7 +6141,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a33a747d42",
@@ -5634,7 +6166,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cd9e9514e5",
@@ -5657,7 +6191,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5c0440f899",
@@ -5680,7 +6216,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e2b6e7fd92",
@@ -5704,7 +6242,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9c7228a35e",
@@ -5727,7 +6267,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d3c3f9ab5a",
@@ -5750,7 +6292,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-433ff20197",
@@ -5773,7 +6317,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-790d26cef0",
@@ -5796,7 +6342,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a18aaa1e4c",
@@ -5819,7 +6367,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8406949764",
@@ -5843,7 +6393,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-21a3a569cc",
@@ -5866,7 +6418,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-fd7aa6c2c0",
@@ -5889,7 +6443,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-96c590b1ac",
@@ -5912,7 +6468,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f36cb9e1f4",
@@ -5935,7 +6493,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-342f0690c0",
@@ -5958,7 +6518,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c4c9bad10c",
@@ -5981,7 +6543,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7dbf427567",
@@ -6004,7 +6568,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cbc43548e6",
@@ -6027,7 +6593,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9ab40781a8",
@@ -6050,7 +6618,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-68fdc5c98d",
@@ -6073,7 +6643,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8a67d27511",
@@ -6096,7 +6668,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8209b5a0e4",
@@ -6119,7 +6693,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4f3ab9c909",
@@ -6143,7 +6719,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a6d0ae6591",
@@ -6166,7 +6744,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9cc872abc0",
@@ -6190,7 +6770,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-92d02463fb",
@@ -6213,7 +6795,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-57dc85a81b",
@@ -6237,7 +6821,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-418ee2078f",
@@ -6260,7 +6846,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-58ab6f487b",
@@ -6283,7 +6871,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2682aacf8f",
@@ -6307,7 +6897,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-3779f21049",
@@ -6330,7 +6922,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-0ad8885cb2",
@@ -6353,7 +6947,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-371eb63ff0",
@@ -6377,7 +6973,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7b328d0d0c",
@@ -6400,7 +6998,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-91bec63b7e",
@@ -6423,7 +7023,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-50a55e074a",
@@ -6446,7 +7048,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6c5d64fe0e",
@@ -6469,7 +7073,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2b12d09dda",
@@ -6493,7 +7099,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b78fcb3ae7",
@@ -6516,7 +7124,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ebf1814e80",
@@ -6539,7 +7149,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-194682cdb6",
@@ -6562,7 +7174,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-be5db3a330",
@@ -6586,7 +7200,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5a62096c1e",
@@ -6609,7 +7225,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-13748dd2d8",
@@ -6632,7 +7250,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8820ca089e",
@@ -6655,7 +7275,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2abf1c3807",
@@ -6679,7 +7301,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-832a6412cb",
@@ -6703,7 +7327,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-023a8f5492",
@@ -6726,7 +7352,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-0612d69b9c",
@@ -6749,7 +7377,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e150f967dc",
@@ -6772,7 +7402,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e0ffe555a2",
@@ -6796,7 +7428,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f4e2273c8f",
@@ -6820,7 +7454,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-0df4477d63",
@@ -6843,7 +7479,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d7defd7901",
@@ -6866,7 +7504,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-fe68ba5229",
@@ -6889,7 +7529,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c164948657",
@@ -6913,7 +7555,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cdaa47d54f",
@@ -6936,7 +7580,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-77ded0dce7",
@@ -6959,7 +7605,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-dfb76cf607",
@@ -6983,7 +7631,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-55edfdf445",
@@ -7007,7 +7657,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-1c9b302c47",
@@ -7030,7 +7682,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6be371be2b",
@@ -7054,7 +7708,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9854c654f2",
@@ -7078,7 +7734,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a407f3e33c",
@@ -7101,7 +7759,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f155b5bc2d",
@@ -7124,7 +7784,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-986ed3addb",
@@ -7148,7 +7810,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4f0db8d48d",
@@ -7172,7 +7836,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-47130789f7",
@@ -7195,7 +7861,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-02dc3cb070",
@@ -7218,7 +7886,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-3a90373081",
@@ -7242,7 +7912,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-69b7b693bf",
@@ -7266,7 +7938,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-115435411e",
@@ -7290,7 +7964,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8fd19ff728",
@@ -7313,7 +7989,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c278edb003",
@@ -7336,7 +8014,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c311ce16ee",
@@ -7359,7 +8039,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-1e58fde037",
@@ -7382,7 +8064,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-76c49e85d7",
@@ -7405,7 +8089,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-41d44236c4",
@@ -7428,7 +8114,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cc7daea30a",
@@ -7451,7 +8139,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-275a8752a1",
@@ -7474,7 +8164,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-3541012c85",
@@ -7497,7 +8189,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6bac9af567",
@@ -7520,7 +8214,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cf3569f86e",
@@ -7543,7 +8239,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-61e8dd4e2f",
@@ -7566,7 +8264,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-3e1f6aac97",
@@ -7589,7 +8289,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6d3d2feba8",
@@ -7612,7 +8314,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b0fadedd7a",
@@ -7635,7 +8339,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e3dd7deab1",
@@ -7658,7 +8364,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-1bfca96cc4",
@@ -7681,7 +8389,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c22109b379",
@@ -7704,7 +8414,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-37d56ab9b2",
@@ -7728,7 +8440,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e7efce1b05",
@@ -7751,7 +8465,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2f8e98d4d5",
@@ -7774,7 +8490,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-98ef7e9673",
@@ -7797,7 +8515,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-698172c905",
@@ -7820,7 +8540,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-eebb3a9b00",
@@ -7843,7 +8565,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-829fa14f71",
@@ -7866,7 +8590,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c9e6f8da82",
@@ -7889,7 +8615,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d7e0edc399",
@@ -7912,7 +8640,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f95173c4f0",
@@ -7936,7 +8666,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9b19537e55",
@@ -7959,7 +8691,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e65fe9656a",
@@ -7982,7 +8716,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-c657288932",
@@ -8005,7 +8741,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ba1fdaca59",
@@ -8029,7 +8767,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a5c3e6c466",
@@ -8053,7 +8793,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2473ec26b5",
@@ -8076,7 +8818,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-be42e65b5d",
@@ -8099,7 +8843,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4d9987e75f",
@@ -8122,7 +8868,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-31cacf715c",
@@ -8145,7 +8893,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2ddf7020a4",
@@ -8168,7 +8918,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-91ee1afeef",
@@ -8191,7 +8943,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-636274cb23",
@@ -8214,7 +8968,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-da69de74a1",
@@ -8237,7 +8993,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-be4d8700b9",
@@ -8261,7 +9019,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5820202747",
@@ -8284,7 +9044,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e1b3d326f7",
@@ -8308,7 +9070,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b072cdf9fb",
@@ -8332,7 +9096,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d7a8127116",
@@ -8355,7 +9121,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-a8e003978e",
@@ -8378,7 +9146,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9de2f099cf",
@@ -8401,7 +9171,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ff9b7fefeb",
@@ -8424,7 +9196,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-541b99a1fa",
@@ -8448,7 +9222,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-4fc9220028",
@@ -8472,7 +9248,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-67f255dd4c",
@@ -8495,7 +9273,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8461b1feb3",
@@ -8518,7 +9298,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-fc62f3225e",
@@ -8541,7 +9323,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d0804612eb",
@@ -8565,7 +9349,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-394d22d7e8",
@@ -8588,7 +9374,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-ab54238b56",
@@ -8612,7 +9400,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f5c28ccf36",
@@ -8635,7 +9425,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-54a1c3bd3d",
@@ -8659,7 +9451,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b873b9d4f8",
@@ -8682,7 +9476,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9a822102bd",
@@ -8705,7 +9501,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-01dc201dcc",
@@ -8729,7 +9527,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-38f5d2e6b0",
@@ -8752,7 +9552,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-79ad00e7e2",
@@ -8775,7 +9577,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-337bde0060",
@@ -8798,7 +9602,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7e7c7cd6fd",
@@ -8822,7 +9628,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-86ebee08eb",
@@ -8846,7 +9654,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-7d01512a3c",
@@ -8870,7 +9680,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e52346e50e",
@@ -8893,7 +9705,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f94ba1f9c7",
@@ -8916,7 +9730,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-200ede024d",
@@ -8940,7 +9756,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9b3e1dfd19",
@@ -8963,7 +9781,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-92ccfa5e76",
@@ -8987,7 +9807,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-107beac364",
@@ -9010,7 +9832,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-f258982241",
@@ -9033,7 +9857,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-de466d7331",
@@ -9057,7 +9883,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-2351adba0f",
@@ -9080,7 +9908,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e9d2ea5d6c",
@@ -9103,7 +9933,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5c7f8c0183",
@@ -9126,7 +9958,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-be8f0bf0f3",
@@ -9149,7 +9983,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-8308faa26f",
@@ -9172,7 +10008,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d575fe1687",
@@ -9195,7 +10033,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d4445b8e43",
@@ -9218,7 +10058,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-df547deb0c",
@@ -9241,7 +10083,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-d570113516",
@@ -9264,7 +10108,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-afcf401896",
@@ -9287,7 +10133,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-3468db3434",
@@ -9310,7 +10158,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-5ca6e5d93d",
@@ -9333,7 +10183,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-cef2921871",
@@ -9356,7 +10208,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-6956d8f92c",
@@ -9379,7 +10233,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-102dc4e0d9",
@@ -9403,7 +10259,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-9c65272733",
@@ -9427,7 +10285,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e6ce9a96aa",
@@ -9451,7 +10311,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-dcc858787b",
@@ -9474,7 +10336,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-74d03f3845",
@@ -9497,7 +10361,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-441b9b0afc",
@@ -9520,7 +10386,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-b23ffbe72e",
@@ -9543,7 +10411,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-131eec55af",
@@ -9567,7 +10437,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-21ed4295df",
@@ -9590,7 +10462,9 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   },
   {
     "id": "ds-e74bfe758a",
@@ -9613,6 +10487,8 @@
     "suitable_for_children": true,
     "suitable_for_elderly": true,
     "popularity_score": 0.5,
-    "historical_importance_score": 0.4
+    "historical_importance_score": 0.4,
+    "wiki_title": "",
+    "has_wiki_image": false
   }
 ]

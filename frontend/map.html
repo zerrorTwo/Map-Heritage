@@ -3,579 +3,741 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vietnam Heritage Travel — Multi-Province Trip Planner</title>
+  <title>Di Sản Việt Nam — Heritage Travel Planner</title>
   <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
   <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: flex; height: 100vh; overflow: hidden; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;display:flex;height:100vh;overflow:hidden;background:#0f0f1a}
 
     /* SIDEBAR */
-    #sidebar {
-      width: 400px; min-width: 400px; background: #1a1a2e; color: #eee;
-      display: flex; flex-direction: column; overflow-y: auto; border-right: 2px solid #e94560;
-    }
-    #sidebar h1 { font-size: 19px; padding: 14px 20px; background: #16213e; border-bottom: 1px solid #0f3460; }
-    #sidebar h1 span { color: #e94560; }
-    #map { flex: 1; height: 100vh; }
+    #sidebar{width:380px;min-width:380px;background:#12121f;color:#d4d4e0;display:flex;flex-direction:column;overflow:hidden;border-right:1px solid #1e1e3a;z-index:5;transition:all 0.3s}
+    #sidebar.collapsed{min-width:0;width:0;border:none}
+    #sidebar-header{background:linear-gradient(135deg,#16162b,#1a1a35);padding:16px 20px;border-bottom:1px solid #1e1e3a;display:flex;align-items:center;gap:10px}
+    #sidebar-header h1{font-size:17px;font-weight:700;color:#fff}
+    #sidebar-header h1 span{color:#e94560}
+    #sidebar-header .badge{font-size:10px;background:#e94560;color:#fff;padding:3px 8px;border-radius:10px;margin-left:auto}
+    #sidebar-body{flex:1;overflow-y:auto;padding:12px 16px}
+    #sidebar-body::-webkit-scrollbar{width:4px}
+    #sidebar-body::-webkit-scrollbar-thumb{background:#2a2a4a;border-radius:2px}
 
-    /* POPUP */
-    .maplibregl-popup-content { font-family: inherit; font-size: 13px; border-radius: 8px; padding: 12px; max-width: 300px; box-shadow: 0 4px 16px rgba(0,0,0,.3); }
-    .maplibregl-popup-content h3 { margin: 0 0 6px; font-size: 14px; }
-    .maplibregl-popup-content .cat-tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; margin: 2px; color: #fff; }
-    .maplibregl-popup-content p { margin: 3px 0; color: #555; font-size: 12px; }
+    #map{flex:1;height:100vh;z-index:1}
 
     /* FORM */
-    .form-section { padding: 12px 20px; border-bottom: 1px solid #0f3460; }
-    .form-section label { display: block; font-size: 11px; color: #aaa; margin-bottom: 4px; font-weight: 600; text-transform: uppercase; }
-    .form-section select, .form-section input {
-      width: 100%; padding: 8px 12px; border: 1px solid #0f3460; border-radius: 6px;
-      background: #16213e; color: #eee; font-size: 14px; outline: none;
+    .form-group{margin-bottom:10px}
+    .form-label{display:block;font-size:10px;color:#888;margin-bottom:3px;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+    .form-row{display:flex;gap:8px}
+    .form-row .form-group{flex:1}
+    select,input{width:100%;padding:7px 10px;border:1px solid #1e1e3a;border-radius:6px;background:#0a0a18;color:#d4d4e0;font-size:13px;outline:none;font-family:inherit}
+    select:focus,input:focus{border-color:#e94560}
+
+    .tags{display:flex;flex-wrap:wrap;gap:4px}
+    .tag{padding:3px 8px;border-radius:12px;font-size:11px;cursor:pointer;border:1px solid #2a2a4a;background:transparent;color:#888;transition:all 0.15s;user-select:none}
+    .tag.active{background:#e94560;border-color:#e94560;color:#fff}
+    .btn{width:100%;padding:10px;background:linear-gradient(135deg,#e94560,#c73a54);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;margin:8px 0;transition:all 0.2s}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(233,69,96,.3)}
+    .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+    /* RESULT */
+    #result{flex:1;overflow-y:auto;padding:0 16px 12px}
+    .day-card{background:#16162b;border-radius:10px;padding:10px 12px;margin-bottom:8px;border-left:3px solid #e94560}
+    .day-card h3{font-size:12px;color:#e94560;margin-bottom:6px}
+    .item-row{display:flex;align-items:center;gap:6px;padding:3px 0;border-bottom:1px solid #1e1e3a;font-size:11px;cursor:pointer;transition:all 0.15s}
+    .item-row:hover{color:#e94560}
+    .item-row .time{color:#666;font-size:10px;min-width:52px}
+    .summary-box{background:linear-gradient(135deg,#e94560aa,#c73a54aa);border-radius:8px;padding:10px;margin-bottom:10px;color:#fff;font-size:11px}
+    .summary-box strong{font-size:13px}
+
+    #loading{display:none;text-align:center;padding:16px;color:#888}
+    .spinner{width:28px;height:28px;border:3px solid #1e1e3a;border-top:3px solid #e94560;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 8px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    .section-title{font-size:10px;color:#e94560;text-transform:uppercase;padding:2px 0;letter-spacing:1px;border-bottom:1px solid #1e1e3a;margin-bottom:8px}
+
+    /* DETAIL PANEL */
+    #detail-panel{
+      position:fixed;top:0;right:-460px;width:440px;height:100vh;background:#12121f;
+      z-index:100;transition:right 0.3s cubic-bezier(0.4,0,0.2,1);
+      border-left:1px solid #1e1e3a;display:flex;flex-direction:column;
+      box-shadow:-8px 0 32px rgba(0,0,0,.5);
     }
-    .form-section select:focus, .form-section input:focus { border-color: #e94560; }
-    .form-row { display: flex; gap: 12px; }
-    .form-row .form-section { flex: 1; border-bottom: none; padding: 8px 0; }
+    #detail-panel.open{right:0}
+    #detail-overlay{position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.5);z-index:99;display:none}
+    #detail-overlay.show{display:block}
 
-    .tag-group { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag { padding: 4px 10px; border-radius: 20px; font-size: 12px; cursor: pointer; border: 1px solid #0f3460; background: #16213e; color: #aaa; transition: all 0.2s; user-select: none; }
-    .tag.active { background: #e94560; border-color: #e94560; color: #fff; }
+    #detail-header{background:linear-gradient(135deg,#1a1a35,#16162b);padding:20px;border-bottom:1px solid #1e1e3a;position:relative}
+    #detail-header h2{font-size:20px;color:#fff;margin-bottom:4px;padding-right:30px}
+    #detail-header .province{font-size:12px;color:#e94560;font-weight:600}
+    #detail-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:#1e1e3a;border:none;color:#aaa;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+    #detail-close:hover{background:#e94560;color:#fff}
 
-    .province-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-    .btn { width: 100%; padding: 12px; background: #e94560; color: #fff; border: none; border-radius: 6px; font-size: 16px; font-weight: 700; cursor: pointer; margin: 12px 0; transition: background 0.2s; }
-    .btn:hover { background: #c73a54; }
-    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    #detail-body{flex:1;overflow-y:auto;padding:20px}
+    #detail-body::-webkit-scrollbar{width:4px}
+    #detail-body::-webkit-scrollbar-thumb{background:#2a2a4a;border-radius:2px}
 
-    #result { padding: 12px 20px; flex: 1; overflow-y: auto; }
-    .day-card { background: #16213e; border-radius: 8px; padding: 10px; margin-bottom: 10px; border-left: 3px solid #e94560; }
-    .day-card h3 { font-size: 13px; color: #e94560; margin-bottom: 6px; }
-    .item-row { display: flex; align-items: center; gap: 6px; padding: 4px 0; border-bottom: 1px solid #0f3460; font-size: 12px; cursor: pointer; }
-    .item-row:hover { color: #e94560; }
-    .item-row .time { color: #888; font-size: 10px; min-width: 55px; }
-    .summary-box { background: linear-gradient(135deg, #e94560, #c73a54); border-radius: 8px; padding: 10px; margin-bottom: 10px; color: #fff; font-size: 12px; }
-    .summary-box strong { font-size: 14px; }
+    .detail-section{margin-bottom:20px}
+    .detail-section h4{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+    .detail-section p{font-size:13px;line-height:1.6;color:#ccc}
+    .cat-badges{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+    .cat-badge{padding:4px 10px;border-radius:12px;font-size:11px;color:#fff;font-weight:500}
 
-    #loading { display: none; text-align: center; padding: 16px; color: #aaa; }
-    #loading .spinner { width: 30px; height: 30px; border: 3px solid #0f3460; border-top: 3px solid #e94560; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 10px; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .info-card{background:#16162b;border-radius:8px;padding:12px}
+    .info-card .label{font-size:10px;color:#888;text-transform:uppercase;margin-bottom:4px}
+    .info-card .value{font-size:14px;color:#fff;font-weight:600}
+    .info-card .value.price{color:#e94560}
 
-    .section-title { font-size: 10px; color: #e94560; text-transform: uppercase; padding: 8px 20px 0; letter-spacing: 1px; }
+    .link-row{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#16162b;border-radius:8px;margin-bottom:6px;text-decoration:none;color:#d4d4e0;font-size:13px;transition:all .15s}
+    .link-row:hover{background:#1e1e3a}
+    .link-row .link-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px}
+    .link-row .link-icon.wiki{background:#2a2a4a}
+    .link-row .link-icon.map{background:#e9456022;color:#e94560}
+
+    /* LAYER SWITCHER */
+    .layer-switcher{position:absolute;top:12px;left:50%;transform:translateX(-50%);display:flex;gap:3px;z-index:10;background:rgba(18,18,31,.9);border-radius:10px;padding:4px;border:1px solid #1e1e3a}
+    .layer-btn{padding:5px 10px;border:none;border-radius:7px;font-size:11px;cursor:pointer;background:transparent;color:#888;transition:all .15s;font-family:inherit;white-space:nowrap}
+    .layer-btn:hover{color:#ddd;background:#1e1e3a}
+    .layer-btn.active{background:#e94560;color:#fff}
 
     /* LEGEND */
-    .legend {
-      position: absolute; bottom: 30px; right: 10px; background: rgba(26,26,46,0.92); color: #eee;
-      border-radius: 8px; padding: 10px 14px; font-size: 11px; z-index: 10;
-      box-shadow: 0 2px 8px rgba(0,0,0,.4); border: 1px solid #0f3460;
+    .legend{position:absolute;bottom:30px;right:10px;background:rgba(18,18,31,.92);color:#d4d4e0;border-radius:10px;padding:10px 14px;font-size:10px;z-index:10;border:1px solid #1e1e3a}
+    .legend h4{margin:0 0 6px;color:#e94560;font-size:11px}
+    .legend-row{display:flex;align-items:center;gap:6px;margin:2px 0}
+
+    .maplibregl-popup{display:none!important}
+
+    /* MINI POPUP */
+    .mini-popup {
+      position: absolute; z-index: 50; width: 260px;
+      background: #12121ff5; backdrop-filter: blur(12px);
+      border: 1px solid #2a2a4a; border-radius: 12px;
+      padding: 12px; pointer-events: auto;
+      box-shadow: 0 8px 32px rgba(0,0,0,.6);
+      animation: popIn .2s ease-out;
     }
-    .legend h4 { margin: 0 0 6px; color: #e94560; font-size: 12px; }
-    .legend-row { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
-    .legend-icon { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
-    /* LAYER SWITCHER */
-    .layer-switcher {
-      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 4px; z-index: 10; background: rgba(26,26,46,0.85);
-      border-radius: 8px; padding: 4px; border: 1px solid #0f3460;
+    .mini-popup::after {
+      content: ''; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 0; border-left: 8px solid transparent;
+      border-right: 8px solid transparent; border-top: 8px solid #12121ff5;
     }
-    .layer-btn {
-      padding: 5px 12px; border: none; border-radius: 6px; font-size: 12px;
-      cursor: pointer; background: transparent; color: #aaa; transition: all 0.2s;
-      font-family: inherit; white-space: nowrap;
-    }
-    .layer-btn:hover { color: #eee; background: #16213e; }
-    .layer-btn.active { background: #e94560; color: #fff; }
+    @keyframes popIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
   </style>
 </head>
 <body>
 
 <div id="sidebar">
-  <h1>🇻🇳 <span>Di Sản</span> Việt Nam</h1>
-
-  <div class="section-title">📍 Chọn Tỉnh Thành (nhiều)</div>
-  <div class="form-section">
-    <div class="province-grid" id="provinceGrid"></div>
+  <div id="sidebar-header">
+    <h1>🇻🇳 <span>Di Sản</span> Việt Nam</h1>
+    <span class="badge" id="siteCount">438 sites</span>
   </div>
-
-  <div class="form-row" style="padding: 0 20px;">
-    <div class="form-section"><label>Số ngày</label><input type="number" id="duration" value="3" min="1" max="14"></div>
-    <div class="form-section"><label>Số người</label><input type="number" id="people" value="2" min="1" max="20"></div>
-  </div>
-
-  <div class="form-row" style="padding: 0 20px;">
-    <div class="form-section">
-      <label>Nhịp độ</label>
-      <select id="pace"><option value="relaxed">Thư giãn</option><option value="moderate" selected>Vừa phải</option><option value="packed">Dày đặc</option></select>
+  <div id="sidebar-body">
+    <div class="form-group">
+      <div class="form-label">🔍 Tìm kiếm địa điểm</div>
+      <div style="position:relative">
+        <input type="text" id="searchInput" placeholder="Nhập tên di sản, địa điểm..." oninput="searchSites()" style="padding-right:32px">
+        <span id="searchClear" onclick="clearSearch()" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;display:none;font-size:14px">✕</span>
+      </div>
+      <div id="searchResults" style="max-height:200px;overflow-y:auto;margin-top:4px;display:none"></div>
     </div>
-    <div class="form-section">
-      <label>Ngân sách</label>
-      <select id="budget"><option value="low">Tiết kiệm</option><option value="medium" selected>Trung bình</option><option value="high">Cao cấp</option></select>
+    <div id="selectedInfo" style="display:none;background:#16262e;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#4ecdc4">
+      ✅ Đã chọn: <strong id="selectedCount">0</strong> địa điểm 
+      <span style="float:right;cursor:pointer;color:#e94560" onclick="clearSelected()">Xóa hết</span>
     </div>
-  </div>
+    <div class="section-title">📍 Chọn Tỉnh Thành</div>
+    <div class="form-group"><div class="tags" id="provinceGrid"></div></div>
 
-  <div class="form-section">
-    <label>Sở thích</label>
-    <div class="tag-group" id="interestTags">
-      <span class="tag active" data-val="history">Lịch sử</span>
-      <span class="tag active" data-val="architecture">Kiến trúc</span>
-      <span class="tag" data-val="spiritual">Tâm linh</span>
-      <span class="tag" data-val="museum">Bảo tàng</span>
-      <span class="tag" data-val="craft_village">Làng nghề</span>
-      <span class="tag" data-val="local_food">Ẩm thực</span>
-      <span class="tag" data-val="nature">Thiên nhiên</span>
-      <span class="tag" data-val="photography">Nhiếp ảnh</span>
+    <div class="form-row">
+      <div class="form-group"><div class="form-label">Số ngày</div><input type="number" id="duration" value="3" min="1" max="14"></div>
+      <div class="form-group"><div class="form-label">Số người</div><input type="number" id="people" value="2" min="1" max="20"></div>
     </div>
-  </div>
-
-  <div class="form-section">
-    <label>Ràng buộc</label>
-    <div class="tag-group" id="constraintTags">
-      <span class="tag" data-val="elderly_friendly">Người già</span>
-      <span class="tag" data-val="child_friendly">Trẻ em</span>
-      <span class="tag" data-val="avoid_sun">Tránh nắng</span>
-      <span class="tag" data-val="prefer_indoor">Trong nhà</span>
-      <span class="tag" data-val="prefer_outdoor">Ngoài trời</span>
+    <div class="form-row">
+      <div class="form-group">
+        <div class="form-label">Nhịp độ</div>
+        <select id="pace"><option value="relaxed">Thư giãn</option><option value="moderate" selected>Vừa phải</option><option value="packed">Dày đặc</option></select>
+      </div>
+      <div class="form-group">
+        <div class="form-label">Ngân sách</div>
+        <select id="budget"><option value="low">Tiết kiệm</option><option value="medium" selected>TB</option><option value="high">Cao cấp</option></select>
+      </div>
     </div>
-  </div>
-
-  <div style="padding: 0 20px;">
+    <div class="form-group">
+      <div class="form-label">Sở thích</div>
+      <div class="tags" id="interestTags">
+        <span class="tag active" data-val="history">Lịch sử</span><span class="tag active" data-val="architecture">Kiến trúc</span>
+        <span class="tag" data-val="spiritual">Tâm linh</span><span class="tag" data-val="museum">Bảo tàng</span>
+        <span class="tag" data-val="craft_village">Làng nghề</span><span class="tag" data-val="local_food">Ẩm thực</span>
+        <span class="tag" data-val="nature">Thiên nhiên</span><span class="tag" data-val="photography">Nhiếp ảnh</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label">Ràng buộc</div>
+      <div class="tags" id="constraintTags">
+        <span class="tag" data-val="elderly_friendly">Người già</span><span class="tag" data-val="child_friendly">Trẻ em</span>
+        <span class="tag" data-val="avoid_sun">Tránh nắng</span><span class="tag" data-val="prefer_indoor">Trong nhà</span>
+      </div>
+    </div>
     <button class="btn" id="generateBtn" onclick="generateTrip()">🔍 Tạo Lịch Trình</button>
+    <div id="loading"><div class="spinner"></div>Đang tính toán...</div>
   </div>
-
-  <div id="loading"><div class="spinner"></div><span>Đang tính toán với OSRM road routing...</span></div>
   <div id="result"></div>
 </div>
 
 <div id="map"></div>
+<div id="detail-overlay" onclick="closeDetail()"></div>
+<div id="detail-panel">
+  <div id="detail-header">
+    <button id="detail-close" onclick="closeDetail()">✕</button>
+    <h2 id="detail-name"></h2>
+    <div class="province" id="detail-province"></div>
+    <div class="cat-badges" id="detail-cats"></div>
+  </div>
+  <div id="detail-body">
+    <div class="detail-section">
+      <h4>🖼️ Hình ảnh</h4>
+      <div id="detail-images-wrapper" style="position:relative">
+        <button id="carousel-prev" onclick="carouselMove(-1)" style="position:absolute;left:0;top:50%;transform:translateY(-50%);z-index:10;width:32px;height:48px;border:none;background:rgba(0,0,0,.6);color:#fff;border-radius:0 6px 6px 0;cursor:pointer;font-size:18px;display:none">‹</button>
+        <button id="carousel-next" onclick="carouselMove(1)" style="position:absolute;right:0;top:50%;transform:translateY(-50%);z-index:10;width:32px;height:48px;border:none;background:rgba(0,0,0,.6);color:#fff;border-radius:6px 0 0 6px;cursor:pointer;font-size:18px;display:none">›</button>
+        <div id="detail-images" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scroll-behavior:smooth;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch">
+          <div style="color:#888;font-size:12px;padding:20px">Đang tải ảnh...</div>
+        </div>
+        <div id="carousel-dots" style="display:flex;gap:6px;justify-content:center;padding:8px 0;display:none"></div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h4>📖 Giới thiệu</h4>
+      <p id="detail-desc"></p>
+    </div>
+    <div class="info-grid" id="detail-info"></div>
+    <div class="detail-section" id="detail-tips-section" style="display:none">
+      <h4>💡 Mẹo tham quan</h4>
+      <p id="detail-tips"></p>
+    </div>
+    <div class="detail-section">
+      <h4>🔗 Tham khảo</h4>
+      <a id="detail-wiki" class="link-row" target="_blank" rel="noopener">
+        <span class="link-icon wiki">📘</span> Xem trên Wikipedia
+      </a>
+      <a id="detail-maps" class="link-row" target="_blank" rel="noopener">
+        <span class="link-icon map">📍</span> Mở Google Maps
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- LEGEND -->
 <div class="legend" id="legend">
   <h4>🗺️ Chú thích</h4>
-  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#e94560" stroke="#fff" stroke-width="2"/><text x="8" y="11" text-anchor="middle" font-size="8" fill="#fff">🏛</text></svg></div> Lịch sử</div>
-  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#f0a500" stroke="#fff" stroke-width="2"/></svg></div> Tâm linh</div>
-  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#4a90d9" stroke="#fff" stroke-width="2"/></svg></div> Bảo tàng</div>
-  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#7c3aed" stroke="#fff" stroke-width="2"/></svg></div> Kiến trúc</div>
-  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#10b981" stroke="#fff" stroke-width="2"/></svg></div> Làng nghề</div>
-  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#f97316" stroke="#fff" stroke-width="2"/></svg></div> UNESCO</div>
-  <div class="legend-row"><div class="legend-icon"><svg width="16" height="16"><circle cx="8" cy="8" r="6" fill="#6b7280" stroke="#fff" stroke-width="2"/></svg></div> Khác</div>
-  <div class="legend-row" style="margin-top:4px;"><div class="legend-icon"><div style="width:20px;height:3px;background:#f0a500;border-radius:2px;"></div></div> Nhà hàng</div>
+  <div class="legend-row"><div style="width:10px;height:10px;border-radius:50%;background:#e94560"></div> Lịch sử</div>
+  <div class="legend-row"><div style="width:10px;height:10px;border-radius:50%;background:#f0a500"></div> Tâm linh</div>
+  <div class="legend-row"><div style="width:10px;height:10px;border-radius:50%;background:#4a90d9"></div> Bảo tàng</div>
+  <div class="legend-row"><div style="width:10px;height:10px;border-radius:50%;background:#7c3aed"></div> Kiến trúc</div>
+  <div class="legend-row"><div style="width:10px;height:10px;border-radius:50%;background:#10b981"></div> Làng nghề</div>
+  <div class="legend-row"><div style="width:10px;height:10px;border-radius:50%;background:#f97316"></div> UNESCO</div>
+  <div class="legend-row"><div style="width:10px;height:10px;border-radius:50%;background:#22c55e"></div> Thiên nhiên</div>
+  <div class="legend-row"><div style="width:10px;height:10px;border-radius:50%;background:#ec4899"></div> Giải trí</div>
+  <div class="legend-row"><div style="width:20px;height:3px;background:#f0a500;border-radius:2px"></div> Nhà hàng</div>
 </div>
 
 <script>
-const API_BASE = window.location.origin;
+const API = window.location.origin;
+let allSites = [], markers = [], routeIds = [], activeSite = null;
+let selectedSites = new Set();
+let siteMarkers = {}; // siteId -> marker element for visual toggle
 
-// ======== CATEGORY STYLES ========
 const CAT_STYLE = {
-  history:       { color: '#e94560', icon: '🏛️', label: 'Lịch sử' },
-  spiritual:     { color: '#f0a500', icon: '🕌', label: 'Tâm linh' },
-  museum:        { color: '#4a90d9', icon: '🏛️', label: 'Bảo tàng' },
-  architecture:  { color: '#7c3aed', icon: '🏗️', label: 'Kiến trúc' },
-  craft_village: { color: '#10b981', icon: '🎨', label: 'Làng nghề' },
-  unesco:        { color: '#f97316', icon: '🌐', label: 'UNESCO' },
-  default:       { color: '#6b7280', icon: '📍', label: 'Di tích' },
+  history:{color:'#e94560',icon:'🏛️',label:'Lịch sử'},
+  spiritual:{color:'#f0a500',icon:'🕌',label:'Tâm linh'},
+  museum:{color:'#4a90d9',icon:'🏛️',label:'Bảo tàng'},
+  architecture:{color:'#7c3aed',icon:'🏗️',label:'Kiến trúc'},
+  craft_village:{color:'#10b981',icon:'🎨',label:'Làng nghề'},
+  unesco:{color:'#f97316',icon:'🌐',label:'UNESCO'},
+  nature:{color:'#22c55e',icon:'🏔️',label:'Thiên nhiên'},
+  entertainment:{color:'#ec4899',icon:'🎡',label:'Giải trí'},
+  default:{color:'#6b7280',icon:'📍',label:'Di tích'}
 };
-
-function getCatStyle(categories) {
-  if (!categories || categories.length === 0) return CAT_STYLE.default;
-  const cats = categories.map(c => c.toLowerCase());
-  if (cats.includes('unesco')) return CAT_STYLE.unesco;
-  if (cats.includes('spiritual')) return CAT_STYLE.spiritual;
-  if (cats.includes('museum')) return CAT_STYLE.museum;
-  if (cats.includes('craft_village')) return CAT_STYLE.craft_village;
-  if (cats.includes('architecture')) return CAT_STYLE.architecture;
-  if (cats.includes('history')) return CAT_STYLE.history;
+function getCat(cats){
+  if(!cats||!cats.length)return CAT_STYLE.default;
+  const c=cats.map(x=>x.toLowerCase());
+  if(c.includes('unesco'))return CAT_STYLE.unesco;
+  if(c.includes('spiritual'))return CAT_STYLE.spiritual;
+  if(c.includes('museum'))return CAT_STYLE.museum;
+  if(c.includes('craft_village'))return CAT_STYLE.craft_village;
+  if(c.includes('architecture'))return CAT_STYLE.architecture;
+  if(c.includes('history'))return CAT_STYLE.history;
+  if(c.includes('nature'))return CAT_STYLE.nature;
   return CAT_STYLE.default;
 }
 
-// ======== MAP ========
-// Layer definitions
-const LAYERS = {
-  'voyager': {
-    name: '🗺️ Voyager',
-    style: {
-      version: 8,
-      sources: {
-        'carto-voyager': {
-          type: 'raster',
-          tiles: ['https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'],
-          tileSize: 256,
-          attribution: '© <a href="https://carto.com/">CARTO</a> | © <a href="https://osm.org/">OSM</a>'
-        }
-      },
-      layers: [{ id: 'carto-layer', type: 'raster', source: 'carto-voyager', minzoom: 2, maxzoom: 19 }]
-    }
-  },
-  'wikimedia': {
-    name: '🌍 Wikimedia',
-    style: {
-      version: 8,
-      sources: {
-        'wmf-tiles': {
-          type: 'raster',
-          tiles: ['https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'],
-          tileSize: 256,
-          attribution: '© <a href="https://wikimedia.org/">Wikimedia</a> | © OSM'
-        }
-      },
-      layers: [{ id: 'wmf-layer', type: 'raster', source: 'wmf-tiles', minzoom: 2, maxzoom: 19 }]
-    }
-  },
-  'dark': {
-    name: '🌙 Dark Matter',
-    style: {
-      version: 8,
-      sources: {
-        'carto-dark': {
-          type: 'raster',
-          tiles: ['https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'],
-          tileSize: 256,
-          attribution: '© <a href="https://carto.com/">CARTO</a> | © OSM'
-        }
-      },
-      layers: [{ id: 'carto-dark-layer', type: 'raster', source: 'carto-dark', minzoom: 2, maxzoom: 19 }]
-    }
-  },
-  'osm': {
-    name: '🏛️ OpenStreetMap',
-    style: {
-      version: 8,
-      sources: {
-        'osm-tiles': {
-          type: 'raster',
-          tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-          tileSize: 256,
-          attribution: '© OSM contributors'
-        }
-      },
-      layers: [{ id: 'osm-layer', type: 'raster', source: 'osm-tiles', minzoom: 2, maxzoom: 19 }]
-    }
-  }
+// MAP
+const LAYERS={
+  voyager:{name:'🗺️ Voyager',style:{version:8,sources:{'r':{type:'raster',tiles:['https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'],tileSize:256,attribution:'© CARTO | © OSM'}},layers:[{id:'l',type:'raster',source:'r',minzoom:2,maxzoom:19}]}},
+  wikimedia:{name:'🌍 Wiki',style:{version:8,sources:{'r':{type:'raster',tiles:['https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'],tileSize:256,attribution:'© Wikimedia | © OSM'}},layers:[{id:'l',type:'raster',source:'r',minzoom:2,maxzoom:19}]}},
+  dark:{name:'🌙 Dark',style:{version:8,sources:{'r':{type:'raster',tiles:['https://basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'],tileSize:256,attribution:'© CARTO | © OSM'}},layers:[{id:'l',type:'raster',source:'r',minzoom:2,maxzoom:19}]}},
+  osm:{name:'🏛️ OSM',style:{version:8,sources:{'r':{type:'raster',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],tileSize:256,attribution:'© OSM'}},layers:[{id:'l',type:'raster',source:'r',minzoom:2,maxzoom:19}]}}
 };
+let curLayer='voyager';
 
-let currentLayer = 'voyager';
-
-const map = new maplibregl.Map({
-  container: 'map',
-  style: LAYERS[currentLayer].style,
-  center: [105.8542, 21.0285],
-  zoom: 6,
-});
-map.addControl(new maplibregl.NavigationControl(), 'top-right');
+const map=new maplibregl.Map({container:'map',style:LAYERS[curLayer].style,center:[105.8542,21.0285],zoom:6});
+map.addControl(new maplibregl.NavigationControl(),'top-right');
 
 // Layer switcher
-const layerSwitcher = document.createElement('div');
-layerSwitcher.className = 'layer-switcher';
-layerSwitcher.innerHTML = Object.entries(LAYERS).map(([key, layer]) => 
-  `<button class="layer-btn${key === currentLayer ? ' active' : ''}" data-layer="${key}">${layer.name}</button>`
-).join('');
-document.getElementById('map').appendChild(layerSwitcher);
+const ls=document.createElement('div');ls.className='layer-switcher';
+ls.innerHTML=Object.entries(LAYERS).map(([k,l])=>`<button class="layer-btn${k===curLayer?' active':''}" data-layer="${k}">${l.name}</button>`).join('');
+document.getElementById('map').appendChild(ls);
+ls.addEventListener('click',e=>{const b=e.target.closest('.layer-btn');if(!b||b.dataset.layer===curLayer)return;curLayer=b.dataset.layer;map.setStyle(LAYERS[curLayer].style);ls.querySelectorAll('.layer-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active')});
 
-layerSwitcher.addEventListener('click', (e) => {
-  const btn = e.target.closest('.layer-btn');
-  if (!btn) return;
-  const layerKey = btn.dataset.layer;
-  if (layerKey === currentLayer) return;
-  
-  currentLayer = layerKey;
-  map.setStyle(LAYERS[layerKey].style);
-  
-  layerSwitcher.querySelectorAll('.layer-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  
-  // Re-add routes and markers after style change
-  map.once('style.load', () => {
-    // Markers survive style changes in MapLibre GL JS
-  });
-});
+// PROVINCES
+const PROVS=['Hà Nội','TP. Hồ Chí Minh','Thừa Thiên Huế','Đà Nẵng','Quảng Nam','Quảng Ninh','Ninh Bình','Lào Cai','Hà Giang','Cần Thơ','Hải Phòng','Nghệ An','Khánh Hòa','Lâm Đồng','Bình Định'];
+const PROV_COORDS={'Hà Nội':[21.0285,105.8542],'TP. Hồ Chí Minh':[10.8231,106.6297],'Thừa Thiên Huế':[16.4637,107.5909],'Đà Nẵng':[16.0544,108.2022],'Quảng Nam':[15.8801,108.338],'Quảng Ninh':[20.9101,107.1839],'Ninh Bình':[20.2506,105.9745],'Lào Cai':[22.3356,103.8436],'Hà Giang':[23.2785,105.359],'Cần Thơ':[10.0328,105.7705],'Hải Phòng':[20.8550,106.6830],'Nghệ An':[18.6796,105.6813],'Khánh Hòa':[12.2388,109.1967],'Lâm Đồng':[11.9404,108.4580],'Bình Định':[13.7696,109.2317]};
 
-let markers = [], routeIds = [];
+const g=document.getElementById('provinceGrid');
+PROVS.forEach(p=>{const e=document.createElement('span');e.className='tag';e.dataset.val=p;e.textContent=p;e.addEventListener('click',()=>e.classList.toggle('active'));g.appendChild(e)});
+g.querySelector('.tag').classList.add('active');
+document.querySelectorAll('.tag').forEach(t=>{if(t.parentElement.id!=='provinceGrid')t.addEventListener('click',()=>t.classList.toggle('active'))});
 
-function clearMap() {
-  markers.forEach(m => m.remove());
-  markers = [];
-  routeIds.forEach(id => {
-    try { if (map.getLayer(id)) map.removeLayer(id); } catch(e) {}
-    try { if (map.getSource(id)) map.removeSource(id); } catch(e) {}
-  });
-  routeIds = [];
+function svgIcon(cats,sz=34){
+  const s=getCat(cats);
+  return `data:image/svg+xml,${encodeURIComponent(`<svg width="${sz}" height="${sz}" xmlns="http://www.w3.org/2000/svg"><defs><filter id="s"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity=".4"/></filter></defs><circle cx="${sz/2}" cy="${sz/2}" r="${sz/2-2}" fill="${s.color}" opacity=".25" stroke="${s.color}" stroke-width="1"/><circle cx="${sz/2}" cy="${sz/2}" r="${sz/2-4}" fill="${s.color}" stroke="#fff" stroke-width="2.5" filter="url(#s)"/><text x="${sz/2}" y="${sz/2+3}" text-anchor="middle" font-size="${sz*.35}" fill="#fff" dominant-baseline="middle">${s.icon}</text></svg>`)}`;
 }
 
-// ======== PROVINCES ========
-const PROVINCES = [
-  'Hà Nội', 'TP. Hồ Chí Minh', 'Thừa Thiên Huế', 'Đà Nẵng', 'Quảng Nam',
-  'Quảng Ninh', 'Ninh Bình', 'Lào Cai', 'Hà Giang', 'Cần Thơ',
-  'Hải Phòng', 'Nghệ An', 'Khánh Hòa', 'Lâm Đồng', 'Bình Định'
-];
-
-const PROVINCE_COORDS = {
-  'Hà Nội': [21.0285, 105.8542], 'TP. Hồ Chí Minh': [10.8231, 106.6297],
-  'Thừa Thiên Huế': [16.4637, 107.5909], 'Đà Nẵng': [16.0544, 108.2022],
-  'Quảng Nam': [15.8801, 108.338], 'Quảng Ninh': [20.9101, 107.1839],
-  'Ninh Bình': [20.2506, 105.9745], 'Lào Cai': [22.3356, 103.8436],
-  'Hà Giang': [23.2785, 105.359], 'Cần Thơ': [10.0328, 105.7705],
-  'Hải Phòng': [20.8550, 106.6830], 'Nghệ An': [18.6796, 105.6813],
-  'Khánh Hòa': [12.2388, 109.1967], 'Lâm Đồng': [11.9404, 108.4580],
-  'Bình Định': [13.7696, 109.2317],
-};
-
-// Build province checkboxes
-const grid = document.getElementById('provinceGrid');
-PROVINCES.forEach(p => {
-  const el = document.createElement('span');
-  el.className = 'tag';
-  el.dataset.val = p;
-  el.textContent = p;
-  el.addEventListener('click', () => el.classList.toggle('active'));
-  grid.appendChild(el);
-});
-grid.querySelector('.tag').classList.add('active');
-
-// Tag toggles
-document.querySelectorAll('.tag').forEach(tag => {
-  if (tag.parentElement.id !== 'provinceGrid') {
-    tag.addEventListener('click', () => tag.classList.toggle('active'));
-  }
-});
-
-// ======== CREATE CATEGORY ICON SVG ========
-function createCategoryIcon(categories, size = 28) {
-  const style = getCatStyle(categories);
-  const c = style.color;
-  const svg = `
-    <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="shadow"><feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.4"/></filter>
-      </defs>
-      <!-- Outer glow ring -->
-      <circle cx="${size/2}" cy="${size/2}" r="${size/2-1}" fill="${c}" opacity="0.3" stroke="${c}" stroke-width="1"/>
-      <!-- Main circle -->
-      <circle cx="${size/2}" cy="${size/2}" r="${size/2-3}" fill="${c}" stroke="#fff" stroke-width="2" filter="url(#shadow)"/>
-      <!-- Icon emoji -->
-      <text x="${size/2}" y="${size/2+3}" text-anchor="middle" font-size="${size*0.38}" fill="#fff" dominant-baseline="middle">${style.icon}</text>
-    </svg>`;
-
-  // For MapLibre marker, use data URL
-  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
-}
-
-// ======== CREATE RESTAURANT ICON SVG ========
-function createRestaurantIcon(size = 24) {
-  const svg = `
-    <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <filter id="rshadow"><feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-opacity="0.4"/></filter>
-      </defs>
-      <rect x="2" y="2" width="${size-4}" height="${size-4}" rx="5" fill="#f0a500" stroke="#fff" stroke-width="2" filter="url(#rshadow)"/>
-      <text x="${size/2}" y="${size/2+2}" text-anchor="middle" font-size="${size*0.42}" fill="#fff" dominant-baseline="middle">🍜</text>
-    </svg>`;
-  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
-}
-
-// ======== LOAD ALL SITES WITH CATEGORY ICONS ========
-async function loadAllSites() {
-  try {
-    const resp = await fetch(`${API_BASE}/api/v1/heritage-sites`);
-    const sites = await resp.json();
-    const bounds = new maplibregl.LngLatBounds();
-    let count = 0;
-
-    sites.forEach(site => {
-      if (count++ > 300) return;
-      const cats = site.categories || [];
-      const style = getCatStyle(cats);
-      const iconUrl = createCategoryIcon(cats, 30);
-
-      const el = document.createElement('img');
-      el.src = iconUrl;
-      el.style.width = '30px';
-      el.style.height = '30px';
-      el.style.cursor = 'pointer';
-
-      const catTags = cats.map(c => {
-        const s = CAT_STYLE[c] || CAT_STYLE.default;
-        return `<span class="cat-tag" style="background:${s.color}">${s.label}</span>`;
-      }).join(' ');
-
-      const popup = new maplibregl.Popup({ offset: 20 }).setHTML(`
-        <h3 style="color:${style.color}">${style.icon} ${site.name}</h3>
-        <p><strong>Tỉnh:</strong> ${site.province}</p>
-        <div style="margin:4px 0">${catTags}</div>
-        <p style="font-size:11px;color:#888">${(site.description||'').substring(0,100)}</p>
-        ${site.ticket_price ? `<p style="color:${style.color}"><strong>Vé:</strong> ${site.ticket_price.toLocaleString('vi-VN')}₫</p>` : ''}
-      `);
-
-      new maplibregl.Marker({ element: el })
-        .setLngLat([site.lng, site.lat])
-        .setPopup(popup)
-        .addTo(map);
-      bounds.extend([site.lng, site.lat]);
+// LOAD ALL SITES
+async function loadSites(){
+  const r=await fetch(`${API}/api/v1/heritage-sites`);
+  allSites=await r.json();
+  document.getElementById('siteCount').textContent=`${allSites.length} sites`;
+  const b=new maplibregl.LngLatBounds();
+  allSites.forEach((s,i)=>{
+    if(i>400)return;
+    const el=document.createElement('img');
+    const isSelected = selectedSites.has(s.id);
+    el.src=svgIcon(s.categories, isSelected ? 42 : 32);
+    el.style.cssText=`width:${isSelected?42:32}px;height:${isSelected?42:32}px;cursor:pointer;transition:filter .2s;${isSelected?'filter:brightness(1.3) drop-shadow(0 0 6px #4ecdc4);':''}`;
+    el.addEventListener('mouseenter',()=>el.style.filter=isSelected?'brightness(1.5) drop-shadow(0 0 10px #4ecdc4)':'brightness(1.3) drop-shadow(0 0 6px rgba(233,69,96,.6))');
+    el.addEventListener('mouseleave',()=>el.style.filter=isSelected?'brightness(1.3) drop-shadow(0 0 6px #4ecdc4)':'');
+    el.addEventListener('click',(e)=>{
+      e.stopPropagation();
+      toggleSelect(s, el);
+      showMiniPopup(s, el);
     });
-
-    if (sites.length > 0) map.fitBounds(bounds, { padding: 60, maxZoom: 13 });
-  } catch(e) { console.error('Load sites:', e); }
+    el.addEventListener('dblclick',(e)=>{
+      e.stopPropagation();
+      openDetail(s);
+    });
+    new maplibregl.Marker({element:el}).setLngLat([s.lng,s.lat]).addTo(map);
+    siteMarkers[s.id] = el;
+    b.extend([s.lng,s.lat]);
+  });
+  map.fitBounds(b,{padding:60,maxZoom:12});
+  updateSelectedUI();
 }
 
-// ======== GENERATE TRIP ========
-async function generateTrip() {
-  document.getElementById('loading').style.display = 'block';
-  document.getElementById('result').innerHTML = '';
-  document.getElementById('generateBtn').disabled = true;
+// SEARCH
+function searchSites(){
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  const clear = document.getElementById('searchClear');
+  const results = document.getElementById('searchResults');
+  clear.style.display = q ? 'block' : 'none';
+  
+  if (!q || q.length < 2) { results.style.display='none'; return; }
+  
+  const matches = allSites.filter(s => s.name.toLowerCase().includes(q) || s.province.toLowerCase().includes(q)).slice(0,8);
+  if (matches.length === 0) { results.style.display='none'; return; }
+  
+  results.style.display='block';
+  results.innerHTML = matches.map(s => {
+    const cat = getCat(s.categories);
+    const sel = selectedSites.has(s.id) ? '✅' : '';
+    return `<div class="search-item" onclick="flyToSite('${s.id}')" style="padding:8px;border-bottom:1px solid #1e1e3a;cursor:pointer;font-size:12px;display:flex;align-items:center;gap:6px;transition:background .15s" onmouseenter="this.style.background='#1e1e3a'" onmouseleave="this.style.background='transparent'">
+      <span style="color:${cat.color}">${cat.icon}</span>
+      <span style="flex:1">${sel} ${s.name}</span>
+      <span style="color:#888;font-size:10px">${s.province}</span>
+    </div>`;
+  }).join('');
+}
 
-  const provinces = [...document.querySelectorAll('#provinceGrid .tag.active')].map(t => t.dataset.val);
-  if (provinces.length === 0) {
-    alert('Chọn ít nhất 1 tỉnh!');
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('generateBtn').disabled = false;
-    return;
+function clearSearch(){
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchClear').style.display = 'none';
+  document.getElementById('searchResults').style.display = 'none';
+}
+
+function flyToSite(id){
+  const s = allSites.find(x=>x.id===id);
+  if(!s) return;
+  clearSearch();
+  map.flyTo({center:[s.lng,s.lat], zoom:15, duration:1000});
+  // Select and show popup after fly
+  const el = siteMarkers[s.id];
+  if (!selectedSites.has(s.id)) toggleSelect(s, el);
+  setTimeout(()=>openDetail(s), 600);
+}
+
+// CLICK-TO-SELECT
+function toggleSelect(site, markerEl){
+  if (selectedSites.has(site.id)) {
+    selectedSites.delete(site.id);
+    if (markerEl) {
+      markerEl.src = svgIcon(site.categories, 32);
+      markerEl.style.width = '32px';
+      markerEl.style.height = '32px';
+      markerEl.style.filter = '';
+    }
+    hideMiniPopup();
+  } else {
+    selectedSites.add(site.id);
+    if (markerEl) {
+      markerEl.src = svgIcon(site.categories, 42);
+      markerEl.style.width = '42px';
+      markerEl.style.height = '42px';
+      markerEl.style.filter = 'brightness(1.3) drop-shadow(0 0 8px #4ecdc4)';
+    }
   }
+  updateSelectedUI();
+}
 
-  const interests = [...document.querySelectorAll('#interestTags .tag.active')].map(t => t.dataset.val);
-  const constraints = [...document.querySelectorAll('#constraintTags .tag.active')].map(t => t.dataset.val);
-  const firstCoords = PROVINCE_COORDS[provinces[0]] || [21.0285, 105.8542];
+// MINI POPUP on select
+let miniPopupEl = null;
 
-  const payload = {
-    destination_area: provinces.join(', '),
-    destination_provinces: provinces,
-    duration_days: parseInt(document.getElementById('duration').value) || 3,
-    number_of_people: parseInt(document.getElementById('people').value) || 2,
-    interests: interests,
-    pace: document.getElementById('pace').value,
-    budget_level: document.getElementById('budget').value,
-    constraints: constraints,
-    start_lat: firstCoords[0],
-    start_lng: firstCoords[1],
+function showMiniPopup(site, markerEl) {
+  hideMiniPopup();
+  if (!selectedSites.has(site.id)) return;
+  
+  const cat = getCat(site.categories || []);
+  const price = site.ticket_price ? `${site.ticket_price.toLocaleString('vi-VN')}₫` : 'Miễn phí';
+  
+  miniPopupEl = document.createElement('div');
+  miniPopupEl.className = 'mini-popup';
+  miniPopupEl.innerHTML = `
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <span style="font-size:20px">${cat.icon}</span>
+      <div>
+        <div style="font-weight:700;color:#fff;font-size:13px">${site.name}</div>
+        <div style="font-size:10px;color:#888">📍 ${site.province}</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px">
+      ${(site.categories||[]).map(c=>`<span style="padding:2px 6px;border-radius:8px;font-size:9px;background:${(CAT_STYLE[c]||CAT_STYLE.default).color};color:#fff">${(CAT_STYLE[c]||CAT_STYLE.default).label}</span>`).join('')}
+    </div>
+    <div style="display:flex;gap:12px;font-size:10px;color:#aaa">
+      <span>🕐 ${site.opening_hours||'N/A'}</span>
+      <span style="color:#e94560">💰 ${price}</span>
+    </div>
+    <div style="margin-top:4px;font-size:10px;color:#4ecdc4;cursor:pointer" onclick="event.stopPropagation();openDetail(allSites.find(s=>s.id==='${site.id}'))">📖 Xem chi tiết →</div>
+  `;
+  
+  const pos = map.project([site.lng, site.lat]);
+  miniPopupEl.style.left = (pos.x - 130) + 'px';
+  miniPopupEl.style.top = (pos.y - 150) + 'px';
+  
+  document.getElementById('map').appendChild(miniPopupEl);
+  
+  // Reposition on map move
+  const onMove = () => {
+    if (!miniPopupEl) { map.off('move', onMove); return; }
+    const p = map.project([site.lng, site.lat]);
+    miniPopupEl.style.left = (p.x - 130) + 'px';
+    miniPopupEl.style.top = (p.y - 150) + 'px';
   };
+  map.on('move', onMove);
+  miniPopupEl._onMove = onMove;
+}
 
+function hideMiniPopup() {
+  if (miniPopupEl) {
+    if (miniPopupEl._onMove) map.off('move', miniPopupEl._onMove);
+    miniPopupEl.remove();
+    miniPopupEl = null;
+  }
+}
+
+map.on('click', (e) => {
+  // Click on empty map area hides popup but keeps selection
+  if (e.originalEvent.target === map.getCanvas()) {
+    hideMiniPopup();
+  }
+});
+
+function clearSelected(){
+  hideMiniPopup();
+  selectedSites.forEach(id => {
+    const el = siteMarkers[id];
+    if (el) {
+      const s = allSites.find(x=>x.id===id);
+      if (s) {
+        el.src = svgIcon(s.categories, 32);
+        el.style.width = '32px';
+        el.style.height = '32px';
+        el.style.filter = '';
+      }
+    }
+  });
+  selectedSites.clear();
+  updateSelectedUI();
+}
+
+function updateSelectedUI(){
+  const info = document.getElementById('selectedInfo');
+  const count = document.getElementById('selectedCount');
+  if (selectedSites.size > 0) {
+    info.style.display = 'block';
+    count.textContent = selectedSites.size;
+  } else {
+    info.style.display = 'none';
+  }
+}
+
+// DETAIL PANEL
+function openDetail(site){
+  hideMiniPopup();
+  activeSite=site;
+  document.getElementById('detail-overlay').classList.add('show');
+  document.getElementById('detail-panel').classList.add('open');
+  document.getElementById('sidebar').classList.add('collapsed');
+  document.getElementById('detail-name').textContent=site.name;
+  document.getElementById('detail-province').textContent=`📍 ${site.province}`;
+
+  const catStyle=getCat(site.categories||[]);
+  document.getElementById('detail-cats').innerHTML=(site.categories||[]).map(c=>{
+    const s=CAT_STYLE[c]||CAT_STYLE.default;
+    return `<span class="cat-badge" style="background:${s.color}">${s.icon} ${s.label}</span>`;
+  }).join('');
+
+  document.getElementById('detail-desc').textContent=site.long_description||site.description||'Đang cập nhật thông tin...';
+
+  const tips=site.visit_tips||'';
+  document.getElementById('detail-tips').textContent=tips;
+  document.getElementById('detail-tips-section').style.display=tips?'block':'none';
+
+  const oh=site.opening_hours||'08:00-17:00';
+  const price=site.ticket_price?`${site.ticket_price.toLocaleString('vi-VN')}₫`:'Miễn phí';
+  document.getElementById('detail-info').innerHTML=`
+    <div class="info-card"><div class="label">🕐 Giờ mở cửa</div><div class="value">${oh}</div></div>
+    <div class="info-card"><div class="label">💰 Giá vé</div><div class="value price">${price}</div></div>
+    <div class="info-card"><div class="label">⭐ Độ phổ biến</div><div class="value">${Math.round((site.popularity_score||0.5)*100)}%</div></div>
+    <div class="info-card"><div class="label">🏆 Lịch sử</div><div class="value">${Math.round((site.historical_importance_score||0.5)*100)}%</div></div>
+  `;
+
+  document.getElementById('detail-wiki').href=site.reference_url||`https://vi.wikipedia.org/wiki/${encodeURIComponent(site.name.replace(/ /g,'_'))}`;
+  document.getElementById('detail-maps').href=`https://www.google.com/maps?q=${site.lat},${site.lng}`;
+
+  map.flyTo({center:[site.lng,site.lat],zoom:14,duration:1000});
+
+  // Fetch images
+  loadDetailImages(site.id);
+}
+
+async function loadDetailImages(siteId) {
+  const container = document.getElementById('detail-images');
+  const wrapper = document.getElementById('detail-images-wrapper');
+  const site = allSites.find(s => s.id === siteId);
+  if (!site) return;
+  
+  container.innerHTML = '<div style="color:#888;font-size:12px;padding:20px;text-align:center"><span class="spinner" style="display:inline-block;width:16px;height:16px;border-width:2px;margin-right:8px"></span> Đang tải ảnh...</div>';
+  document.getElementById('carousel-prev').style.display = 'none';
+  document.getElementById('carousel-next').style.display = 'none';
+  document.getElementById('carousel-dots').style.display = 'none';
+  
   try {
-    const resp = await fetch(`${API_BASE}/api/v1/trips/recommend`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    const itinerary = await resp.json();
-    renderItinerary(itinerary);
-    renderRouteOnMap(itinerary);
-  } catch (e) {
-    document.getElementById('result').innerHTML = `<p style="color:#e94560">Lỗi: ${e.message}</p>`;
-  } finally {
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('generateBtn').disabled = false;
-  }
-}
-
-function renderItinerary(itinerary) {
-  let html = '';
-  if (itinerary.total_score) {
-    html += `
-      <div class="summary-box">
-        <strong>✨ Chất lượng: ${(itinerary.total_score*100).toFixed(0)}%</strong><br>
-        📏 Tổng quãng đường: ${itinerary.total_distance_km} km<br>
-        🛣️ OSRM road routes: ${(itinerary.route_geometries||[]).filter(g=>g).length} ngày
-      </div>`;
-  }
-  (itinerary.days||[]).forEach(day => {
-    html += `<div class="day-card"><h3>📅 Ngày ${day.day} — ${day.date||'N/A'}</h3>`;
-    (day.items||[]).forEach(item => {
-      const isFood = item.type === 'restaurant';
-      const icon = isFood ? '🍜' : '📍';
-      html += `
-        <div class="item-row" onclick="flyToItem('${item.ref_id}')">
-          <span class="time">${item.time||''}</span>
-          <span>${icon} ${item.name}</span>
+    const resp = await fetch(`${API}/api/v1/heritage-sites/${siteId}/images`);
+    const data = await resp.json();
+    const images = data.images || [];
+    
+    if (images.length === 0) {
+      const cat = getCat(site.categories || []);
+      const wikiUrl = site.reference_url || `https://vi.wikipedia.org/wiki/${encodeURIComponent(site.name.replace(/ /g,' '))}`;
+      const googleImgUrl = `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(site.name + ' ' + site.province + ' Vietnam')}`;
+      
+      container.innerHTML = `
+        <div style="width:100%;padding:16px;text-align:center">
+          <div style="font-size:48px;margin-bottom:8px">${cat.icon}</div>
+          <div style="color:#888;font-size:12px;margin-bottom:12px">Chưa có ảnh trong bộ sưu tập</div>
+          <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+            <a href="${googleImgUrl}" target="_blank" rel="noopener" style="padding:6px 14px;border-radius:20px;background:#e9456022;color:#e94560;text-decoration:none;font-size:12px;border:1px solid #e9456044">🔍 Google Images</a>
+            <a href="${wikiUrl}" target="_blank" rel="noopener" style="padding:6px 14px;border-radius:20px;background:#4a90d922;color:#4a90d9;text-decoration:none;font-size:12px;border:1px solid #4a90d944">📘 Wikipedia</a>
+          </div>
         </div>`;
-    });
-    html += '</div>';
-  });
-  document.getElementById('result').innerHTML = html || '<p>Không có kết quả.</p>';
+      return;
+    }
+    
+    // Build carousel
+    window._carouselIdx = 0;
+    window._carouselImages = images;
+    
+    container.innerHTML = images.map((img, i) => `
+      <div class="carousel-slide" style="flex-shrink:0;width:100%;scroll-snap-align:start" data-idx="${i}">
+        <div class="img-card" onclick="openLightbox(${i})" style="width:100%;height:220px;border-radius:10px;overflow:hidden;cursor:pointer;position:relative;background:#1e1e3a">
+          <img src="${img.thumb_url}" alt="${img.title||''}" loading="lazy" 
+               style="width:100%;height:100%;object-fit:cover;transition:transform .3s"
+               onerror="this.parentElement.innerHTML='<div style=color:#666;font-size:11px;padding:40px;text-align:center;display:flex;align-items:center;justify-content:center;height:100%>⚠ Ảnh không tải được</div>'"
+               onmouseenter="this.style.transform='scale(1.03)'"
+               onmouseleave="this.style.transform='scale(1)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.8));padding:8px 12px;font-size:11px;color:#ddd">
+            ${img.title||'Wikimedia Commons'}
+          </div>
+        </div>
+      </div>
+    `).join('');
+    
+    // Dots
+    const dotsEl = document.getElementById('carousel-dots');
+    dotsEl.innerHTML = images.map((_, i) => 
+      `<button onclick="carouselGoTo(${i})" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;background:${i===0?'#e94560':'#2a2a4a'};transition:background .2s" data-dot="${i}"></button>`
+    ).join('');
+    dotsEl.style.display = 'flex';
+    
+    // Show nav if multiple images
+    if (images.length > 1) {
+      document.getElementById('carousel-prev').style.display = 'block';
+      document.getElementById('carousel-next').style.display = 'block';
+    }
+    
+    // Listen for scroll to update dots
+    container.onscroll = updateCarouselDots;
+    
+  } catch(e) {
+    container.innerHTML = '<div style="color:#666;font-size:12px;padding:20px;text-align:center">⚠ Không thể tải ảnh</div>';
+  }
 }
 
-// ======== RENDER ROUTE ON MAP ========
-function renderRouteOnMap(itinerary) {
-  clearMap();
-  const bounds = new maplibregl.LngLatBounds();
-  const dayColors = ['#e94560', '#f0a500', '#4ecdc4', '#6c5ce7', '#00cec9', '#fd79a8'];
-
-  // OSRM road route geometries
-  (itinerary.route_geometries||[]).forEach((geom, di) => {
-    if (!geom || geom.length < 2) return;
-    const color = dayColors[di % dayColors.length];
-    const lineId = `route-${di}`;
-    routeIds.push(lineId);
-
-    map.addSource(lineId, {
-      type: 'geojson',
-      data: { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: geom } }
-    });
-    map.addLayer({
-      id: lineId,
-      type: 'line',
-      source: lineId,
-      layout: { 'line-join': 'round', 'line-cap': 'round' },
-      paint: { 'line-color': color, 'line-width': 4, 'line-opacity': 0.8 }
-    });
-    geom.forEach(c => bounds.extend(c));
-  });
-
-  // Points with category icons
-  let ptCount = 0;
-  (itinerary.days||[]).forEach((day, di) => {
-    const color = dayColors[di % dayColors.length];
-    (day.items||[]).forEach(item => {
-      fetch(`${API_BASE}/api/v1/heritage-sites/${item.ref_id}`)
-        .then(r => r.json())
-        .then(site => {
-          if (!site.lat || !site.lng) return;
-          const isFood = item.type === 'restaurant';
-          const cats = site.categories || [];
-
-          let el;
-          if (isFood) {
-            el = document.createElement('img');
-            el.src = createRestaurantIcon(26);
-            el.style.width = '26px'; el.style.height = '26px'; el.style.cursor = 'pointer';
-          } else {
-            el = document.createElement('img');
-            el.src = createCategoryIcon(cats, 34);
-            el.style.width = '34px'; el.style.height = '34px'; el.style.cursor = 'pointer';
-          }
-
-          const style = getCatStyle(cats);
-          const catTags = cats.map(c => {
-            const s = CAT_STYLE[c] || CAT_STYLE.default;
-            return `<span class="cat-tag" style="background:${s.color}">${s.label}</span>`;
-          }).join(' ');
-
-          const popup = new maplibregl.Popup({ offset: 18 }).setHTML(`
-            <h3 style="color:${style.color}">${item.name}</h3>
-            <p><strong>Ngày ${day.day}:</strong> ${item.time||'N/A'}</p>
-            ${catTags ? `<div style="margin:4px 0">${catTags}</div>` : ''}
-            <p style="font-size:11px">${item.reason||''}</p>
-            ${item.distance_from_previous_m ? `<p style="font-size:10px;color:#888">↔ ${(item.distance_from_previous_m/1000).toFixed(1)}km from previous</p>` : ''}
-          `);
-
-          new maplibregl.Marker({ element: el })
-            .setLngLat([site.lng, site.lat])
-            .setPopup(popup)
-            .addTo(map);
-          bounds.extend([site.lng, site.lat]);
-        })
-        .catch(() => {});
-    });
-  });
-
-  setTimeout(() => {
-    if (!bounds.isEmpty()) map.fitBounds(bounds, { padding: 80, maxZoom: 13 });
-  }, 2500);
+function carouselMove(dir) {
+  const container = document.getElementById('detail-images');
+  const slides = container.querySelectorAll('.carousel-slide');
+  if (!slides.length) return;
+  
+  let idx = window._carouselIdx + dir;
+  if (idx < 0) idx = slides.length - 1;
+  if (idx >= slides.length) idx = 0;
+  carouselGoTo(idx);
 }
 
-function flyToItem(refId) {
-  fetch(`${API_BASE}/api/v1/heritage-sites/${refId}`)
-    .then(r => r.json())
-    .then(site => {
-      if (site.lat && site.lng) map.flyTo({ center: [site.lng, site.lat], zoom: 15 });
-    });
+function carouselGoTo(idx) {
+  const container = document.getElementById('detail-images');
+  const slides = container.querySelectorAll('.carousel-slide');
+  if (!slides.length || idx >= slides.length) return;
+  
+  window._carouselIdx = idx;
+  slides[idx].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'});
+  updateCarouselDots();
 }
 
-// Initial load
-loadAllSites();
+function updateCarouselDots() {
+  const container = document.getElementById('detail-images');
+  const slides = container.querySelectorAll('.carousel-slide');
+  if (!slides.length) return;
+  
+  const containerCenter = container.scrollLeft + container.clientWidth / 2;
+  let closest = 0, closestDist = Infinity;
+  slides.forEach((s, i) => {
+    const sCenter = s.offsetLeft + s.clientWidth / 2;
+    const dist = Math.abs(sCenter - containerCenter);
+    if (dist < closestDist) { closestDist = dist; closest = i; }
+  });
+  
+  window._carouselIdx = closest;
+  document.querySelectorAll('#carousel-dots [data-dot]').forEach((d, i) => {
+    d.style.background = i === closest ? '#e94560' : '#2a2a4a';
+  });
+}
+
+// Lightbox
+function openLightbox(index) {
+  const images = window._carouselImages;
+  if (!images || !images.length) return;
+  
+  let lb = document.getElementById('lightbox');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'lightbox';
+    lb.style.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,.92);z-index:200;display:flex;align-items:center;justify-content:center;flex-direction:column;cursor:pointer';
+    lb.addEventListener('click', (e) => { if (e.target === lb) lb.remove(); });
+    document.body.appendChild(lb);
+  }
+  
+  const img = images[index];
+  lb.innerHTML = `
+    <button onclick="document.getElementById('lightbox').remove()" style="position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:#333;border:none;color:#fff;font-size:20px;cursor:pointer">✕</button>
+    <img src="${img.url}" style="max-width:90vw;max-height:80vh;border-radius:8px;box-shadow:0 4px 32px rgba(0,0,0,.5)">
+    <div style="color:#aaa;margin-top:12px;font-size:13px">${img.title||''}</div>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      ${images.map((_, i) => `<button onclick="event.stopPropagation();openLightbox(${i})" style="width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;background:${i===index?'#e94560':'#444'}"></button>`).join('')}
+    </div>
+  `;
+}
+
+function closeDetail(){
+  hideMiniPopup();
+  document.getElementById('detail-overlay').classList.remove('show');
+  document.getElementById('detail-panel').classList.remove('open');
+  document.getElementById('sidebar').classList.remove('collapsed');
+  activeSite=null;
+}
+
+// TRIP
+async function generateTrip(){
+  document.getElementById('loading').style.display='block';
+  document.getElementById('result').innerHTML='';
+  document.getElementById('generateBtn').disabled=true;
+  const provs=[...document.querySelectorAll('#provinceGrid .tag.active')].map(t=>t.dataset.val);
+  if(!provs.length){alert('Chọn ít nhất 1 tỉnh!');document.getElementById('loading').style.display='none';document.getElementById('generateBtn').disabled=false;return}
+  const interests=[...document.querySelectorAll('#interestTags .tag.active')].map(t=>t.dataset.val);
+  const constraints=[...document.querySelectorAll('#constraintTags .tag.active')].map(t=>t.dataset.val);
+  const [slat,slng]=PROV_COORDS[provs[0]]||[21.0285,105.8542];
+  try{
+    const mustVisit = [...selectedSites];
+    const r=await fetch(`${API}/api/v1/trips/recommend`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({destination_provinces:provs,duration_days:parseInt(document.getElementById('duration').value)||3,number_of_people:parseInt(document.getElementById('people').value)||2,interests,pace:document.getElementById('pace').value,budget_level:document.getElementById('budget').value,constraints,must_visit_site_ids:mustVisit,start_lat:slat,start_lng:slng})});
+    const d=await r.json();
+    renderItinerary(d);
+    renderRoute(d);
+  }catch(e){document.getElementById('result').innerHTML=`<p style="color:#e94560">${e.message}</p>`}
+  finally{document.getElementById('loading').style.display='none';document.getElementById('generateBtn').disabled=false}
+}
+
+function renderItinerary(d){
+  let h='';
+  if(d.total_score)h+=`<div class="summary-box"><strong>✨ ${(d.total_score*100).toFixed(0)}%</strong> | 📏 ${d.total_distance_km}km | 🛣️ ${(d.route_geometries||[]).filter(g=>g).length} routes</div>`;
+  (d.days||[]).forEach(day=>{
+    h+=`<div class="day-card"><h3>📅 Ngày ${day.day} — ${day.date||''}</h3>`;
+    (day.items||[]).forEach(it=>h+=`<div class="item-row" onclick="flyTo('${it.ref_id}')"><span class="time">${it.time||''}</span><span>${it.type==='restaurant'?'🍜':'📍'} ${it.name}</span></div>`);
+    h+='</div>';
+  });
+  document.getElementById('result').innerHTML=h||'<p>Không có kết quả.</p>';
+}
+
+function renderRoute(d){
+  routeIds.forEach(id=>{try{map.getLayer(id)&&map.removeLayer(id)}catch(e){}try{map.getSource(id)&&map.removeSource(id)}catch(e){}});
+  routeIds=[];
+  const colors=['#e94560','#f0a500','#4ecdc4','#6c5ce7','#00cec9','#fd79a8'];
+  const bounds=new maplibregl.LngLatBounds();
+  (d.route_geometries||[]).forEach((geom,i)=>{
+    if(!geom||geom.length<2)return;
+    const c=colors[i%colors.length],lid=`r${i}`;routeIds.push(lid);
+    map.addSource(lid,{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:geom}}});
+    map.addLayer({id:lid,type:'line',source:lid,layout:{'line-join':'round','line-cap':'round'},paint:{'line-color':c,'line-width':4,'line-opacity':.8}});
+    geom.forEach(x=>bounds.extend(x));
+  });
+  // Add result markers
+  (d.days||[]).forEach((day,di)=>{
+    const c=colors[di%colors.length];
+    (day.items||[]).forEach(it=>{
+      const site=allSites.find(s=>s.id===it.ref_id);
+      if(!site)return;
+      const el=document.createElement('img');
+      el.src=it.type==='restaurant'?`data:image/svg+xml,${encodeURIComponent('<svg width="26" height="26"><rect x="2" y="2" width="22" height="22" rx="5" fill="#f0a500" stroke="#fff" stroke-width="2"/><text x="13" y="16" text-anchor="middle" font-size="12" fill="#fff">🍜</text></svg>')}`:svgIcon(site.categories,36);
+      el.style.cssText=`width:${it.type==='restaurant'?'26px':'36px'};height:${it.type==='restaurant'?'26px':'36px'};cursor:pointer`;
+      el.addEventListener('click',()=>openDetail(site));
+      new maplibregl.Marker({element:el}).setLngLat([site.lng,site.lat]).addTo(map);
+      bounds.extend([site.lng,site.lat]);
+    });
+  });
+  setTimeout(()=>{if(!bounds.isEmpty())map.fitBounds(bounds,{padding:80,maxZoom:12})},1500);
+}
+
+function flyTo(id){
+  const s=allSites.find(x=>x.id===id);
+  if(s)openDetail(s);
+}
+
+loadSites();
 </script>
-
 </body>
 </html>
