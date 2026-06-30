@@ -27,23 +27,26 @@ def _get_db() -> sqlite3.Connection:
 def init_db():
     """Create tables if not exists."""
     os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
-    with _get_db() as conn:
-        conn.execute("""
-            CREATE TABLE IF NOT EXISTS site_images (
-                site_id TEXT NOT NULL,
-                thumb_url TEXT NOT NULL,
-                url TEXT NOT NULL DEFAULT '',
-                title TEXT DEFAULT '',
-                width INTEGER DEFAULT 0,
-                height INTEGER DEFAULT 0,
-                source TEXT DEFAULT 'wikipedia',
-                idx INTEGER DEFAULT 0,
-                created_at REAL DEFAULT (strftime('%s','now')),
-                PRIMARY KEY (site_id, idx)
-            )
-        """)
-        conn.execute("CREATE INDEX IF NOT EXISTS idx_site_images_site ON site_images(site_id)")
-        conn.commit()
+    conn = _get_db()
+    try:
+        with conn:
+            conn.execute("""
+                CREATE TABLE IF NOT EXISTS site_images (
+                    site_id TEXT NOT NULL,
+                    thumb_url TEXT NOT NULL,
+                    url TEXT NOT NULL DEFAULT '',
+                    title TEXT DEFAULT '',
+                    width INTEGER DEFAULT 0,
+                    height INTEGER DEFAULT 0,
+                    source TEXT DEFAULT 'wikipedia',
+                    idx INTEGER DEFAULT 0,
+                    created_at REAL DEFAULT (strftime('%s','now')),
+                    PRIMARY KEY (site_id, idx)
+                )
+            """)
+            conn.execute("CREATE INDEX IF NOT EXISTS idx_site_images_site ON site_images(site_id)")
+    finally:
+        conn.close()
 
 
 def get_images(site_id: str) -> List[Dict]:
@@ -63,11 +66,15 @@ def get_images(site_id: str) -> List[Dict]:
 
     # Check DB
     try:
-        with _get_db() as conn:
-            rows = conn.execute(
-                "SELECT site_id, thumb_url, url, title, width, height, source FROM site_images WHERE site_id = ? ORDER BY idx",
-                (site_id,)
-            ).fetchall()
+        conn = _get_db()
+        try:
+            with conn:
+                rows = conn.execute(
+                    "SELECT site_id, thumb_url, url, title, width, height, source FROM site_images WHERE site_id = ? ORDER BY idx",
+                    (site_id,)
+                ).fetchall()
+        finally:
+            conn.close()
 
         images = []
         for row in rows:
@@ -99,17 +106,20 @@ def store_images(site_id: str, images: List[Dict], source: str = "wikipedia"):
         return
 
     try:
-        with _get_db() as conn:
-            # Delete existing
-            conn.execute("DELETE FROM site_images WHERE site_id = ?", (site_id,))
-            # Insert new
-            for idx, img in enumerate(images):
-                conn.execute(
-                    "INSERT INTO site_images (site_id, thumb_url, url, title, width, height, source, idx) VALUES (?,?,?,?,?,?,?,?)",
-                    (site_id, img.get("thumb_url", ""), img.get("url", img.get("thumb_url", "")),
-                     img.get("title", ""), img.get("width", 0), img.get("height", 0), source, idx)
-                )
-            conn.commit()
+        conn = _get_db()
+        try:
+            with conn:
+                # Delete existing
+                conn.execute("DELETE FROM site_images WHERE site_id = ?", (site_id,))
+                # Insert new
+                for idx, img in enumerate(images):
+                    conn.execute(
+                        "INSERT INTO site_images (site_id, thumb_url, url, title, width, height, source, idx) VALUES (?,?,?,?,?,?,?,?)",
+                        (site_id, img.get("thumb_url", ""), img.get("url", img.get("thumb_url", "")),
+                         img.get("title", ""), img.get("width", 0), img.get("height", 0), source, idx)
+                    )
+        finally:
+            conn.close()
     except Exception as e:
         logger.error(f"store_images failed for {site_id}: {e}")
         return
@@ -128,9 +138,13 @@ def has_images(site_id: str) -> bool:
         if site_id in _mem_cache:
             return True
     try:
-        with _get_db() as conn:
-            row = conn.execute("SELECT 1 FROM site_images WHERE site_id = ? LIMIT 1", (site_id,)).fetchone()
-            return row is not None
+        conn = _get_db()
+        try:
+            with conn:
+                row = conn.execute("SELECT 1 FROM site_images WHERE site_id = ? LIMIT 1", (site_id,)).fetchone()
+                return row is not None
+        finally:
+            conn.close()
     except Exception:
         return False
 
@@ -138,10 +152,14 @@ def has_images(site_id: str) -> bool:
 def get_stats() -> dict:
     """Get store statistics."""
     try:
-        with _get_db() as conn:
-            total_sites = conn.execute("SELECT COUNT(DISTINCT site_id) FROM site_images").fetchone()[0]
-            total_imgs = conn.execute("SELECT COUNT(*) FROM site_images").fetchone()[0]
-            return {"sites_with_images": total_sites, "total_images": total_imgs}
+        conn = _get_db()
+        try:
+            with conn:
+                total_sites = conn.execute("SELECT COUNT(DISTINCT site_id) FROM site_images").fetchone()[0]
+                total_imgs = conn.execute("SELECT COUNT(*) FROM site_images").fetchone()[0]
+                return {"sites_with_images": total_sites, "total_images": total_imgs}
+        finally:
+            conn.close()
     except Exception:
         return {"sites_with_images": 0, "total_images": 0}
 

@@ -200,8 +200,10 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
         budget = extract_budget(text)
         constraints = extract_constraints(text)
         duration = extract_duration(text)
-
-        coords = PROVINCE_COORDS.get(destination, (raw_input.start_lat or 21.0285, raw_input.start_lng or 105.8542))
+        if raw_input.start_lat is not None and raw_input.start_lng is not None:
+            coords = (raw_input.start_lat, raw_input.start_lng)
+        else:
+            coords = PROVINCE_COORDS.get(destination, (21.0285, 105.8542))
         provinces = raw_input.destination_provinces or [destination]
         end_loc = {"lat": raw_input.end_lat, "lng": raw_input.end_lng} if raw_input.end_lat and raw_input.end_lng else None
 
@@ -224,9 +226,10 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
 
     provinces = raw_input.destination_provinces or [raw_input.destination_area or "Hà Nội"]
     end_loc = {"lat": raw_input.end_lat, "lng": raw_input.end_lng} if raw_input.end_lat and raw_input.end_lng else None
+    dest_area = raw_input.destination_area or ", ".join(provinces)
 
     return TripRequest(
-        destination_area=raw_input.destination_area or "Hà Nội",
+        destination_area=dest_area,
         destination_provinces=provinces,
         start_date=raw_input.start_date or "",
         end_date=raw_input.end_date or "",

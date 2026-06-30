@@ -20,6 +20,11 @@ echo ""
 
 install_deps() {
     echo -e "${YELLOW}[1/4] Installing Python dependencies...${NC}"
+    if [ ! -d ".venv" ]; then
+        echo -e "${YELLOW}  → Creating virtual environment...${NC}"
+        python3 -m venv .venv
+    fi
+    source .venv/bin/activate
     pip install -r requirements.txt -q
     echo -e "${GREEN}  ✓ Dependencies installed${NC}"
 }
@@ -39,6 +44,7 @@ start_infra() {
 
 start_ai() {
     echo -e "${YELLOW}[3/4] Starting AI Service on port 8001...${NC}"
+    source .venv/bin/activate
     PYTHONPATH="$PROJECT_DIR" python -m services.ai_service.main &
     AI_PID=$!
     echo -e "${GREEN}  ✓ AI Service started (PID: $AI_PID)${NC}"
@@ -47,16 +53,12 @@ start_ai() {
 
 start_gateway() {
     echo -e "${YELLOW}[4/4] Starting API Gateway on port 8000...${NC}"
+    source .venv/bin/activate
     PYTHONPATH="$PROJECT_DIR" python -m api_gateway.main &
     GW_PID=$!
     echo -e "${GREEN}  ✓ API Gateway started (PID: $GW_PID)${NC}"
     echo "  → http://localhost:8000"
     echo "  → http://localhost:8000/docs"
-    echo ""
-    echo -e "${GREEN}========================================${NC}"
-    echo -e "${GREEN}  🎉 System is running!${NC}"
-    echo -e "${GREEN}  Open http://localhost:8000 in browser${NC}"
-    echo -e "${GREEN}========================================${NC}"
 }
 
 cleanup() {

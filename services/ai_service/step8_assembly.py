@@ -26,6 +26,7 @@ def assemble_itinerary(
     score_count = len(all_scored)
 
     for day_plan in day_plans:
+        current_time_minutes = 8 * 60  # start at 08:00
         prev = None
         for item in day_plan.items:
             if prev and item.type in ("heritage", "restaurant") and prev.type in ("heritage", "restaurant"):
@@ -34,8 +35,33 @@ def assemble_itinerary(
                 if prev_coords and curr_coords:
                     dist = haversine(*prev_coords, *curr_coords)
                     item.distance_from_previous_m = round(dist, 1)
-                    item.travel_from_previous_minutes = max(1, int(dist / 200))  # approx walking
+                    # Convert straight-line distance to approx driving time at 30km/h (500m/min)
+                    item.travel_from_previous_minutes = max(1, int(dist / 500))
                     total_distance += dist
+
+            # Add travel time to current time
+            current_time_minutes += item.travel_from_previous_minutes
+            
+            # Get visit duration
+            visit_duration = 60
+            if item.type == "heritage":
+                for sc in all_scored:
+                    if sc.site.id == item.ref_id:
+                        visit_duration = sc.site.estimated_visit_minutes
+                        break
+            elif item.type == "restaurant":
+                visit_duration = 45
+                
+            start_hh = int(current_time_minutes // 60) % 24
+            start_mm = int(current_time_minutes % 60)
+            
+            current_time_minutes += visit_duration
+            
+            end_hh = int(current_time_minutes // 60) % 24
+            end_mm = int(current_time_minutes % 60)
+            
+            item.time = f"{start_hh:02d}:{start_mm:02d}-{end_hh:02d}:{end_mm:02d}"
+            
             prev = item
 
     if score_count > 0:

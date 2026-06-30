@@ -68,6 +68,8 @@ async def recommend(input_data: TripInput):
         itinerary = await pipeline.run(input_data)
         return itinerary
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -207,6 +209,42 @@ async def enrich_site_info(site_id: str):
     data = enrich_site(site.name, site.province, site.reference_url or "")
     save_enriched(site_id, data)
     return {"site_id": site_id, "name": site.name, **data}
+
+
+@app.get("/api/v1/heritage-sites/{site_id}/narrate")
+async def get_site_narration(site_id: str):
+    """Get narration text for a heritage site, using its description and wikipedia info."""
+    site = None
+    for s in pipeline._sites_cache:
+        if s.id == site_id:
+            site = s
+            break
+    if not site:
+        raise HTTPException(status_code=404, detail="Site not found")
+        
+    # Attempt to fetch summary from Wikipedia API
+    import urllib.request
+    import json
+    import urllib.parse
+    
+    summary = ""
+    try:
+        query = urllib.parse.quote(site.name)
+        url = f"https://vi.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles={query}"
+        req = urllib.request.Request(url, headers={'User-Agent': 'HeritageTravelApp/1.0'})
+        with urllib.request.urlopen(req, timeout=3) as response:
+            data = json.loads(response.read().decode())
+            pages = data['query']['pages']
+            page = list(pages.values())[0]
+            if 'extract' in page:
+                summary = page['extract'][:500] + "..." if len(page['extract']) > 500 else page['extract']
+    except Exception:
+        pass
+        
+    fallback = site.long_description or site.description or "Hiện chưa có thông tin chi tiết về địa điểm này."
+    final_text = summary if summary and len(summary) > 50 else fallback
+    
+    return {"site_id": site_id, "name": site.name, "narration": final_text}
 
 
 if __name__ == "__main__":

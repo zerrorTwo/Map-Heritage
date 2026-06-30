@@ -6,6 +6,7 @@ No external API calls on subsequent requests.
 
 import json
 import os
+import threading
 from typing import Dict, List, Optional
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "data")
@@ -14,12 +15,16 @@ ENRICH_FILE = os.path.join(DATA_DIR, "enrich_store.json")
 
 os.makedirs(DATA_DIR, exist_ok=True)
 
+# Locks to ensure thread safety when writing to the store
+_reviews_lock = threading.Lock()
+_enrich_lock = threading.Lock()
 
 def _load(path: str) -> dict:
     try:
         with open(path, "r", encoding="utf-8") as f:
             return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
+    except Exception as e:
+        print(f"Error loading {path}: {e}")
         return {}
 
 
@@ -30,32 +35,40 @@ def _save(path: str, data: dict):
 
 def get_reviews(site_id: str) -> Optional[List[dict]]:
     """Get cached reviews for a site."""
-    store = _load(REVIEWS_FILE)
-    return store.get(site_id)
+    with _reviews_lock:
+        store = _load(REVIEWS_FILE)
+        return store.get(site_id)
 
 
 def save_reviews(site_id: str, reviews: List[dict]):
     """Save reviews for a site."""
-    store = _load(REVIEWS_FILE)
-    store[site_id] = reviews
-    _save(REVIEWS_FILE, store)
+    with _reviews_lock:
+        store = _load(REVIEWS_FILE)
+        store[site_id] = reviews
+        _save(REVIEWS_FILE, store)
 
 
 def get_enriched(site_id: str) -> Optional[dict]:
     """Get cached enriched data for a site."""
-    store = _load(ENRICH_FILE)
-    return store.get(site_id)
+    with _enrich_lock:
+        store = _load(ENRICH_FILE)
+        return store.get(site_id)
 
 
 def save_enriched(site_id: str, data: dict):
     """Save enriched data for a site."""
-    store = _load(ENRICH_FILE)
-    store[site_id] = data
-    _save(ENRICH_FILE, store)
+    with _enrich_lock:
+        store = _load(ENRICH_FILE)
+        store[site_id] = data
+        _save(ENRICH_FILE, store)
 
 
 def get_stats() -> dict:
+    with _reviews_lock:
+        reviews_cached = len(_load(REVIEWS_FILE))
+    with _enrich_lock:
+        enriched_cached = len(_load(ENRICH_FILE))
     return {
-        "reviews_cached": len(_load(REVIEWS_FILE)),
-        "enriched_cached": len(_load(ENRICH_FILE)),
+        "reviews_cached": reviews_cached,
+        "enriched_cached": enriched_cached,
     }

@@ -68,27 +68,48 @@ class Pipeline:
         top5 = [(s.site.name, f"{s.score:.3f}", "★" if s.site.id in must_ids else "") for s in scored[:5]]
         log.info(f"STEP 4 — Scoring ({time_mod.time()-t0:.2f}s): {len(scored)} scored | must-visit: {len(must_ids)} | top: {top5}")
 
-        # Step 5: Day clustering
+        # Step 5 & 6: TTDP Route Optimization (OR-Tools)
         t0 = time_mod.time()
-        clusters = split_into_days(scored, trip.duration_days, trip.pace)
-        cluster_sizes = [len(c) for c in clusters]
-        log.info(f"STEP 5 — Clustering ({time_mod.time()-t0:.2f}s): {len(clusters)} days | sizes: {cluster_sizes}")
+        
+        start_lat = trip.start_location.get('lat') if trip.start_location else 21.0285
+        start_lng = trip.start_location.get('lng') if trip.start_location else 105.8542
+        end_lat = trip.end_location.get('lat') if trip.end_location else start_lat
+        end_lng = trip.end_location.get('lng') if trip.end_location else start_lng
+        
+        locations = [(start_lat, start_lng), (end_lat, end_lng)]
+        scores = [0.0, 0.0]
+        durations = [0, 0]
+        time_windows = [(0, 100000), (0, 100000)]
+        
+        for s in scored:
+            locations.append((s.site.lat, s.site.lng))
+            scores.append(s.score)
+            durations.append(s.site.estimated_visit_minutes * 60)
+            time_windows.append((0, 100000))
 
-        # Step 6: Route optimization per day with OSRM
-        t0 = time_mod.time()
-        route_tasks = [
-            asyncio.to_thread(optimize_route, c) if c else asyncio.sleep(0, result=(c, None))
-            for c in clusters
-        ]
-        route_results = await asyncio.gather(*route_tasks)
+        max_sec_per_day = 8 * 3600
+        from services.ai_service.ttdp_solver import solve_ttdp
+        routes_indices = await asyncio.to_thread(
+            solve_ttdp, locations, scores, durations, time_windows,
+            trip.duration_days, max_sec_per_day, speed_kmh=40.0, time_limit_sec=2
+        )
+        
         optimized_clusters = []
-        route_geoms = []
-        for di, (ordered, geom) in enumerate(route_results):
-            optimized_clusters.append(ordered)
-            route_geoms.append(geom)
-            wp = len(geom) if geom else 0
-            log.info(f"  Day {di+1} OSRM: {len(ordered)} sites ordered | route: {wp} waypoints")
-        log.info(f"STEP 6 — Routing ({time_mod.time()-t0:.2f}s): {sum(1 for g in route_geoms if g)}/{len(route_geoms)} OSRM routes")
+        for route_idx in routes_indices:
+            cluster = [scored[i - 2] for i in route_idx]
+            optimized_clusters.append(cluster)
+            
+        log.info(f"STEP 5/6 — TTDP Routing ({time_mod.time()-t0:.2f}s): {len(routes_indices)} days optimized")
+
+        # Geometry fallback
+        t0 = time_mod.time()
+        from services.ai_service.step6_routing import get_route_geometry
+        route_tasks = [
+            asyncio.to_thread(get_route_geometry, c) if c else asyncio.sleep(0, result=None)
+            for c in optimized_clusters
+        ]
+        route_geoms = await asyncio.gather(*route_tasks)
+        log.info(f"STEP 6b — Geometry ({time_mod.time()-t0:.2f}s)")
 
         # Step 7: Day plans
         t0 = time_mod.time()

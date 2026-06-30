@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.4",
+    "@turf/turf": "^7.3.5",
     "@vitejs/plugin-react": "4.3.4",
-    "vite": "5.4.21",
-    "typescript": "5.7.2",
+    "maplibre-gl": "^4.7.1",
     "react": "latest",
     "react-dom": "latest",
-    "maplibre-gl": "^4.7.1"
-  },
-  "devDependencies": {}
+    "typescript": "5.7.2",
+    "vite": "5.4.21"
+  }
 }
