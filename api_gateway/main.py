@@ -32,19 +32,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Mount static files for frontend
 import os
-frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend")
+project_root = os.path.dirname(os.path.dirname(__file__))
+frontend_dir = os.path.join(project_root, "frontend")
+frontend_dist_dir = os.path.join(frontend_dir, "dist")
+frontend_assets_dir = os.path.join(frontend_dist_dir, "assets")
+if os.path.exists(frontend_assets_dir):
+    app.mount("/assets", StaticFiles(directory=frontend_assets_dir), name="frontend-assets")
 if os.path.exists(frontend_dir):
     app.mount("/static", StaticFiles(directory=frontend_dir), name="static")
 
 
 @app.get("/")
 async def root():
-    """Serve the MapLibre GL JS frontend."""
-    frontend_path = os.path.join(
-        os.path.dirname(os.path.dirname(__file__)), "frontend", "map.html"
-    )
+    """Serve the React frontend, falling back to the legacy static map."""
+    react_path = os.path.join(frontend_dist_dir, "index.html")
+    if os.path.exists(react_path):
+        return FileResponse(react_path)
+    frontend_path = os.path.join(frontend_dir, "map.html")
     if os.path.exists(frontend_path):
         return FileResponse(frontend_path)
     return {"message": "Vietnam Heritage Travel API Gateway", "docs": "/docs"}
@@ -71,7 +76,7 @@ async def health():
 async def recommend_trip(payload: dict):
     """Forward trip recommendation request to AI service."""
     try:
-        async with httpx.AsyncClient(timeout=60) as client:
+        async with httpx.AsyncClient(timeout=120) as client:
             resp = await client.post(
                 f"{settings.ai_service_url}/api/v1/recommend",
                 json=payload,
@@ -79,7 +84,24 @@ async def recommend_trip(payload: dict):
             resp.raise_for_status()
             return resp.json()
     except httpx.HTTPStatusError as e:
-        raise HTTPException(status_code=e.response.status_code, detail=str(e))
+        raise HTTPException(status_code=e.response.status_code, detail=_error_detail(e))
+    except httpx.RequestError as e:
+        raise HTTPException(status_code=503, detail=f"AI service unavailable: {str(e)}")
+
+
+@app.post("/api/v1/routes/plan")
+async def route_plan(payload: dict):
+    """Forward fixed start/end route planning request to AI service."""
+    try:
+        async with httpx.AsyncClient(timeout=120) as client:
+            resp = await client.post(
+                f"{settings.ai_service_url}/api/v1/routes/plan",
+                json=payload,
+            )
+            resp.raise_for_status()
+            return resp.json()
+    except httpx.HTTPStatusError as e:
+        raise HTTPException(status_code=e.response.status_code, detail=_error_detail(e))
     except httpx.RequestError as e:
         raise HTTPException(status_code=503, detail=f"AI service unavailable: {str(e)}")
 
@@ -203,6 +225,13 @@ async def enrich_site(site_id: str):
 async def _load_local_sites():
     """Fallback: load sites from local seed data."""
     return []
+
+
+def _error_detail(error: httpx.HTTPStatusError):
+    try:
+        return error.response.json().get("detail", error.response.text)
+    except Exception:
+        return error.response.text or str(error)
 
 
 if __name__ == "__main__":

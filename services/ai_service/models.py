@@ -2,7 +2,7 @@
 Domain entity models matching the canonical schema from §2 of the architecture spec.
 """
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator, model_validator
 from typing import List, Optional
 from datetime import date
 
@@ -129,3 +129,147 @@ class TripInput(BaseModel):
     start_lng: float = 105.8542
     end_lat: Optional[float] = None
     end_lng: Optional[float] = None
+
+
+class PlannerSite(BaseModel):
+    id: str
+    name: str
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+    open_time: str = "08:00"
+    close_time: str = "17:00"
+    visit_duration_min: int = 60
+
+    @field_validator("open_time", "close_time")
+    @classmethod
+    def validate_site_time(cls, value: str) -> str:
+        _validate_hhmm(value)
+        return value
+
+    @field_validator("lat")
+    @classmethod
+    def validate_site_lat(cls, value: Optional[float]) -> Optional[float]:
+        if value is not None and not -90 <= value <= 90:
+            raise ValueError("lat must be between -90 and 90")
+        return value
+
+    @field_validator("lng")
+    @classmethod
+    def validate_site_lng(cls, value: Optional[float]) -> Optional[float]:
+        if value is not None and not -180 <= value <= 180:
+            raise ValueError("lng must be between -180 and 180")
+        return value
+
+    @field_validator("visit_duration_min")
+    @classmethod
+    def validate_visit_duration(cls, value: int) -> int:
+        if value < 0:
+            raise ValueError("visit_duration_min must be >= 0")
+        return value
+
+
+class PlannerPoint(BaseModel):
+    id: Optional[str] = None
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+    label: str = ""
+
+    @field_validator("lat")
+    @classmethod
+    def validate_point_lat(cls, value: Optional[float]) -> Optional[float]:
+        if value is not None and not -90 <= value <= 90:
+            raise ValueError("lat must be between -90 and 90")
+        return value
+
+    @field_validator("lng")
+    @classmethod
+    def validate_point_lng(cls, value: Optional[float]) -> Optional[float]:
+        if value is not None and not -180 <= value <= 180:
+            raise ValueError("lng must be between -180 and 180")
+        return value
+
+
+class PlannerWindow(BaseModel):
+    start_time: str = "08:00"
+    end_time: str = "17:00"
+
+    @field_validator("start_time", "end_time")
+    @classmethod
+    def validate_window_time(cls, value: str) -> str:
+        _validate_hhmm(value)
+        return value
+
+
+class PlannerConstraints(BaseModel):
+    avoid_highways: bool = False
+    avoid_tolls: bool = False
+    max_total_distance_km: Optional[float] = None
+    max_total_duration_min: Optional[int] = None
+
+    @field_validator("max_total_distance_km")
+    @classmethod
+    def validate_max_distance(cls, value: Optional[float]) -> Optional[float]:
+        if value is not None and value < 0:
+            raise ValueError("max_total_distance_km must be >= 0")
+        return value
+
+    @field_validator("max_total_duration_min")
+    @classmethod
+    def validate_max_duration(cls, value: Optional[int]) -> Optional[int]:
+        if value is not None and value < 0:
+            raise ValueError("max_total_duration_min must be >= 0")
+        return value
+
+
+class RoutePlanRequest(BaseModel):
+    province: str = ""
+    sites: List[PlannerSite]
+    start: PlannerPoint
+    end: PlannerPoint
+    transport_mode: str
+    trip_date: str = ""
+    available_window: PlannerWindow = Field(default_factory=PlannerWindow)
+    num_days: int = 1
+    constraints: PlannerConstraints = Field(default_factory=PlannerConstraints)
+
+    @model_validator(mode="after")
+    def validate_contract(self):
+        if self.transport_mode not in {"driving", "motorbike", "walking", "transit"}:
+            raise ValueError("transport_mode must be one of: driving, motorbike, walking, transit")
+        if self.num_days < 1:
+            raise ValueError("num_days must be >= 1")
+        if self.trip_date:
+            try:
+                date.fromisoformat(self.trip_date)
+            except ValueError as exc:
+                raise ValueError("trip_date must use YYYY-MM-DD") from exc
+        return self
+
+
+def _validate_hhmm(value: str) -> None:
+    import re
+    if not re.fullmatch(r"([01]\d|2[0-3]):[0-5]\d", value or ""):
+        raise ValueError("time must use HH:MM")
+
+
+class RoutePlanStop(BaseModel):
+    site_id: str
+    name: str
+    arrival_time: str
+    departure_time: str
+    travel_from_prev_km: float = 0.0
+    travel_from_prev_min: int = 0
+
+
+class RoutePlanDay(BaseModel):
+    day: int
+    stops: List[RoutePlanStop] = Field(default_factory=list)
+    polyline: str = ""
+
+
+class RoutePlanResponse(BaseModel):
+    status: str
+    total_distance_km: float = 0.0
+    total_duration_min: int = 0
+    days: List[RoutePlanDay] = Field(default_factory=list)
+    warnings: List[str] = Field(default_factory=list)

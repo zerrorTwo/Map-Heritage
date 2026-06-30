@@ -5,14 +5,17 @@ Implements the core recommendation engine REST API.
 
 from contextlib import asynccontextmanager
 from typing import List
+import asyncio
 import urllib.parse
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from services.ai_service.models import (
     HeritageSite, TripInput, TripRequest, Itinerary, Review,
+    RoutePlanRequest, RoutePlanResponse,
 )
 from services.ai_service.pipeline import pipeline
+from services.ai_service.route_planner import plan_route
 
 
 @asynccontextmanager
@@ -66,6 +69,15 @@ async def recommend(input_data: TripInput):
         return itinerary
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/v1/routes/plan", response_model=RoutePlanResponse)
+async def route_plan(input_data: RoutePlanRequest):
+    """Plan a fixed start/end route using the alth.md contract."""
+    try:
+        return await asyncio.to_thread(plan_route, input_data)
+    except Exception as e:
+        return RoutePlanResponse(status="error", warnings=[str(e)])
 
 
 @app.get("/api/v1/heritage-sites", response_model=List[HeritageSite])

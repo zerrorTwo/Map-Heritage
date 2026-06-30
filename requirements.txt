@@ -28,7 +28,8 @@ requests-cache==1.2.1
 shapely==2.0.6
 
 # Routing
-vrpy==0.6.1
+vrpy==0.5.1
+ortools==9.11.4210
 
 # Data processing
 lxml==5.3.0

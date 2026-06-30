@@ -53,6 +53,29 @@
     .btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(233,69,96,.35)}
     .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
+    .planner-card{background:linear-gradient(180deg,#171a2b,#121522);border:1px solid #222741;border-radius:14px;padding:12px;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    .planner-card + .planner-card{margin-top:2px}
+    .planner-step{display:flex;align-items:center;gap:8px;margin-bottom:10px;color:#fff;font-size:13px;font-weight:700}
+    .planner-step span{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#e94560;color:#fff;font-size:11px;box-shadow:0 0 0 4px rgba(233,69,96,.12)}
+    .planner-help{font-size:11px;color:#888;line-height:1.5;margin:-2px 0 10px}
+    .planner-hint{background:#0c1b22;border:1px solid #1e4d5a;color:#8bdde7;border-radius:10px;padding:10px;font-size:11px;line-height:1.5}
+    .route-status{display:none;border-radius:10px;padding:10px;font-size:12px;line-height:1.45;margin-bottom:10px;border:1px solid #2a2a4a;background:#141829;color:#ccc}
+    .route-status.error{display:block;border-color:#e94560;background:#2a1320;color:#ffb3c0}
+    .route-status.info{display:block;border-color:#1e4d5a;background:#0c1b22;color:#8bdde7}
+    .selected-list{display:none;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .selected-chip{display:inline-flex;align-items:center;gap:5px;max-width:100%;padding:5px 8px;border-radius:999px;background:#1e2340;border:1px solid #2a3157;color:#d4d4e0;font-size:11px;cursor:pointer}
+    .selected-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:250px}
+    .selected-chip button{border:none;background:transparent;color:#e94560;cursor:pointer;font-size:12px;line-height:1}
+    .advanced-box{border:1px solid #222741;border-radius:10px;background:#0c0e1a;margin-top:8px;overflow:hidden}
+    .advanced-box summary{cursor:pointer;padding:10px 12px;color:#aaa;font-size:12px;user-select:none;list-style:none}
+    .advanced-box summary::-webkit-details-marker{display:none}
+    .advanced-box summary:after{content:'▾';float:right;color:#666}
+    .advanced-box[open] summary:after{content:'▴'}
+    .advanced-content{padding:0 12px 12px}
+    .quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .ghost-btn{padding:9px;border:1px solid #2a2a4a;background:#0c0e1a;color:#aaa;border-radius:8px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .15s}
+    .ghost-btn:hover{border-color:#e94560;color:#fff;background:#191222}
+
     /* RESULT */
     #result{overflow-y:auto;min-height:0}
     .day-card{background:#181b2d;border-radius:10px;padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--accent)}
@@ -69,6 +92,18 @@
     @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(74,144,217,.6)}50%{box-shadow:0 0 0 12px rgba(74,144,217,0)}}
 
     .section-title{font-size:10px;color:var(--accent);text-transform:uppercase;padding:4px 0;letter-spacing:1.5px;border-bottom:1px solid var(--border);margin-bottom:10px;font-weight:600}
+
+    @media (max-width: 760px){
+      body{flex-direction:column}
+      #sidebar{width:100vw;min-width:0;height:52vh;border-right:none;border-bottom:1px solid #1e1e3a}
+      #sidebar.collapsed{height:0;width:100vw}
+      #map{height:48vh;width:100vw}
+      #map-search{width:calc(100vw - 24px);max-width:none}
+      .layer-switcher{top:58px;left:12px;transform:none}
+      #map-cat-filters{display:none!important}
+      .form-row{flex-direction:column;gap:0}
+      #detail-panel{width:100vw;right:-100vw}
+    }
 
     /* DETAIL PANEL */
     #detail-panel{
@@ -203,63 +238,93 @@
     <span class="badge" id="siteCount">438 sites</span>
   </div>
   <div id="sidebar-body">
-    <div id="selectedInfo" style="display:none;background:#16262e;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:12px;color:#4ecdc4">
-      ✅ Đã chọn: <strong id="selectedCount">0</strong> địa điểm 
-      <span style="float:right;cursor:pointer;color:#e94560" onclick="clearSelected()">Xóa hết</span>
-    </div>
-    <div class="section-title">📍 Chọn Tỉnh Thành</div>
-    <div class="form-group" style="position:relative">
-      <div id="provinceDropdown" style="min-height:40px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:#0c0e1a;cursor:pointer;display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:12px;color:#888" onclick="toggleProvinceDropdown()">
-        <span id="provincePlaceholder">Chọn tỉnh thành...</span>
+    <div id="routeStatus" class="route-status"></div>
+
+    <div class="planner-card">
+      <div class="planner-step"><span>1</span>Chọn khu vực và điểm muốn đi</div>
+      <div class="planner-help">Chọn tỉnh trước. Bạn có thể bấm marker trên bản đồ để ghim điểm bắt buộc; nếu chưa chọn, hệ thống tự lấy các điểm nổi bật trong tỉnh.</div>
+      <div class="form-group" style="position:relative">
+        <div id="provinceDropdown" style="min-height:40px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;background:#0c0e1a;cursor:pointer;display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:12px;color:#888" onclick="toggleProvinceDropdown()">
+          <span id="provincePlaceholder">Chọn tỉnh thành...</span>
+        </div>
+        <div id="provinceOptions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:20;max-height:240px;overflow-y:auto;background:#11131f;border:1px solid var(--border);border-radius:8px;margin-top:4px;box-shadow:0 8px 32px rgba(0,0,0,.5)"></div>
       </div>
-      <div id="provinceOptions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:20;max-height:240px;overflow-y:auto;background:#11131f;border:1px solid var(--border);border-radius:8px;margin-top:4px;box-shadow:0 8px 32px rgba(0,0,0,.5)">
+      <div id="selectedInfo" class="planner-hint" style="display:none">
+        Đã chọn <strong id="selectedCount">0</strong> địa điểm. <span style="float:right;cursor:pointer;color:#e94560" onclick="clearSelected()">Xóa hết</span>
+        <div id="selectedList" class="selected-list"></div>
       </div>
+      <div id="autoPickHint" class="planner-hint">Chưa ghim điểm nào. Khi tạo lịch trình, hệ thống sẽ tự chọn tối đa 5 điểm mỗi ngày trong tỉnh đã chọn.</div>
     </div>
 
-    <div class="form-group" style="margin-bottom:10px">
-      <div class="form-label">📍 Điểm xuất phát & kết thúc</div>
-      <div style="display:flex;gap:6px;align-items:center">
-        <div style="flex:1;position:relative">
+    <div class="planner-card">
+      <div class="planner-step"><span>2</span>Điểm xuất phát và kết thúc</div>
+      <div class="planner-help">Nhập địa chỉ hoặc tọa độ dạng <code>21.0285,105.8542</code>. Để trống điểm kết thúc nếu muốn quay lại nơi xuất phát.</div>
+      <div class="form-row">
+        <div class="form-group" style="position:relative">
+          <div class="form-label">Xuất phát</div>
           <input type="text" id="startLoc" placeholder="Địa chỉ hoặc lat,lng..." style="font-size:12px;padding-right:28px" onkeydown="if(event.key==='Enter')geocodeStart()">
-          <span onclick="geocodeStart()" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;font-size:13px" title="Tìm kiếm địa chỉ">🔍</span>
+          <span onclick="geocodeStart()" style="position:absolute;right:8px;bottom:9px;cursor:pointer;color:#888;font-size:13px" title="Tìm kiếm địa chỉ">🔍</span>
         </div>
-        <span style="color:#666;font-size:11px">→</span>
-        <div style="flex:1;position:relative">
-          <input type="text" id="endLoc" placeholder="Giống điểm xuất phát..." style="font-size:12px;padding-right:28px" onkeydown="if(event.key==='Enter')geocodeEnd()">
-          <span onclick="geocodeEnd()" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);cursor:pointer;color:#888;font-size:13px" title="Tìm kiếm địa chỉ">🔍</span>
+        <div class="form-group" style="position:relative">
+          <div class="form-label">Kết thúc</div>
+          <input type="text" id="endLoc" placeholder="Mặc định quay về điểm đầu" style="font-size:12px;padding-right:28px" onkeydown="if(event.key==='Enter')geocodeEnd()">
+          <span onclick="geocodeEnd()" style="position:absolute;right:8px;bottom:9px;cursor:pointer;color:#888;font-size:13px" title="Tìm kiếm địa chỉ">🔍</span>
         </div>
       </div>
-      <div id="locStatus" style="font-size:10px;color:#888;margin-top:4px;min-height:14px"></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group"><div class="form-label">Số ngày</div><input type="number" id="duration" value="3" min="1" max="14"></div>
-      <div class="form-group"><div class="form-label">Số người</div><input type="number" id="people" value="2" min="1" max="20"></div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <div class="form-label">Nhịp độ</div>
-        <select id="pace"><option value="relaxed">Thư giãn</option><option value="moderate" selected>Vừa phải</option><option value="packed">Dày đặc</option></select>
+      <div class="quick-actions">
+        <button class="ghost-btn" type="button" onclick="useFirstProvinceAsStart()">Dùng trung tâm tỉnh</button>
+        <button class="ghost-btn" type="button" onclick="makeRoundTrip()">Quay lại điểm đầu</button>
       </div>
-      <div class="form-group">
-        <div class="form-label">Ngân sách</div>
-        <select id="budget"><option value="low">Tiết kiệm</option><option value="medium" selected>TB</option><option value="high">Cao cấp</option></select>
-      </div>
+      <div id="locStatus" style="font-size:10px;color:#888;margin-top:8px;min-height:14px"></div>
     </div>
-    <div class="form-group">
-      <div class="form-label">Sở thích</div>
-      <div class="tags" id="interestTags">
-        <span class="tag active" data-val="history">Lịch sử</span><span class="tag active" data-val="architecture">Kiến trúc</span>
-        <span class="tag" data-val="spiritual">Tâm linh</span><span class="tag" data-val="museum">Bảo tàng</span>
-        <span class="tag" data-val="craft_village">Làng nghề</span><span class="tag" data-val="local_food">Ẩm thực</span>
-        <span class="tag" data-val="nature">Thiên nhiên</span><span class="tag" data-val="photography">Nhiếp ảnh</span>
+
+    <div class="planner-card">
+      <div class="planner-step"><span>3</span>Lịch trình và tuyến đường</div>
+      <div class="form-row">
+        <div class="form-group"><div class="form-label">Số ngày</div><input type="number" id="duration" value="3" min="1" max="14"></div>
+        <div class="form-group"><div class="form-label">Phương tiện</div><select id="transportMode"><option value="driving" selected>Ô tô</option><option value="motorbike">Xe máy</option><option value="walking">Đi bộ</option><option value="transit">Công cộng</option></select></div>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="form-label">Ràng buộc</div>
-      <div class="tags" id="constraintTags">
-        <span class="tag" data-val="elderly_friendly">Người già</span><span class="tag" data-val="child_friendly">Trẻ em</span>
-        <span class="tag" data-val="avoid_sun">Tránh nắng</span><span class="tag" data-val="prefer_indoor">Trong nhà</span>
+      <div class="form-row">
+        <div class="form-group"><div class="form-label">Ngày đi</div><input type="date" id="tripDate"></div>
+        <div class="form-group"><div class="form-label">Số người</div><input type="number" id="people" value="2" min="1" max="20"></div>
       </div>
+      <div class="form-row">
+        <div class="form-group"><div class="form-label">Bắt đầu</div><input type="time" id="windowStart" value="08:00"></div>
+        <div class="form-group"><div class="form-label">Kết thúc</div><input type="time" id="windowEnd" value="18:00"></div>
+      </div>
+      <details class="advanced-box">
+        <summary>Tùy chọn nâng cao</summary>
+        <div class="advanced-content">
+          <div class="form-row">
+            <div class="form-group"><div class="form-label">Tối đa km</div><input type="number" id="maxDistanceKm" placeholder="Không giới hạn" min="0" step="1"></div>
+            <div class="form-group"><div class="form-label">Tối đa phút</div><input type="number" id="maxDurationMin" placeholder="Không giới hạn" min="0" step="5"></div>
+          </div>
+          <div class="form-group" style="display:flex;gap:12px;font-size:12px;color:#aaa;margin-top:2px">
+            <label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="avoidHighways"> Tránh cao tốc</label>
+            <label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="avoidTolls"> Tránh trạm thu phí</label>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><div class="form-label">Nhịp độ gợi ý</div><select id="pace"><option value="relaxed">Thư giãn</option><option value="moderate" selected>Vừa phải</option><option value="packed">Dày đặc</option></select></div>
+            <div class="form-group"><div class="form-label">Ngân sách</div><select id="budget"><option value="low">Tiết kiệm</option><option value="medium" selected>TB</option><option value="high">Cao cấp</option></select></div>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Sở thích khi tự chọn điểm</div>
+            <div class="tags" id="interestTags">
+              <span class="tag active" data-val="history">Lịch sử</span><span class="tag active" data-val="architecture">Kiến trúc</span>
+              <span class="tag" data-val="spiritual">Tâm linh</span><span class="tag" data-val="museum">Bảo tàng</span>
+              <span class="tag" data-val="craft_village">Làng nghề</span><span class="tag" data-val="local_food">Ẩm thực</span>
+              <span class="tag" data-val="nature">Thiên nhiên</span><span class="tag" data-val="photography">Nhiếp ảnh</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label">Ràng buộc trải nghiệm</div>
+            <div class="tags" id="constraintTags">
+              <span class="tag" data-val="elderly_friendly">Người già</span><span class="tag" data-val="child_friendly">Trẻ em</span>
+              <span class="tag" data-val="avoid_sun">Tránh nắng</span><span class="tag" data-val="prefer_indoor">Trong nhà</span>
+            </div>
+          </div>
+        </div>
+      </details>
     </div>
     <button class="btn" id="generateBtn" onclick="generateTrip()">🔍 Tạo Lịch Trình</button>
     <div id="loading"><div class="spinner"></div>Đang tính toán...</div>
@@ -333,7 +398,7 @@
 
 <script>
 const API = window.location.origin;
-let allSites = [], markers = [], routeIds = [], activeSite = null;
+let allSites = [], markers = [], routeIds = [], routeMarkers = [], activeSite = null;
 let selectedSites = new Set();
 let siteMarkers = {}; // siteId -> marker element for visual toggle
 
@@ -848,12 +913,38 @@ function toggleSelectFromDetail() {
 function updateSelectedUI(){
   const info = document.getElementById('selectedInfo');
   const count = document.getElementById('selectedCount');
+  const list = document.getElementById('selectedList');
+  const autoPickHint = document.getElementById('autoPickHint');
   if (selectedSites.size > 0) {
     info.style.display = 'block';
     count.textContent = selectedSites.size;
+    autoPickHint.style.display = 'none';
+    list.style.display = 'flex';
+    list.innerHTML = [...selectedSites].map(id => {
+      const site = allSites.find(s => s.id === id);
+      if (!site) return '';
+      return `<div class="selected-chip" onclick="flyToSite('${site.id}')"><span>${site.name}</span><button onclick="event.stopPropagation();removeSelectedSite('${site.id}')">×</button></div>`;
+    }).join('');
   } else {
     info.style.display = 'none';
+    autoPickHint.style.display = 'block';
+    list.style.display = 'none';
+    list.innerHTML = '';
   }
+}
+
+function removeSelectedSite(id) {
+  const site = allSites.find(s => s.id === id);
+  const el = siteMarkers[id];
+  selectedSites.delete(id);
+  if (site && el) {
+    el.src = svgIcon(site.categories, 32);
+    el.style.width = '32px';
+    el.style.height = '32px';
+    el.style.filter = '';
+  }
+  updateSelectedUI();
+  hideMiniPopup();
 }
 
 // DETAIL PANEL
@@ -1121,16 +1212,81 @@ async function geocodeEnd() {
   }
 }
 
+function setRouteStatus(type, message) {
+  const el = document.getElementById('routeStatus');
+  el.className = `route-status ${type}`;
+  el.innerHTML = message;
+  if (type) el.scrollIntoView({block:'nearest', behavior:'smooth'});
+}
+
+function clearRouteStatus() {
+  const el = document.getElementById('routeStatus');
+  el.className = 'route-status';
+  el.innerHTML = '';
+}
+
+function useFirstProvinceAsStart() {
+  const prov = [...selectedProvinces][0];
+  const coords = PROV_COORDS[prov];
+  if (!coords) { setRouteStatus('error', 'Chưa chọn tỉnh hoặc chưa có tọa độ trung tâm tỉnh này.'); return; }
+  startCoords = {lat: coords[0], lng: coords[1], display: prov};
+  if (!endCoords.lat) endCoords = startCoords;
+  document.getElementById('startLoc').value = `${coords[0].toFixed(4)}, ${coords[1].toFixed(4)}`;
+  if (!document.getElementById('endLoc').value.trim()) document.getElementById('endLoc').value = document.getElementById('startLoc').value;
+  document.getElementById('locStatus').textContent = `📍 Xuất phát từ trung tâm ${prov}`;
+  clearRouteStatus();
+}
+
+function makeRoundTrip() {
+  const startVal = document.getElementById('startLoc').value.trim();
+  if (!startVal) { setRouteStatus('error', 'Nhập hoặc chọn điểm xuất phát trước khi đặt tuyến khứ hồi.'); return; }
+  document.getElementById('endLoc').value = startVal;
+  endCoords = {...startCoords};
+  document.getElementById('locStatus').textContent = '🏁 Điểm kết thúc đã đặt giống điểm xuất phát';
+  clearRouteStatus();
+}
+
+function selectedValues(selector) {
+  return [...document.querySelectorAll(`${selector} .tag.active`)].map(t => t.dataset.val);
+}
+
+function autoPickSites(provs, days) {
+  const interests = selectedValues('#interestTags');
+  const constraints = selectedValues('#constraintTags');
+  const maxSites = Math.max(1, days) * 5;
+  return allSites
+    .filter(s => provs.includes(s.province))
+    .filter(s => !constraints.includes('elderly_friendly') || s.suitable_for_elderly)
+    .filter(s => !constraints.includes('child_friendly') || s.suitable_for_children)
+    .sort((a, b) => sitePlannerScore(b, interests, constraints) - sitePlannerScore(a, interests, constraints))
+    .slice(0, maxSites);
+}
+
+function sitePlannerScore(site, interests, constraints) {
+  const cats = (site.categories || []).map(c => c.toLowerCase());
+  let score = (site.popularity_score || 0.5) * 2 + (site.historical_importance_score || 0.5);
+  interests.forEach(i => { if (cats.includes(i)) score += 1.5; });
+  if (constraints.includes('prefer_indoor')) score += site.indoor_score || 0;
+  if (constraints.includes('avoid_sun')) score += site.indoor_score || 0;
+  return score;
+}
+
 // TRIP
 async function generateTrip(){
-  document.getElementById('loading').style.display='block';
+  clearRouteStatus();
   document.getElementById('result').innerHTML='';
   document.getElementById('generateBtn').disabled=true;
   const provs=[...selectedProvinces];
-  if(!provs.length){alert('Chọn ít nhất 1 tỉnh!');document.getElementById('loading').style.display='none';document.getElementById('generateBtn').disabled=false;return}
-  const interests=[...document.querySelectorAll('#interestTags .tag.active')].map(t=>t.dataset.val);
-  const constraints=[...document.querySelectorAll('#constraintTags .tag.active')].map(t=>t.dataset.val);
+  if(!provs.length){setRouteStatus('error','Chọn ít nhất 1 tỉnh để hệ thống biết khu vực cần lập tuyến.');document.getElementById('generateBtn').disabled=false;return}
+  const mode = document.getElementById('transportMode').value;
+  if(mode === 'transit'){setRouteStatus('error','Phương tiện công cộng cần GTFS/OpenTripPlanner, hệ thống hiện chỉ hỗ trợ ô tô/xe máy/đi bộ qua OSRM.');document.getElementById('generateBtn').disabled=false;return}
   const [slat,slng]=PROV_COORDS[provs[0]]||[21.0285,105.8542];
+  const selected = [...selectedSites].map(id => allSites.find(s => s.id === id)).filter(Boolean);
+  const days = parseInt(document.getElementById('duration').value)||1;
+  const candidateSites = selected.length ? selected : autoPickSites(provs, days);
+  if(!candidateSites.length){setRouteStatus('error','Không có địa điểm phù hợp trong tỉnh/ràng buộc đã chọn. Hãy nới ràng buộc hoặc chọn điểm thủ công trên bản đồ.');document.getElementById('generateBtn').disabled=false;return}
+  if(!selected.length) setRouteStatus('info', `Chưa ghim điểm thủ công, hệ thống tự chọn ${candidateSites.length} điểm phù hợp nhất trong ${provs.join(', ')}.`);
+  document.getElementById('loading').style.display='block';
   
   // Parse start/end locations
   let startLat=slat, startLng=slng, endLat=null, endLng=null;
@@ -1149,26 +1305,45 @@ async function generateTrip(){
     }
   }
   
-  const body = {destination_provinces:provs,duration_days:parseInt(document.getElementById('duration').value)||3,number_of_people:parseInt(document.getElementById('people').value)||2,interests,pace:document.getElementById('pace').value,budget_level:document.getElementById('budget').value,constraints,must_visit_site_ids:mustVisit,start_lat:startCoords.lat,start_lng:startCoords.lng};
-  if (endCoords.lat) { body.end_lat = endCoords.lat; body.end_lng = endCoords.lng; }
+  const body = {
+    province: provs.join(', '),
+    sites: candidateSites.map(s => {
+      const hours = parseOpeningHours(s.opening_hours || '08:00-17:00');
+      return {id:s.id,name:s.name,lat:s.lat,lng:s.lng,open_time:hours.open_time,close_time:hours.close_time,visit_duration_min:s.estimated_visit_minutes||60};
+    }),
+    start: {id:null,lat:startLat,lng:startLng,label:document.getElementById('startLoc').value.trim()||'Start'},
+    end: {id:null,lat:endLat ?? startLat,lng:endLng ?? startLng,label:document.getElementById('endLoc').value.trim()||'End'},
+    transport_mode: mode,
+    trip_date: document.getElementById('tripDate').value || new Date().toISOString().slice(0,10),
+    available_window: {start_time:document.getElementById('windowStart').value||'08:00',end_time:document.getElementById('windowEnd').value||'18:00'},
+    num_days: days,
+    constraints: {
+      avoid_highways:document.getElementById('avoidHighways').checked,
+      avoid_tolls:document.getElementById('avoidTolls').checked,
+      max_total_distance_km:optionalNumber('maxDistanceKm'),
+      max_total_duration_min:optionalNumber('maxDurationMin')
+    }
+  };
   
   try{
-    const r=await fetch(`${API}/api/v1/trips/recommend`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const r=await fetch(`${API}/api/v1/routes/plan`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
     const d=await r.json();
+    if(!r.ok || d.status === 'error') throw new Error((d.warnings||[]).join('; ')||'Không thể tạo tuyến');
     renderItinerary(d);
     renderRoute(d);
     showTripPopup(d);
     window._lastTrip = d; // store for tour
-  }catch(e){document.getElementById('result').innerHTML=`<p style="color:#e94560">${e.message}</p>`}
+  }catch(e){setRouteStatus('error', e.message || 'Không thể tạo tuyến. Vui lòng kiểm tra lại thông tin.')}
   finally{document.getElementById('loading').style.display='none';document.getElementById('generateBtn').disabled=false}
 }
 
 function renderItinerary(d){
   let h='';
-  if(d.total_score)h+=`<div class="summary-box"><strong>✨ ${(d.total_score*100).toFixed(0)}%</strong> | 📏 ${d.total_distance_km}km | 🛣️ ${(d.route_geometries||[]).filter(g=>g).length} routes</div>`;
+  h+=`<div class="summary-box"><strong>${d.status==='feasible'?'✅ Khả thi':'⚠️ Quá thời gian'}</strong> | 📏 ${d.total_distance_km||0}km | ⏱️ ${d.total_duration_min||0} phút</div>`;
+  (d.warnings||[]).forEach(w=>h+=`<div style="font-size:11px;color:#f0a500;margin:6px 0">⚠️ ${w}</div>`);
   (d.days||[]).forEach(day=>{
-    h+=`<div class="day-card"><h3>📅 Ngày ${day.day} — ${day.date||''}</h3>`;
-    (day.items||[]).forEach(it=>h+=`<div class="item-row" onclick="flyTo('${it.ref_id}')"><span class="time">${it.time||''}</span><span>${it.type==='restaurant'?'🍜':'📍'} ${it.name}</span></div>`);
+    h+=`<div class="day-card"><h3>📅 Ngày ${day.day}</h3>`;
+    (day.stops||[]).forEach(it=>h+=`<div class="item-row" onclick="flyTo('${it.site_id}')"><span class="time">${it.arrival_time||''}</span><span>📍 ${it.name}</span><small style="color:#888;margin-left:auto">${it.travel_from_prev_km}km · ${it.travel_from_prev_min}p</small></div>`);
     h+='</div>';
   });
   h+=`<button class="btn" style="margin-top:12px;background:linear-gradient(135deg,#1e2340,#16162b);border:1px solid var(--border)" onclick="resetItinerary()">🔄 Tạo lịch trình mới</button>`;
@@ -1179,6 +1354,8 @@ function resetItinerary() {
   document.getElementById('result').innerHTML = '';
   routeIds.forEach(id=>{try{map.getLayer(id)&&map.removeLayer(id)}catch(e){}try{map.getSource(id)&&map.removeSource(id)}catch(e){}});
   routeIds = [];
+  routeMarkers.forEach(marker=>marker.remove());
+  routeMarkers = [];
   window._lastTrip = null;
   document.getElementById('sidebar-body').scrollTop = 0;
 }
@@ -1186,9 +1363,12 @@ function resetItinerary() {
 function renderRoute(d){
   routeIds.forEach(id=>{try{map.getLayer(id)&&map.removeLayer(id)}catch(e){}try{map.getSource(id)&&map.removeSource(id)}catch(e){}});
   routeIds=[];
+  routeMarkers.forEach(marker=>marker.remove());
+  routeMarkers=[];
   const colors=['#e94560','#f0a500','#4ecdc4','#6c5ce7','#00cec9','#fd79a8'];
   const bounds=new maplibregl.LngLatBounds();
-  (d.route_geometries||[]).forEach((geom,i)=>{
+  (d.days||[]).forEach((day,i)=>{
+    const geom = day.polyline ? decodePolyline(day.polyline) : [];
     if(!geom||geom.length<2)return;
     const c=colors[i%colors.length],lid=`r${i}`;routeIds.push(lid);
     map.addSource(lid,{type:'geojson',data:{type:'Feature',geometry:{type:'LineString',coordinates:geom}}});
@@ -1198,18 +1378,45 @@ function renderRoute(d){
   // Add result markers
   (d.days||[]).forEach((day,di)=>{
     const c=colors[di%colors.length];
-    (day.items||[]).forEach(it=>{
-      const site=allSites.find(s=>s.id===it.ref_id);
+    (day.stops||[]).forEach(it=>{
+      const site=allSites.find(s=>s.id===it.site_id);
       if(!site)return;
       const el=document.createElement('img');
-      el.src=it.type==='restaurant'?`data:image/svg+xml,${encodeURIComponent('<svg width="26" height="26"><rect x="2" y="2" width="22" height="22" rx="5" fill="#f0a500" stroke="#fff" stroke-width="2"/><text x="13" y="16" text-anchor="middle" font-size="12" fill="#fff">🍜</text></svg>')}`:svgIcon(site.categories,36);
-      el.style.cssText=`width:${it.type==='restaurant'?'26px':'36px'};height:${it.type==='restaurant'?'26px':'36px'};cursor:pointer`;
+      el.src=svgIcon(site.categories,36);
+      el.style.cssText=`width:36px;height:36px;cursor:pointer`;
       el.addEventListener('click',()=>openDetail(site));
-      new maplibregl.Marker({element:el}).setLngLat([site.lng,site.lat]).addTo(map);
+      const marker = new maplibregl.Marker({element:el}).setLngLat([site.lng,site.lat]).addTo(map);
+      routeMarkers.push(marker);
       bounds.extend([site.lng,site.lat]);
     });
   });
   setTimeout(()=>{if(!bounds.isEmpty())map.fitBounds(bounds,{padding:80,maxZoom:12})},1500);
+}
+
+function parseOpeningHours(value) {
+  const matches = String(value || '').match(/\d{1,2}:\d{2}/g) || [];
+  return {open_time: matches[0] || '08:00', close_time: matches[1] || '17:00'};
+}
+
+function optionalNumber(id) {
+  const value = document.getElementById(id).value;
+  if (value === '') return null;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
+}
+
+function decodePolyline(str, precision=5) {
+  let index = 0, lat = 0, lng = 0, coordinates = [], factor = Math.pow(10, precision);
+  while (index < str.length) {
+    let result = 0, shift = 0, byte;
+    do { byte = str.charCodeAt(index++) - 63; result |= (byte & 0x1f) << shift; shift += 5; } while (byte >= 0x20);
+    lat += (result & 1) ? ~(result >> 1) : (result >> 1);
+    result = 0; shift = 0;
+    do { byte = str.charCodeAt(index++) - 63; result |= (byte & 0x1f) << shift; shift += 5; } while (byte >= 0x20);
+    lng += (result & 1) ? ~(result >> 1) : (result >> 1);
+    coordinates.push([lng / factor, lat / factor]);
+  }
+  return coordinates;
 }
 
 function showTripPopup(d) {
@@ -1217,27 +1424,26 @@ function showTripPopup(d) {
   if (old) old.remove();
   if (!d.days || !d.days.length) return;
   
-  const totalSites = d.days.reduce((sum, day) => sum + (day.items||[]).length, 0);
-  const paceLabels = {relaxed:'Thư giãn', moderate:'Vừa phải', packed:'Dày đặc'};
+  const totalSites = d.days.reduce((sum, day) => sum + (day.stops||[]).length, 0);
+  const modeLabels = {driving:'Ô tô', motorbike:'Xe máy', walking:'Đi bộ', transit:'Công cộng'};
   const budgetLabels = {low:'Tiết kiệm', medium:'Trung bình', high:'Cao cấp'};
-  const pace = document.getElementById('pace').value;
+  const mode = document.getElementById('transportMode').value;
   const budget = document.getElementById('budget').value;
-  const score = d.total_score ? Math.round(d.total_score * 100) : 0;
   const colors = ['#e94560','#f0a500','#4ecdc4','#8b5cf6','#06b6d4','#ec4899','#22c55e','#f97316'];
   
   const daysHtml = d.days.map((day, di) => {
     const c = colors[di % colors.length];
-    const items = (day.items||[]).map(it => `
-      <div class="popup-timeline-item" onclick="flyToSite('${it.ref_id}');document.getElementById('trip-popup').remove()">
-        <div class="popup-time">${it.time||'--:--'}</div>
+    const items = (day.stops||[]).map(it => `
+      <div class="popup-timeline-item" onclick="flyToSite('${it.site_id}');document.getElementById('trip-popup').remove()">
+        <div class="popup-time">${it.arrival_time||'--:--'}</div>
         <div class="popup-dot" style="background:${c}"></div>
-        <div class="popup-name">${it.name}<span style="color:${c};margin-left:6px;font-size:10px">${it.type==='restaurant'?'🍜':'📍'}</span></div>
+        <div class="popup-name">${it.name}<span style="color:${c};margin-left:6px;font-size:10px">📍</span></div>
       </div>
     `).join('');
     return `<div class="popup-day">
       <div class="popup-day-header" style="border-left:3px solid ${c}">
         <div><strong>Ngày ${day.day}</strong><span style="color:#8889a0;font-size:10px;margin-left:8px">${day.date||''}</span></div>
-        <span style="color:#8889a0;font-size:10px">${(day.items||[]).length} điểm</span>
+        <span style="color:#8889a0;font-size:10px">${(day.stops||[]).length} điểm</span>
       </div>
       ${items}
     </div>`;
@@ -1258,15 +1464,14 @@ function showTripPopup(d) {
       <div class="popup-stats">
         <div class="popup-stat"><span class="popup-stat-val" style="color:var(--accent)">${d.days.length}</span><span class="popup-stat-label">Ngày</span></div>
         <div class="popup-stat"><span class="popup-stat-val" style="color:#f0a500">${totalSites}</span><span class="popup-stat-label">Địa điểm</span></div>
-        <div class="popup-stat"><span class="popup-stat-val" style="color:#4ecdc4">${paceLabels[pace]||'Vừa phải'}</span><span class="popup-stat-label">Nhịp độ</span></div>
+        <div class="popup-stat"><span class="popup-stat-val" style="color:#4ecdc4">${modeLabels[mode]||'Ô tô'}</span><span class="popup-stat-label">Phương tiện</span></div>
         <div class="popup-stat"><span class="popup-stat-val" style="color:#8b5cf6">${budgetLabels[budget]||'TB'}</span><span class="popup-stat-label">Ngân sách</span></div>
       </div>
       
-      ${score > 0 ? `
       <div class="popup-score">
-        <div class="popup-score-bar"><div class="popup-score-fill" style="width:${score}%"></div></div>
-        <div class="popup-score-info"><strong>Độ phù hợp ${score}%</strong> · ~${d.total_distance_km||0}km · ${(d.route_geometries||[]).filter(g=>g).length} tuyến</div>
-      </div>` : ''}
+        <div class="popup-score-bar"><div class="popup-score-fill" style="width:${d.status==='feasible'?100:65}%"></div></div>
+        <div class="popup-score-info"><strong>${d.status==='feasible'?'Tuyến khả thi':'Cần điều chỉnh'}</strong> · ~${d.total_distance_km||0}km · ${d.total_duration_min||0} phút</div>
+      </div>
       
       <div class="popup-days-container">${daysHtml}</div>
       <button class="popup-done-btn" onclick="document.getElementById('trip-popup').remove();startTour()">🚶 Bắt đầu tour hướng dẫn</button>
@@ -1303,11 +1508,11 @@ async function startTour() {
   
   // Steps for each destination
   for (const day of days) {
-    const items = day.items || [];
+    const items = day.stops || [];
     if (!items.length) continue;
     
     for (const item of items) {
-      const site = allSites.find(s => s.id === item.ref_id);
+      const site = allSites.find(s => s.id === item.site_id);
       if (!site) continue;
       
       // Open detail panel
@@ -1320,7 +1525,7 @@ async function startTour() {
       steps.push({
         element: '#detail-panel',
         popover: {
-          title: `${item.type === 'restaurant' ? '🍜' : '📍'} ${site.name}`,
+          title: `📍 ${site.name}`,
           description: intro,
           side: 'left',
           align: 'start',
@@ -1390,6 +1595,7 @@ function getTourGuideIntro(site) {
   return parts.join('<br>');
 }
 
+document.getElementById('tripDate').value = new Date().toISOString().slice(0,10);
 loadSites();
 </script>
 </body>

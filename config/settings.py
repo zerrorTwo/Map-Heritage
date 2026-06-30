@@ -7,8 +7,8 @@ class Settings(BaseSettings):
     version: str = "1.0.0"
     debug: bool = True
 
-    database_url: str = "postgresql+asyncpg://heritage:heritage123@localhost:5432/heritage_travel"
-    database_sync_url: str = "postgresql+psycopg2://heritage:heritage123@localhost:5432/heritage_travel"
+    database_url: str = "postgresql+asyncpg://heritage:heritage123@localhost:5433/heritage_travel"
+    database_sync_url: str = "postgresql+psycopg2://heritage:heritage123@localhost:5433/heritage_travel"
     redis_url: str = "redis://localhost:6379/0"
 
     ai_service_url: str = "http://localhost:8001"
