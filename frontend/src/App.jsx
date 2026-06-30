@@ -56,14 +56,12 @@ function App() {
     return [...siteMatches, ...provinceMatches].slice(0, 8);
   }, [provinces, query, sites]);
   const filteredSites = useMemo(() => {
-    const text = query.trim().toLowerCase();
     return sites.filter(site => {
       const siteCategories = site.categories?.length ? site.categories : ['default'];
       return (selectedProvinces.size === 0 || selectedProvinces.has(site.province)) &&
-        (selectedCategories.size === 0 || siteCategories.some(cat => selectedCategories.has(cat))) &&
-        (!text || site.name.toLowerCase().includes(text) || site.province.toLowerCase().includes(text) || siteCategories.some(cat => (CAT_LABELS[cat] || cat).toLowerCase().includes(text)));
+        (selectedCategories.size === 0 || siteCategories.some(cat => selectedCategories.has(cat)));
     });
-  }, [query, selectedCategories, selectedProvinces, sites]);
+  }, [selectedCategories, selectedProvinces, sites]);
   const selectedSites = useMemo(() => [...selectedIds].map(id => sites.find(site => site.id === id)).filter(Boolean), [selectedIds, sites]);
 
   useEffect(() => { fetch(`${API}/api/v1/heritage-sites`).then(r => r.json()).then(d => setSites(Array.isArray(d) ? d : [])).catch(e => setStatus({type:'error',text:`Không tải được dữ liệu: ${e.message}`})); }, []);
@@ -79,7 +77,7 @@ function App() {
     markersRef.current.forEach(marker => marker.remove());
     markersRef.current = [];
     const bounds = new maplibregl.LngLatBounds();
-    filteredSites.slice(0, 550).forEach(site => {
+    filteredSites.forEach(site => {
       if (!Number.isFinite(site.lat) || !Number.isFinite(site.lng)) return;
       const marker = new maplibregl.Marker({element:markerElement(site, selectedIds.has(site.id))}).setLngLat([site.lng, site.lat]).addTo(map);
       marker.getElement().addEventListener('click', () => focusSite(site));
