@@ -151,24 +151,25 @@ export default function RoutePlayback({ route, map, sites }) {
     if (!narrateSite) return;
     setLoadingNarration(true);
     try {
-      // In development, API runs on port 8001
-      const API = window.location.hostname === 'localhost' ? 'http://localhost:8001' : '';
-      const res = await fetch(`${API}/api/v1/heritage-sites/${narrateSite.id}/narrate`);
+      const res = await fetch(`/api/v1/heritage-sites/${narrateSite.id}/narrate`);
+      if (!res.ok) throw new Error(`Narration request failed: ${res.status}`);
       const data = await res.json();
-      setNarrationText(data.narration);
+      const narration = data.narration || narrateSite.long_description || narrateSite.description || "Hiện chưa có tư liệu thuyết minh cho địa điểm này.";
+      setNarrationText(narration);
       
       // Auto text-to-speech if available
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(data.narration);
+        const utterance = new SpeechSynthesisUtterance(narration);
         utterance.lang = 'vi-VN';
         window.speechSynthesis.speak(utterance);
       }
     } catch (e) {
       console.error(e);
       setNarrationText("Lỗi khi tải thông tin. Vui lòng thử lại sau.");
+    } finally {
+      setLoadingNarration(false);
     }
-    setLoadingNarration(false);
   };
 
   const closeNarration = () => {
@@ -234,9 +235,9 @@ export default function RoutePlayback({ route, map, sites }) {
                 <p>Bạn có muốn nghe thông tin và lịch sử về địa điểm này không?</p>
                 <div className="actions">
                   <button className="primary" onClick={handleFetchNarration} disabled={loadingNarration}>
-                    {loadingNarration ? 'Đang tải...' : 'Có, Kể tôi nghe 🔊'}
+                    {loadingNarration ? <><i className="loading-spinner" aria-hidden="true" /> Đang tải...</> : 'Có, Kể tôi nghe 🔊'}
                   </button>
-                  <button className="ghost" onClick={closeNarration}>Bỏ qua</button>
+                  <button className="ghost" onClick={closeNarration} disabled={loadingNarration}>Bỏ qua</button>
                 </div>
               </div>
             ) : (

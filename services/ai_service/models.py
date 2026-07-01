@@ -139,6 +139,9 @@ class PlannerSite(BaseModel):
     open_time: str = "08:00"
     close_time: str = "17:00"
     visit_duration_min: int = 60
+    categories: List[str] = Field(default_factory=list)
+    popularity_score: float = 0.5
+    historical_importance_score: float = 0.5
 
     @field_validator("open_time", "close_time")
     @classmethod
@@ -259,6 +262,7 @@ class RoutePlanStop(BaseModel):
     departure_time: str
     travel_from_prev_km: float = 0.0
     travel_from_prev_min: int = 0
+    reason: str = ""
 
 
 class RoutePlanDay(BaseModel):

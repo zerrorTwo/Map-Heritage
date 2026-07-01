@@ -1,80 +1,84 @@
-#!/bin/bash
-# Start the Heritage Travel System
-# Usage: bash start.sh [--docker] [--gateway] [--ai] [--all]
-
-set -e
+#!/usr/bin/env bash
+set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
-cd "$PROJECT_DIR"
+COMPOSE=(docker compose)
 
-# Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-NC='\033[0m'
+if ! docker compose version >/dev/null 2>&1; then
+  if command -v docker-compose >/dev/null 2>&1; then
+    COMPOSE=(docker-compose)
+  else
+    COMPOSE=()
+  fi
+fi
 
-echo -e "${GREEN}========================================${NC}"
-echo -e "${GREEN}  Vietnam Heritage Travel System v1.0  ${NC}"
-echo -e "${GREEN}========================================${NC}"
-echo ""
-
-install_deps() {
-    echo -e "${YELLOW}[1/4] Installing Python dependencies...${NC}"
-    if [ ! -d ".venv" ]; then
-        echo -e "${YELLOW}  → Creating virtual environment...${NC}"
-        python3 -m venv .venv
-    fi
-    source .venv/bin/activate
-    pip install -r requirements.txt -q
-    echo -e "${GREEN}  ✓ Dependencies installed${NC}"
+print_urls() {
+  printf '\nVietnam Heritage Travel is starting.\n'
+  printf 'Frontend:    http://localhost:3000\n'
+  printf 'API is proxied through the frontend at /api.\n\n'
 }
 
-start_infra() {
-    echo -e "${YELLOW}[2/4] Starting infrastructure (PostGIS + Redis + OSRM)...${NC}"
-    if command -v docker-compose &> /dev/null; then
-        docker-compose up -d postgis redis osrm
-    elif command -v docker &> /dev/null && docker compose version &> /dev/null; then
-        docker compose up -d postgis redis osrm
-    else
-        echo -e "${RED}  ✗ Docker not found. Skipping infrastructure.${NC}"
-        echo -e "${YELLOW}  → AI service will use in-memory seed data.${NC}"
-    fi
-    echo -e "${GREEN}  ✓ Infrastructure started${NC}"
+start_docker() {
+  if [ ${#COMPOSE[@]} -eq 0 ]; then
+    printf 'Docker Compose was not found. Install Docker or run: bash start.sh --local\n' >&2
+    exit 1
+  fi
+
+  cd "$PROJECT_DIR"
+  print_urls
+  "${COMPOSE[@]}" up --build
 }
 
-start_ai() {
-    echo -e "${YELLOW}[3/4] Starting AI Service on port 8001...${NC}"
-    source .venv/bin/activate
-    PYTHONPATH="$PROJECT_DIR" python -m services.ai_service.main &
-    AI_PID=$!
-    echo -e "${GREEN}  ✓ AI Service started (PID: $AI_PID)${NC}"
-    echo "  → http://localhost:8001/docs"
+start_local() {
+  cd "$PROJECT_DIR"
+
+  if [ ${#COMPOSE[@]} -gt 0 ]; then
+    "${COMPOSE[@]}" up -d osrm
+  else
+    printf 'Warning: Docker Compose not found, OSRM will not be started for local mode.\n' >&2
+  fi
+
+  if [ ! -d .venv ]; then
+    python3 -m venv .venv
+  fi
+
+  # shellcheck disable=SC1091
+  source .venv/bin/activate
+  pip install -r requirements.txt
+
+  PYTHONPATH="$PROJECT_DIR" OSRM_BASE_URL="${OSRM_BASE_URL:-http://localhost:5000}" uvicorn services.ai_service.main:app --host 0.0.0.0 --port 8001 &
+  AI_PID=$!
+  PYTHONPATH="$PROJECT_DIR" AI_SERVICE_URL="${AI_SERVICE_URL:-http://localhost:8001}" uvicorn api_gateway.main:app --host 0.0.0.0 --port 8000 &
+  API_PID=$!
+
+  cd "$PROJECT_DIR/frontend"
+  if [ ! -d node_modules ]; then
+    npm install
+  fi
+  npm run dev &
+  FE_PID=$!
+
+  cleanup() {
+    kill "$AI_PID" "$API_PID" "$FE_PID" 2>/dev/null || true
+  }
+  trap cleanup EXIT INT TERM
+
+  printf '\nLocal mode is running.\n'
+  printf 'Frontend:    http://localhost:5173\n'
+  printf 'API Gateway: http://localhost:8000/docs\n'
+  printf 'AI Service:  http://localhost:8001/docs\n\n'
+  wait
 }
 
-start_gateway() {
-    echo -e "${YELLOW}[4/4] Starting API Gateway on port 8000...${NC}"
-    source .venv/bin/activate
-    PYTHONPATH="$PROJECT_DIR" python -m api_gateway.main &
-    GW_PID=$!
-    echo -e "${GREEN}  ✓ API Gateway started (PID: $GW_PID)${NC}"
-    echo "  → http://localhost:8000"
-    echo "  → http://localhost:8000/docs"
-}
-
-cleanup() {
-    echo ""
-    echo -e "${YELLOW}Shutting down...${NC}"
-    kill $AI_PID $GW_PID 2>/dev/null || true
-    echo -e "${GREEN}Done.${NC}"
-}
-trap cleanup EXIT
-
-install_deps
-start_infra
-start_ai
-sleep 2
-start_gateway
-
-echo ""
-echo "Press Ctrl+C to stop all services."
-wait
+case "${1:-}" in
+  --local)
+    start_local
+    ;;
+  --help|-h)
+    printf 'Usage: bash start.sh [--local]\n'
+    printf 'Default: run full stack with Docker Compose.\n'
+    ;;
+  *)
+    start_docker
+    ;;
+esac

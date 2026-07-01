@@ -45,13 +45,10 @@ if os.path.exists(frontend_dir):
 
 @app.get("/")
 async def root():
-    """Serve the React frontend, falling back to the legacy static map."""
+    """Serve the built React frontend when the gateway is used directly."""
     react_path = os.path.join(frontend_dist_dir, "index.html")
     if os.path.exists(react_path):
         return FileResponse(react_path)
-    frontend_path = os.path.join(frontend_dir, "map.html")
-    if os.path.exists(frontend_path):
-        return FileResponse(frontend_path)
     return {"message": "Vietnam Heritage Travel API Gateway", "docs": "/docs"}
 
 
@@ -170,6 +167,22 @@ async def get_site_images(site_id: str):
             return resp.json()
     except httpx.HTTPStatusError as e:
         raise HTTPException(status_code=e.response.status_code, detail=str(e))
+    except httpx.RequestError:
+        raise HTTPException(status_code=503, detail="AI service unavailable")
+
+
+@app.get("/api/v1/heritage-sites/{site_id}/narrate")
+async def get_site_narration(site_id: str):
+    """Forward narration request to AI service."""
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.get(
+                f"{settings.ai_service_url}/api/v1/heritage-sites/{site_id}/narrate",
+            )
+            resp.raise_for_status()
+            return resp.json()
+    except httpx.HTTPStatusError as e:
+        raise HTTPException(status_code=e.response.status_code, detail=_error_detail(e))
     except httpx.RequestError:
         raise HTTPException(status_code=503, detail="AI service unavailable")
 

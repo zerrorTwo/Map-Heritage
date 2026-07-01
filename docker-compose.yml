@@ -1,45 +1,51 @@
 services:
-  postgis:
-    image: postgis/postgis:16-3.4
-    container_name: heritage_postgis
-    environment:
-      POSTGRES_DB: heritage_travel
-      POSTGRES_USER: heritage
-      POSTGRES_PASSWORD: heritage123
+  frontend:
+    build:
+      context: ./frontend
+    container_name: heritage_frontend
+    depends_on:
+      - api_gateway
     ports:
-      - "5433:5432"
-    volumes:
-      - postgis_data:/var/lib/postgresql/data
-      - ./infra/db:/docker-entrypoint-initdb.d
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U heritage -d heritage_travel"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      - "3000:80"
+    restart: unless-stopped
 
-  redis:
-    image: redis:7-alpine
-    container_name: heritage_redis
-    ports:
-      - "6379:6379"
-    command: redis-server --appendonly yes
+  api_gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    container_name: heritage_api_gateway
+    command: uvicorn api_gateway.main:app --host 0.0.0.0 --port 8000
+    environment:
+      AI_SERVICE_URL: http://ai_service:8001
+    depends_on:
+      - ai_service
+    expose:
+      - "8000"
+    restart: unless-stopped
+
+  ai_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    container_name: heritage_ai_service
+    command: uvicorn services.ai_service.main:app --host 0.0.0.0 --port 8001
+    environment:
+      OSRM_BASE_URL: http://osrm:5000
+      OPENWEATHER_API_KEY: ${OPENWEATHER_API_KEY:-}
     volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      - ./data:/app/data
+    depends_on:
+      - osrm
+    expose:
+      - "8001"
+    restart: unless-stopped
 
   osrm:
     image: ghcr.io/project-osrm/osrm-backend:v5.27.1
     container_name: heritage_osrm
     command: osrm-routed --algorithm mld /data/vietnam-latest.osrm
-    ports:
-      - "5000:5000"
     volumes:
-      - ./data/osrm:/data
-
-volumes:
-  postgis_data:
-  redis_data:
+      - ./data/osrm:/data:ro
+    expose:
+      - "5000"
+    restart: unless-stopped

@@ -9,10 +9,12 @@ import time
 from typing import Dict, List, Optional
 import httpx
 
+from config import settings
 from services.ai_service.models import HeritageSite, Forecast, TripRequest
 
 OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
 OPEN_METEO_AQ_URL = "https://air-quality-api.open-meteo.com/v1/air-quality"
+OPENWEATHER_AIR_URL = "https://api.openweathermap.org/data/2.5/air_pollution"
 
 
 def _cache_key(coords: List[tuple], start_date: str, end_date: str) -> str:
@@ -60,10 +62,16 @@ class WeatherService:
                 resp = await client.get(OPEN_METEO_FORECAST_URL, params=params)
                 resp.raise_for_status()
                 data = resp.json()
+                air_quality = await self._fetch_air_quality(client, avg_lat, avg_lng)
         except Exception:
             return {s.id: [Forecast(date=trip.start_date, hour=10)] for s in sites}
 
         forecasts = self._parse_forecast_response(data, unique_coords, trip)
+        if air_quality:
+            for items in forecasts.values():
+                for forecast in items:
+                    forecast.pm2_5 = air_quality.get("pm2_5", forecast.pm2_5)
+                    forecast.aqi_level = air_quality.get("aqi_level", forecast.aqi_level)
         # Cache under the grid key
         flat = []
         for fl in forecasts.values():
@@ -117,6 +125,21 @@ class WeatherService:
                 uv_index=float(uv_indices[ti]) if ti < len(uv_indices) and uv_indices[ti] is not None else 5.0,
             ))
         return forecasts
+
+    async def _fetch_air_quality(self, client: httpx.AsyncClient, lat: float, lng: float) -> Optional[dict]:
+        if not settings.openweather_api_key:
+            return None
+        try:
+            resp = await client.get(OPENWEATHER_AIR_URL, params={"lat": lat, "lon": lng, "appid": settings.openweather_api_key}, timeout=10)
+            resp.raise_for_status()
+            data = resp.json()
+            item = (data.get("list") or [{}])[0]
+            components = item.get("components") or {}
+            aqi = (item.get("main") or {}).get("aqi")
+            labels = {1: "good", 2: "fair", 3: "moderate", 4: "poor", 5: "very_poor"}
+            return {"pm2_5": float(components.get("pm2_5", 15.0)), "aqi_level": labels.get(aqi, "good")}
+        except Exception:
+            return None
 
     def _rebuild_site_forecasts(
         self, sites: List[HeritageSite], flat_forecasts: List[Forecast]

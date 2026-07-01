@@ -98,7 +98,12 @@ class Pipeline:
         for route_idx in routes_indices:
             cluster = [scored[i - 2] for i in route_idx]
             optimized_clusters.append(cluster)
-            
+        if scored and not any(optimized_clusters):
+            log.warning("TTDP returned empty routes; falling back to top scored candidates")
+            max_sites = min(len(scored), max(3, trip.duration_days * 3))
+            selected = scored[:max_sites]
+            optimized_clusters = [selected[i::trip.duration_days] for i in range(trip.duration_days)]
+              
         log.info(f"STEP 5/6 — TTDP Routing ({time_mod.time()-t0:.2f}s): {len(routes_indices)} days optimized")
 
         # Geometry fallback

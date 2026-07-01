@@ -429,6 +429,7 @@ def _build_stops(
             departure_time=departure.strftime("%H:%M"),
             travel_from_prev_km=round(leg_distances[idx] / 1000, 2),
             travel_from_prev_min=math.ceil(leg_durations[idx] / 60),
+            reason=_site_reason(site),
         ))
         current = departure
     return stops
@@ -451,6 +452,26 @@ def _status_for_limits(distance_km: float, duration_min: int, request: RoutePlan
 
 def _site_point(site: PlannerSite) -> PlannerPoint:
     return PlannerPoint(id=site.id, lat=site.lat, lng=site.lng, label=site.name)
+
+
+def _site_reason(site: PlannerSite) -> str:
+    labels = {
+        "history": "giá trị lịch sử",
+        "architecture": "kiến trúc đặc sắc",
+        "spiritual": "không gian tâm linh",
+        "museum": "tư liệu trưng bày",
+        "unesco": "giá trị di sản được công nhận",
+        "craft_village": "trải nghiệm văn hóa làng nghề",
+        "nature": "cảnh quan tự nhiên",
+    }
+    traits = [labels.get(cat, cat) for cat in site.categories[:2]]
+    if site.historical_importance_score >= 0.8:
+        traits.append("ý nghĩa lịch sử nổi bật")
+    if site.popularity_score >= 0.8:
+        traits.append("phù hợp làm điểm nhấn hành trình")
+    if not traits:
+        traits.append("phù hợp với tuyến di sản đã chọn")
+    return "Chọn điểm này vì " + ", ".join(dict.fromkeys(traits)) + "."
 
 
 def _parse_time(value: str) -> datetime:
