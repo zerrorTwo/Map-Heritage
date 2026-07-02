@@ -1,0 +1,82 @@
+{
+  "Bảo tàng Phú Yên|Phú Yên": null,
+  "Cao nguyên đá Đồng Văn|Hà Giang": null,
+  "Chùa Hang (Hà Tiên)|Kiên Giang": null,
+  "Chùa Long Khánh|Bình Định": null,
+  "Chùa Phật Học|Đắk Nông": null,
+  "Chùa Tân Thanh|Lạng Sơn": null,
+  "Chùa Tây Thiên|Vĩnh Phúc": null,
+  "Chùa Vĩnh Nghiêm|Bắc Giang": null,
+  "Chợ đêm Đồng Xuân|Hà Nội": {
+    "address": {
+      "ISO3166-2-lvl4": "VN-HN",
+      "building": "Chợ Đồng Xuân",
+      "city": "Hà Nội",
+      "country": "Việt Nam",
+      "country_code": "vn",
+      "postcode": "11024",
+      "quarter": "Khu phố cổ",
+      "road": "Phố Cầu Đông",
+      "suburb": "Phường Hoàn Kiếm"
+    },
+    "addresstype": "building",
+    "boundingbox": [
+      "21.0376417",
+      "21.0385509",
+      "105.8489198",
+      "105.8499342"
+    ],
+    "category": "building",
+    "display_name": "Chợ Đồng Xuân, Phố Cầu Đông, Khu phố cổ, Phường Hoàn Kiếm, Hà Nội, 11024, Việt Nam",
+    "importance": 7.283054856179167e-05,
+    "lat": "21.0380961",
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "lon": "105.8494029",
+    "name": "Chợ Đồng Xuân",
+    "osm_id": 1255852379,
+    "osm_type": "way",
+    "place_id": 238946779,
+    "place_rank": 30,
+    "type": "retail"
+  },
+  "Cầu Tràng Tiền|Thừa Thiên Huế": null,
+  "Hồ Hòa Bình|Hòa Bình": null,
+  "Làng cá Lý Sơn|Quảng Ngãi": null,
+  "Làng nổi Châu Đốc|An Giang": null,
+  "Thành Bản Phủ|Điện Biên": null,
+  "Thác Mơ|Bình Phước": null,
+  "Thác Mơ|Tuyên Quang": null,
+  "Tháp Bình Sơn|Vĩnh Phúc": null,
+  "Vườn chim Cà Mau|Cà Mau": null,
+  "Vườn quốc gia Mũi Cà Mau|Cà Mau": {
+    "address": {
+      "ISO3166-2-lvl4": "VN-59",
+      "country": "Việt Nam",
+      "country_code": "vn",
+      "county": "Xã Đất Mũi",
+      "national_park": "Vườn quốc gia Mũi Cà Mau",
+      "state": "Tỉnh Cà Mau"
+    },
+    "addresstype": "national_park",
+    "boundingbox": [
+      "8.5826857",
+      "8.8121135",
+      "104.7123873",
+      "104.9089445"
+    ],
+    "category": "boundary",
+    "display_name": "Vườn quốc gia Mũi Cà Mau, Xã Đất Mũi, Tỉnh Cà Mau, Việt Nam",
+    "importance": 0.3508056963223209,
+    "lat": "8.6977344",
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "lon": "104.8345010",
+    "name": "Vườn quốc gia Mũi Cà Mau",
+    "osm_id": 7139210,
+    "osm_type": "relation",
+    "place_id": 258567707,
+    "place_rank": 25,
+    "type": "national_park"
+  },
+  "Đền Cuông|Nghệ An": null,
+  "Đền Đông Cuông|Yên Bái": null
+}

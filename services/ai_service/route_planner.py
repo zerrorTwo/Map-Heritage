@@ -43,6 +43,9 @@ OSRM_FALLBACK_BASES = [
 ]
 REQUEST_TIMEOUT_SECONDS = 15
 UNREACHABLE_COST = 10**12
+EXACT_TSP_MAX_SITES = 14
+EXACT_PARTITION_MAX_SITES = 14
+ORTOOLS_TIME_LIMIT_SECONDS = 20
 
 
 def plan_route(request: RoutePlanRequest) -> RoutePlanResponse:
@@ -79,7 +82,7 @@ def plan_route(request: RoutePlanRequest) -> RoutePlanResponse:
             warnings=warnings,
         )
 
-    day_groups = _cluster_sites(sites, request.num_days, warnings)
+    day_groups = _partition_sites(start, end, sites, request, warnings)
     total_distance_m = 0.0
     total_duration_s = 0.0
     days: List[RoutePlanDay] = []
@@ -100,10 +103,10 @@ def plan_route(request: RoutePlanRequest) -> RoutePlanResponse:
             return RoutePlanResponse(status="error", warnings=warnings + [str(exc)])
         matrix_order = [0] + order + [len(group) + 1]
         leg_distances, leg_durations = _route_legs(route, matrix_order, distances, durations)
-        day_stops = _build_stops(ordered, leg_distances, leg_durations, request.available_window.start_time, warnings)
+        day_stops, day_duration_s = _build_stops(ordered, leg_distances, leg_durations, request.available_window.start_time, warnings)
 
         total_distance_m += sum(leg_distances)
-        total_duration_s += sum(leg_durations) + sum(site.visit_duration_min * 60 for site in ordered)
+        total_duration_s += day_duration_s
         days.append(RoutePlanDay(day=day_index, stops=day_stops, polyline=route["polyline"]))
 
     total_distance_km = round(total_distance_m / 1000, 2)
@@ -170,6 +173,140 @@ def _cluster_sites(sites: List[PlannerSite], num_days: int, warnings: List[str])
     return [sorted(group, key=lambda site: (site.lat or 0.0, site.lng or 0.0)) for group in groups]
 
 
+def _partition_sites(
+    start: PlannerPoint,
+    end: PlannerPoint,
+    sites: List[PlannerSite],
+    request: RoutePlanRequest,
+    warnings: List[str],
+) -> List[List[PlannerSite]]:
+    """Split sites across days using road-time costs, not raw lat/lng clusters."""
+    num_days = max(1, request.num_days)
+    if num_days <= 1:
+        return [sites]
+    if num_days >= len(sites):
+        return [[site] for site in sites] + [[] for _ in range(num_days - len(sites))]
+
+    points = [start] + [_site_point(site) for site in sites] + [end]
+    try:
+        _, durations = _fetch_table(points)
+    except Exception as exc:
+        warnings.append(f"road-cost partition failed ({exc}); falling back to geographic clustering")
+        return _cluster_sites(sites, num_days, warnings)
+
+    if len(sites) <= EXACT_PARTITION_MAX_SITES:
+        return _exact_day_partition(sites, durations, num_days)
+    warnings.append("large site set; using greedy insertion day partition instead of exact set partition")
+    return _greedy_day_partition(sites, durations, num_days)
+
+
+def _exact_day_partition(sites: List[PlannerSite], cost: List[List[float]], num_days: int) -> List[List[PlannerSite]]:
+    site_count = len(sites)
+    used_days = min(num_days, site_count)
+    end_idx = site_count + 1
+    full_mask = (1 << site_count) - 1
+
+    dp = {}
+    parent = {}
+    for node in range(1, site_count + 1):
+        mask = 1 << (node - 1)
+        dp[(mask, node)] = cost[0][node]
+        parent[(mask, node)] = 0
+
+    for mask in range(1, full_mask + 1):
+        for last in range(1, site_count + 1):
+            if not mask & (1 << (last - 1)):
+                continue
+            prev_mask = mask ^ (1 << (last - 1))
+            if prev_mask == 0:
+                continue
+            best_prev = min(
+                (prev for prev in range(1, site_count + 1) if prev_mask & (1 << (prev - 1))),
+                key=lambda prev: dp.get((prev_mask, prev), UNREACHABLE_COST) + cost[prev][last],
+            )
+            dp[(mask, last)] = dp[(prev_mask, best_prev)] + cost[best_prev][last]
+            parent[(mask, last)] = best_prev
+
+    subset_cost = [0.0] + [UNREACHABLE_COST] * full_mask
+    subset_order: List[List[int]] = [[] for _ in range(full_mask + 1)]
+    for mask in range(1, full_mask + 1):
+        last = min(
+            (node for node in range(1, site_count + 1) if mask & (1 << (node - 1))),
+            key=lambda node: dp.get((mask, node), UNREACHABLE_COST) + cost[node][end_idx],
+        )
+        subset_cost[mask] = dp[(mask, last)] + cost[last][end_idx]
+        order = []
+        cursor = last
+        cursor_mask = mask
+        while cursor:
+            order.append(cursor)
+            prev = parent[(cursor_mask, cursor)]
+            cursor_mask ^= 1 << (cursor - 1)
+            cursor = prev
+        subset_order[mask] = list(reversed(order))
+
+    part_cost = [[UNREACHABLE_COST] * (full_mask + 1) for _ in range(used_days + 1)]
+    part_parent: List[List[Optional[int]]] = [[None] * (full_mask + 1) for _ in range(used_days + 1)]
+    part_cost[0][0] = 0.0
+    for day in range(1, used_days + 1):
+        for mask in range(1, full_mask + 1):
+            if mask.bit_count() < day:
+                continue
+            sub = mask
+            while sub:
+                prev_mask = mask ^ sub
+                if prev_mask.bit_count() >= day - 1:
+                    candidate = part_cost[day - 1][prev_mask] + subset_cost[sub]
+                    if candidate < part_cost[day][mask]:
+                        part_cost[day][mask] = candidate
+                        part_parent[day][mask] = sub
+                sub = (sub - 1) & mask
+
+    groups_masks = []
+    mask = full_mask
+    for day in range(used_days, 0, -1):
+        sub = part_parent[day][mask]
+        if sub is None:
+            return _greedy_day_partition(sites, cost, num_days)
+        groups_masks.append(sub)
+        mask ^= sub
+    groups_masks.reverse()
+
+    groups = [[sites[node - 1] for node in subset_order[group_mask]] for group_mask in groups_masks]
+    return groups + [[] for _ in range(num_days - used_days)]
+
+
+def _greedy_day_partition(sites: List[PlannerSite], cost: List[List[float]], num_days: int) -> List[List[PlannerSite]]:
+    site_count = len(sites)
+    used_days = min(num_days, site_count)
+    end_idx = site_count + 1
+    nodes = list(range(1, site_count + 1))
+    nodes.sort(key=lambda node: cost[0][node] + cost[node][end_idx], reverse=True)
+    routes = [[node] for node in nodes[:used_days]]
+
+    def route_cost(route: List[int]) -> float:
+        path = [0] + route + [end_idx]
+        return sum(cost[path[i]][path[i + 1]] for i in range(len(path) - 1))
+
+    for node in nodes[used_days:]:
+        best = None
+        for day_idx, route in enumerate(routes):
+            current = route_cost(route)
+            for pos in range(len(route) + 1):
+                candidate_route = route[:pos] + [node] + route[pos:]
+                new_cost = route_cost(candidate_route)
+                balance_penalty = current * 0.05
+                score = (new_cost - current) + balance_penalty
+                if best is None or score < best[0]:
+                    best = (score, day_idx, pos)
+        _, day_idx, pos = best
+        routes[day_idx] = routes[day_idx][:pos] + [node] + routes[day_idx][pos:]
+
+    optimized = [_two_opt_open(route, cost, end_idx) for route in routes]
+    groups = [[sites[node - 1] for node in route] for route in optimized]
+    return groups + [[] for _ in range(num_days - used_days)]
+
+
 def _sequence_sites(
     start: PlannerPoint,
     end: PlannerPoint,
@@ -179,8 +316,8 @@ def _sequence_sites(
 ) -> Tuple[List[PlannerSite], List[int], List[List[float]], List[List[float]]]:
     points = [start] + [_site_point(site) for site in sites] + [end]
     distances, durations = _fetch_table(points)
-    needs_constraints = _has_solver_constraints(request)
-    if len(sites) <= 12 and not needs_constraints:
+    needs_constraints = _has_solver_constraints(request) or _has_time_window_constraints(sites, request)
+    if len(sites) <= EXACT_TSP_MAX_SITES and not needs_constraints:
         order = _held_karp(durations, len(sites))
     elif pywrapcp is not None and routing_enums_pb2 is not None:
         order = _ortools_open_path(durations, distances, sites, request, warnings)
@@ -330,25 +467,26 @@ def _ortools_open_path(
     if request.constraints.max_total_duration_min is not None:
         latest_end_sec = min(latest_end_sec, start_sec + request.constraints.max_total_duration_min * 60)
     horizon = max(latest_end_sec, end_sec, start_sec) + 24 * 3600
-    routing.AddDimension(transit_callback_index, 0, horizon, False, "Time")
+    routing.AddDimension(transit_callback_index, horizon, horizon, False, "Time")
     time_dimension = routing.GetDimensionOrDie("Time")
     time_dimension.CumulVar(routing.Start(0)).SetRange(start_sec, start_sec)
     time_dimension.CumulVar(routing.End(0)).SetRange(start_sec, latest_end_sec)
     for node, site in enumerate(sites, start=1):
-        open_sec = _time_seconds(site.open_time)
-        close_sec = _time_seconds(site.close_time)
-        if close_sec < open_sec:
-            close_sec += 24 * 3600
+        open_sec, close_sec = _window_seconds_relative(site.open_time, site.close_time, start_sec)
+        latest_arrival_sec = close_sec - site.visit_duration_min * 60
+        if latest_arrival_sec < open_sec:
+            latest_arrival_sec = close_sec
+            warnings.append(f"{site.name} visit_duration exceeds its open_time/close_time window")
         index = manager.NodeToIndex(node)
         try:
-            time_dimension.CumulVar(index).SetRange(open_sec, close_sec)
+            time_dimension.CumulVar(index).SetRange(open_sec, latest_arrival_sec)
         except Exception:
             warnings.append(f"{site.name} has an incompatible time window for OR-Tools; solver may fail")
 
     search = pywrapcp.DefaultRoutingSearchParameters()
-    search.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+    search.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PARALLEL_CHEAPEST_INSERTION
     search.local_search_metaheuristic = routing_enums_pb2.LocalSearchMetaheuristic.GUIDED_LOCAL_SEARCH
-    search.time_limit.seconds = 10
+    search.time_limit.seconds = ORTOOLS_TIME_LIMIT_SECONDS
 
     solution = routing.SolveWithParameters(search)
     if solution is None:
@@ -370,6 +508,18 @@ def _has_solver_constraints(request: RoutePlanRequest) -> bool:
         request.constraints.max_total_distance_km is not None
         or request.constraints.max_total_duration_min is not None
     )
+
+
+def _has_time_window_constraints(sites: List[PlannerSite], request: RoutePlanRequest) -> bool:
+    start_sec = _time_seconds(request.available_window.start_time)
+    end_sec = _time_seconds(request.available_window.end_time)
+    if end_sec < start_sec:
+        end_sec += 24 * 3600
+    for site in sites:
+        open_sec, close_sec = _window_seconds_relative(site.open_time, site.close_time, start_sec)
+        if open_sec > start_sec or close_sec < end_sec:
+            return True
+    return False
 
 
 def _two_opt_open(order: List[int], cost: List[List[float]], end_idx: int) -> List[int]:
@@ -413,11 +563,13 @@ def _build_stops(
     leg_durations: List[float],
     start_time: str,
     warnings: List[str],
-) -> List[RoutePlanStop]:
+) -> Tuple[List[RoutePlanStop], float]:
     current = _parse_time(start_time)
+    day_start = current
     stops: List[RoutePlanStop] = []
     for idx, site in enumerate(ordered):
         current += timedelta(seconds=leg_durations[idx])
+        current = _wait_until_open(current, site.open_time, site.close_time)
         arrival = current
         departure = arrival + timedelta(minutes=site.visit_duration_min)
         if not _within_site_window(arrival, departure, site.open_time, site.close_time):
@@ -432,7 +584,9 @@ def _build_stops(
             reason=_site_reason(site),
         ))
         current = departure
-    return stops
+    if len(leg_durations) > len(ordered):
+        current += timedelta(seconds=leg_durations[len(ordered)])
+    return stops, max(0.0, (current - day_start).total_seconds())
 
 
 def _status_for_limits(distance_km: float, duration_min: int, request: RoutePlanRequest, warnings: List[str]) -> str:
@@ -491,12 +645,42 @@ def _time_seconds(value: str) -> int:
     return parsed.hour * 3600 + parsed.minute * 60
 
 
+def _window_seconds_relative(open_time: str, close_time: str, reference_start_sec: int) -> Tuple[int, int]:
+    open_sec = _time_seconds(open_time)
+    close_sec = _time_seconds(close_time)
+    if close_sec < open_sec:
+        close_sec += 24 * 3600
+    if close_sec < reference_start_sec:
+        open_sec += 24 * 3600
+        close_sec += 24 * 3600
+    return open_sec, close_sec
+
+
+def _wait_until_open(current: datetime, open_time: str, close_time: str) -> datetime:
+    try:
+        open_dt = _parse_time(open_time)
+        close_dt = _parse_time(close_time)
+    except ValueError:
+        return current
+    open_dt = current.replace(hour=open_dt.hour, minute=open_dt.minute, second=0, microsecond=0)
+    close_dt = current.replace(hour=close_dt.hour, minute=close_dt.minute, second=0, microsecond=0)
+    if close_dt < open_dt:
+        close_dt += timedelta(days=1)
+    if current > close_dt:
+        open_dt += timedelta(days=1)
+    if current < open_dt:
+        return open_dt
+    return current
+
+
 def _within_site_window(arrival: datetime, departure: datetime, open_time: str, close_time: str) -> bool:
     try:
         open_dt = _parse_time(open_time)
         close_dt = _parse_time(close_time)
     except ValueError:
         return True
+    open_dt = arrival.replace(hour=open_dt.hour, minute=open_dt.minute, second=0, microsecond=0)
+    close_dt = arrival.replace(hour=close_dt.hour, minute=close_dt.minute, second=0, microsecond=0)
     if close_dt < open_dt:
         close_dt += timedelta(days=1)
     return open_dt <= arrival <= close_dt and departure <= close_dt

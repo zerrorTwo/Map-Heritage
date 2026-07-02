@@ -17,6 +17,68 @@ def _rest_summary(host: str, title: str, timeout: int = 8) -> dict | None:
         return None
 
 
+def _wiki_api(host: str, params: dict, timeout: int = 8) -> dict | None:
+    url = f"https://{host}/w/api.php?{urllib.parse.urlencode(params)}"
+    req = urllib.request.Request(url, headers={"User-Agent": "HeritagePlanner/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return json.loads(r.read().decode())
+    except Exception:
+        return None
+
+
+def _search_title(host: str, query: str) -> str | None:
+    data = _wiki_api(host, {
+        "action": "query",
+        "format": "json",
+        "list": "search",
+        "srsearch": query,
+        "srlimit": 1,
+        "utf8": 1,
+    })
+    results = data.get("query", {}).get("search", []) if data else []
+    return results[0].get("title") if results else None
+
+
+def _page_extract(host: str, title: str, intro_only: bool = False) -> str:
+    params = {
+        "action": "query",
+        "format": "json",
+        "prop": "extracts",
+        "explaintext": 1,
+        "redirects": 1,
+        "titles": title,
+        "utf8": 1,
+    }
+    if intro_only:
+        params["exintro"] = 1
+    data = _wiki_api(host, params, timeout=10)
+    pages = data.get("query", {}).get("pages", {}) if data else {}
+    for page in pages.values():
+        extract = page.get("extract", "").strip()
+        if extract:
+            return _clean_extract(extract)
+    return ""
+
+
+def _clean_extract(text: str, max_chars: int = 1800) -> str:
+    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    if len(text) <= max_chars:
+        return text
+    cut = text[:max_chars]
+    last = max(cut.rfind(". "), cut.rfind(".\n"), cut.rfind("! "), cut.rfind("? "))
+    return (cut[:last + 1] if last > 500 else cut).strip()
+
+
+def _generated_long_description(name: str, province: str) -> str:
+    return (
+        f"{name} là một điểm đến đáng chú ý tại {province}, phù hợp để đưa vào hành trình khám phá văn hóa và đời sống địa phương. "
+        f"Khi ghé thăm, du khách có thể quan sát không gian xung quanh, tìm hiểu bối cảnh hình thành của địa điểm và cảm nhận nhịp sống đặc trưng của vùng đất {province}. "
+        "Đây cũng là điểm dừng hữu ích để kết nối với các di tích, bảo tàng, làng nghề hoặc không gian cộng đồng lân cận trong cùng tuyến tham quan. "
+        "Nên kiểm tra giờ mở cửa trước khi đi, chuẩn bị thời gian di chuyển hợp lý và ưu tiên tham quan vào buổi sáng hoặc cuối chiều để có trải nghiệm thoải mái hơn."
+    )
+
+
 def enrich_site(name: str, province: str = "", ref_url: str = "") -> dict:
     """Get rich description data for a heritage site."""
     result = {
@@ -27,42 +89,54 @@ def enrich_site(name: str, province: str = "", ref_url: str = "") -> dict:
         "wikipedia_extract": "",
     }
 
-    # 1. Try vi.wikipedia from reference URL
+    # 1. Try full vi.wikipedia extract from reference URL
     if ref_url and "vi.wikipedia.org" in ref_url:
         m = re.search(r'wikipedia\.org/wiki/(.+?)(?:[?#]|$)', ref_url)
         if m:
             title = urllib.parse.unquote(m.group(1)).replace("_", " ")
-            data = _rest_summary("vi.wikipedia.org", title)
-            if data and data.get("extract"):
-                extract = data["extract"]
+            extract = _page_extract("vi.wikipedia.org", title) or ""
+            if not extract:
+                data = _rest_summary("vi.wikipedia.org", title)
+                extract = data.get("extract", "") if data else ""
+            if extract:
                 result["wikipedia_extract"] = extract
                 result["long_description"] = extract
-                result["description"] = data.get("description", "") or extract[:200]
+                result["description"] = extract[:220]
 
-    # 2. Try en.wikipedia
-    if not result["long_description"]:
-        data = _rest_summary("en.wikipedia.org", f"{name} {province} Vietnam")
-        if not data or not data.get("extract"):
-            data = _rest_summary("en.wikipedia.org", name)
-        if data and data.get("extract"):
-            extract = data["extract"]
-            if len(extract) > len(result.get("wikipedia_extract", "")):
+    # 2. Search vi.wikipedia and fetch a longer extract.
+    if len(result["long_description"]) < 350:
+        for query in (f"{name} {province}", name):
+            title = _search_title("vi.wikipedia.org", query)
+            if not title:
+                continue
+            extract = _page_extract("vi.wikipedia.org", title)
+            if len(extract) > len(result["long_description"]):
+                result["wikipedia_extract"] = extract
                 result["long_description"] = extract
-                result["description"] = data.get("description", "") or extract[:200]
+                result["description"] = extract[:220]
+            if len(result["long_description"]) >= 350:
+                break
 
-    # 3. Try just name on vi.wikipedia
-    if not result["long_description"]:
-        data = _rest_summary("vi.wikipedia.org", name)
-        if data and data.get("extract"):
-            extract = data["extract"]
-            result["long_description"] = extract
-            result["description"] = data.get("description", "") or extract[:200]
+    # 3. Try en.wikipedia for places with English pages.
+    if len(result["long_description"]) < 350:
+        for query in (f"{name} {province} Vietnam", f"{name} Vietnam", name):
+            title = _search_title("en.wikipedia.org", query)
+            if not title:
+                continue
+            extract = _page_extract("en.wikipedia.org", title)
+            if len(extract) > len(result["long_description"]):
+                result["long_description"] = extract
+                result["description"] = extract[:220]
+            if len(result["long_description"]) >= 350:
+                break
 
-    # Fallback: generate from name + province
+    # Fallback: generate a useful local travel description instead of one line.
     if not result["description"]:
         result["description"] = f"{name} — điểm du lịch nổi tiếng tại {province}, Việt Nam."
-    if not result["long_description"]:
-        result["long_description"] = result["description"]
+    if len(result["long_description"]) < 220:
+        result["long_description"] = _generated_long_description(name, province)
+    if not result["visit_tips"]:
+        result["visit_tips"] = "Nên kiểm tra giờ mở cửa, chuẩn bị nước uống và sắp xếp thêm các điểm gần đó để tối ưu thời gian di chuyển."
 
     return result
 

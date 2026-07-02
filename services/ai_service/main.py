@@ -200,9 +200,9 @@ async def enrich_site_info(site_id: str):
     if not site:
         raise HTTPException(status_code=404, detail="Site not found")
     
-    # Check persistent cache first
+    # Check persistent cache first, but refresh old one-line fallback entries.
     cached = get_enriched(site_id)
-    if cached:
+    if cached and len(cached.get("long_description", "")) >= 220:
         return {"site_id": site_id, "name": site.name, **cached}
     
     # Fetch from API and persist
