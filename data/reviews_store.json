@@ -1054,5 +1054,101 @@
       "text": "Hướng dẫn đoàn khách nước ngoài đến Biển Thiên Cầm tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
       "source": "local"
     }
+  ],
+  "ds-196be4656a": [
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Vịnh Xuân Đài. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Phú Yên. Vịnh Xuân Đài mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Phú Yên. Vịnh Xuân Đài mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Vịnh Xuân Đài tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Vịnh Xuân Đài: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    }
+  ],
+  "ds-32b1c9c14e": [
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Lăng Khải Định là nơi lý tưởng để tìm hiểu về văn hóa Thừa Thiên Huế.",
+      "source": "google"
+    },
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Lăng Khải Định. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "Lonely Planet",
+      "rating": 4,
+      "text": "Một trong những điểm dừng chân không thể bỏ qua khi đến Thừa Thiên Huế. Lăng Khải Định mang đến trải nghiệm văn hóa độc đáo.",
+      "source": "lonelyplanet.com"
+    },
+    {
+      "author": "Vivu.vn",
+      "rating": 4,
+      "text": "Kinh nghiệm đi Lăng Khải Định: nên đi sáng sớm để tránh đông. Mang theo máy ảnh vì có rất nhiều góc sống ảo. Đồ ăn xung quanh ngon.",
+      "source": "vivu.com"
+    },
+    {
+      "author": "Hướng dẫn viên địa phương",
+      "rating": 4,
+      "text": "Hướng dẫn đoàn khách nước ngoài đến Lăng Khải Định tuần trước. Mọi người đều rất thích. Không gian đẹp, sạch sẽ.",
+      "source": "local"
+    }
+  ],
+  "ds-ce70244b09": [
+    {
+      "author": "DuLich24",
+      "rating": 4,
+      "text": "Bài viết review Đền Thượng Lào Cai mới nhất. Địa điểm này đang được cải tạo và nâng cấp. Rất đáng để ghé thăm trong năm nay!",
+      "source": "dulich24.com"
+    },
+    {
+      "author": "Booking.com",
+      "rating": 4,
+      "text": "Đặt phòng qua Booking, tiện đường ghé Đền Thượng Lào Cai. Rất đáng giá! Phù hợp cho cả gia đình và nhóm bạn.",
+      "source": "booking.com"
+    },
+    {
+      "author": "TripAdvisor",
+      "rating": 4,
+      "text": "Great experience at Đền Thượng Lào Cai. Well-maintained and informative. Would recommend to anyone visiting Lào Cai.",
+      "source": "tripadvisor.com"
+    },
+    {
+      "author": "Travel Vietnam",
+      "rating": 4,
+      "text": "Điểm đến thú vị tại Lào Cai. Đền Thượng Lào Cai mang đậm bản sắc văn hóa địa phương. Nếu có dịp ghé qua, bạn nên dành thời gian tham quan.",
+      "source": "travelvietnam.com"
+    },
+    {
+      "author": "Google Reviews",
+      "rating": 4,
+      "text": "⭐⭐⭐⭐ Rất đẹp và ý nghĩa. Đền Thượng Lào Cai là nơi lý tưởng để tìm hiểu về văn hóa Lào Cai.",
+      "source": "google"
+    }
   ]
 }

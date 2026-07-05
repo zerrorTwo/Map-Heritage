@@ -1,14 +1,4 @@
 services:
-  frontend:
-    build:
-      context: ./frontend
-    container_name: heritage_frontend
-    depends_on:
-      - api_gateway
-    ports:
-      - "3000:80"
-    restart: unless-stopped
-
   api_gateway:
     build:
       context: .
@@ -30,12 +20,10 @@ services:
     container_name: heritage_ai_service
     command: uvicorn services.ai_service.main:app --host 0.0.0.0 --port 8001
     environment:
-      OSRM_BASE_URL: http://osrm:5000
+      OSRM_BASE_URL: ${OSRM_BASE_URL:-https://router.project-osrm.org}
       OPENWEATHER_API_KEY: ${OPENWEATHER_API_KEY:-}
     volumes:
       - ./data:/app/data
-    depends_on:
-      - osrm
     expose:
       - "8001"
     restart: unless-stopped
@@ -43,6 +31,7 @@ services:
   osrm:
     image: ghcr.io/project-osrm/osrm-backend:v5.27.1
     container_name: heritage_osrm
+    profiles: ["osrm-local"]
     command: osrm-routed --algorithm mld /data/vietnam-latest.osrm
     volumes:
       - ./data/osrm:/data:ro

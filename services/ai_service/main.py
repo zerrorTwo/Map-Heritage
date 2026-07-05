@@ -25,20 +25,6 @@ async def lifespan(app: FastAPI):
     sites, _ = load_all_data()
     pipeline.load_data(sites)
     print(f"Loaded {len(sites)} heritage sites")
-
-    # Start background image populator (fetches + stores in DB)
-    from services.image_service.batch_populator import populate_all
-    import threading
-    def progress(done, total, found):
-        if done % 50 == 0 or done == total:
-            print(f"  Image populate: {done}/{total} ({found} with images)")
-
-    def run_populator():
-        populate_all(progress_callback=progress)
-
-    t = threading.Thread(target=run_populator, daemon=True)
-    t.start()
-    print("Background image populator started")
     yield
 
 
