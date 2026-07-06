@@ -187,6 +187,11 @@ def extract_duration(text: str) -> int:
     return 2
 
 
+def _normalize_province(province: str) -> str:
+    """Map common province name variants to canonical names."""
+    return PROVINCE_KEYWORDS.get(province.lower(), province)
+
+
 def parse_trip_request(raw_input: TripInput) -> TripRequest:
     """
     Convert structured or free-text input into a normalized TripRequest.
@@ -225,6 +230,7 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
         )
 
     provinces = raw_input.destination_provinces or [raw_input.destination_area or "Hà Nội"]
+    provinces = [_normalize_province(p) for p in provinces]
     end_loc = {"lat": raw_input.end_lat, "lng": raw_input.end_lng} if raw_input.end_lat and raw_input.end_lng else None
     dest_area = raw_input.destination_area or ", ".join(provinces)
 

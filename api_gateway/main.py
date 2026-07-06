@@ -94,6 +94,35 @@ def _error_detail(error: httpx.HTTPStatusError):
         return error.response.text or str(error)
 
 
+# --- Generic proxy for heritage-sites and other ai_service endpoints ---
+
+@app.get("/api/v1/heritage-sites")
+async def list_heritage_sites():
+    return await _proxy_get("/api/v1/heritage-sites")
+
+
+@app.get("/api/v1/heritage-sites/{path:path}")
+async def heritage_site_detail(path: str):
+    return await _proxy_get(f"/api/v1/heritage-sites/{path}")
+
+
+@app.get("/api/v1/images/stats")
+async def image_stats():
+    return await _proxy_get("/api/v1/images/stats")
+
+
+async def _proxy_get(path: str):
+    try:
+        async with httpx.AsyncClient(timeout=30) as client:
+            resp = await client.get(f"{settings.ai_service_url}{path}")
+            resp.raise_for_status()
+            return resp.json()
+    except httpx.HTTPStatusError as e:
+        raise HTTPException(status_code=e.response.status_code, detail=_error_detail(e))
+    except httpx.RequestError as e:
+        raise HTTPException(status_code=503, detail=f"AI service unavailable: {str(e)}")
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
