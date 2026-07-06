@@ -3,12 +3,21 @@ Step 8 — Assemble and return final Itinerary.
 Combines ordered sites + inserted restaurants + per-item reason strings.
 """
 
+import math
 import uuid
-from typing import List, Dict
+from typing import List, Dict, Optional
 from services.ai_service.models import (
     ScoredSite, DayPlan, Itinerary, ItineraryItem, TripRequest
 )
-from services.ai_service.step6_routing import haversine
+
+
+def haversine(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
+    R = 6371000
+    phi1, phi2 = math.radians(lat1), math.radians(lat2)
+    dphi = math.radians(lat2 - lat1)
+    dlam = math.radians(lng2 - lng1)
+    a = math.sin(dphi / 2) ** 2 + math.cos(phi1) * math.cos(phi2) * math.sin(dlam / 2) ** 2
+    return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
 
 
 def assemble_itinerary(
@@ -16,33 +25,45 @@ def assemble_itinerary(
     scored_clusters: List[List[ScoredSite]],
     trip: TripRequest,
     route_geoms: List = None,
+    distance_matrix: Optional[dict] = None,
 ) -> Itinerary:
     """
     Combine ordered sites, inserted restaurants, and compute final itinerary metrics.
+    Supports two-pass distance scoring: uses real OSRM distances when available.
     """
-    total_score = 0.0
     total_distance = 0.0
+    total_distance_real = 0.0
     all_scored = [s for cluster in scored_clusters for s in cluster]
     score_count = len(all_scored)
 
+    dm = distance_matrix or {}
+    dm_sites = dm.get("sites", [])
+    dm_osrm = dm.get("matrix", None)
+
     for day_plan in day_plans:
-        current_time_minutes = 8 * 60  # start at 08:00
+        current_time_minutes = 8 * 60
         prev = None
         for item in day_plan.items:
             if prev and item.type in ("heritage", "restaurant") and prev.type in ("heritage", "restaurant"):
                 prev_coords = _get_coords(prev, all_scored)
                 curr_coords = _get_coords(item, all_scored)
-                if prev_coords and curr_coords:
-                    dist = haversine(*prev_coords, *curr_coords)
-                    item.distance_from_previous_m = round(dist, 1)
-                    # Convert straight-line distance to approx driving time at 30km/h (500m/min)
-                    item.travel_from_previous_minutes = max(1, int(dist / 500))
-                    total_distance += dist
 
-            # Add travel time to current time
+                if prev_coords and curr_coords:
+                    real_dist = _lookup_distance(prev, item, all_scored, dm_sites, dm_osrm)
+                    haversine_dist = haversine(*prev_coords, *curr_coords)
+
+                    if real_dist is not None:
+                        item.distance_from_previous_m = round(real_dist, 1)
+                        item.travel_from_previous_minutes = max(1, int(real_dist / 500))
+                        total_distance_real += real_dist
+                        total_distance += real_dist
+                    else:
+                        item.distance_from_previous_m = round(haversine_dist, 1)
+                        item.travel_from_previous_minutes = max(1, int(haversine_dist / 500))
+                        total_distance += haversine_dist
+
             current_time_minutes += item.travel_from_previous_minutes
-            
-            # Get visit duration
+
             visit_duration = 60
             if item.type == "heritage":
                 for sc in all_scored:
@@ -51,17 +72,14 @@ def assemble_itinerary(
                         break
             elif item.type == "restaurant":
                 visit_duration = 45
-                
+
             start_hh = int(current_time_minutes // 60) % 24
             start_mm = int(current_time_minutes % 60)
-            
             current_time_minutes += visit_duration
-            
             end_hh = int(current_time_minutes // 60) % 24
             end_mm = int(current_time_minutes % 60)
-            
             item.time = f"{start_hh:02d}:{start_mm:02d}-{end_hh:02d}:{end_mm:02d}"
-            
+
             prev = item
 
     if score_count > 0:
@@ -69,8 +87,10 @@ def assemble_itinerary(
             sum(s.score for s in all_scored) / score_count, 4
         )
 
-    # Quality scoring formula §6
-    quality_score = _compute_quality_score(day_plans, all_scored, total_distance, trip)
+    budget_fit = _compute_budget_fit(all_scored, trip)
+    quality_score = _compute_quality_score(
+        day_plans, all_scored, total_distance_real if total_distance_real > 0 else total_distance, trip, budget_fit
+    )
 
     summary = _build_summary(day_plans, trip, quality_score)
 
@@ -91,41 +111,80 @@ def _get_coords(item: ItineraryItem, all_scored: List[ScoredSite]) -> tuple:
     return None
 
 
+def _lookup_distance(
+    prev_item: ItineraryItem,
+    curr_item: ItineraryItem,
+    all_scored: List[ScoredSite],
+    dm_sites: List[ScoredSite],
+    dm_osrm,
+) -> Optional[float]:
+    """Look up real OSRM distance between two itinerary items."""
+    if dm_osrm is None or not dm_sites:
+        return None
+    prev_idx = None
+    curr_idx = None
+    for i, s in enumerate(dm_sites):
+        if s.site.id == prev_item.ref_id:
+            prev_idx = i
+        if s.site.id == curr_item.ref_id:
+            curr_idx = i
+    if prev_idx is not None and curr_idx is not None:
+        try:
+            d = dm_osrm[prev_idx][curr_idx]
+            if d > 0 and d < 999999:
+                return float(d)
+        except (IndexError, TypeError):
+            pass
+    return None
+
+
+def _compute_budget_fit(all_scored: List[ScoredSite], trip: TripRequest) -> float:
+    """Compute actual budget fit from site ticket prices and user budget_level."""
+    heritage_sites = [s for s in all_scored if s.site.ticket_price is not None]
+    if not heritage_sites:
+        return 0.8
+
+    total_cost = sum(s.site.ticket_price for s in heritage_sites)
+    avg_cost = total_cost / len(heritage_sites)
+
+    thresholds = {"low": 30000, "medium": 100000, "high": 1000000}
+    max_acceptable = thresholds.get(trip.budget_level, 100000)
+
+    if avg_cost <= max_acceptable * 0.3:
+        return 1.0
+    if avg_cost >= max_acceptable:
+        return 0.3
+    return 1.0 - 0.7 * (avg_cost / max_acceptable)
+
+
 def _compute_quality_score(
     day_plans: List[DayPlan],
     all_scored: List[ScoredSite],
     total_distance: float,
     trip: TripRequest,
+    budget_fit: float = 0.8,
 ) -> float:
-    """Itinerary quality score from §6."""
+    """Itinerary quality score from §6, with real-distance route_efficiency and actual budget_fit."""
     avg_site_score = sum(s.score for s in all_scored) / max(1, len(all_scored))
 
-    # Route efficiency: penalize if > 50km/day
     days = max(1, len(day_plans))
     dist_per_day = (total_distance / 1000) / days
     route_eff = max(0.0, 1.0 - dist_per_day / 100)
 
-    # Weather fit
     weather_fit = sum(s.weather_suitability for s in all_scored) / max(1, len(all_scored))
 
-    # User preference fit
     pref_fit = sum(s.interest_match for s in all_scored) / max(1, len(all_scored))
 
-    # Food experience: simplified
     restaurant_count = sum(
         1 for dp in day_plans for item in dp.items if item.type == "restaurant"
     )
     food_score = min(1.0, restaurant_count / max(1, days * 3))
 
-    # Schedule balance
     schedule_balance = 1.0
     if day_plans:
         counts = [len(dp.items) for dp in day_plans]
         if max(counts) > 0:
             schedule_balance = 1.0 - (max(counts) - min(counts)) / max(1, max(counts))
-
-    # Budget fit
-    budget_fit = 0.8  # Simplified
 
     return (
         0.25 * avg_site_score

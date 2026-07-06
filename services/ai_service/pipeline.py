@@ -60,13 +60,22 @@ class Pipeline:
         # Step 4: Score each site. Must-visit sites get max score to guarantee inclusion
         t0 = time_mod.time()
         scored = score_all_sites(candidates, trip, forecasts)
-        # Force must-visit sites to max score
         must_ids = set(trip.must_visit_site_ids)
         for s in scored:
             if s.site.id in must_ids:
-                s.score = 0.99  # Near-max to ensure top priority in clustering
+                s.score = 0.99
         top5 = [(s.site.name, f"{s.score:.3f}", "★" if s.site.id in must_ids else "") for s in scored[:5]]
         log.info(f"STEP 4 — Scoring ({time_mod.time()-t0:.2f}s): {len(scored)} scored | must-visit: {len(must_ids)} | top: {top5}")
+
+        # Step 4b: MMR diversity re-ranking
+        t0 = time_mod.time()
+        from services.ai_service.mmr_rerank import mmr_rerank
+        must_visit_scored = [s for s in scored if s.site.id in must_ids]
+        recommended_scored = [s for s in scored if s.site.id not in must_ids]
+        if recommended_scored:
+            recommended_scored = mmr_rerank(recommended_scored, lambd=0.7)
+        scored = must_visit_scored + recommended_scored
+        log.info(f"STEP 4b — MMR Diversity ({time_mod.time()-t0:.2f}s)")
 
         # Step 5 & 6: TTDP Route Optimization (OR-Tools)
         t0 = time_mod.time()
@@ -106,14 +115,18 @@ class Pipeline:
               
         log.info(f"STEP 5/6 — TTDP Routing ({time_mod.time()-t0:.2f}s): {len(routes_indices)} days optimized")
 
-        # Geometry fallback
+        # Step 6b: Geometry + OSRM distance matrix
         t0 = time_mod.time()
-        from services.ai_service.step6_routing import get_route_geometry
+        from services.ai_service.step6_routing import get_route_geometry, build_distance_matrix_osrm
         route_tasks = [
             asyncio.to_thread(get_route_geometry, c) if c else asyncio.sleep(0, result=None)
             for c in optimized_clusters
         ]
         route_geoms = await asyncio.gather(*route_tasks)
+
+        flat_ordered = [s for c in optimized_clusters for s in c]
+        dm_matrix, dm_coords, _ = build_distance_matrix_osrm(flat_ordered)
+
         log.info(f"STEP 6b — Geometry ({time_mod.time()-t0:.2f}s)")
 
         # Step 7: Day plans
@@ -123,7 +136,8 @@ class Pipeline:
 
         # Step 8: Assemble
         t0 = time_mod.time()
-        itinerary = assemble_itinerary(day_plans, optimized_clusters, trip, route_geoms)
+        distance_info = {"sites": flat_ordered, "matrix": dm_matrix} if len(flat_ordered) > 0 else None
+        itinerary = assemble_itinerary(day_plans, optimized_clusters, trip, route_geoms, distance_info)
         log.info(f"STEP 8 — Assemble ({time_mod.time()-t0:.2f}s): score={itinerary.total_score:.0%}, distance={itinerary.total_distance_km}km, id={itinerary.itinerary_id}")
 
         total_time = time_mod.time() - t_start

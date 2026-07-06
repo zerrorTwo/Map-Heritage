@@ -34,6 +34,8 @@ class HeritageSite(BaseModel):
     ticket_price: int = 0
     popularity_score: float = 0.5
     historical_importance_score: float = 0.5
+    rating: Optional[float] = None
+    review_count: Optional[int] = None
 
 
 class Restaurant(BaseModel):
