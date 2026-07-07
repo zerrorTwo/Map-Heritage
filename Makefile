@@ -1,4 +1,4 @@
-.PHONY: sync build up down restart deploy logs logs-gateway logs-ai status ssh
+.PHONY: sync build up down restart deploy logs logs-gateway logs-ai status
 
 sync:
 	python deploy.py sync
@@ -29,6 +29,3 @@ logs-ai:
 
 status:
 	python deploy.py status
-
-ssh:
-	python deploy.py ssh
