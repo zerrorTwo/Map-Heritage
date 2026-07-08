@@ -1,30 +1,31 @@
 """
-AI Service Pipeline — Orchestrates all 8 steps from the architecture spec.
+AI Service Pipeline — Orchestrates all steps using Pipeline Pattern.
+To add/remove/reorder steps, edit the `_build_runner()` method.
 """
 
-import asyncio
-import time as time_mod
 import logging
+import time as time_mod
+import uuid
 from typing import List
 
-logging.basicConfig(level=logging.INFO, format="%(asctime)s [PIPELINE] %(message)s", datefmt="%H:%M:%S")
-log = logging.getLogger("pipeline")
+from services.ai_service.models import HeritageSite, Itinerary, TripInput
+from services.ai_service.steps.base import PipelineRunner
+from services.ai_service.steps.context import PipelineContext
+from services.ai_service.steps.step1_normalize import NormalizeStep
+from services.ai_service.steps.step2_candidates import CandidateStep
+from services.ai_service.steps.step3_weather import WeatherStep
+from services.ai_service.steps.step4_scoring import ScoringStep
+from services.ai_service.steps.step4b_mmr import MMRStep
+from services.ai_service.steps.step5_ttdp import TTDPRoutingStep
+from services.ai_service.steps.step6_geometry import GeometryStep
+from services.ai_service.steps.step7_dayplan import DayPlanStep
+from services.ai_service.steps.step8_assembly import AssemblyStep
 
-from services.ai_service.models import (
-    HeritageSite, TripRequest, Itinerary, ScoredSite,
-    DayPlan, Forecast, TripInput,
-)
-from services.ai_service.step1_normalizer import parse_trip_request
-from services.ai_service.step2_candidates import generate_candidates
-from services.ai_service.step3_weather import weather_service
-from services.ai_service.step4_scoring import score_all_sites
-from services.ai_service.step5_clustering import split_into_days, clusters_to_day_plans
-from services.ai_service.step6_routing import optimize_route
-from services.ai_service.step8_assembly import assemble_itinerary
+log = logging.getLogger("heritage.pipeline")
 
 
 class Pipeline:
-    """Orchestrates the full 8-step recommendation pipeline."""
+    """Orchestrates the full recommendation pipeline using composable steps."""
 
     def __init__(self):
         self._sites_cache: List[HeritageSite] = []
@@ -33,116 +34,52 @@ class Pipeline:
     def load_data(self, sites: List[HeritageSite]):
         self._sites_cache = sites
 
+    def _build_runner(self) -> PipelineRunner:
+        """Build pipeline step chain. Add/remove/reorder steps here."""
+        return PipelineRunner(steps=[
+            NormalizeStep(),
+            CandidateStep(sites_cache=self._sites_cache),
+            WeatherStep(),
+            ScoringStep(),
+            MMRStep(lambd=0.7),
+            TTDPRoutingStep(speed_kmh=40.0, time_limit_sec=2),
+            GeometryStep(),
+            DayPlanStep(),
+            AssemblyStep(),
+        ])
+
     async def run(self, raw_input: TripInput) -> Itinerary:
         t_start = time_mod.time()
-        log.info("=" * 50)
-        log.info("START — Itinerary generation")
-        log.info(f"  Input: provinces={raw_input.destination_provinces or raw_input.destination_area}, days={raw_input.duration_days}, interests={raw_input.interests}, pace={raw_input.pace}")
-        if raw_input.start_lat: log.info(f"  Start: ({raw_input.start_lat:.4f}, {raw_input.start_lng:.4f})")
-        if raw_input.end_lat: log.info(f"  End: ({raw_input.end_lat:.4f}, {raw_input.end_lng:.4f})")
-        log.info(f"  Data pool: {len(self._sites_cache)} sites loaded")
 
-        # Step 1: Normalize input
-        t0 = time_mod.time()
-        trip = parse_trip_request(raw_input)
-        log.info(f"STEP 1 — Normalize ({time_mod.time()-t0:.2f}s): dest={trip.destination_area}, provinces={trip.destination_provinces}, days={trip.duration_days}, pace={trip.pace}")
-
-        # Step 2: Generate candidates
-        t0 = time_mod.time()
-        candidates = generate_candidates(trip, self._sites_cache)
-        log.info(f"STEP 2 — Candidates ({time_mod.time()-t0:.2f}s): {len(candidates)} sites from {len(self._sites_cache)} total")
-
-        # Step 3: Fetch weather
-        t0 = time_mod.time()
-        forecasts = await weather_service.fetch_forecasts(candidates, trip)
-        log.info(f"STEP 3 — Weather ({time_mod.time()-t0:.2f}s): {len(forecasts)} forecasts")
-
-        # Step 4: Score each site. Must-visit sites get max score to guarantee inclusion
-        t0 = time_mod.time()
-        scored = score_all_sites(candidates, trip, forecasts)
-        must_ids = set(trip.must_visit_site_ids)
-        for s in scored:
-            if s.site.id in must_ids:
-                s.score = 0.99
-        top5 = [(s.site.name, f"{s.score:.3f}", "★" if s.site.id in must_ids else "") for s in scored[:5]]
-        log.info(f"STEP 4 — Scoring ({time_mod.time()-t0:.2f}s): {len(scored)} scored | must-visit: {len(must_ids)} | top: {top5}")
-
-        # Step 4b: MMR diversity re-ranking
-        t0 = time_mod.time()
-        from services.ai_service.mmr_rerank import mmr_rerank
-        must_visit_scored = [s for s in scored if s.site.id in must_ids]
-        recommended_scored = [s for s in scored if s.site.id not in must_ids]
-        if recommended_scored:
-            recommended_scored = mmr_rerank(recommended_scored, lambd=0.7)
-        scored = must_visit_scored + recommended_scored
-        log.info(f"STEP 4b — MMR Diversity ({time_mod.time()-t0:.2f}s)")
-
-        # Step 5 & 6: TTDP Route Optimization (OR-Tools)
-        t0 = time_mod.time()
-        
-        start_lat = trip.start_location.get('lat') if trip.start_location else 21.0285
-        start_lng = trip.start_location.get('lng') if trip.start_location else 105.8542
-        end_lat = trip.end_location.get('lat') if trip.end_location else start_lat
-        end_lng = trip.end_location.get('lng') if trip.end_location else start_lng
-        
-        locations = [(start_lat, start_lng), (end_lat, end_lng)]
-        scores = [0.0, 0.0]
-        durations = [0, 0]
-        time_windows = [(0, 100000), (0, 100000)]
-        
-        for s in scored:
-            locations.append((s.site.lat, s.site.lng))
-            scores.append(s.score)
-            durations.append(s.site.estimated_visit_minutes * 60)
-            time_windows.append((0, 100000))
-
-        max_sec_per_day = 8 * 3600
-        from services.ai_service.ttdp_solver import solve_ttdp
-        routes_indices = await asyncio.to_thread(
-            solve_ttdp, locations, scores, durations, time_windows,
-            trip.duration_days, max_sec_per_day, speed_kmh=40.0, time_limit_sec=2
+        ctx = PipelineContext(
+            input=raw_input,
+            request_id=uuid.uuid4().hex[:8],
         )
-        
-        optimized_clusters = []
-        for route_idx in routes_indices:
-            cluster = [scored[i - 2] for i in route_idx]
-            optimized_clusters.append(cluster)
-        if scored and not any(optimized_clusters):
-            log.warning("TTDP returned empty routes; falling back to top scored candidates")
-            max_sites = min(len(scored), max(3, trip.duration_days * 3))
-            selected = scored[:max_sites]
-            optimized_clusters = [selected[i::trip.duration_days] for i in range(trip.duration_days)]
-              
-        log.info(f"STEP 5/6 — TTDP Routing ({time_mod.time()-t0:.2f}s): {len(routes_indices)} days optimized")
 
-        # Step 6b: Geometry + OSRM distance matrix
-        t0 = time_mod.time()
-        from services.ai_service.step6_routing import get_route_geometry, build_distance_matrix_osrm
-        route_tasks = [
-            asyncio.to_thread(get_route_geometry, c) if c else asyncio.sleep(0, result=None)
-            for c in optimized_clusters
-        ]
-        route_geoms = await asyncio.gather(*route_tasks)
+        log.info("[%s] START  provinces=%s  days=%s  pace=%s  pool=%d",
+                 ctx.request_id,
+                 raw_input.destination_provinces or raw_input.destination_area,
+                 raw_input.duration_days, raw_input.pace, len(self._sites_cache))
 
-        flat_ordered = [s for c in optimized_clusters for s in c]
-        dm_matrix, dm_coords, _ = build_distance_matrix_osrm(flat_ordered)
+        try:
+            runner = self._build_runner()
+            ctx = await runner.run(ctx)
+        except Exception:
+            log.exception("[%s] PIPELINE FAILED", ctx.request_id)
+            raise
 
-        log.info(f"STEP 6b — Geometry ({time_mod.time()-t0:.2f}s)")
+        total_ms = int((time_mod.time() - t_start) * 1000)
+        itinerary = ctx.itinerary
 
-        # Step 7: Day plans
-        t0 = time_mod.time()
-        day_plans = clusters_to_day_plans(optimized_clusters, trip.start_date)
-        log.info(f"STEP 7 — Day Plans ({time_mod.time()-t0:.2f}s): {sum(len(d.items) for d in day_plans)} items")
+        if ctx.errors:
+            log.error("[%s] errors: %s", ctx.request_id, ctx.errors)
 
-        # Step 8: Assemble
-        t0 = time_mod.time()
-        distance_info = {"sites": flat_ordered, "matrix": dm_matrix} if len(flat_ordered) > 0 else None
-        itinerary = assemble_itinerary(day_plans, optimized_clusters, trip, route_geoms, distance_info)
-        log.info(f"STEP 8 — Assemble ({time_mod.time()-t0:.2f}s): score={itinerary.total_score:.0%}, distance={itinerary.total_distance_km}km, id={itinerary.itinerary_id}")
-
-        total_time = time_mod.time() - t_start
-        log.info(f"DONE — Total: {total_time:.2f}s | ID: {itinerary.itinerary_id}")
-        log.info("=" * 50)
+        log.info("[%s] DONE  %dms  score=%d%%  distance=%.1fkm  id=%s  steps=%d",
+                 ctx.request_id, total_ms,
+                 int(itinerary.total_score * 100),
+                 itinerary.total_distance_km,
+                 itinerary.itinerary_id,
+                 len(ctx.step_timings))
 
         return itinerary
 

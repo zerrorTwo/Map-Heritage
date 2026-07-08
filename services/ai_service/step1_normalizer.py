@@ -85,7 +85,9 @@ PROVINCE_KEYWORDS = {
     "ha noi": "Hà Nội",
     "hanoi": "Hà Nội",
     "hồ chí minh": "TP. Hồ Chí Minh",
+    "ho chi minh": "TP. Hồ Chí Minh",
     "sài gòn": "TP. Hồ Chí Minh",
+    "sai gon": "TP. Hồ Chí Minh",
     "saigon": "TP. Hồ Chí Minh",
     "hcm": "TP. Hồ Chí Minh",
     "huế": "Thừa Thiên Huế",
@@ -188,8 +190,15 @@ def extract_duration(text: str) -> int:
 
 
 def _normalize_province(province: str) -> str:
-    """Map common province name variants to canonical names."""
-    return PROVINCE_KEYWORDS.get(province.lower(), province)
+    """Map common province name variants to canonical names, with fuzzy fallback."""
+    result = PROVINCE_KEYWORDS.get(province.lower(), province)
+    if result == province:
+        import unicodedata
+        norm = unicodedata.normalize('NFKD', province.lower())
+        norm = norm.replace('\u0110', 'd').replace('\u0111', 'd')
+        norm = norm.encode('ascii', 'ignore').decode('ascii')
+        result = PROVINCE_KEYWORDS.get(norm, province)
+    return result
 
 
 def parse_trip_request(raw_input: TripInput) -> TripRequest:
@@ -210,6 +219,7 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
         else:
             coords = PROVINCE_COORDS.get(destination, (21.0285, 105.8542))
         provinces = raw_input.destination_provinces or [destination]
+        provinces = [_normalize_province(p) for p in provinces]
         end_loc = {"lat": raw_input.end_lat, "lng": raw_input.end_lng} if raw_input.end_lat and raw_input.end_lng else None
 
         return TripRequest(

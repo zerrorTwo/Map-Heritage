@@ -23,6 +23,164 @@ Output (Itinerary)
 
 ---
 
+## Code Structure — Pipeline Pattern
+
+The pipeline uses a **Strategy + Chain of Responsibility** pattern. Each step is a self-contained class implementing a common interface. Steps are composed into a `PipelineRunner` that executes them in sequence — no hardcoded control flow.
+
+### Directory Layout
+
+```
+services/ai_service/
+├── pipeline.py              # Pipeline orchestrator (builds + runs step chain)
+├── steps/                   # Pipeline Pattern implementation
+│   ├── __init__.py
+│   ├── context.py           # PipelineContext — all intermediate state
+│   ├── base.py              # PipelineStep (ABC) + PipelineRunner
+│   ├── step1_normalize.py   # NormalizeStep
+│   ├── step2_candidates.py  # CandidateStep
+│   ├── step3_weather.py     # WeatherStep
+│   ├── step4_scoring.py     # ScoringStep
+│   ├── step4b_mmr.py        # MMRStep
+│   ├── step5_ttdp.py        # TTDPRoutingStep
+│   ├── step6_geometry.py    # GeometryStep
+│   ├── step7_dayplan.py     # DayPlanStep
+│   └── step8_assembly.py    # AssemblyStep
+├── step1_normalizer.py      # Algorithm logic (unchanged)
+├── step2_candidates.py      # Algorithm logic (unchanged)
+├── step3_weather.py         # Algorithm logic (unchanged)
+├── step4_scoring.py         # Algorithm logic (unchanged)
+├── step5_clustering.py      # Algorithm logic (unchanged)
+├── step6_routing.py         # Algorithm logic (unchanged)
+├── step8_assembly.py        # Algorithm logic (unchanged)
+├── mmr_rerank.py            # Algorithm logic (unchanged)
+├── ttdp_solver.py           # Algorithm logic (unchanged)
+└── main.py                  # FastAPI app entry point
+```
+
+### Core Abstractions
+
+#### PipelineContext (`steps/context.py`)
+
+Dataclass holding all state that flows between steps. Every step reads from and writes to the same context.
+
+```python
+@dataclass
+class PipelineContext:
+    input: TripInput                  # Raw user input
+    request_id: str = ""              # Correlation ID for tracing
+
+    trip_request: Optional[TripRequest] = None    # Step 1 output
+    candidates: List[HeritageSite] = []           # Step 2 output
+    forecasts: Dict[str, List[Forecast]] = {}     # Step 3 output
+    scored_sites: List[ScoredSite] = []           # Step 4 output
+    optimized_clusters: List[List[ScoredSite]] = []  # Step 5 output
+    route_geometries: List = []                   # Step 6 output
+    distance_matrix: Optional[dict] = None        # Step 6 output
+    day_plans: List[DayPlan] = []                 # Step 7 output
+    itinerary: Optional[Itinerary] = None         # Step 8 output
+
+    step_timings: Dict[str, float] = {}  # Performance trace
+    errors: List[str] = []               # Error log
+```
+
+#### PipelineStep (`steps/base.py`)
+
+Abstract base class. Every step must implement `execute(ctx) → ctx`.
+
+```python
+class PipelineStep(ABC):
+    name: str = ""   # Display name for logging
+
+    @abstractmethod
+    async def execute(self, ctx: PipelineContext) -> PipelineContext: ...
+```
+
+#### PipelineRunner (`steps/base.py`)
+
+Accepts a list of steps, runs them sequentially with per-step timing, error handling, and structured logging.
+
+```python
+class PipelineRunner:
+    def __init__(self, steps: List[PipelineStep]): ...
+    async def run(self, ctx: PipelineContext) -> PipelineContext: ...
+```
+
+### Step Composition
+
+Steps are composed in `pipeline.py` via `_build_runner()`. This is the **only place** you modify to add, remove, or reorder steps:
+
+```python
+def _build_runner(self) -> PipelineRunner:
+    return PipelineRunner(steps=[
+        NormalizeStep(),
+        CandidateStep(sites_cache=self._sites_cache),
+        WeatherStep(),
+        ScoringStep(),
+        MMRStep(lambd=0.7),
+        TTDPRoutingStep(speed_kmh=40.0, time_limit_sec=2),
+        GeometryStep(),
+        DayPlanStep(),
+        AssemblyStep(),
+    ])
+```
+
+### Adding a New Step
+
+No changes to existing code. Just 3 actions:
+
+1. **Create the step class** in `steps/stepX_feature.py`:
+
+```python
+from services.ai_service.steps.base import PipelineStep
+from services.ai_service.steps.context import PipelineContext
+
+class FeatureStep(PipelineStep):
+    name = "stepX_feature"
+
+    async def execute(self, ctx: PipelineContext) -> PipelineContext:
+        # Use ctx.trip_request, ctx.candidates, etc.
+        # Write result to ctx (new field or existing)
+        return ctx
+```
+
+2. **Add to `pipeline.py`** `_build_runner()`:
+
+```python
+return PipelineRunner(steps=[
+    ...
+    GeometryStep(),
+    FeatureStep(),         # ← insert at desired position
+    DayPlanStep(),
+    ...
+])
+```
+
+3. **Done.** The new step runs automatically with timing, logging, and error handling inherited from `PipelineRunner`.
+
+### Step Independence
+
+Each step operates on `PipelineContext` from the previous step — not on raw intermediate variables. This means:
+- Steps are **order-swappable** (within logical constraints)
+- Steps are **independently testable** — mock a `PipelineContext`, call `step.execute(ctx)`, assert on the result
+- Steps have **no shared mutable state** outside the context
+
+### Logging Integration
+
+Every step automatically gets colored structured logging via `PipelineRunner`. No manual logging needed inside step classes — the runner logs step name, duration, and success/failure.
+
+```
+14:30:05  INFO    pipeline  [req:abc123] step1_normalize  OK  0ms
+14:30:05  INFO    pipeline  [req:abc123] step2_candidates  OK  12ms
+14:30:06  INFO    pipeline  [req:abc123] step3_weather     OK  886ms
+14:30:08  INFO    pipeline  [req:abc123] step5_ttdp        OK  2020ms
+14:30:09  INFO    pipeline  [req:abc123] DONE  4300ms  score=61%  id=it-abc123
+14:30:09  ERROR   pipeline  [req:abc123] step3_weather FAILED  ConnectionError
+```
+
+Local terminals see ANSI-colored output. Docker/production output is JSON Lines for log aggregation.
+
+---
+
 ## Input Specification
 
 ### API Endpoint (TripInput)
@@ -352,9 +510,10 @@ Environment variables (`.env`):
 |----------|---------|-------------|
 | `OSRM_BASE_URL` | `http://localhost:5000` | OSRM routing server |
 | `OPENWEATHER_API_KEY` | (empty) | OpenWeatherMap API key (optional, for air quality) |
-| `DEFAULT_CANDIDATE_LIMIT` | `30` | Max candidates per query |
-| `MAX_DAILY_HOURS` | `10` | Max activity hours per day |
-| `MAX_SOLVE_TIMEOUT` | `5.0` | OR-Tools solve timeout (seconds) |
+| `LOG_LEVEL` | `INFO` | Logging level: `DEBUG` / `INFO` / `WARNING` / `ERROR` |
+| `LOG_DIR` | (empty) | Directory for rotating log files (JSON Lines) |
+| `LOG_FILE` | `heritage.log` | Log file name when `LOG_DIR` is set |
+| `AI_SERVICE_URL` | `http://localhost:8001` | AI service address (used by API gateway) |
 
 ---
 
@@ -362,19 +521,35 @@ Environment variables (`.env`):
 
 ```bash
 pip install -r requirements.txt
-docker-compose up   # starts API gateway + AI service + OSRM
+docker compose up -d   # starts API gateway + AI service
 ```
 
-API endpoint: `POST http://localhost:8000/api/recommend`
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/v1/trips/recommend` | Generate heritage travel itinerary |
+| `POST` | `/api/v1/recommend` | Alias for `/api/v1/trips/recommend` |
+| `POST` | `/api/v1/routes/plan` | Plan a fixed start/end route |
+| `GET`  | `/api/v1/heritage-sites` | List all heritage sites |
+| `GET`  | `/api/v1/heritage-sites/{id}` | Get site detail |
+| `GET`  | `/api/v1/heritage-sites/{id}/images` | Get site images |
+| `GET`  | `/api/v1/heritage-sites/{id}/reviews` | Get site reviews |
+| `GET`  | `/api/v1/heritage-sites/{id}/enrich` | Get enriched description |
+| `GET`  | `/api/v1/heritage-sites/{id}/narrate` | Get site narration |
+| `GET`  | `/api/v1/health` | Health check |
+| `GET`  | `/docs` | Swagger UI |
 
 ### Example Request
 
 ```json
 {
-  "raw_text": "Tôi muốn đi Hà Nội 3 ngày, thích lịch sử và kiến trúc, đi cùng người già",
-  "start_date": "2026-07-10",
+  "destination_provinces": ["Hà Nội"],
   "duration_days": 3,
-  "number_of_people": 2
+  "interests": ["history", "architecture"],
+  "pace": "moderate",
+  "constraints": ["elderly_friendly"],
+  "start_date": "2026-07-10"
 }
 ```
 
@@ -390,3 +565,10 @@ API endpoint: `POST http://localhost:8000/api/recommend`
   "route_geometries": [...]
 }
 ```
+
+### Logging
+
+- **Local dev** (TTY terminal): colored ANSI output with step timings
+- **Production / Docker** (non-TTY): JSON Lines format for log aggregation (ELK, Grafana, etc.)
+- **File logging**: set `LOG_DIR=/app/logs` to enable rotating file output (10 MB per file, 5 backups)
+- Every request gets an `X-Request-ID` header for traceability across services
