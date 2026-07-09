@@ -80,14 +80,22 @@ def build_distance_matrix_osrm(
 
 def get_route_geometry(
     sites: List[ScoredSite],
+    start: Optional[Tuple[float, float]] = None,
+    end: Optional[Tuple[float, float]] = None,
 ) -> Optional[list]:
     """
     Get the route LineString geometry from OSRM for a list of ordered sites.
+    Optional `start`/`end` anchors (lat, lng) connect the day to the trip origin,
+    the previous day, and/or the trip end so the drawn route is continuous.
     Returns GeoJSON LineString coordinates [[lng,lat],...] or None.
     """
-    if len(sites) < 2:
+    coords = (
+        ([start] if start else [])
+        + [(s.site.lat, s.site.lng) for s in sites]
+        + ([end] if end else [])
+    )
+    if len(coords) < 2:
         return None
-    coords = [(s.site.lat, s.site.lng) for s in sites]
     result = _osrm_request("route/v1/driving", coords, extra_params="&geometries=geojson&overview=simplified")
     if result and "routes" in result and len(result["routes"]) > 0:
         geom = result["routes"][0].get("geometry")
@@ -96,7 +104,8 @@ def get_route_geometry(
         # If polyline string, decode
         if isinstance(geom, str) and geom:
             return _decode_polyline(geom)
-    return None
+    # Fallback: straight-line segments so the route stays connected without OSRM
+    return [[lng, lat] for (lat, lng) in coords]
 
 
 def _decode_polyline(polyline_str: str, precision: int = 5) -> list:

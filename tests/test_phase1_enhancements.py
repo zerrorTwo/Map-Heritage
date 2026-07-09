@@ -7,7 +7,7 @@ Covers: step2 (partial-credit interest), step4 (dynamic weights, hour-weather,
 import sys
 import numpy as np
 
-sys.path.insert(0, r"D:\Nam\Map-Heritage")
+sys.path.insert(0, '.')
 
 from services.ai_service.models import (
     HeritageSite, TripRequest, Forecast, ScoredSite,
