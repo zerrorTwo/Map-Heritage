@@ -1,12 +1,20 @@
-"""Step 6 — Geometry + OSRM distance matrix."""
+"""Step 6 — OSRM geometry + road-aware route re-optimization."""
 import asyncio
 import logging
 
+import numpy as np
+
 from services.ai_service.steps.base import PipelineStep
 from services.ai_service.steps.context import PipelineContext
-from services.ai_service.step6_routing import get_route_geometry, build_distance_matrix_osrm
+from services.ai_service.step6_routing import (
+    get_route_geometry,
+    optimize_route_open,
+)
 
 log = logging.getLogger("heritage.pipeline")
+
+# Daily time budget in seconds (8 hours)
+DAILY_BUDGET_SECONDS = 8 * 3600
 
 
 class GeometryStep(PipelineStep):
@@ -22,8 +30,50 @@ class GeometryStep(PipelineStep):
         clusters = ctx.optimized_clusters
         non_empty_idx = [i for i, c in enumerate(clusters) if c]
 
-        route_tasks = []
+        # ---- Phase 1: Re-optimize each cluster's order via OSRM road durations ----
+        reordered = []
+        route_results = []
         for i, cluster in enumerate(clusters):
+            if not cluster:
+                reordered.append([])
+                route_results.append(None)
+                continue
+
+            is_first = non_empty_idx and i == non_empty_idx[0]
+            is_last = non_empty_idx and i == non_empty_idx[-1]
+
+            if is_first:
+                anchor_start = start_anchor
+            else:
+                previous = [day for day in non_empty_idx if day < i]
+                anchor_start = (
+                    (reordered[previous[-1]][-1].site.lat, reordered[previous[-1]][-1].site.lng)
+                    if previous else None
+                )
+            anchor_end = end_anchor if is_last else None
+
+            try:
+                result = await asyncio.to_thread(
+                    optimize_route_open,
+                    cluster,
+                    start_anchor=anchor_start,
+                    end_anchor=anchor_end,
+                )
+                ordered = result.ordered_sites
+            except Exception:
+                log.warning("[%s] route re-optimization failed for day %d, keeping TTDP order",
+                            ctx.request_id, i + 1)
+                ordered = cluster
+                result = None
+
+            reordered.append(ordered)
+            route_results.append(result)
+
+        ctx.optimized_clusters = reordered
+
+        # ---- Phase 2: Fetch route geometry for each reordered cluster ----
+        route_tasks = []
+        for i, cluster in enumerate(reordered):
             if not cluster:
                 route_tasks.append(asyncio.sleep(0, result=None))
                 continue
@@ -34,20 +84,48 @@ class GeometryStep(PipelineStep):
             if is_first:
                 lead = start_anchor
             else:
-                prev = [j for j in non_empty_idx if j < i]
-                lead = (clusters[prev[-1]][-1].site.lat, clusters[prev[-1]][-1].site.lng) if prev else None
-
+                previous = [day for day in non_empty_idx if day < i]
+                lead = (
+                    (reordered[previous[-1]][-1].site.lat, reordered[previous[-1]][-1].site.lng)
+                    if previous else None
+                )
             tail = end_anchor if is_last else None
+
             route_tasks.append(asyncio.to_thread(get_route_geometry, cluster, lead, tail))
 
         ctx.route_geometries = await asyncio.gather(*route_tasks)
 
-        flat_ordered = [s for c in ctx.optimized_clusters for s in c]
-        dm_matrix, dm_coords, _ = build_distance_matrix_osrm(flat_ordered)
+        # ---- Phase 3: Retain road distances for Step 8 without another table call ----
+        flat_ordered = [site for cluster in reordered for site in cluster]
+        total_count = len(flat_ordered)
+        global_matrix = np.full((total_count, total_count), np.nan)
+        cursor = 0
+        has_road_data = False
+        for cluster, result in zip(reordered, route_results):
+            size = len(cluster)
+            if result is not None and result.distance_matrix is not None:
+                global_matrix[cursor:cursor + size, cursor:cursor + size] = result.distance_matrix
+                has_road_data = True
+            cursor += size
+        ctx.distance_matrix = (
+            {"sites": flat_ordered, "matrix": global_matrix} if has_road_data else None
+        )
 
-        ctx.distance_matrix = {"sites": flat_ordered, "matrix": dm_matrix} if len(flat_ordered) > 0 else None
+        # ---- Phase 4: Validate road travel + visit duration against budget ----
+        total_sites = 0
+        for i, (cluster, result) in enumerate(zip(reordered, route_results)):
+            total_sites += len(cluster)
+            if not cluster:
+                continue
+            visit_duration = sum(
+                s.site.estimated_visit_minutes * 60 for s in cluster
+            )
+            total_duration = visit_duration + (result.total_duration_s if result and result.total_duration_s else 0)
+            if total_duration > DAILY_BUDGET_SECONDS:
+                log.warning("[%s] day %d exceeds daily budget (%ds > %ds)",
+                            ctx.request_id, i + 1, total_duration, DAILY_BUDGET_SECONDS)
 
         geom_count = sum(1 for g in ctx.route_geometries if g)
         log.info("[%s] geometry done  %d polylines  %d items",
-                 ctx.request_id, geom_count, len(flat_ordered))
+                 ctx.request_id, geom_count, total_sites)
         return ctx

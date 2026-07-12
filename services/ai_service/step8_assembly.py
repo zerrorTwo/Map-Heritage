@@ -32,7 +32,6 @@ def assemble_itinerary(
     Supports two-pass distance scoring: uses real OSRM distances when available.
     """
     total_distance = 0.0
-    total_distance_real = 0.0
     all_scored = [s for cluster in scored_clusters for s in cluster]
     score_count = len(all_scored)
 
@@ -55,7 +54,6 @@ def assemble_itinerary(
                     if real_dist is not None:
                         item.distance_from_previous_m = round(real_dist, 1)
                         item.travel_from_previous_minutes = max(1, int(real_dist / 500))
-                        total_distance_real += real_dist
                         total_distance += real_dist
                     else:
                         item.distance_from_previous_m = round(haversine_dist, 1)
@@ -89,7 +87,7 @@ def assemble_itinerary(
 
     budget_fit = _compute_budget_fit(all_scored, trip)
     quality_score = _compute_quality_score(
-        day_plans, all_scored, total_distance_real if total_distance_real > 0 else total_distance, trip, budget_fit
+        day_plans, all_scored, total_distance, trip, budget_fit
     )
 
     summary = _build_summary(day_plans, trip, quality_score)

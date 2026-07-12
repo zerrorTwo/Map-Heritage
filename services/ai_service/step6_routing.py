@@ -7,7 +7,9 @@ Fallback to haversine if OSRM is unreachable.
 import json
 import logging
 import urllib.request
+from dataclasses import dataclass
 from functools import lru_cache
+from itertools import permutations
 from typing import List, Tuple, Optional
 from config import settings
 from services.ai_service.models import ScoredSite
@@ -18,13 +20,14 @@ OSRM_TIMEOUT_SECONDS = 3
 log = logging.getLogger("pipeline")
 
 
-def haversine(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
-    R = 6371000
-    phi1, phi2 = np.radians(lat1), np.radians(lat2)
-    dphi = np.radians(lat2 - lat1)
-    dlam = np.radians(lng2 - lng1)
-    a = np.sin(dphi / 2) ** 2 + np.cos(phi1) * np.cos(phi2) * np.sin(dlam / 2) ** 2
-    return R * 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+@dataclass
+class OpenRouteResult:
+    """Road-routing result with matrices retained for final itinerary reporting."""
+
+    ordered_sites: List[ScoredSite]
+    distance_matrix: Optional[np.ndarray]
+    duration_matrix: Optional[np.ndarray]
+    total_duration_s: Optional[float]
 
 
 def _coords_key(coords: List[Tuple[float, float]]) -> Tuple[Tuple[float, float], ...]:
@@ -47,35 +50,6 @@ def _cached_osrm_request(endpoint: str, coords: Tuple[Tuple[float, float], ...],
 
 def _osrm_request(endpoint: str, coords: List[Tuple[float, float]], extra_params: str = "") -> Optional[dict]:
     return _cached_osrm_request(endpoint, _coords_key(coords), extra_params)
-
-
-def build_distance_matrix_osrm(
-    sites: List[ScoredSite],
-) -> Tuple[np.ndarray, List[Tuple[float, float]], Optional[dict]]:
-    """
-    Build distance matrix using OSRM table API (real road distances).
-    Returns (matrix_meters, coords, table_response_or_none).
-    """
-    coords = [(s.site.lat, s.site.lng) for s in sites]
-    n = len(coords)
-    if n <= 1:
-        return np.zeros((n, n)), coords, None
-
-    result = _osrm_request("table/v1/driving", coords)
-    if result and "distances" in result:
-        distances = result["distances"]
-        matrix = np.array(distances, dtype=float)
-        matrix[np.isnan(matrix)] = 999999
-        return matrix, coords, result
-
-    # Fallback to haversine
-    matrix = np.zeros((n, n))
-    for i in range(n):
-        for j in range(i + 1, n):
-            d = haversine(coords[i][0], coords[i][1], coords[j][0], coords[j][1])
-            matrix[i][j] = d
-            matrix[j][i] = d
-    return matrix, coords, None
 
 
 def get_route_geometry(
@@ -132,36 +106,38 @@ def _decode_polyline(polyline_str: str, precision: int = 5) -> list:
     return coords
 
 
-def nearest_neighbor(
-    dist_matrix: np.ndarray, start_idx: int = 0
+def two_opt_open(
+    route: List[int],
+    cost_matrix: np.ndarray,
+    start_index: Optional[int] = None,
+    end_index: Optional[int] = None,
+    max_iter: int = 200,
 ) -> List[int]:
-    n = len(dist_matrix)
-    unvisited = set(range(n))
-    unvisited.discard(start_idx)
-    route = [start_idx]
-    current = start_idx
-    while unvisited:
-        next_node = min(unvisited, key=lambda j: dist_matrix[current][j])
-        route.append(next_node)
-        unvisited.discard(next_node)
-        current = next_node
-    return route
-
-
-def two_opt(route: List[int], dist_matrix: np.ndarray, max_iter: int = 200) -> List[int]:
-    best = route[:]
+    """2-opt for site order while keeping optional anchors fixed outside the route."""
+    best = list(route)
     n = len(best)
-    def cost(r): return sum(dist_matrix[r[i]][r[(i + 1) % n]] for i in range(n))
-    best_cost = cost(best)
+    if n <= 1:
+        return best
+
+    def _path_cost(r: List[int]) -> float:
+        total = 0.0
+        if start_index is not None:
+            total += cost_matrix[start_index][r[0]]
+        total += sum(cost_matrix[r[i]][r[i + 1]] for i in range(n - 1))
+        if end_index is not None:
+            total += cost_matrix[r[-1]][end_index]
+        return float(total)
+
+    best_cost = _path_cost(best)
     for _ in range(max_iter):
         improved = False
-        for i in range(1, n - 1):
+        for i in range(n - 1):
             for j in range(i + 1, n):
-                new_route = best[:i] + best[i:j + 1][::-1] + best[j + 1:]
-                new_cost = cost(new_route)
-                if new_cost < best_cost - 1e-6:
-                    best = new_route
-                    best_cost = new_cost
+                candidate = best[:i] + best[i:j + 1][::-1] + best[j + 1:]
+                candidate_cost = _path_cost(candidate)
+                if candidate_cost < best_cost - 1e-6:
+                    best = candidate
+                    best_cost = candidate_cost
                     improved = True
                     break
             if improved:
@@ -171,22 +147,104 @@ def two_opt(route: List[int], dist_matrix: np.ndarray, max_iter: int = 200) -> L
     return best
 
 
-def optimize_route(
+def _open_path_cost(
+    route: List[int], cost_matrix: np.ndarray,
+    start_index: Optional[int], end_index: Optional[int],
+) -> float:
+    if not route:
+        return 0.0
+    total = 0.0
+    if start_index is not None:
+        total += cost_matrix[start_index][route[0]]
+    total += sum(cost_matrix[route[i]][route[i + 1]] for i in range(len(route) - 1))
+    if end_index is not None:
+        total += cost_matrix[route[-1]][end_index]
+    return float(total)
+
+
+def _nearest_neighbor_open(
+    site_indices: List[int], cost_matrix: np.ndarray, start_index: Optional[int], first_site: Optional[int] = None,
+) -> List[int]:
+    if not site_indices:
+        return []
+    if first_site is None:
+        first_site = min(site_indices, key=lambda site: cost_matrix[start_index][site])
+    route = [first_site]
+    unvisited = set(site_indices)
+    unvisited.remove(first_site)
+    while unvisited:
+        current = route[-1]
+        next_site = min(unvisited, key=lambda site: cost_matrix[current][site])
+        route.append(next_site)
+        unvisited.remove(next_site)
+    return route
+
+
+def _valid_osrm_matrix(values, expected_size: int) -> Optional[np.ndarray]:
+    try:
+        matrix = np.asarray(values, dtype=float)
+    except (TypeError, ValueError):
+        return None
+    if matrix.shape != (expected_size, expected_size) or not np.isfinite(matrix).all():
+        return None
+    return matrix
+
+
+def optimize_route_open(
     cluster: List[ScoredSite],
-    start_lat: float | None = None,
-    start_lng: float | None = None,
-) -> Tuple[List[ScoredSite], Optional[list]]:
-    """
-    Optimize visiting order using OSRM road distances.
-    Returns (ordered_sites, route_geometry_or_none).
-    """
-    if len(cluster) <= 2:
-        return cluster, None
+    start_anchor: Optional[Tuple[float, float]] = None,
+    end_anchor: Optional[Tuple[float, float]] = None,
+) -> OpenRouteResult:
+    """Optimize site order using one OSRM duration table with fixed anchors.
 
-    dist_matrix, _, _ = build_distance_matrix_osrm(cluster)
-    nn_route = nearest_neighbor(dist_matrix, 0)
-    opt_route = two_opt(nn_route, dist_matrix)
-    ordered = [cluster[i] for i in opt_route]
+    The OSRM request contains ``[start?, sites..., end?]`` so every directed
+    cost uses the same road-duration unit. On malformed, unavailable, or
+    unreachable data the original TTDP order is retained with no matrices.
+    """
+    n = len(cluster)
+    if n == 0:
+        return OpenRouteResult([], np.zeros((0, 0)), np.zeros((0, 0)), 0.0)
 
-    geom = get_route_geometry(ordered)
-    return ordered, geom
+    coords = ([] if start_anchor is None else [start_anchor]) + [
+        (site.site.lat, site.site.lng) for site in cluster
+    ] + ([] if end_anchor is None else [end_anchor])
+    result = _osrm_request("table/v1/driving", coords)
+    if result is None or result.get("code") != "Ok":
+        return OpenRouteResult(list(cluster), None, None, None)
+
+    duration_full = _valid_osrm_matrix(result.get("durations"), len(coords))
+    distance_full = _valid_osrm_matrix(result.get("distances"), len(coords))
+    if duration_full is None or distance_full is None:
+        return OpenRouteResult(list(cluster), None, None, None)
+
+    start_index = 0 if start_anchor is not None else None
+    site_offset = 1 if start_anchor is not None else 0
+    site_indices = list(range(site_offset, site_offset + n))
+    end_index = len(coords) - 1 if end_anchor is not None else None
+
+    # Exact search is inexpensive for normal 3–7-stop days and avoids local
+    # minima. Larger clusters use multiple nearest-neighbor starts plus 2-opt.
+    if n <= 8:
+        best_route = min(
+            permutations(site_indices),
+            key=lambda route: _open_path_cost(list(route), duration_full, start_index, end_index),
+        )
+        ordered_indices = list(best_route)
+    else:
+        seeds = [None] if start_index is not None else site_indices
+        candidates = []
+        for seed in seeds:
+            route = _nearest_neighbor_open(site_indices, duration_full, start_index, seed)
+            route = two_opt_open(route, duration_full, start_index, end_index)
+            candidates.append(route)
+        ordered_indices = min(
+            candidates,
+            key=lambda route: _open_path_cost(route, duration_full, start_index, end_index),
+        )
+
+    original_indices = [index - site_offset for index in ordered_indices]
+    ordered_sites = [cluster[index] for index in original_indices]
+    ordered_duration = duration_full[np.ix_(ordered_indices, ordered_indices)]
+    ordered_distance = distance_full[np.ix_(ordered_indices, ordered_indices)]
+    total_duration = _open_path_cost(ordered_indices, duration_full, start_index, end_index)
+    return OpenRouteResult(ordered_sites, ordered_distance, ordered_duration, total_duration)

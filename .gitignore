@@ -30,3 +30,6 @@ Thumbs.db
 # Logs
 *.log
 /tmp/
+
+# Slim Deepwork
+.slim/deepwork/

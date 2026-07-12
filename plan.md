@@ -227,3 +227,25 @@ Goodhart's Law. Before shipping any change:
 - **sentence-transformers** (multilingual model) for semantic interest matching
 - **Optuna** or grid search for weight hyperparameter tuning
 - **Bayesian weighted rating** (already in your `step7_restaurants.py` — reuse it)
+
+---
+
+## 9. Road-aware shortest-path repair (July 2026)
+
+### Confirmed cause
+
+The itinerary pipeline gets visit order from the haversine-based TTDP solver. `GeometryStep` later fetches OSRM road data but does not use it to reorder stops. The unused local optimizer also scores a closed loop, not an itinerary path.
+
+### Delivery plan
+
+1. Add deterministic tests for open paths, start/end anchors, two-stop reversal, asymmetric matrices, unavailable OSRM, and GeometryStep integration.
+2. Replace the closed-loop helper with one anchor-aware open-path optimizer that minimizes OSRM **duration**.
+3. Invoke it in `GeometryStep` before geometry generation; preserve TTDP order if OSRM fails.
+4. Reuse the per-day table matrix and validate actual OSRM duration against the daily budget.
+5. Run focused and full tests, then perform code review.
+
+### Deferred intentionally
+
+- TTDP timeout increase: benchmark it separately; it does not solve the road-distance mismatch.
+- TTL/cross-process routing cache: an in-process LRU cache already exists; TTL needs a separate invalidation design.
+- Haversine utility consolidation: apply after route behavior is proven by tests.

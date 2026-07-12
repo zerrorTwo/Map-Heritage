@@ -37,6 +37,63 @@ class HeritageSite(BaseModel):
     rating: Optional[float] = None
     review_count: Optional[int] = None
 
+    @field_validator("id")
+    @classmethod
+    def validate_id(cls, value: str) -> str:
+        if not value or not value.strip():
+            raise ValueError("id must not be empty")
+        return value
+
+    @field_validator("name")
+    @classmethod
+    def validate_name(cls, value: str) -> str:
+        if not value or not value.strip():
+            raise ValueError("name must not be empty")
+        return value
+
+    @field_validator("province")
+    @classmethod
+    def validate_province(cls, value: str) -> str:
+        if not value or not value.strip():
+            raise ValueError("province must not be empty")
+        return value
+
+    @field_validator("lat")
+    @classmethod
+    def validate_lat(cls, value: float) -> float:
+        if not -90.0 <= value <= 90.0:
+            raise ValueError("lat must be between -90 and 90")
+        return value
+
+    @field_validator("lng")
+    @classmethod
+    def validate_lng(cls, value: float) -> float:
+        if not -180.0 <= value <= 180.0:
+            raise ValueError("lng must be between -180 and 180")
+        return value
+
+    @field_validator("estimated_visit_minutes")
+    @classmethod
+    def validate_visit_minutes(cls, value: int) -> int:
+        if value < 0:
+            raise ValueError("estimated_visit_minutes must be >= 0")
+        return value
+
+    @field_validator("ticket_price")
+    @classmethod
+    def validate_ticket_price(cls, value: int) -> int:
+        if value < 0:
+            raise ValueError("ticket_price must be >= 0")
+        return value
+
+    @field_validator("popularity_score", "historical_importance_score",
+                      "indoor_score", "outdoor_score")
+    @classmethod
+    def validate_score_range(cls, value: float) -> float:
+        if not 0.0 <= value <= 1.0:
+            raise ValueError(f"score must be in [0, 1], got {value}")
+        return value
+
 
 class Restaurant(BaseModel):
     id: str
