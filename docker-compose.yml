@@ -9,8 +9,8 @@ services:
       AI_SERVICE_URL: http://ai_service:8001
     depends_on:
       - ai_service
-    expose:
-      - "8000"
+    ports:
+      - "8001:8000"
     restart: unless-stopped
 
   ai_service:

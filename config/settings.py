@@ -19,6 +19,10 @@ class Settings(BaseSettings):
     max_daily_hours: int = 10
     max_solve_timeout: float = 5.0
 
+    log_level: str = "INFO"
+    log_dir: Optional[str] = None
+    log_file: str = "heritage.log"
+
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
 
 

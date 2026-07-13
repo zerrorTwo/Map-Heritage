@@ -100,7 +100,7 @@ def assemble_itinerary(
         total_score=round(quality_score, 4),
         total_distance_km=round(total_distance / 1000, 2),
         days=day_plans,
-        route_geometries=[g for g in (route_geoms or []) if g],
+        route_geometries=[(g if g else []) for g in (route_geoms or [])],
     )
 
 
@@ -200,8 +200,11 @@ def _compute_quality_score(
 def _build_summary(day_plans: List[DayPlan], trip: TripRequest, quality: float) -> str:
     total_sites = sum(1 for dp in day_plans for item in dp.items if item.type == "heritage")
     total_restaurants = sum(1 for dp in day_plans for item in dp.items if item.type == "restaurant")
-    return (
-        f"Chuyến du lịch {trip.duration_days} ngày tại {trip.destination_area}. "
-        f"Khám phá {total_sites} di sản và {total_restaurants} nhà hàng. "
-        f"Chất lượng hành trình: {quality:.0%}"
-    )
+    dest = trip.destination_area
+    parts = [f"Chuyến du lịch {trip.duration_days} ngày tại {dest}."]
+    if total_restaurants > 0:
+        parts.append(f"Khám phá {total_sites} di sản và {total_restaurants} nhà hàng.")
+    else:
+        parts.append(f"Khám phá {total_sites} di sản.")
+    parts.append(f"Chất lượng hành trình: {quality:.0%}")
+    return " ".join(parts)

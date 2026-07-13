@@ -3,6 +3,8 @@ Step 2 — Generate candidates: Filter heritage sites by area, interest, constra
 MUST-VISIT sites are ALWAYS included with top priority, regardless of filters.
 """
 
+import re
+import unicodedata
 from typing import List, Optional
 from services.ai_service.models import HeritageSite, TripRequest
 import numpy as np
@@ -233,16 +235,17 @@ def generate_candidates(
         if sid in site_map:
             must_visits.append(site_map[sid])
 
-    # Step 2: STRICT province filter — only target provinces
+    # Step 2: STRICT province filter — only target provinces, with fuzzy fallback
     target_provinces = set(trip.destination_provinces or [trip.destination_area])
-    
+    target_normalized = {_normalize_text(p) for p in target_provinces}
+
     for site in all_sites:
         # Skip already-included must-visit sites
         if site.id in must_visit_ids:
             continue
 
-        # STRICT: only include sites from selected provinces
-        if site.province not in target_provinces:
+        # STRICT: only include sites from selected provinces (fuzzy fallback)
+        if site.province not in target_provinces and _normalize_text(site.province) not in target_normalized:
             continue
 
         if not _satisfies_constraints(site, trip.constraints):
@@ -261,6 +264,15 @@ def generate_candidates(
     result = must_visits + candidates[:remaining_slots]
 
     return result
+
+
+def _normalize_text(s: str) -> str:
+    """Remove diacritics, lowercase, collapse whitespace for fuzzy matching."""
+    s = unicodedata.normalize('NFKD', s)
+    s = s.replace('\u0110', 'D').replace('\u0111', 'd')
+    s = s.encode('ascii', 'ignore').decode('ascii')
+    s = re.sub(r'\s+', ' ', s.lower().strip())
+    return s
 
 
 def _satisfies_constraints(site: HeritageSite, constraints: List[str]) -> bool:

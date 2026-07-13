@@ -85,7 +85,9 @@ PROVINCE_KEYWORDS = {
     "ha noi": "Hà Nội",
     "hanoi": "Hà Nội",
     "hồ chí minh": "TP. Hồ Chí Minh",
+    "ho chi minh": "TP. Hồ Chí Minh",
     "sài gòn": "TP. Hồ Chí Minh",
+    "sai gon": "TP. Hồ Chí Minh",
     "saigon": "TP. Hồ Chí Minh",
     "hcm": "TP. Hồ Chí Minh",
     "huế": "Thừa Thiên Huế",
@@ -187,24 +189,88 @@ def extract_duration(text: str) -> int:
     return 2
 
 
+def _normalize_province(province: str) -> str:
+    """Map common province name variants to canonical names, with fuzzy fallback."""
+    result = PROVINCE_KEYWORDS.get(province.lower(), province)
+    if result == province:
+        import unicodedata
+        norm = unicodedata.normalize('NFKD', province.lower())
+        norm = norm.replace('\u0110', 'd').replace('\u0111', 'd')
+        norm = norm.encode('ascii', 'ignore').decode('ascii')
+        result = PROVINCE_KEYWORDS.get(norm, province)
+    return result
+
+
 def parse_trip_request(raw_input: TripInput) -> TripRequest:
     """
     Convert structured or free-text input into a normalized TripRequest.
     Uses rule-based keyword matching for free-text.
+    
+    Structured fields that the user explicitly set are NOT overridden
+    by free-text parser defaults — only overridden when raw_text contains
+    actual information for that field.
     """
     if raw_input.raw_text:
         text = raw_input.raw_text
-        destination = extract_province(text)
-        interests = extract_interests(text)
-        pace = extract_pace(text)
-        budget = extract_budget(text)
-        constraints = extract_constraints(text)
-        duration = extract_duration(text)
+
+        import re as _re
+
+        # Duration: only override if raw_text actually contains a day count
+        _has_duration = bool(_re.search(
+            r'\d+\s*(ng[àa]y|ngay|days?|day|d\b)', text, _re.IGNORECASE
+        ))
+        if _has_duration:
+            duration = extract_duration(text)
+        else:
+            duration = raw_input.duration_days if raw_input.duration_days != 1 else 2
+
+        # Destination: only override if raw_text contains a province keyword.
+        # When text has a province → text wins. When not → fall back to user's structured input.
+        _has_province_in_text = any(kw in text.lower() for kw in PROVINCE_KEYWORDS)
+        if _has_province_in_text:
+            destination = extract_province(text)
+        elif raw_input.destination_provinces:
+            destination = ", ".join(raw_input.destination_provinces)
+        elif raw_input.destination_area and raw_input.destination_area != "Hà Nội":
+            destination = raw_input.destination_area
+        else:
+            destination = "Hà Nội"
+
+        # Interests: merge parsed + user-set (keep user-set when no text match)
+        parsed_interests = extract_interests(text)
+        user_interests = raw_input.interests or []
+        default_interests_set = {"history", "local_food"}
+        if set(user_interests) == default_interests_set or not user_interests:
+            interests = parsed_interests or list(default_interests_set)
+        else:
+            interests = list(set(parsed_interests) | set(user_interests)) or list(default_interests_set)
+
+        # Pace: only override if raw_text actually contains a pace keyword
+        _has_pace = any(kw in text.lower() for kw in PACE_KEYWORDS)
+        pace = extract_pace(text) if _has_pace else (raw_input.pace or "moderate")
+
+        # Budget: only override if raw_text actually contains a budget keyword
+        _has_budget = any(kw in text.lower() for kw in BUDGET_KEYWORDS)
+        budget = extract_budget(text) if _has_budget else (raw_input.budget_level or "medium")
+
+        # Constraints: always merge both sources
+        constraints = list(
+            set(extract_constraints(text)) | set(raw_input.constraints or [])
+        )
+
+        # Travel mode / people: keep user-set, no text parsing for these
+        travel_mode = raw_input.travel_mode or "driving"
+        people = raw_input.number_of_people or 2
+
         if raw_input.start_lat is not None and raw_input.start_lng is not None:
             coords = (raw_input.start_lat, raw_input.start_lng)
         else:
             coords = PROVINCE_COORDS.get(destination, (21.0285, 105.8542))
+
         provinces = raw_input.destination_provinces or [destination]
+        if _has_province_in_text and destination not in provinces:
+            provinces = [destination] + provinces
+        provinces = list(dict.fromkeys(_normalize_province(p) for p in provinces))
         end_loc = {"lat": raw_input.end_lat, "lng": raw_input.end_lng} if raw_input.end_lat and raw_input.end_lng else None
 
         return TripRequest(
@@ -213,10 +279,10 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
             start_date=raw_input.start_date,
             end_date=raw_input.end_date,
             duration_days=duration,
-            number_of_people=raw_input.number_of_people or 2,
+            number_of_people=people,
             interests=interests,
             pace=pace,
-            travel_mode=raw_input.travel_mode or "mixed",
+            travel_mode=travel_mode,
             budget_level=budget,
             constraints=constraints,
             must_visit_site_ids=raw_input.must_visit_site_ids,
@@ -225,8 +291,9 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
         )
 
     provinces = raw_input.destination_provinces or [raw_input.destination_area or "Hà Nội"]
+    provinces = [_normalize_province(p) for p in provinces]
     end_loc = {"lat": raw_input.end_lat, "lng": raw_input.end_lng} if raw_input.end_lat and raw_input.end_lng else None
-    dest_area = raw_input.destination_area or ", ".join(provinces)
+    dest_area = raw_input.destination_area if raw_input.destination_area != "Hà Nội" else ", ".join(provinces)
 
     return TripRequest(
         destination_area=dest_area,
@@ -234,10 +301,10 @@ def parse_trip_request(raw_input: TripInput) -> TripRequest:
         start_date=raw_input.start_date or "",
         end_date=raw_input.end_date or "",
         duration_days=raw_input.duration_days or 2,
-        number_of_people=raw_input.number_of_people or 1,
+        number_of_people=raw_input.number_of_people or 2,
         interests=raw_input.interests or ["history", "local_food"],
         pace=raw_input.pace or "moderate",
-        travel_mode=raw_input.travel_mode or "mixed",
+        travel_mode=raw_input.travel_mode or "driving",
         budget_level=raw_input.budget_level or "medium",
         constraints=raw_input.constraints or [],
         must_visit_site_ids=raw_input.must_visit_site_ids or [],

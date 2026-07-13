@@ -119,11 +119,11 @@ class TripInput(BaseModel):
     destination_provinces: List[str] = Field(default_factory=list)
     start_date: str = ""
     end_date: str = ""
-    duration_days: int = 1
-    number_of_people: int = 1
+    duration_days: int = 2
+    number_of_people: int = 2
     interests: List[str] = Field(default_factory=lambda: ["history", "local_food"])
     pace: str = "moderate"
-    travel_mode: str = "mixed"
+    travel_mode: str = "driving"
     budget_level: str = "medium"
     constraints: List[str] = Field(default_factory=list)
     must_visit_site_ids: List[str] = Field(default_factory=list)
