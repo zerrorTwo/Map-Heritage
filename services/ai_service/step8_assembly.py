@@ -26,6 +26,7 @@ def assemble_itinerary(
     trip: TripRequest,
     route_geoms: List = None,
     distance_matrix: Optional[dict] = None,
+    warnings: List[str] = None,
 ) -> Itinerary:
     """
     Combine ordered sites, inserted restaurants, and compute final itinerary metrics.
@@ -99,6 +100,7 @@ def assemble_itinerary(
         total_distance_km=round(total_distance / 1000, 2),
         days=day_plans,
         route_geometries=[(g if g else []) for g in (route_geoms or [])],
+        warnings=warnings or [],
     )
 
 
@@ -166,8 +168,11 @@ def _compute_quality_score(
     avg_site_score = sum(s.score for s in all_scored) / max(1, len(all_scored))
 
     days = max(1, len(day_plans))
+    # Scale distance cap by province count — multi-province trips naturally span farther
+    prov_count = len(trip.destination_provinces) if trip.destination_provinces else 1
+    dist_cap = 100 * max(1, prov_count ** 0.5)
     dist_per_day = (total_distance / 1000) / days
-    route_eff = max(0.0, 1.0 - dist_per_day / 100)
+    route_eff = max(0.0, 1.0 - dist_per_day / dist_cap)
 
     weather_fit = sum(s.weather_suitability for s in all_scored) / max(1, len(all_scored))
 
@@ -198,7 +203,8 @@ def _compute_quality_score(
 def _build_summary(day_plans: List[DayPlan], trip: TripRequest, quality: float) -> str:
     total_sites = sum(1 for dp in day_plans for item in dp.items if item.type == "heritage")
     total_restaurants = sum(1 for dp in day_plans for item in dp.items if item.type == "restaurant")
-    dest = trip.destination_area
+    probs = trip.destination_provinces or [trip.destination_area or "Hà Nội"]
+    dest = ", ".join(probs) if len(probs) <= 3 else f"{len(probs)} tỉnh thành"
     parts = [f"Chuyến du lịch {trip.duration_days} ngày tại {dest}."]
     if total_restaurants > 0:
         parts.append(f"Khám phá {total_sites} di sản và {total_restaurants} nhà hàng.")

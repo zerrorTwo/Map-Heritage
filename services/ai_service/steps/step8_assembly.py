@@ -14,7 +14,7 @@ class AssemblyStep(PipelineStep):
     async def execute(self, ctx: PipelineContext) -> PipelineContext:
         ctx.itinerary = assemble_itinerary(
             ctx.day_plans, ctx.optimized_clusters, ctx.trip_request,
-            ctx.route_geometries, ctx.distance_matrix,
+            ctx.route_geometries, ctx.distance_matrix, ctx.warnings,
         )
         log.info("[%s] assembly  score=%d%%  distance=%.1fkm  id=%s",
                  ctx.request_id, int(ctx.itinerary.total_score * 100),

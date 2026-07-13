@@ -62,14 +62,31 @@ def get_route_geometry(
     Optional `start`/`end` anchors (lat, lng) connect the day to the trip origin,
     the previous day, and/or the trip end so the drawn route is continuous.
     Returns GeoJSON LineString coordinates [[lng,lat],...] or None.
+
+    If the straight-line distance between the first and last site exceeds
+    500 km (indicating an island or water crossing that OSRM cannot route),
+    falls back to simple straight-line geometry to avoid broken coastal paths.
     """
+    site_coords = [(s.site.lat, s.site.lng) for s in sites]
     coords = (
         ([start] if start else [])
-        + [(s.site.lat, s.site.lng) for s in sites]
+        + site_coords
         + ([end] if end else [])
     )
     if len(coords) < 2:
         return None
+
+    # Pre-check: skip OSRM for clusters with any consecutive pair > 150 km
+    # apart (e.g. mainland-to-island like Côn Đảo) — OSRM produces broken paths
+    if len(sites) >= 2:
+        import math
+        for i in range(len(site_coords) - 1):
+            a, b = site_coords[i], site_coords[i + 1]
+            dlat = (b[0] - a[0]) * 111.32
+            dlng = (b[1] - a[1]) * 111.32 * 0.85
+            if math.sqrt(dlat * dlat + dlng * dlng) > 150:
+                return [[lng, lat] for (lat, lng) in coords]
+
     result = _osrm_request("route/v1/driving", coords, extra_params="&geometries=geojson&overview=simplified")
     if result and "routes" in result and len(result["routes"]) > 0:
         geom = result["routes"][0].get("geometry")

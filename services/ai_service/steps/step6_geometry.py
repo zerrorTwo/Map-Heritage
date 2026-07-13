@@ -4,6 +4,7 @@ import logging
 
 import numpy as np
 
+from config import settings
 from services.ai_service.steps.base import PipelineStep
 from services.ai_service.steps.context import PipelineContext
 from services.ai_service.step6_routing import (
@@ -13,8 +14,8 @@ from services.ai_service.step6_routing import (
 
 log = logging.getLogger("heritage.pipeline")
 
-# Daily time budget in seconds (8 hours)
-DAILY_BUDGET_SECONDS = 8 * 3600
+# Daily time budget in seconds (soft, warning-only) — from config max_daily_hours
+DAILY_BUDGET_SECONDS = settings.max_daily_hours * 3600
 
 
 class GeometryStep(PipelineStep):
@@ -72,26 +73,15 @@ class GeometryStep(PipelineStep):
         ctx.optimized_clusters = reordered
 
         # ---- Phase 2: Fetch route geometry for each reordered cluster ----
+        # Only intra-day routing is drawn; cross-day connectors are tracked
+        # via travel_from_previous_minutes in the response data.
         route_tasks = []
         for i, cluster in enumerate(reordered):
             if not cluster:
                 route_tasks.append(asyncio.sleep(0, result=None))
                 continue
 
-            is_first = non_empty_idx and i == non_empty_idx[0]
-            is_last = non_empty_idx and i == non_empty_idx[-1]
-
-            if is_first:
-                lead = start_anchor
-            else:
-                previous = [day for day in non_empty_idx if day < i]
-                lead = (
-                    (reordered[previous[-1]][-1].site.lat, reordered[previous[-1]][-1].site.lng)
-                    if previous else None
-                )
-            tail = end_anchor if is_last else None
-
-            route_tasks.append(asyncio.to_thread(get_route_geometry, cluster, lead, tail))
+            route_tasks.append(asyncio.to_thread(get_route_geometry, cluster, None, None))
 
         ctx.route_geometries = await asyncio.gather(*route_tasks)
 
@@ -124,6 +114,22 @@ class GeometryStep(PipelineStep):
             if total_duration > DAILY_BUDGET_SECONDS:
                 log.warning("[%s] day %d exceeds daily budget (%ds > %ds)",
                             ctx.request_id, i + 1, total_duration, DAILY_BUDGET_SECONDS)
+
+        # ---- Phase 5: Detect island/offshore crossings for client warnings ----
+        import math
+        for i, cluster in enumerate(reordered):
+            if len(cluster) < 2:
+                continue
+            for j in range(len(cluster) - 1):
+                a, b = cluster[j].site, cluster[j + 1].site
+                dlat = (b.lat - a.lat) * 111.32
+                dlng = (b.lng - a.lng) * 111.32 * 0.85
+                if math.sqrt(dlat * dlat + dlng * dlng) > 150:
+                    ctx.warnings.append("island_route")
+                    log.info("[%s] day %d has island/offshore leg: %s → %s (%.0f km)",
+                             ctx.request_id, i + 1, a.name, b.name,
+                             math.sqrt(dlat * dlat + dlng * dlng))
+                    break  # one warning per day is enough
 
         geom_count = sum(1 for g in ctx.route_geometries if g)
         log.info("[%s] geometry done  %d polylines  %d items",

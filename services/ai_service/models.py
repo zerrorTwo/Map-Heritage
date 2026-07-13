@@ -150,6 +150,7 @@ class Itinerary(BaseModel):
     total_distance_km: float = 0.0
     days: List[DayPlan] = Field(default_factory=list)
     route_geometries: List[List[List[float]]] = Field(default_factory=list)
+    warnings: List[str] = Field(default_factory=list)
 
 
 class ScoredSite(BaseModel):

@@ -26,5 +26,6 @@ class PipelineContext:
     day_plans: List[DayPlan] = field(default_factory=list)
     itinerary: Optional[Itinerary] = None
 
+    warnings: List[str] = field(default_factory=list)
     step_timings: Dict[str, float] = field(default_factory=dict)
     errors: List[str] = field(default_factory=list)

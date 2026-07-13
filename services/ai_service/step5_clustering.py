@@ -1,17 +1,12 @@
 """
-Step 5 — Split into day-clusters.
-Uses geographic k-means clustering, ensuring must-visit sites are distributed.
+Step 5 — Partition scored sites into per-day clusters.
+Dependency-free geographic clustering: pace-capped, must-visit-seeded,
+farthest-point recommended seeds, then MMR-ordered nearest-day back-fill.
 """
 
-from typing import List
+from typing import List, Optional, Tuple
 from services.ai_service.models import ScoredSite, HeritageSite, DayPlan, ItineraryItem
-import numpy as np
-
-try:
-    from sklearn.cluster import KMeans
-    HAS_SKLEARN = True
-except ImportError:
-    HAS_SKLEARN = False
+from services.ai_service.step2_candidates import haversine_distance
 
 
 PACE_LIMITS = {
@@ -21,88 +16,84 @@ PACE_LIMITS = {
 }
 
 
-def split_into_days(
+def _centroid(cluster: List[ScoredSite]) -> Tuple[float, float]:
+    """Return (mean_lat, mean_lng) over a cluster. Guarded for empties."""
+    if not cluster:
+        return (0.0, 0.0)
+    mean_lat = sum(s.site.lat for s in cluster) / len(cluster)
+    mean_lng = sum(s.site.lng for s in cluster) / len(cluster)
+    return (mean_lat, mean_lng)
+
+
+def _hav(scored_site: ScoredSite, latlng: Tuple[float, float]) -> float:
+    """Haversine meters between a ScoredSite and a (lat, lng) point."""
+    lat, lng = latlng
+    return haversine_distance(scored_site.site.lat, scored_site.site.lng, lat, lng)
+
+
+def partition_into_days(
     scored_sites: List[ScoredSite],
     duration_days: int,
     pace: str = "moderate",
-    start_lat: float = None,
-    start_lng: float = None,
+    must_visit_ids: Optional[List[str]] = None,
 ) -> List[List[ScoredSite]]:
     """
-    Split scored sites into day clusters using geographic proximity.
-    Sites are grouped by nearest-neighbor geographic clustering,
-    ensuring must-visit sites are distributed and nearby sites stay together.
+    Partition scored sites into exactly `duration_days` day-clusters using
+    geographic proximity, capped per-day by pace, must-visit-seeded, with
+    farthest-point recommended seeds and nearest-day MMR back-fill.
     """
+    D = max(1, duration_days)
+    mv = set(must_visit_ids or [])
+    cap = PACE_LIMITS.get(pace, 5)
+
     if not scored_sites:
-        return [[] for _ in range(duration_days)]
+        return [[] for _ in range(D)]
 
-    max_per_day = PACE_LIMITS.get(pace, 5)
-    total_capacity = duration_days * max_per_day
+    must = [s for s in scored_sites if s.site.id in mv]          # guaranteed included
+    rec = [s for s in scored_sites if s.site.id not in mv]       # preserves incoming (MMR) order
 
-    # Split sites into must-visit and recommended
-    must_visit = [s for s in scored_sites if s.score >= 0.99]
-    recommended = [s for s in scored_sites]
+    # Single day
+    if D == 1:
+        return [must + rec[: max(0, cap - len(must))]]
 
-    if len(must_visit) > total_capacity:
-        must_visit = must_visit[:total_capacity]
-        recommended = []
+    clusters: List[List[ScoredSite]] = [[] for _ in range(D)]
+    used = set()
 
-    # Remove must-visit from recommended (they're already in must_visit)
-    must_ids = {s.site.id for s in must_visit}
-    recommended = [s for s in scored_sites if s.site.id not in must_ids]
+    # Seed 1: spread must-visit across days, round-robin by geo (lat,lng) order
+    for i, s in enumerate(sorted(must, key=lambda s: (s.site.lat, s.site.lng))):
+        clusters[i % D].append(s)
+        used.add(s.site.id)
 
-    if duration_days == 1:
-        combined = must_visit + recommended[:max_per_day - len(must_visit)]
-        return [combined]
+    # Seed 2: fill still-empty days with farthest-point recommended seeds
+    centroids = [_centroid(c) for c in clusters if c]
+    for day_i in [i for i in range(D) if not clusters[i]]:
+        pool = [s for s in rec if s.site.id not in used]
+        if not pool:
+            break
+        if not centroids:
+            pick = pool[0]                                        # top MMR/score as first seed
+        else:
+            pick = max(pool, key=lambda s: min(_hav(s, c) for c in centroids))
+        clusters[day_i].append(pick)
+        used.add(pick.site.id)
+        centroids.append((pick.site.lat, pick.site.lng))
 
-    # Strategy: greedy geographic clustering
-    # Start with must-visit sites as seeds for each day
-    clusters: List[List[ScoredSite]] = [[] for _ in range(duration_days)]
-    
-    # Sort must-visit by geographic position (latitude-based for simplicity)
-    must_visit_sorted = sorted(must_visit, key=lambda s: (s.site.lat, s.site.lng))
+    # Assign remaining recommended to nearest NON-FULL day (backfill in MMR order)
+    for s in rec:
+        if s.site.id in used:
+            continue
+        candidates = [i for i in range(D) if len(clusters[i]) < cap]
+        if not candidates:
+            break                                                # all full → drop (pace cap)
+        best = min(candidates, key=lambda i: _hav(s, _centroid(clusters[i])))
+        clusters[best].append(s)
+        used.add(s.site.id)
 
-    # Distribute must-visit across days — round-robin by geographic order
-    for i, s in enumerate(must_visit_sorted):
-        day_idx = i % duration_days
-        clusters[day_idx].append(s)
-
-    # For recommended sites, assign to nearest day cluster (by avg center)
-    for s in recommended:
-        best_day = -1
-        best_dist = float('inf')
-        for di, cluster in enumerate(clusters):
-            if len(cluster) >= max_per_day:
-                continue
-            if not cluster:
-                best_day = di
-                break
-            # Distance to cluster centroid
-            avg_lat = sum(c.site.lat for c in cluster) / len(cluster)
-            avg_lng = sum(c.site.lng for c in cluster) / len(cluster)
-            d = (s.site.lat - avg_lat)**2 + (s.site.lng - avg_lng)**2
-            if d < best_dist:
-                best_dist = d
-                best_day = di
-        if best_day >= 0:
-            clusters[best_day].append(s)
-
-    # Sort each cluster by score descending, with must-visit first
+    # Order within day: must-visit first, then score desc (Step 6 re-optimizes order anyway)
     for c in clusters:
-        c.sort(key=lambda s: (0 if s.site.id in must_ids else 1, -s.score))
+        c.sort(key=lambda s: (0 if s.site.id in mv else 1, -s.score))
 
-    return clusters
-
-
-def _simple_geographic_split(coords: np.ndarray, k: int) -> np.ndarray:
-    """Fallback split by latitude banding."""
-    lats = coords[:, 0]
-    sorted_idx = np.argsort(lats)
-    labels = np.zeros(len(coords), dtype=int)
-    chunk_size = max(1, len(coords) // k)
-    for i, idx in enumerate(sorted_idx):
-        labels[idx] = min(i // chunk_size, k - 1)
-    return labels
+    return clusters   # length == D
 
 
 def clusters_to_day_plans(

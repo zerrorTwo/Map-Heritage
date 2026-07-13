@@ -42,7 +42,7 @@ class Pipeline:
             WeatherStep(),
             ScoringStep(),
             MMRStep(lambd=0.7),
-            TTDPRoutingStep(speed_kmh=40.0, time_limit_sec=2),
+            TTDPRoutingStep(),
             GeometryStep(),
             DayPlanStep(),
             AssemblyStep(),
